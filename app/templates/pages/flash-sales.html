@@ -9,8 +9,8 @@
 	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><a href="/">Home</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Flash Sales</li>
+				<li class="breadcrumb-item"><a href="/">{{ _("Home") }}</a></li>
+				<li class="breadcrumb-item active" aria-current="page">{{ _("Flash Sales") }}</li>
 			</ol>
 		</nav>
 	</div>
@@ -19,28 +19,28 @@
 <section class="middle">
 	<div class="container">
 
-		<h3 class="ft-bold mb-1"><i class="lni lni-bolt theme-cl"></i> Flash Sales</h3>
-		<p class="text-muted">Limited-time deals — grab them before the timer runs out.</p>
+		<h3 class="ft-bold mb-1"><i class="lni lni-bolt theme-cl"></i> {{ _("Flash Sales") }}</h3>
+		<p class="text-muted">{{ _("Limited-time deals — grab them before the timer runs out.") }}</p>
 
 		<!-- Inline search + price filter (Phase 15 Chunk B v2) -->
 		<form method="get" class="row g-2 align-items-end mb-4 border rounded p-3 bg-white">
 			<div class="col-lg-6 col-md-12">
-				<label class="form-label small ft-medium">Search within flash deals</label>
+				<label class="form-label small ft-medium">{{ _("Search within flash deals") }}</label>
 				<input type="text" name="q" class="form-control"
-				       value="{{ q or '' }}" placeholder="Search by product name…">
+				       value="{{ q or '' }}" placeholder="{{ _('Search by product name…') }}">
 			</div>
 			<div class="col-lg-2 col-md-4 col-6">
-				<label class="form-label small ft-medium">Min price (৳)</label>
+				<label class="form-label small ft-medium">{{ _("Min price (৳)") }}</label>
 				<input type="number" min="0" step="0.01" name="min" class="form-control"
 				       value="{{ min_price if min_price is not none else '' }}">
 			</div>
 			<div class="col-lg-2 col-md-4 col-6">
-				<label class="form-label small ft-medium">Max price (৳)</label>
+				<label class="form-label small ft-medium">{{ _("Max price (৳)") }}</label>
 				<input type="number" min="0" step="0.01" name="max" class="form-control"
 				       value="{{ max_price if max_price is not none else '' }}">
 			</div>
 			<div class="col-lg-2 col-md-4 col-12 d-grid">
-				<button class="btn btn-dark">Filter</button>
+				<button class="btn btn-dark">{{ _("Filter") }}</button>
 			</div>
 		</form>
 
@@ -52,16 +52,16 @@
 						<h5 class="ft-bold mb-0">{{ sale.title }}</h5>
 						{% if sale.vendor %}
 						<small class="text-muted">
-							<i class="lni lni-shop me-1"></i>by
+							<i class="lni lni-shop me-1"></i>{{ _("by") }}
 							<a href="{{ url_for('storefront.store', slug=sale.vendor.slug) }}"
 							   class="text-muted">{{ sale.vendor.shop_name_en }}</a>
 						</small>
 						{% else %}
-						<small class="text-muted">Marketplace-wide deal</small>
+						<small class="text-muted">{{ _("Marketplace-wide deal") }}</small>
 						{% endif %}
 					</div>
 					{% if sale.ends_at %}
-					<span class="badge bg-danger">Ends {{ sale.ends_at.strftime('%d %b %Y') }}</span>
+					<span class="badge bg-danger">{{ _("Ends %(date)s", date=sale.ends_at.strftime('%d %b %Y')) }}</span>
 					{% endif %}
 				</div>
 				{% if sale.description %}
@@ -78,9 +78,9 @@
 		<div class="border rounded p-5 text-center text-muted">
 			<i class="lni lni-bolt fs-1 mb-3 d-block"></i>
 			{% if q or min_price is not none or max_price is not none %}
-			No flash deals match your filters — <a href="{{ url_for('storefront.flash_sales') }}">clear them</a>.
+			{{ _("No flash deals match your filters —") }} <a href="{{ url_for('storefront.flash_sales') }}">{{ _("clear them") }}</a>.
 			{% else %}
-			No flash sales running right now — check back soon!
+			{{ _("No flash sales running right now — check back soon!") }}
 			{% endif %}
 		</div>
 		{% endif %}

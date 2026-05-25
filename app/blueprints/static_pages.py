@@ -126,6 +126,9 @@ def _save(page):
         toc_json = _parse_json_field(f.get("toc_json"))
         faq_json = _parse_json_field(f.get("faq_json"))
         related_json = _parse_json_field(f.get("related_json"))
+        toc_json_bn = _parse_json_field(f.get("toc_json_bn")) if (f.get("toc_json_bn") or "").strip() else None
+        faq_json_bn = _parse_json_field(f.get("faq_json_bn")) if (f.get("faq_json_bn") or "").strip() else None
+        related_json_bn = _parse_json_field(f.get("related_json_bn")) if (f.get("related_json_bn") or "").strip() else None
     except ValueError as exc:
         flash(str(exc), "danger")
         return redirect(request.url)
@@ -144,6 +147,14 @@ def _save(page):
     page.toc_json = toc_json
     page.faq_json = faq_json
     page.related_json = related_json
+    # Bangla fields — keep None if blank so localized() falls back to English.
+    page.title_bn = (f.get("title_bn") or "").strip() or None
+    page.subtitle_bn = (f.get("subtitle_bn") or "").strip() or None
+    page.section_bn = (f.get("section_bn") or "").strip() or None
+    page.body_html_bn = (f.get("body_html_bn") or "").strip() or None
+    page.toc_json_bn = toc_json_bn
+    page.faq_json_bn = faq_json_bn
+    page.related_json_bn = related_json_bn
     page.version = (f.get("version") or "v1.0").strip()
     page.is_published = bool(f.get("is_published"))
     page.sort_order = int(f.get("sort_order") or 0)

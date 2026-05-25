@@ -11,9 +11,9 @@
 			<div class="colxl-12 col-lg-12 col-md-12">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item"><a href="/login/">Login</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Verify Code</li>
+						<li class="breadcrumb-item"><a href="/">{{ _("Home") }}</a></li>
+						<li class="breadcrumb-item"><a href="/login/">{{ _("Login") }}</a></li>
+						<li class="breadcrumb-item active" aria-current="page">{{ _("Verify Code") }}</li>
 					</ol>
 				</nav>
 			</div>
@@ -34,25 +34,25 @@
 					{% include 'Base/flash_messages.html' %}
 
 					<div class="form-group mb-3">
-						<h5 class="mb-1">Enter Verification Code</h5>
-						<p class="text-slate-400 mb-0">We sent a one-time code to <strong>{{ email }}</strong>.</p>
+						<h5 class="mb-1">{{ _("Enter Verification Code") }}</h5>
+						<p class="text-slate-400 mb-0">{{ _("We sent a one-time code to %(email)s.", email='<strong>' ~ email ~ '</strong>')|safe }}</p>
 					</div>
 
 					<div class="form-group mb-3">
-						<label class="mb-2">Verification Code *</label>
-						<input type="text" name="code" class="form-control" placeholder="6-digit code"
+						<label class="mb-2">{{ _("Verification Code") }} *</label>
+						<input type="text" name="code" class="form-control" placeholder="{{ _('6-digit code') }}"
 							inputmode="numeric" autocomplete="one-time-code" maxlength="6" required autofocus>
 					</div>
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-md full-width bg-dark text-light fs-md ft-medium">Verify &amp; Continue</button>
+						<button type="submit" class="btn btn-md full-width bg-dark text-light fs-md ft-medium">{{ _("Verify & Continue") }}</button>
 					</div>
 				</form>
 
 				<form method="post" action="{{ url_for('auth.resend_otp') }}" class="text-center mt-3">
 					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-					<span class="text-slate-400 me-2">Didn't get the code ?</span>
-					<button type="submit" class="btn btn-link p-0 text-slate-900 dark:text-white font-bold">Resend Code</button>
+					<span class="text-slate-400 me-2">{{ _("Didn't get the code ?") }}</span>
+					<button type="submit" class="btn btn-link p-0 text-slate-900 dark:text-white font-bold">{{ _("Resend Code") }}</button>
 				</form>
 			</div>
 

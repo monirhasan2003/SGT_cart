@@ -8,9 +8,9 @@
 	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><a href="/">Home</a></li>
-				<li class="breadcrumb-item"><a href="{{ url_for('cart.view') }}">Cart</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Checkout</li>
+				<li class="breadcrumb-item"><a href="/">{{ _("Home") }}</a></li>
+				<li class="breadcrumb-item"><a href="{{ url_for('cart.view') }}">{{ _("Cart") }}</a></li>
+				<li class="breadcrumb-item active" aria-current="page">{{ _("Checkout") }}</li>
 			</ol>
 		</nav>
 	</div>
@@ -21,7 +21,7 @@
 
 		{% include 'Base/flash_messages.html' %}
 
-		<h2 class="ft-bold text-center mb-4">Checkout</h2>
+		<h2 class="ft-bold text-center mb-4">{{ _("Checkout") }}</h2>
 
 		<form method="post" action="{{ url_for('cart.checkout') }}">
 			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -31,8 +31,8 @@
 					<!-- Delivery address -->
 					<div class="border rounded p-3 mb-4">
 						<div class="d-flex justify-content-between align-items-center mb-2">
-							<h5 class="ft-bold mb-0">Delivery Address</h5>
-							<a href="{{ url_for('account.address_create') }}" class="btn btn-sm btn-outline-dark">+ Add New</a>
+							<h5 class="ft-bold mb-0">{{ _("Delivery Address") }}</h5>
+							<a href="{{ url_for('account.address_create') }}" class="btn btn-sm btn-outline-dark">{{ _("+ Add New") }}</a>
 						</div>
 						{% if addresses %}
 							{% for a in addresses %}
@@ -47,18 +47,18 @@
 								</label>
 							{% endfor %}
 						{% else %}
-							<p class="text-danger mb-0">You have no saved address.
-								<a href="{{ url_for('account.address_create') }}">Add one</a> to continue.</p>
+							<p class="text-danger mb-0">{{ _("You have no saved address.") }}
+								<a href="{{ url_for('account.address_create') }}">{{ _("Add one") }}</a> {{ _("to continue.") }}</p>
 						{% endif %}
 					</div>
 
 					<!-- Items grouped by vendor -->
 					<div class="border rounded p-3">
-						<h5 class="ft-bold mb-3">Your Items</h5>
+						<h5 class="ft-bold mb-3">{{ _("Your Items") }}</h5>
 						{% for vendor, vitems in groups.items() %}
 							<div class="mb-3">
 								<div class="gray px-2 py-1 ft-medium">
-									<i class="lni lni-shop me-1"></i>Sold by {{ vendor.shop_name_en }}
+									<i class="lni lni-shop me-1"></i>{{ _("Sold by %(name)s", name=vendor.shop_name_en) }}
 								</div>
 								{% for item in vitems %}
 									<div class="d-flex justify-content-between align-items-center py-2 br-bottom">
@@ -84,20 +84,20 @@
 				<div class="col-lg-4">
 					<div class="card gray">
 						<div class="card-body">
-							<h5 class="ft-bold mb-3">Order Summary</h5>
+							<h5 class="ft-bold mb-3">{{ _("Order Summary") }}</h5>
 							<div class="d-flex justify-content-between mb-2">
-								<span>Subtotal</span><span class="ft-medium">৳{{ "%.2f"|format(subtotal|float) }}</span>
+								<span>{{ _("Subtotal") }}</span><span class="ft-medium">৳{{ "%.2f"|format(subtotal|float) }}</span>
 							</div>
 							<div class="d-flex justify-content-between mb-2">
-								<span>Shipping <small class="text-muted">({{ groups|length }} seller)</small></span>
+								<span>{{ _("Shipping") }} <small class="text-muted">({{ _("%(n)s seller", n=groups|length) }})</small></span>
 								<span class="ft-medium">৳{{ "%.2f"|format(shipping|float) }}</span>
 							</div>
 
 							{% if coupon_code %}
 							<div class="d-flex justify-content-between mb-2 text-success">
-								<span>Coupon ({{ coupon_code }})
+								<span>{{ _("Coupon") }} ({{ coupon_code }})
 									<button formaction="{{ url_for('cart.remove_coupon') }}" formnovalidate
-									        class="btn btn-link btn-sm p-0 text-danger align-baseline">remove</button>
+									        class="btn btn-link btn-sm p-0 text-danger align-baseline">{{ _("remove") }}</button>
 								</span>
 								<span class="ft-medium">&minus;৳{{ "%.2f"|format(discount|float) }}</span>
 							</div>
@@ -105,9 +105,9 @@
 							<div class="mb-2">
 								<div class="input-group input-group-sm">
 									<input type="text" name="coupon_code" class="form-control"
-									       placeholder="Coupon code" autocomplete="off">
+									       placeholder="{{ _('Coupon code') }}" autocomplete="off">
 									<button formaction="{{ url_for('cart.apply_coupon') }}" formnovalidate
-									        class="btn btn-outline-dark">Apply</button>
+									        class="btn btn-outline-dark">{{ _("Apply") }}</button>
 								</div>
 							</div>
 							{% endif %}
@@ -116,31 +116,31 @@
 							<div class="mb-2">
 								<label class="d-flex align-items-center small mb-0">
 									<input type="checkbox" name="use_points" class="form-check-input me-2">
-									<span>Use my {{ current_user.reward_points }} reward points
-										<span class="text-muted">(৳{{ current_user.reward_points }} off)</span></span>
+									<span>{{ _("Use my %(n)s reward points", n=current_user.reward_points) }}
+										<span class="text-muted">({{ _("৳%(n)s off", n=current_user.reward_points) }})</span></span>
 								</label>
 							</div>
 							{% endif %}
 							<hr>
 							<div class="d-flex justify-content-between mb-3">
-								<span class="ft-bold">Total</span>
+								<span class="ft-bold">{{ _("Total") }}</span>
 								<span class="ft-bold theme-cl">৳{{ "%.2f"|format(total|float) }}</span>
 							</div>
 
-							<h6 class="ft-bold">Payment Method</h6>
+							<h6 class="ft-bold">{{ _("Payment Method") }}</h6>
 							<label class="d-block border rounded p-2 mb-2">
 								<input type="radio" name="payment_method" value="cod" checked>
-								<span class="ms-1">Cash on Delivery</span>
-								<small class="text-muted d-block ms-4">Pay when the order arrives.</small>
+								<span class="ms-1">{{ _("Cash on Delivery") }}</span>
+								<small class="text-muted d-block ms-4">{{ _("Pay when the order arrives.") }}</small>
 							</label>
 							<label class="d-block border rounded p-2 mb-3">
 								<input type="radio" name="payment_method" value="sslcommerz">
-								<span class="ms-1">Online Payment</span>
-								<small class="text-muted d-block ms-4">Card, bKash, Nagad &amp; more via SSLCommerz.</small>
+								<span class="ms-1">{{ _("Online Payment") }}</span>
+								<small class="text-muted d-block ms-4">{{ _("Card, bKash, Nagad & more via SSLCommerz.") }}</small>
 							</label>
 
 							<button type="submit" class="btn btn-dark w-100"
-							        {{ 'disabled' if not addresses }}>Place Order</button>
+							        {{ 'disabled' if not addresses }}>{{ _("Place Order") }}</button>
 						</div>
 					</div>
 				</div>

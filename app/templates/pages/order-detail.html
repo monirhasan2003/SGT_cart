@@ -8,8 +8,8 @@
 	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><a href="/">Home</a></li>
-				<li class="breadcrumb-item"><a href="/my-orders/">My Orders</a></li>
+				<li class="breadcrumb-item"><a href="/">{{ _("Home") }}</a></li>
+				<li class="breadcrumb-item"><a href="/my-orders/">{{ _("My Orders") }}</a></li>
 				<li class="breadcrumb-item active" aria-current="page">{{ order.order_number }}</li>
 			</ol>
 		</nav>
@@ -26,16 +26,16 @@
 
 				<div class="border rounded p-4 mb-4 text-center">
 					<i class="lni lni-checkmark-circle fs-1 text-success"></i>
-					<h3 class="ft-bold mt-2 mb-1">Order {{ order.order_number }}</h3>
+					<h3 class="ft-bold mt-2 mb-1">{{ _("Order %(num)s", num=order.order_number) }}</h3>
 					<p class="text-muted mb-0">
-						Placed on {{ order.created_at.strftime('%d %b %Y, %I:%M %p') if order.created_at }}
+						{{ _("Placed on %(date)s", date=order.created_at.strftime('%d %b %Y, %I:%M %p') if order.created_at else '') }}
 					</p>
 				</div>
 
 				<div class="row g-3 mb-4">
 					<div class="col-md-6">
 						<div class="border rounded p-3 h-100">
-							<h6 class="ft-bold">Shipping Address</h6>
+							<h6 class="ft-bold">{{ _("Shipping Address") }}</h6>
 							<p class="mb-0 text-muted">
 								{{ order.ship_name }} — {{ order.ship_phone }}<br>
 								{{ order.ship_address_line }},
@@ -46,13 +46,13 @@
 					</div>
 					<div class="col-md-6">
 						<div class="border rounded p-3 h-100">
-							<h6 class="ft-bold">Payment</h6>
+							<h6 class="ft-bold">{{ _("Payment") }}</h6>
 							<p class="mb-0 text-muted">
-								Method: {{ 'Cash on Delivery' if order.payment_method == 'cod' else order.payment_method }}<br>
-								Status:
-								{% if order.payment_status == 'paid' %}<span class="badge bg-success">Paid</span>
-								{% elif order.payment_status == 'failed' %}<span class="badge bg-danger">Failed</span>
-								{% else %}<span class="badge bg-warning text-dark">Pending</span>{% endif %}
+								{{ _("Method:") }} {{ _('Cash on Delivery') if order.payment_method == 'cod' else order.payment_method }}<br>
+								{{ _("Status:") }}
+								{% if order.payment_status == 'paid' %}<span class="badge bg-success">{{ _("Paid") }}</span>
+								{% elif order.payment_status == 'failed' %}<span class="badge bg-danger">{{ _("Failed") }}</span>
+								{% else %}<span class="badge bg-warning text-dark">{{ _("Pending") }}</span>{% endif %}
 							</p>
 						</div>
 					</div>
@@ -81,7 +81,7 @@
 										{% if item.variant_label %}<small class="text-muted">({{ item.variant_label }})</small>{% endif %}
 										{% if sub.status == 'delivered' and item.product %}
 										<a href="{{ url_for('review.write', slug=item.product.slug) }}"
-										   class="d-block small text-primary">★ Write a review</a>
+										   class="d-block small text-primary">★ {{ _("Write a review") }}</a>
 										{% endif %}
 									</td>
 									<td class="text-muted">৳{{ "%.2f"|format(item.unit_price|float) }} &times; {{ item.quantity }}</td>
@@ -90,13 +90,13 @@
 							{% endfor %}
 							</tbody>
 							<tfoot>
-								<tr><td colspan="2" class="text-end text-muted">Items subtotal</td>
+								<tr><td colspan="2" class="text-end text-muted">{{ _("Items subtotal") }}</td>
 									<td class="text-end ft-medium">৳{{ "%.2f"|format(sub.subtotal|float) }}</td></tr>
 							</tfoot>
 						</table>
 						<!-- Live tracking timeline -->
 						<div class="px-3 py-2 border-top">
-							<div class="small ft-medium mb-2"><i class="lni lni-map-marker me-1"></i>Tracking</div>
+							<div class="small ft-medium mb-2"><i class="lni lni-map-marker me-1"></i>{{ _("Tracking") }}</div>
 							<ul class="list-unstyled mb-0 js-sub-timeline">
 								{% for e in sub.events %}
 								<li class="d-flex gap-2 mb-1 small">
@@ -115,21 +115,21 @@
 				<!-- Totals -->
 				<div class="border rounded p-3" style="max-width:340px;margin-left:auto;">
 					<div class="d-flex justify-content-between mb-1">
-						<span>Subtotal</span><span>৳{{ "%.2f"|format(order.subtotal|float) }}</span>
+						<span>{{ _("Subtotal") }}</span><span>৳{{ "%.2f"|format(order.subtotal|float) }}</span>
 					</div>
 					<div class="d-flex justify-content-between mb-1">
-						<span>Shipping</span><span>৳{{ "%.2f"|format(order.shipping_fee|float) }}</span>
+						<span>{{ _("Shipping") }}</span><span>৳{{ "%.2f"|format(order.shipping_fee|float) }}</span>
 					</div>
 					<hr class="my-2">
 					<div class="d-flex justify-content-between">
-						<span class="ft-bold">Total</span>
+						<span class="ft-bold">{{ _("Total") }}</span>
 						<span class="ft-bold theme-cl">৳{{ "%.2f"|format(order.total_amount|float) }}</span>
 					</div>
 				</div>
 
 				<div class="text-center mt-4">
-					<a href="{{ url_for('storefront.shop') }}" class="btn btn-outline-dark">Continue Shopping</a>
-					<a href="/my-orders/" class="btn btn-dark">My Orders</a>
+					<a href="{{ url_for('storefront.shop') }}" class="btn btn-outline-dark">{{ _("Continue Shopping") }}</a>
+					<a href="/my-orders/" class="btn btn-dark">{{ _("My Orders") }}</a>
 				</div>
 
 			</div>
@@ -142,11 +142,11 @@
 (function () {
 	var ORDER = "{{ order.order_number }}";
 	var STATUS = {
-		pending:    { label: "Pending",    cls: "bg-warning text-dark" },
-		processing: { label: "Processing", cls: "bg-primary" },
-		shipped:    { label: "Shipped",    cls: "bg-info text-dark" },
-		delivered:  { label: "Delivered",  cls: "bg-success" },
-		cancelled:  { label: "Cancelled",  cls: "bg-danger" }
+		pending:    { label: '{{ _("Pending") }}',    cls: "bg-warning text-dark" },
+		processing: { label: '{{ _("Processing") }}', cls: "bg-primary" },
+		shipped:    { label: '{{ _("Shipped") }}',    cls: "bg-info text-dark" },
+		delivered:  { label: '{{ _("Delivered") }}',  cls: "bg-success" },
+		cancelled:  { label: '{{ _("Cancelled") }}',  cls: "bg-danger" }
 	};
 	try {
 		var socket = io();
@@ -163,7 +163,7 @@
 				li.className = "d-flex gap-2 mb-1 small";
 				li.innerHTML = '<span class="text-success">&#9679;</span>' +
 					'<span class="text-capitalize ft-medium">' + s.label + "</span>" +
-					'<span class="text-muted ms-auto">just now</span>';
+					'<span class="text-muted ms-auto">{{ _("just now") }}</span>';
 				tl.appendChild(li);
 			}
 		});

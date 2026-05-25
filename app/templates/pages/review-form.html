@@ -8,12 +8,12 @@
 	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/">{{ _("Home") }}</a></li>
 				<li class="breadcrumb-item">
 					<a href="{{ url_for('storefront.product_detail', slug=product.slug) }}">
 						{{ product.localized_title }}</a>
 				</li>
-				<li class="breadcrumb-item active" aria-current="page">Review</li>
+				<li class="breadcrumb-item active" aria-current="page">{{ _("Review") }}</li>
 			</ol>
 		</nav>
 	</div>
@@ -28,14 +28,14 @@
 			<div class="col-lg-7">
 				<div class="border rounded p-4">
 					<h4 class="ft-bold mb-1">
-						{{ 'Edit your review' if review else 'Write a review' }}
+						{{ _('Edit your review') if review else _('Write a review') }}
 					</h4>
 					<p class="text-muted">{{ product.localized_title }}</p>
 
 					<form method="post" enctype="multipart/form-data">
 						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-						<label class="form-label ft-medium">Your rating</label>
+						<label class="form-label ft-medium">{{ _("Your rating") }}</label>
 						<select name="rating" class="form-select mb-3" required>
 							{% for n in [5, 4, 3, 2, 1] %}
 							<option value="{{ n }}"
@@ -45,23 +45,23 @@
 							{% endfor %}
 						</select>
 
-						<label class="form-label ft-medium">Title <span class="text-muted small">(optional)</span></label>
+						<label class="form-label ft-medium">{{ _("Title") }} <span class="text-muted small">{{ _("(optional)") }}</span></label>
 						<input type="text" name="title" class="form-control mb-3" maxlength="160"
-						       value="{{ review.title or '' }}" placeholder="Sum up your experience">
+						       value="{{ review.title or '' }}" placeholder="{{ _('Sum up your experience') }}">
 
-						<label class="form-label ft-medium">Your review</label>
+						<label class="form-label ft-medium">{{ _("Your review") }}</label>
 						<textarea name="comment" class="form-control mb-3" rows="5"
-						          placeholder="What did you like or dislike?">{{ review.comment or '' }}</textarea>
+						          placeholder="{{ _('What did you like or dislike?') }}">{{ review.comment or '' }}</textarea>
 
-						<label class="form-label ft-medium">Photos <span class="text-muted small">(optional)</span></label>
+						<label class="form-label ft-medium">{{ _("Photos") }} <span class="text-muted small">{{ _("(optional)") }}</span></label>
 						<input type="file" name="images" class="form-control mb-3"
 						       accept="image/*" multiple>
 
 						<button class="btn btn-primary">
-							{{ 'Update review' if review else 'Post review' }}
+							{{ _('Update review') if review else _('Post review') }}
 						</button>
 						<a href="{{ url_for('storefront.product_detail', slug=product.slug) }}"
-						   class="btn btn-link">Cancel</a>
+						   class="btn btn-link">{{ _("Cancel") }}</a>
 					</form>
 				</div>
 			</div>

@@ -11,9 +11,9 @@
 			<div class="colxl-12 col-lg-12 col-md-12">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0);">Pages</a></li>
-						<li class="breadcrumb-item active" aria-current="page">SignUp</li>
+						<li class="breadcrumb-item"><a href="/">{{ _("Home") }}</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0);">{{ _("Pages") }}</a></li>
+						<li class="breadcrumb-item active" aria-current="page">{{ _("SignUp") }}</li>
 					</ol>
 				</nav>
 			</div>
@@ -34,79 +34,79 @@
 					{% include 'Base/flash_messages.html' %}
 
 					<div class="form-group mb-3">
-						<label class="mb-2">Account Type *</label>
+						<label class="mb-2">{{ _("Account Type") }} *</label>
 						<div class="d-flex gap-4">
 							<div>
 								<input id="role_customer" class="checkbox-custom" type="radio" name="role" value="customer"
 									{% if form.get('role') != 'seller' %}checked{% endif %}>
-								<label for="role_customer" class="checkbox-custom-label">Customer (Buyer)</label>
+								<label for="role_customer" class="checkbox-custom-label">{{ _("Customer (Buyer)") }}</label>
 							</div>
 							<div>
 								<input id="role_seller" class="checkbox-custom" type="radio" name="role" value="seller"
 									{% if form.get('role') == 'seller' %}checked{% endif %}>
-								<label for="role_seller" class="checkbox-custom-label">Seller</label>
+								<label for="role_seller" class="checkbox-custom-label">{{ _("Seller") }}</label>
 							</div>
 						</div>
 					</div>
 
 					<div class="row g-3 mb-3">
 						<div class="form-group col-md-6">
-							<label class="mb-2">First Name *</label>
-							<input type="text" name="first_name" class="form-control" placeholder="First Name"
+							<label class="mb-2">{{ _("First Name") }} *</label>
+							<input type="text" name="first_name" class="form-control" placeholder="{{ _('First Name') }}"
 								value="{{ form.get('first_name', '') }}" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label class="mb-2">Last Name</label>
-							<input type="text" name="last_name" class="form-control" placeholder="Last Name"
+							<label class="mb-2">{{ _("Last Name") }}</label>
+							<input type="text" name="last_name" class="form-control" placeholder="{{ _('Last Name') }}"
 								value="{{ form.get('last_name', '') }}">
 						</div>
 					</div>
 
 					<div class="form-group mb-3">
-						<label class="mb-2">Email *</label>
-						<input type="email" name="email" class="form-control" placeholder="Email address"
+						<label class="mb-2">{{ _("Email") }} *</label>
+						<input type="email" name="email" class="form-control" placeholder="{{ _('Email address') }}"
 							value="{{ form.get('email', '') }}" required>
 					</div>
 
 					<div class="form-group mb-3">
-						<label class="mb-2">Phone</label>
-						<input type="text" name="phone" class="form-control" placeholder="Phone number"
+						<label class="mb-2">{{ _("Phone") }}</label>
+						<input type="text" name="phone" class="form-control" placeholder="{{ _('Phone number') }}"
 							value="{{ form.get('phone', '') }}">
 					</div>
 
 					<div class="form-group mb-3">
-						<label class="mb-2">Shop Name <span class="text-slate-400">(sellers only)</span></label>
-						<input type="text" name="shop_name" class="form-control" placeholder="Your shop name"
+						<label class="mb-2">{{ _("Shop Name") }} <span class="text-slate-400">{{ _("(sellers only)") }}</span></label>
+						<input type="text" name="shop_name" class="form-control" placeholder="{{ _('Your shop name') }}"
 							value="{{ form.get('shop_name', '') }}">
 					</div>
 
 					<div class="row g-3 mb-3">
 						<div class="form-group col-md-6">
-							<label class="mb-2">Password *</label>
-							<input type="password" name="password" class="form-control" placeholder="Password" required>
+							<label class="mb-2">{{ _("Password") }} *</label>
+							<input type="password" name="password" class="form-control" placeholder="{{ _('Password') }}" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label class="mb-2">Confirm Password *</label>
-							<input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+							<label class="mb-2">{{ _("Confirm Password") }} *</label>
+							<input type="password" name="confirm_password" class="form-control" placeholder="{{ _('Confirm Password') }}" required>
 						</div>
 					</div>
 
 					<div class="form-group mb-3">
-						<label class="mb-2">Referral code <span class="text-muted">(optional)</span></label>
+						<label class="mb-2">{{ _("Referral code") }} <span class="text-muted">{{ _("(optional)") }}</span></label>
 						<input type="text" name="referral_code" class="form-control text-uppercase"
-						       placeholder="Have a friend's code? Enter it here"
+						       placeholder="{{ _('Have a friend code? Enter it here') }}"
 						       value="{{ form.get('referral_code', '') }}">
 					</div>
 
 					<div class="form-group mb-3">
-						<p>By registering your details, you agree with our Terms &amp; Conditions, and Privacy and Cookie Policy.</p>
+						<p>{{ _("By registering your details, you agree with our Terms & Conditions, and Privacy and Cookie Policy.") }}</p>
 					</div>
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-md full-width bg-dark text-light fs-md ft-medium">Create An Account</button>
+						<button type="submit" class="btn btn-md full-width bg-dark text-light fs-md ft-medium">{{ _("Create An Account") }}</button>
 					</div>
 					<div class="text-center mt-3">
-						<span class="text-slate-400 me-2">Already have an account ?</span> <a href="/login/" class="text-slate-900 dark:text-white font-bold inline-block">Sign in</a>
+						<span class="text-slate-400 me-2">{{ _("Already have an account ?") }}</span> <a href="/login/" class="text-slate-900 dark:text-white font-bold inline-block">{{ _("Sign in") }}</a>
 					</div>
 				</form>
 			</div>

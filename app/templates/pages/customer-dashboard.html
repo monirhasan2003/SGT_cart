@@ -11,8 +11,8 @@
 			<div class="colxl-12 col-lg-12 col-md-12">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+						<li class="breadcrumb-item"><a href="/">{{ _("Home") }}</a></li>
+						<li class="breadcrumb-item active" aria-current="page">{{ _("Dashboard") }}</li>
 					</ol>
 				</nav>
 			</div>
@@ -39,15 +39,15 @@
 					</div>
 
 					<div class="dashboard_author">
-						<h4 class="px-3 py-2 mb-0 lh-2 gray fs-sm ft-medium text-muted text-uppercase text-left">Dashboard Navigation</h4>
+						<h4 class="px-3 py-2 mb-0 lh-2 gray fs-sm ft-medium text-muted text-uppercase text-left">{{ _("Dashboard Navigation") }}</h4>
 						<ul class="dahs_navbar">
-							<li><a href="/dashboard/" class="active"><i class="lni lni-dashboard me-2"></i>Dashboard</a></li>
-							<li><a href="/my-orders/"><i class="lni lni-shopping-basket me-2"></i>My Order</a></li>
-							<li><a href="/wishlist/"><i class="lni lni-heart me-2"></i>Wishlist</a></li>
-							<li><a href="/profile-info/"><i class="lni lni-user me-2"></i>Profile Info</a></li>
-							<li><a href="/addresses/"><i class="lni lni-map-marker me-2"></i>Addresses</a></li>
-							<li><a href="/payment-method/"><i class="lni lni-mastercard me-2"></i>Payment Method</a></li>
-							<li><a href="/logout/"><i class="lni lni-power-switch me-2"></i>Log Out</a></li>
+							<li><a href="/dashboard/" class="active"><i class="lni lni-dashboard me-2"></i>{{ _("Dashboard") }}</a></li>
+							<li><a href="/my-orders/"><i class="lni lni-shopping-basket me-2"></i>{{ _("My Order") }}</a></li>
+							<li><a href="/wishlist/"><i class="lni lni-heart me-2"></i>{{ _("Wishlist") }}</a></li>
+							<li><a href="/profile-info/"><i class="lni lni-user me-2"></i>{{ _("Profile Info") }}</a></li>
+							<li><a href="/addresses/"><i class="lni lni-map-marker me-2"></i>{{ _("Addresses") }}</a></li>
+							<li><a href="/payment-method/"><i class="lni lni-mastercard me-2"></i>{{ _("Payment Method") }}</a></li>
+							<li><a href="/logout/"><i class="lni lni-power-switch me-2"></i>{{ _("Log Out") }}</a></li>
 						</ul>
 					</div>
 
@@ -59,8 +59,8 @@
 				{% include 'Base/flash_messages.html' %}
 
 				<div class="border rounded p-3 mb-3">
-					<h5 class="ft-bold mb-1">Welcome back, {{ current_user.name }}!</h5>
-					<p class="text-muted small mb-0">Manage your orders, wishlist, addresses and profile from here.</p>
+					<h5 class="ft-bold mb-1">{{ _("Welcome back, %(name)s!", name=current_user.name) }}</h5>
+					<p class="text-muted small mb-0">{{ _("Manage your orders, wishlist, addresses and profile from here.") }}</p>
 				</div>
 
 				<div class="row g-2">
@@ -68,8 +68,8 @@
 						<a href="/my-orders/" class="d-block border rounded p-2 text-dark d-flex gap-2 align-items-center">
 							<i class="lni lni-shopping-basket fs-4 theme-cl"></i>
 							<div>
-								<div class="ft-medium small">My Orders</div>
-								<span class="text-muted small">Track and review</span>
+								<div class="ft-medium small">{{ _("My Orders") }}</div>
+								<span class="text-muted small">{{ _("Track and review") }}</span>
 							</div>
 						</a>
 					</div>
@@ -77,10 +77,10 @@
 						<a href="/wishlist/" class="d-block border rounded p-2 text-dark d-flex gap-2 align-items-center">
 							<i class="lni lni-heart fs-4 theme-cl"></i>
 							<div>
-								<div class="ft-medium small">Wishlist
+								<div class="ft-medium small">{{ _("Wishlist") }}
 									<span class="badge bg-danger ms-1">{{ wishlist|length }}</span>
 								</div>
-								<span class="text-muted small">Saved items</span>
+								<span class="text-muted small">{{ _("Saved items") }}</span>
 							</div>
 						</a>
 					</div>
@@ -88,8 +88,8 @@
 						<a href="/addresses/" class="d-block border rounded p-2 text-dark d-flex gap-2 align-items-center">
 							<i class="lni lni-map-marker fs-4 theme-cl"></i>
 							<div>
-								<div class="ft-medium small">Addresses</div>
-								<span class="text-muted small">Delivery addresses</span>
+								<div class="ft-medium small">{{ _("Addresses") }}</div>
+								<span class="text-muted small">{{ _("Delivery addresses") }}</span>
 							</div>
 						</a>
 					</div>
@@ -97,8 +97,8 @@
 						<a href="/profile-info/" class="d-block border rounded p-2 text-dark d-flex gap-2 align-items-center">
 							<i class="lni lni-user fs-4 theme-cl"></i>
 							<div>
-								<div class="ft-medium small">Profile Info</div>
-								<span class="text-muted small">Details &amp; password</span>
+								<div class="ft-medium small">{{ _("Profile Info") }}</div>
+								<span class="text-muted small">{{ _("Details & password") }}</span>
 							</div>
 						</a>
 					</div>
@@ -106,8 +106,8 @@
 						<a href="{{ url_for('chat.inbox') }}" class="d-block border rounded p-2 text-dark d-flex gap-2 align-items-center">
 							<i class="lni lni-comments fs-4 theme-cl"></i>
 							<div>
-								<div class="ft-medium small">Messages</div>
-								<span class="text-muted small">Sellers &amp; SGT Support</span>
+								<div class="ft-medium small">{{ _("Messages") }}</div>
+								<span class="text-muted small">{{ _("Sellers & SGT Support") }}</span>
 							</div>
 						</a>
 					</div>
@@ -115,8 +115,8 @@
 						<a href="{{ url_for('review.my_reviews') }}" class="d-block border rounded p-2 text-dark d-flex gap-2 align-items-center">
 							<i class="lni lni-star fs-4 theme-cl"></i>
 							<div>
-								<div class="ft-medium small">My Reviews</div>
-								<span class="text-muted small">Rate delivered items</span>
+								<div class="ft-medium small">{{ _("My Reviews") }}</div>
+								<span class="text-muted small">{{ _("Rate delivered items") }}</span>
 							</div>
 						</a>
 					</div>
@@ -124,10 +124,10 @@
 						<a href="{{ url_for('account.rewards') }}" class="d-block border rounded p-2 text-dark d-flex gap-2 align-items-center">
 							<i class="lni lni-gift fs-4 theme-cl"></i>
 							<div>
-								<div class="ft-medium small">Reward Points
+								<div class="ft-medium small">{{ _("Reward Points") }}
 									<span class="badge bg-success ms-1">{{ current_user.reward_points }}</span>
 								</div>
-								<span class="text-muted small">Earn &amp; redeem</span>
+								<span class="text-muted small">{{ _("Earn & redeem") }}</span>
 							</div>
 						</a>
 					</div>
@@ -135,8 +135,8 @@
 						<a href="{{ url_for('account.refer') }}" class="d-block border rounded p-2 text-dark d-flex gap-2 align-items-center">
 							<i class="lni lni-share fs-4 theme-cl"></i>
 							<div>
-								<div class="ft-medium small">Refer &amp; Earn</div>
-								<span class="text-muted small">Invite friends</span>
+								<div class="ft-medium small">{{ _("Refer & Earn") }}</div>
+								<span class="text-muted small">{{ _("Invite friends") }}</span>
 							</div>
 						</a>
 					</div>
@@ -152,7 +152,7 @@
 {% if recommended %}
 <section class="middle pt-0">
 	<div class="container">
-		<h5 class="ft-bold mb-3">Recommended for you</h5>
+		<h5 class="ft-bold mb-3">{{ _("Recommended for you") }}</h5>
 		<div class="row g-3">
 			{% for p in recommended %}
 			<div class="col-lg-3 col-md-4 col-6">

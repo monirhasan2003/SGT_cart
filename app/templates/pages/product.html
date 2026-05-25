@@ -10,12 +10,12 @@
      style="background:linear-gradient(90deg,#ff6b6b,#feca57);color:#fff;">
 	<div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
 		<div class="ft-bold">
-			<i class="lni lni-bolt me-1"></i>Flash Sale: {{ active_flash_sale.title }}
+			<i class="lni lni-bolt me-1"></i>{{ _("Flash Sale:") }} {{ active_flash_sale.title }}
 		</div>
 		{% if active_flash_sale.ends_at %}
 		<div class="small ft-medium" id="pdpFlashCountdown"
 		     data-ends-at="{{ active_flash_sale.ends_at.isoformat() }}">
-			Ends soon
+			{{ _("Ends soon") }}
 		</div>
 		{% endif %}
 	</div>
@@ -35,7 +35,7 @@
 		</div>
 		<div class="small ft-medium" id="pdpCampaignCountdown"
 		     data-ends-at="{{ campaign.ends_iso }}">
-			Ends soon
+			{{ _("Ends soon") }}
 		</div>
 	</div>
 </div>
@@ -45,8 +45,8 @@
 	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><a href="/">Home</a></li>
-				<li class="breadcrumb-item"><a href="{{ url_for('storefront.shop') }}">Shop</a></li>
+				<li class="breadcrumb-item"><a href="/">{{ _("Home") }}</a></li>
+				<li class="breadcrumb-item"><a href="{{ url_for('storefront.shop') }}">{{ _("Shop") }}</a></li>
 				{% if product.category %}
 					<li class="breadcrumb-item">
 						<a href="{{ url_for('storefront.shop', category=product.category.slug) }}">
@@ -67,9 +67,9 @@
 			<div class="col-lg-5 col-md-6">
 				<div class="border rounded p-3 text-center position-relative" id="pdp-gallery">
 					{% if product.stock <= 0 %}
-						<span class="badge bg-danger position-absolute" style="top:10px;left:10px;">Out of Stock</span>
+						<span class="badge bg-danger position-absolute" style="top:10px;left:10px;">{{ _("Out of Stock") }}</span>
 					{% elif product.stock <= 5 %}
-						<span class="badge bg-warning text-dark position-absolute" style="top:10px;left:10px;">Only {{ product.stock }} left</span>
+						<span class="badge bg-warning text-dark position-absolute" style="top:10px;left:10px;">{{ _("Only %(n)s left", n=product.stock) }}</span>
 					{% endif %}
 					{% if product.primary_image %}
 						<a id="zoomLink" href="{{ url_for('static', filename=product.primary_image) }}" target="_blank">
@@ -105,11 +105,11 @@
 				<div class="d-flex justify-content-between align-items-start gap-2 mb-1">
 					<h3 class="ft-bold mb-0 flex-grow-1">{{ product.localized_title }}</h3>
 					<div class="d-flex gap-2 flex-shrink-0">
-						<button type="button" class="btn btn-sm btn-outline-secondary" id="pdpShareBtn" title="Share">
+						<button type="button" class="btn btn-sm btn-outline-secondary" id="pdpShareBtn" title="{{ _('Share') }}">
 							<i class="lni lni-share-alt"></i>
 						</button>
 						<button type="button" class="btn btn-sm btn-outline-danger" id="pdpWishlistBtn"
-								data-product-id="{{ product.id }}" title="Save to wishlist">
+								data-product-id="{{ product.id }}" title="{{ _('Save to wishlist') }}">
 							<i class="lni lni-heart"></i>
 						</button>
 					</div>
@@ -119,19 +119,19 @@
 				<div class="mb-2">
 					{% if product.rating_count %}
 						<span class="text-warning">{{ '%.1f'|format(product.rating_avg|float) }} ★</span>
-						<span class="text-muted small">({{ product.rating_count }} review{{ '' if product.rating_count == 1 else 's' }})</span>
+						<span class="text-muted small">({{ _("%(n)s review", n=product.rating_count) if product.rating_count == 1 else _("%(n)s reviews", n=product.rating_count) }})</span>
 					{% else %}
-						<span class="text-muted small">No reviews yet</span>
+						<span class="text-muted small">{{ _("No reviews yet") }}</span>
 					{% endif %}
 					{# Q&A answered counter — links to the Q&A anchor below #}
 					<span class="text-muted small ms-2">·
 						<a href="#qa" class="text-decoration-none text-dark">
 							<i class="lni lni-question-circle"></i>
-							{{ qa_answered_count }} Answered Question{{ '' if qa_answered_count == 1 else 's' }}
+							{{ _("%(n)s Answered Question", n=qa_answered_count) if qa_answered_count == 1 else _("%(n)s Answered Questions", n=qa_answered_count) }}
 						</a>
 					</span>
 					{% if product.brand %}
-					<span class="text-muted small ms-2">Brand:
+					<span class="text-muted small ms-2">{{ _("Brand:") }}
 						<a href="{{ url_for('storefront.shop', brand=product.brand.slug) }}" class="text-dark ft-medium">{{ product.brand.name }}</a>
 					</span>
 					{% endif %}
@@ -148,44 +148,44 @@
 				</div>
 				<div class="d-flex gap-1 flex-wrap mb-3">
 					<span class="badge bg-success-subtle text-success border border-success-subtle">
-						<i class="lni lni-money-protection me-1"></i>Cash on Delivery
+						<i class="lni lni-money-protection me-1"></i>{{ _("Cash on Delivery") }}
 					</span>
 					{% if product.current_price >= free_shipping_threshold %}
 						<span class="badge bg-info-subtle text-primary border border-info-subtle">
-							<i class="lni lni-delivery me-1"></i>Free Shipping
+							<i class="lni lni-delivery me-1"></i>{{ _("Free Shipping") }}
 						</span>
 					{% endif %}
 					{% if product.is_sponsored_active %}
-						<span class="badge bg-warning text-dark"><i class="lni lni-star me-1"></i>Sponsored</span>
+						<span class="badge bg-warning text-dark"><i class="lni lni-star me-1"></i>{{ _("Sponsored") }}</span>
 					{% endif %}
 				</div>
 
 				<!-- Stock + SKU -->
 				<p class="mb-2">
 					{% if product.stock > 0 %}
-						<span class="badge bg-success">In Stock</span>
-						<span class="text-muted small">{{ product.stock }} available</span>
+						<span class="badge bg-success">{{ _("In Stock") }}</span>
+						<span class="text-muted small">{{ _("%(n)s available", n=product.stock) }}</span>
 					{% else %}
-						<span class="badge bg-danger">Out of Stock</span>
+						<span class="badge bg-danger">{{ _("Out of Stock") }}</span>
 					{% endif %}
-					{% if product.sku %}<span class="text-muted small ms-2">SKU: {{ product.sku }}</span>{% endif %}
+					{% if product.sku %}<span class="text-muted small ms-2">{{ _("SKU:") }} {{ product.sku }}</span>{% endif %}
 				</p>
 
 				<!-- Urgency signals (D-6) -->
 				<div class="d-flex gap-3 flex-wrap mb-3 small pdp-urgency" id="urgency">
 					{% if product.stock > 0 and product.stock <= 5 %}
 					<span class="text-danger ft-medium">
-						<i class="lni lni-warning me-1"></i>Only {{ product.stock }} left in stock!
+						<i class="lni lni-warning me-1"></i>{{ _("Only %(n)s left in stock!", n=product.stock) }}
 					</span>
 					{% endif %}
 					{% if sold_24h > 0 %}
 					<span class="text-warning ft-medium">
-						<i class="lni lni-bolt me-1"></i>{{ sold_24h }} sold in last 24h
+						<i class="lni lni-bolt me-1"></i>{{ _("%(n)s sold in last 24h", n=sold_24h) }}
 					</span>
 					{% endif %}
 					{% if viewing_now > 1 %}
 					<span class="text-info ft-medium">
-						<i class="lni lni-eye me-1"></i>{{ viewing_now }} viewing now
+						<i class="lni lni-eye me-1"></i>{{ _("%(n)s viewing now", n=viewing_now) }}
 					</span>
 					{% endif %}
 				</div>
@@ -194,21 +194,21 @@
 				{% if product.stock <= 0 %}
 				<div class="border rounded p-3 mb-3 pdp-notify-stock bg-light">
 					<h6 class="ft-bold mb-2">
-						<i class="lni lni-alarm me-1"></i>Notify me when back in stock
+						<i class="lni lni-alarm me-1"></i>{{ _("Notify me when back in stock") }}
 					</h6>
 					<form method="post"
 						  action="{{ url_for('storefront.product_notify_stock', slug=product.slug) }}"
 						  class="d-flex gap-2">
 						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 						<input type="email" name="email" class="form-control form-control-sm"
-							   placeholder="Your email"
+							   placeholder="{{ _('Your email') }}"
 							   value="{{ current_user.email if current_user.is_authenticated else '' }}"
 							   required>
-						<button class="btn btn-sm btn-dark">Notify me</button>
+						<button class="btn btn-sm btn-dark">{{ _("Notify me") }}</button>
 					</form>
 					{% if stock_subscriber_count > 0 %}
 					<div class="small text-muted mt-1">
-						{{ stock_subscriber_count }} other{{ '' if stock_subscriber_count == 1 else 's' }} waiting for this product.
+						{{ _("%(n)s other waiting for this product.", n=stock_subscriber_count) if stock_subscriber_count == 1 else _("%(n)s others waiting for this product.", n=stock_subscriber_count) }}
 					</div>
 					{% endif %}
 				</div>
@@ -226,7 +226,7 @@
 				<!-- Color / variant swatches -->
 				{% if colors %}
 					<div class="mb-3" id="pdp-color-swatches">
-						<span class="ft-medium d-block small mb-1">Color:
+						<span class="ft-medium d-block small mb-1">{{ _("Color:") }}
 							<span class="text-muted" id="pdpSelectedColor">{{ colors[0] }}</span>
 						</span>
 						<div class="d-flex gap-2 flex-wrap">
@@ -241,7 +241,7 @@
 
 				{% if sizes %}
 					<div class="mb-3" id="pdp-size-swatches">
-						<span class="ft-medium d-block small mb-1">Size:
+						<span class="ft-medium d-block small mb-1">{{ _("Size:") }}
 							<span class="text-muted" id="pdpSelectedSize">{{ sizes[0] }}</span>
 						</span>
 						<div class="d-flex gap-2 flex-wrap">
@@ -270,17 +270,17 @@
 						</div>
 						<button type="submit" class="btn btn-dark btn-md px-4 flex-grow-1"
 								{{ 'disabled' if (product.stock <= 0 and not product.variants) }}>
-							<i class="lni lni-cart me-1"></i>Add to Cart
+							<i class="lni lni-cart me-1"></i>{{ _("Add to Cart") }}
 						</button>
 					</div>
 					<button type="submit" class="btn btn-warning btn-md w-100 ft-bold" id="pdpBuyNowBtn"
 							{{ 'disabled' if (product.stock <= 0 and not product.variants) }}>
-						<i class="lni lni-bolt me-1"></i>Buy Now
+						<i class="lni lni-bolt me-1"></i>{{ _("Buy Now") }}
 					</button>
 				</form>
 
 				{% if product.localized_description %}
-					<h6 class="ft-bold">Description</h6>
+					<h6 class="ft-bold">{{ _("Description") }}</h6>
 					<p class="text-muted" style="white-space:pre-line;">{{ product.localized_description }}</p>
 				{% endif %}
 			</div>
@@ -289,65 +289,64 @@
 			<div class="col-lg-3 col-md-12">
 				<!-- Delivery card -->
 				<div class="panel border rounded p-3 mb-3">
-					<h6 class="ft-bold mb-3"><i class="lni lni-delivery me-1"></i>Delivery</h6>
+					<h6 class="ft-bold mb-3"><i class="lni lni-delivery me-1"></i>{{ _("Delivery") }}</h6>
 
 					{# Same-city seller badge (D-9 B2) — surfaces above the ETA when applicable #}
 					{% if same_city_seller %}
 					<div class="alert alert-success small py-1 px-2 mb-2 d-flex align-items-center">
 						<i class="lni lni-bolt me-1"></i>
 						<div>
-							<strong>Same-city seller — faster delivery</strong>
+							<strong>{{ _("Same-city seller — faster delivery") }}</strong>
 							<div class="text-muted" lang="bn">একই শহরের সেলার — দ্রুত পাবেন</div>
 						</div>
 					</div>
 					{% endif %}
 
 					<div class="d-flex justify-content-between mb-2 small">
-						<span class="text-muted">Deliver to</span>
+						<span class="text-muted">{{ _("Deliver to") }}</span>
 						<span class="ft-medium">
 							{% if current_user.is_authenticated and current_user.addresses %}
 								{{ current_user.addresses[0].city }}
 							{% else %}
 								<a href="{{ url_for('account.address_create') if current_user.is_authenticated else url_for('auth.login') }}"
-								   class="text-primary text-decoration-none">Set location</a>
+								   class="text-primary text-decoration-none">{{ _("Set location") }}</a>
 							{% endif %}
 						</span>
 					</div>
 					<div class="d-flex justify-content-between mb-2 small">
 						<span class="text-muted">
-							Estimated
+							{{ _("Estimated") }}
 							{% if eta_district %}<span class="text-secondary">({{ eta_district }})</span>{% endif %}
 						</span>
 						<span class="ft-medium">
 							{{ eta_start.strftime('%d %b') }} – {{ eta_end.strftime('%d %b') }}
-							<span class="text-muted small">({{ eta_min_days }}-{{ eta_max_days }} days)</span>
+							<span class="text-muted small">({{ _("%(a)s-%(b)s days", a=eta_min_days, b=eta_max_days) }})</span>
 						</span>
 					</div>
 					<div class="d-flex justify-content-between mb-2 small">
-						<span class="text-muted">Shipping fee</span>
+						<span class="text-muted">{{ _("Shipping fee") }}</span>
 						<span class="ft-medium">৳{{ shipping_fee }}</span>
 					</div>
 					<div class="d-flex justify-content-between mb-2 small">
-						<span class="text-muted">Cash on Delivery</span>
-						<span class="ft-medium text-success">Available</span>
+						<span class="text-muted">{{ _("Cash on Delivery") }}</span>
+						<span class="ft-medium text-success">{{ _("Available") }}</span>
 					</div>
 					{% if product.current_price < free_shipping_threshold %}
 					<div class="alert alert-warning small py-1 px-2 mb-2 mt-2 mb-0">
-						Add ৳{{ (free_shipping_threshold - product.current_price)|round(0, 'ceil') }} more
-						to unlock <strong>Free Shipping</strong>.
+						{{ _("Add ৳%(n)s more to unlock", n=(free_shipping_threshold - product.current_price)|round(0, 'ceil')) }} <strong>{{ _("Free Shipping") }}</strong>.
 					</div>
 					{% endif %}
 
 					<hr class="my-2">
 
 					<div class="d-flex justify-content-between mb-2 small">
-						<span class="text-muted">Return policy</span>
+						<span class="text-muted">{{ _("Return policy") }}</span>
 						<span class="ft-medium">
-							{% if return_policy_days > 0 %}{{ return_policy_days }}-day return{% else %}Non-returnable{% endif %}
+							{% if return_policy_days > 0 %}{{ _("%(n)s-day return", n=return_policy_days) }}{% else %}{{ _("Non-returnable") }}{% endif %}
 						</span>
 					</div>
 					<div class="d-flex justify-content-between mb-2 small">
-						<span class="text-muted">Warranty</span>
+						<span class="text-muted">{{ _("Warranty") }}</span>
 						<span class="ft-medium">{{ warranty_text }}</span>
 					</div>
 
@@ -355,7 +354,7 @@
 					{% if prayer_time_pref %}
 					<div class="small text-success">
 						<i class="lni lni-checkmark-circle me-1"></i>
-						Avoiding Jumma / Maghrib delivery
+						{{ _("Avoiding Jumma / Maghrib delivery") }}
 					</div>
 					{% endif %}
 
@@ -368,7 +367,7 @@
 				<!-- Sold By panel -->
 				{% if product.vendor %}
 				<div class="panel border rounded p-3 mb-3">
-					<h6 class="ft-bold mb-3"><i class="lni lni-shop me-1"></i>Sold By</h6>
+					<h6 class="ft-bold mb-3"><i class="lni lni-shop me-1"></i>{{ _("Sold By") }}</h6>
 
 					<div class="d-flex align-items-center gap-2 mb-2">
 						{% if product.vendor.logo %}
@@ -386,12 +385,12 @@
 							</a>
 							<div class="small d-flex gap-1 flex-wrap mt-1 pdp-seller-badges">
 								{% if product.vendor.is_mall_tier %}
-								<span class="badge bg-warning text-dark"><i class="lni lni-crown me-1"></i>Mall</span>
+								<span class="badge bg-warning text-dark"><i class="lni lni-crown me-1"></i>{{ _("Mall") }}</span>
 								{% endif %}
 								{# Verified by SGT — strict: approved + both KYC docs uploaded #}
 								{% if trust.is_verified_seller %}
-								<span class="badge bg-success" title="KYC verified by SGT">
-									<i class="lni lni-checkmark-circle me-1"></i>Verified by SGT
+								<span class="badge bg-success" title="{{ _('KYC verified by SGT') }}">
+									<i class="lni lni-checkmark-circle me-1"></i>{{ _("Verified by SGT") }}
 								</span>
 								{% endif %}
 							</div>
@@ -399,25 +398,25 @@
 					</div>
 
 					<div class="d-flex justify-content-between small mb-1">
-						<span class="text-muted">Seller rating</span>
+						<span class="text-muted">{{ _("Seller rating") }}</span>
 						<span class="ft-medium">
 							{% if product.vendor.rating_count %}
 								{{ '%.1f'|format(product.vendor.rating_avg|float) }} ★
 								<span class="text-muted">({{ product.vendor.rating_count }})</span>
 							{% else %}
-								<span class="text-muted">No ratings yet</span>
+								<span class="text-muted">{{ _("No ratings yet") }}</span>
 							{% endif %}
 						</span>
 					</div>
 					{% if product.vendor.avg_delivery_days and product.vendor.avg_delivery_days > 0 %}
 					<div class="d-flex justify-content-between small mb-1">
-						<span class="text-muted">Avg delivery</span>
-						<span class="ft-medium">{{ product.vendor.avg_delivery_days }} day(s)</span>
+						<span class="text-muted">{{ _("Avg delivery") }}</span>
+						<span class="ft-medium">{{ _("%(n)s day(s)", n=product.vendor.avg_delivery_days) }}</span>
 					</div>
 					{% endif %}
 					{% if product.vendor.cancel_rate and product.vendor.cancel_rate > 0 %}
 					<div class="d-flex justify-content-between small mb-2">
-						<span class="text-muted">Cancel rate</span>
+						<span class="text-muted">{{ _("Cancel rate") }}</span>
 						<span class="ft-medium {{ 'text-danger' if product.vendor.cancel_rate > 0.1 else '' }}">
 							{{ (product.vendor.cancel_rate * 100)|round(1) }}%
 						</span>
@@ -430,25 +429,25 @@
 						<span class="text-success">
 							<span class="d-inline-block rounded-circle bg-success"
 								  style="width:8px;height:8px;"></span>
-							Online now
+							{{ _("Online now") }}
 						</span>
 						{% elif seller_last_seen %}
 						<span class="text-secondary">
 							<i class="lni lni-time"></i>
-							Last seen {{ seller_last_seen.strftime('%d %b, %H:%M') }}
+							{{ _("Last seen %(t)s", t=seller_last_seen.strftime('%d %b, %H:%M')) }}
 						</span>
 						{% else %}
 						<span class="text-secondary">
-							<i class="lni lni-time"></i> Offline
+							<i class="lni lni-time"></i> {{ _("Offline") }}
 						</span>
 						{% endif %}
 						{% if trust.avg_reply_minutes is not none %}
 						<span class="text-muted">
 							·
 							{% if trust.avg_reply_minutes < 60 %}
-								Typically replies in ~{{ trust.avg_reply_minutes|round(0)|int }} min
+								{{ _("Typically replies in ~%(n)s min", n=trust.avg_reply_minutes|round(0)|int) }}
 							{% else %}
-								Typically replies in ~{{ (trust.avg_reply_minutes / 60.0)|round(1) }} hr
+								{{ _("Typically replies in ~%(n)s hr", n=(trust.avg_reply_minutes / 60.0)|round(1)) }}
 							{% endif %}
 						</span>
 						{% endif %}
@@ -457,7 +456,7 @@
 					<div class="d-grid gap-2 mt-2">
 						<a href="{{ url_for('storefront.store', slug=product.vendor.slug) }}"
 						   class="btn btn-sm btn-outline-dark">
-							<i class="lni lni-shop me-1"></i>Visit Store
+							<i class="lni lni-shop me-1"></i>{{ _("Visit Store") }}
 						</a>
 						{% if current_user.is_authenticated and not current_user.is_admin and not (current_user.is_seller and current_user.vendor_profile and current_user.vendor_profile.id == product.vendor.id) %}
 						<form method="post" action="{{ url_for('chat.start_vendor') }}" class="m-0">
@@ -465,12 +464,12 @@
 							<input type="hidden" name="vendor_id" value="{{ product.vendor.id }}">
 							<input type="hidden" name="product_id" value="{{ product.id }}">
 							<button class="btn btn-sm btn-primary w-100">
-								<i class="lni lni-bubble me-1"></i>Chat Now
+								<i class="lni lni-bubble me-1"></i>{{ _("Chat Now") }}
 							</button>
 						</form>
 						{% elif not current_user.is_authenticated %}
 						<a href="{{ url_for('auth.login') }}" class="btn btn-sm btn-primary">
-							<i class="lni lni-bubble me-1"></i>Chat Now
+							<i class="lni lni-bubble me-1"></i>{{ _("Chat Now") }}
 						</a>
 						{% endif %}
 					</div>
@@ -478,7 +477,7 @@
 					{# Quick-question one-tap buttons (Phase 15 D-7 C4) #}
 					{% if current_user.is_authenticated and not current_user.is_admin and not (current_user.is_seller and current_user.vendor_profile and current_user.vendor_profile.id == product.vendor.id) %}
 					<div class="mt-2 pdp-quick-questions">
-						<div class="text-muted small mb-1">Quick questions:</div>
+						<div class="text-muted small mb-1">{{ _("Quick questions:") }}</div>
 						<div class="d-flex flex-wrap gap-1">
 						{% for q in quick_questions %}
 							<form method="post" action="{{ url_for('chat.quick_question') }}"
@@ -503,13 +502,13 @@
 				{% if trust.has_trade_license_verified or trust.has_nid_verified %}
 				<div class="panel border rounded p-3 mb-3 pdp-kyc-badges">
 					<h6 class="ft-bold mb-2 small text-secondary">
-						<i class="lni lni-shield me-1"></i>Verification
+						<i class="lni lni-shield me-1"></i>{{ _("Verification") }}
 					</h6>
 					{% if trust.has_trade_license_verified %}
 					<div class="d-flex align-items-center gap-2 mb-2 small">
 						<i class="lni lni-checkmark-circle text-success"></i>
 						<div>
-							<div class="ft-medium">Trade License Verified</div>
+							<div class="ft-medium">{{ _("Trade License Verified") }}</div>
 							<div class="text-muted" lang="bn">ব্যবসায়িক লাইসেন্স যাচাইকৃত</div>
 						</div>
 					</div>
@@ -518,7 +517,7 @@
 					<div class="d-flex align-items-center gap-2 small">
 						<i class="lni lni-checkmark-circle text-success"></i>
 						<div>
-							<div class="ft-medium">NID Verified</div>
+							<div class="ft-medium">{{ _("NID Verified") }}</div>
 							<div class="text-muted" lang="bn">জাতীয় পরিচয়পত্র যাচাইকৃত</div>
 						</div>
 					</div>
@@ -530,15 +529,15 @@
 				{% if trust.positive_rate is not none or trust.avg_delivery_days or trust.avg_reply_minutes is not none %}
 				<div class="panel border rounded p-3 mb-3 pdp-why-buy">
 					<h6 class="ft-bold mb-2">
-						<i class="lni lni-thumbs-up me-1"></i>Why buy from this seller?
+						<i class="lni lni-thumbs-up me-1"></i>{{ _("Why buy from this seller?") }}
 					</h6>
 					<ul class="list-unstyled small mb-0">
 						{% if trust.positive_rate is not none %}
 						<li class="mb-2 d-flex gap-2">
 							<i class="lni lni-star-filled text-warning"></i>
 							<div>
-								<span class="ft-medium">{{ trust.positive_rate }}% positive</span>
-								<span class="text-muted">across {{ trust.review_count }} review{{ '' if trust.review_count == 1 else 's' }}</span>
+								<span class="ft-medium">{{ _("%(n)s%% positive", n=trust.positive_rate) }}</span>
+								<span class="text-muted">{{ _("across %(n)s review", n=trust.review_count) if trust.review_count == 1 else _("across %(n)s reviews", n=trust.review_count) }}</span>
 							</div>
 						</li>
 						{% endif %}
@@ -547,9 +546,9 @@
 							<i class="lni lni-delivery text-primary"></i>
 							<div>
 								<span class="ft-medium">
-									{{ trust.avg_delivery_days|round(1) }}-day delivery
+									{{ _("%(n)s-day delivery", n=trust.avg_delivery_days|round(1)) }}
 								</span>
-								<span class="text-muted">on average</span>
+								<span class="text-muted">{{ _("on average") }}</span>
 							</div>
 						</li>
 						{% endif %}
@@ -559,12 +558,12 @@
 							<div>
 								<span class="ft-medium">
 								{% if trust.avg_reply_minutes < 60 %}
-									Replies in ~{{ trust.avg_reply_minutes|round(0)|int }} min
+									{{ _("Replies in ~%(n)s min", n=trust.avg_reply_minutes|round(0)|int) }}
 								{% else %}
-									Replies in ~{{ (trust.avg_reply_minutes / 60.0)|round(1) }} hr
+									{{ _("Replies in ~%(n)s hr", n=(trust.avg_reply_minutes / 60.0)|round(1)) }}
 								{% endif %}
 								</span>
-								<span class="text-muted">typical chat reply</span>
+								<span class="text-muted">{{ _("typical chat reply") }}</span>
 							</div>
 						</li>
 						{% endif %}
@@ -572,8 +571,8 @@
 						<li class="d-flex gap-2">
 							<i class="lni lni-checkmark text-success"></i>
 							<div>
-								<span class="ft-medium">{{ (100 - trust.cancel_rate_pct)|round(1) }}% order success</span>
-								<span class="text-muted">— {{ trust.cancel_rate_pct }}% cancellations</span>
+								<span class="ft-medium">{{ _("%(n)s%% order success", n=(100 - trust.cancel_rate_pct)|round(1)) }}</span>
+								<span class="text-muted">{{ _("— %(n)s%% cancellations", n=trust.cancel_rate_pct) }}</span>
 							</div>
 						</li>
 						{% endif %}
@@ -585,12 +584,12 @@
 				{% if app_qr_url %}
 				<div class="panel border rounded p-3 mb-3 pdp-app-qr text-center">
 					<h6 class="ft-bold mb-2">
-						<i class="lni lni-mobile me-1"></i>Get the SGT app
+						<i class="lni lni-mobile me-1"></i>{{ _("Get the SGT app") }}
 					</h6>
-					<img src="{{ app_qr_url }}" alt="App download QR"
+					<img src="{{ app_qr_url }}" alt="{{ _('App download QR') }}"
 					     class="img-fluid mb-2" style="max-width:140px;">
 					<div class="small text-muted">
-						Scan to download
+						{{ _("Scan to download") }}
 						<div><a href="{{ app_download_url }}" class="text-decoration-none">{{ app_download_url }}</a></div>
 					</div>
 				</div>
@@ -602,7 +601,7 @@
 		<!-- ===================== SPECIFICATIONS ===================== -->
 		{% if product.specs %}
 			<div class="mt-5" id="pdp-specs">
-				<h5 class="ft-bold mb-3"><i class="lni lni-list me-1"></i>Specifications</h5>
+				<h5 class="ft-bold mb-3"><i class="lni lni-list me-1"></i>{{ _("Specifications") }}</h5>
 				<div class="border rounded">
 					<table class="table table-sm mb-0 pdp-specs-table">
 						<tbody>
@@ -618,7 +617,7 @@
 						<div class="text-center border-top p-2">
 							<button type="button" class="btn btn-sm btn-link text-decoration-none ft-medium"
 									id="pdpSpecsToggle" data-state="collapsed">
-								View More ({{ product.specs|length - 6 }} more) <i class="lni lni-chevron-down ms-1"></i>
+								{{ _("View More (%(n)s more)", n=product.specs|length - 6) }} <i class="lni lni-chevron-down ms-1"></i>
 							</button>
 						</div>
 					{% endif %}
@@ -630,7 +629,7 @@
 		{% if fbt_products %}
 		<div class="mt-5" id="fbt">
 			<h5 class="ft-bold mb-3">
-				<i class="lni lni-package me-1"></i>Frequently Bought Together
+				<i class="lni lni-package me-1"></i>{{ _("Frequently Bought Together") }}
 			</h5>
 			<div class="row g-3 pdp-fbt">
 				<div class="col-lg-3 col-md-4 col-6">
@@ -645,7 +644,7 @@
 							{% endif %}
 						</div>
 						<div class="p-2 pt-0">
-							<span class="badge bg-primary mb-1">This product</span>
+							<span class="badge bg-primary mb-1">{{ _("This product") }}</span>
 							<div class="small text-truncate">{{ product.localized_title }}</div>
 							<span class="ft-bold theme-cl">৳{{ product.current_price }}</span>
 						</div>
@@ -678,7 +677,7 @@
 
 		<!-- ===================== MONEY & LOYALTY (D-5) ===================== -->
 		<div class="mt-5" id="money">
-			<h5 class="ft-bold mb-3"><i class="lni lni-coin me-1"></i>Save more on this product</h5>
+			<h5 class="ft-bold mb-3"><i class="lni lni-coin me-1"></i>{{ _("Save more on this product") }}</h5>
 			<div class="row g-2 pdp-money">
 
 				{# M1: Earn X reward points preview #}
@@ -687,10 +686,10 @@
 					<div class="border rounded p-2 pdp-earn-points">
 						<div class="d-flex align-items-center gap-2 mb-1">
 							<i class="lni lni-gift text-warning fs-5"></i>
-							<h6 class="ft-bold mb-0 small">Earn {{ earn_points_preview }} point{{ '' if earn_points_preview == 1 else 's' }}</h6>
+							<h6 class="ft-bold mb-0 small">{{ _("Earn %(n)s point", n=earn_points_preview) if earn_points_preview == 1 else _("Earn %(n)s points", n=earn_points_preview) }}</h6>
 						</div>
 						<p class="small text-muted mb-0">
-							Earned when delivered. 1 point = ৳1 at checkout.
+							{{ _("Earned when delivered. 1 point = ৳1 at checkout.") }}
 						</p>
 					</div>
 				</div>
@@ -702,13 +701,13 @@
 					<div class="border rounded p-2 pdp-pay-points">
 						<div class="d-flex align-items-center gap-2 mb-1">
 							<i class="lni lni-wallet text-success fs-5"></i>
-							<h6 class="ft-bold mb-0 small">You have {{ user_points_balance }} points</h6>
+							<h6 class="ft-bold mb-0 small">{{ _("You have %(n)s points", n=user_points_balance) }}</h6>
 						</div>
 						<p class="small text-muted mb-1">
-							Worth ৳{{ user_points_value }}. Tick <em>"Use my points"</em> at checkout.
+							{{ _("Worth ৳%(n)s. Tick", n=user_points_value) }} <em>"{{ _("Use my points") }}"</em> {{ _("at checkout.") }}
 						</p>
 						<a href="{{ url_for('account.rewards') }}"
-						   class="small text-decoration-none">View ledger →</a>
+						   class="small text-decoration-none">{{ _("View ledger →") }}</a>
 					</div>
 				</div>
 				{% endif %}
@@ -719,13 +718,13 @@
 					<div class="border rounded p-2 pdp-affiliate">
 						<div class="d-flex align-items-center gap-2 mb-1">
 							<i class="lni lni-share text-primary fs-5"></i>
-							<h6 class="ft-bold mb-0 small">Earn by sharing</h6>
+							<h6 class="ft-bold mb-0 small">{{ _("Earn by sharing") }}</h6>
 						</div>
 						<div class="input-group input-group-sm">
 							<input type="text" class="form-control form-control-sm" id="pdpAffiliateLink"
 								   value="{{ affiliate_link }}" readonly>
 							<button type="button" class="btn btn-outline-dark btn-sm"
-									id="pdpAffiliateCopyBtn">Copy</button>
+									id="pdpAffiliateCopyBtn">{{ _("Copy") }}</button>
 						</div>
 					</div>
 				</div>
@@ -736,19 +735,19 @@
 					<div class="border rounded p-2 pdp-coupon">
 						<div class="d-flex align-items-center gap-2 mb-1">
 							<i class="lni lni-ticket-alt text-info fs-5"></i>
-							<h6 class="ft-bold mb-0 small">Have a coupon?</h6>
+							<h6 class="ft-bold mb-0 small">{{ _("Have a coupon?") }}</h6>
 						</div>
 						{% if coupon_preview %}
 						<div class="alert alert-success small py-1 px-2 mb-1">
-							<strong>{{ coupon_preview.code }}</strong> would save
-							<strong>৳{{ coupon_preview.discount }}</strong> at checkout.
+							<strong>{{ coupon_preview.code }}</strong> {{ _("would save") }}
+							<strong>৳{{ coupon_preview.discount }}</strong> {{ _("at checkout.") }}
 						</div>
 						<form method="post"
 							  action="{{ url_for('storefront.product_apply_coupon', slug=product.slug) }}"
 							  class="m-0">
 							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 							<input type="hidden" name="action" value="clear">
-							<button class="btn btn-sm btn-outline-secondary py-0">Clear</button>
+							<button class="btn btn-sm btn-outline-secondary py-0">{{ _("Clear") }}</button>
 						</form>
 						{% else %}
 						<form method="post"
@@ -756,8 +755,8 @@
 							  class="d-flex gap-1">
 							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 							<input type="text" name="coupon_code" class="form-control form-control-sm"
-								   placeholder="Enter code" required maxlength="40">
-							<button class="btn btn-sm btn-dark">Check</button>
+								   placeholder="{{ _('Enter code') }}" required maxlength="40">
+							<button class="btn btn-sm btn-dark">{{ _("Check") }}</button>
 						</form>
 						{% endif %}
 					</div>
@@ -769,11 +768,11 @@
 					<div class="border rounded p-2 pdp-bulk-tiers">
 						<div class="d-flex align-items-center gap-2 mb-1">
 							<i class="lni lni-package text-success fs-5"></i>
-							<h6 class="ft-bold mb-0 small">Bulk Pricing</h6>
+							<h6 class="ft-bold mb-0 small">{{ _("Bulk Pricing") }}</h6>
 						</div>
 						<table class="table table-sm mb-0 small">
 							<thead>
-								<tr><th>Buy</th><th>Unit</th><th class="text-success">Save</th></tr>
+								<tr><th>{{ _("Buy") }}</th><th>{{ _("Unit") }}</th><th class="text-success">{{ _("Save") }}</th></tr>
 							</thead>
 							<tbody>
 								{% for t in bulk_tiers %}
@@ -795,9 +794,9 @@
 		<div class="mt-5" id="qa">
 			<div class="d-flex justify-content-between align-items-center mb-3">
 				<h5 class="ft-bold mb-0">
-					<i class="lni lni-question-circle me-1"></i>Questions &amp; Answers
+					<i class="lni lni-question-circle me-1"></i>{{ _("Questions & Answers") }}
 					<span class="text-muted fs-6 ms-2">
-						{{ qa_answered_count }} Answered · {{ qa_questions|length }} Asked
+						{{ _("%(a)s Answered · %(b)s Asked", a=qa_answered_count, b=qa_questions|length) }}
 					</span>
 				</h5>
 			</div>
@@ -810,15 +809,15 @@
 				<div class="d-flex gap-2 align-items-start">
 					<textarea name="body" class="form-control" rows="2" required
 							  maxlength="500"
-							  placeholder="Ask a public question about this product…"></textarea>
-					<button class="btn btn-dark ft-medium px-4">Ask</button>
+							  placeholder="{{ _('Ask a public question about this product…') }}"></textarea>
+					<button class="btn btn-dark ft-medium px-4">{{ _("Ask") }}</button>
 				</div>
-				<small class="text-muted">Please don't share phone numbers — they'll be removed.</small>
+				<small class="text-muted">{{ _("Please don't share phone numbers — they'll be removed.") }}</small>
 			</form>
 			{% else %}
 			<div class="border rounded p-3 mb-3 bg-light text-center">
-				<a href="{{ url_for('auth.login') }}" class="text-primary ft-medium">Log in</a>
-				to ask a question.
+				<a href="{{ url_for('auth.login') }}" class="text-primary ft-medium">{{ _("Log in") }}</a>
+				{{ _("to ask a question.") }}
 			</div>
 			{% endif %}
 
@@ -834,7 +833,7 @@
 						<span class="text-muted small">{{ q.created_at.strftime('%d %b %Y') if q.created_at }}</span>
 					</div>
 					<div class="text-muted small mb-2">
-						Asked by {{ q.asker.name if q.asker else 'Customer' }}
+						{{ _("Asked by %(name)s", name=q.asker.name if q.asker else _('Customer')) }}
 					</div>
 
 					{# Answers — sorted by helpful_count desc (D-8 C6) #}
@@ -849,9 +848,9 @@
 							</div>
 							<div class="d-flex justify-content-between align-items-center mt-1">
 								<div class="text-muted small">
-									{{ a.responder.name if a.responder else 'User' }}
+									{{ a.responder.name if a.responder else _('User') }}
 									{% if a.is_seller_answer %}
-									<span class="badge bg-warning text-dark ms-1">Seller</span>
+									<span class="badge bg-warning text-dark ms-1">{{ _("Seller") }}</span>
 									{% endif %}
 								</div>
 								{# Helpful-vote toggle (login required, hidden for own answer) #}
@@ -863,8 +862,8 @@
 									{% set voted = a.id in voted_answers %}
 									<button class="btn btn-sm py-0 px-2 pdp-helpful-btn
 												   {{ 'btn-primary' if voted else 'btn-outline-secondary' }}"
-											title="{{ 'Remove helpful vote' if voted else 'Mark as helpful' }}">
-										<i class="lni lni-thumbs-up me-1"></i>Helpful
+											title="{{ _('Remove helpful vote') if voted else _('Mark as helpful') }}">
+										<i class="lni lni-thumbs-up me-1"></i>{{ _("Helpful") }}
 										{% if a.helpful_count %}
 										<span class="ms-1">({{ a.helpful_count }})</span>
 										{% endif %}
@@ -879,7 +878,7 @@
 						</div>
 						{% endfor %}
 					{% else %}
-						<div class="text-muted small ms-3 mt-1">No answers yet.</div>
+						<div class="text-muted small ms-3 mt-1">{{ _("No answers yet.") }}</div>
 					{% endif %}
 
 					{# Answer form (login required) #}
@@ -890,8 +889,8 @@
 						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 						<div class="d-flex gap-2">
 							<input type="text" name="body" class="form-control form-control-sm" required
-								   maxlength="1000" placeholder="Write an answer…">
-							<button class="btn btn-sm btn-outline-dark">Reply</button>
+								   maxlength="1000" placeholder="{{ _('Write an answer…') }}">
+							<button class="btn btn-sm btn-outline-dark">{{ _("Reply") }}</button>
 						</div>
 					</form>
 					{% endif %}
@@ -899,7 +898,7 @@
 				{% endfor %}
 			</div>
 			{% else %}
-			<p class="text-muted">No questions yet — be the first to ask.</p>
+			<p class="text-muted">{{ _("No questions yet — be the first to ask.") }}</p>
 			{% endif %}
 		</div>
 
@@ -907,9 +906,9 @@
 		{% if brand_more %}
 			<div class="mt-5" id="pdp-brand-more">
 				<div class="d-flex justify-content-between align-items-center mb-3">
-					<h5 class="ft-bold mb-0">More from {{ product.brand.name }}</h5>
+					<h5 class="ft-bold mb-0">{{ _("More from %(name)s", name=product.brand.name) }}</h5>
 					<a href="{{ url_for('storefront.shop', brand=product.brand.slug) }}"
-					   class="btn btn-sm btn-outline-dark">See all</a>
+					   class="btn btn-sm btn-outline-dark">{{ _("See all") }}</a>
 				</div>
 				<div class="row g-3">
 					{% for p in brand_more %}
@@ -940,25 +939,25 @@
 		<div class="mt-5" id="reviews">
 			<div class="d-flex justify-content-between align-items-center mb-3">
 				<h5 class="ft-bold mb-0">
-					Ratings &amp; Reviews
+					{{ _("Ratings & Reviews") }}
 					{% if product.rating_count %}
 					<span class="text-warning ms-2">{{ '%.1f'|format(product.rating_avg|float) }} ★</span>
 					<span class="text-muted fs-6">({{ product.rating_count }})</span>
 					{% else %}
-					<span class="text-muted fs-6 ms-2">No reviews yet</span>
+					<span class="text-muted fs-6 ms-2">{{ _("No reviews yet") }}</span>
 					{% endif %}
 				</h5>
 				{% if user_can_review %}
 				<a href="{{ url_for('review.write', slug=product.slug) }}" class="btn btn-sm btn-primary">
-					{{ 'Edit your review' if user_review else 'Write a review (with photos)' }}
+					{{ _("Edit your review") if user_review else _("Write a review (with photos)") }}
 				</a>
 				{% elif current_user.is_authenticated and not current_user.is_admin %}
-				<span class="text-muted small" title="Only customers with a delivered order can review this product">
-					<i class="lni lni-lock-alt me-1"></i>Buy + receive delivery to review
+				<span class="text-muted small" title="{{ _('Only customers with a delivered order can review this product') }}">
+					<i class="lni lni-lock-alt me-1"></i>{{ _("Buy + receive delivery to review") }}
 				</span>
 				{% else %}
 				<span class="text-muted small">
-					<i class="lni lni-lock-alt me-1"></i>Verified buyers can post photo reviews
+					<i class="lni lni-lock-alt me-1"></i>{{ _("Verified buyers can post photo reviews") }}
 				</span>
 				{% endif %}
 			</div>
@@ -972,7 +971,7 @@
 							<div class="display-6 ft-bold text-warning">
 								{{ '%.1f'|format(product.rating_avg|float) }} ★
 							</div>
-							<div class="text-muted small">{{ product.rating_count }} review{{ '' if product.rating_count == 1 else 's' }}</div>
+							<div class="text-muted small">{{ _("%(n)s review", n=product.rating_count) if product.rating_count == 1 else _("%(n)s reviews", n=product.rating_count) }}</div>
 						</div>
 					</div>
 				</div>
@@ -1003,34 +1002,34 @@
 				<div class="col-md-6">
 					<div class="border rounded p-3 h-100 bg-success-subtle">
 						<h6 class="ft-bold mb-2 text-success">
-							<i class="lni lni-thumbs-up me-1"></i>What buyers like
+							<i class="lni lni-thumbs-up me-1"></i>{{ _("What buyers like") }}
 						</h6>
 						{% if ai_pros %}
 						<ul class="small mb-0 ps-3">
 							{% for p in ai_pros %}<li>{{ p }}</li>{% endfor %}
 						</ul>
 						{% else %}
-						<p class="small text-muted mb-0">Not enough positive feedback yet.</p>
+						<p class="small text-muted mb-0">{{ _("Not enough positive feedback yet.") }}</p>
 						{% endif %}
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="border rounded p-3 h-100 bg-danger-subtle">
 						<h6 class="ft-bold mb-2 text-danger">
-							<i class="lni lni-thumbs-down me-1"></i>What to watch for
+							<i class="lni lni-thumbs-down me-1"></i>{{ _("What to watch for") }}
 						</h6>
 						{% if ai_cons %}
 						<ul class="small mb-0 ps-3">
 							{% for c in ai_cons %}<li>{{ c }}</li>{% endfor %}
 						</ul>
 						{% else %}
-						<p class="small text-muted mb-0">No notable complaints yet.</p>
+						<p class="small text-muted mb-0">{{ _("No notable complaints yet.") }}</p>
 						{% endif %}
 					</div>
 				</div>
 				<div class="col-12">
 					<p class="small text-muted mb-0">
-						<i class="lni lni-sparkles me-1"></i>Auto-summarised from recent customer reviews.
+						<i class="lni lni-sparkles me-1"></i>{{ _("Auto-summarised from recent customer reviews.") }}
 					</p>
 				</div>
 			</div>
@@ -1040,14 +1039,14 @@
 			{% if review_gallery %}
 			<div class="border rounded p-3 mb-3 pdp-review-photos">
 				<div class="d-flex justify-content-between align-items-center mb-2">
-					<h6 class="ft-bold mb-0">Customer Photos</h6>
-					<span class="text-muted small">{{ review_gallery|length }} photo{{ '' if review_gallery|length == 1 else 's' }}</span>
+					<h6 class="ft-bold mb-0">{{ _("Customer Photos") }}</h6>
+					<span class="text-muted small">{{ _("%(n)s photo", n=review_gallery|length) if review_gallery|length == 1 else _("%(n)s photos", n=review_gallery|length) }}</span>
 				</div>
 				<div class="d-flex gap-2 flex-wrap">
 					{% for img in review_gallery %}
 					<a href="{{ url_for('static', filename=img.image_path) }}" target="_blank">
 						<img src="{{ url_for('static', filename=img.image_path) }}"
-							 class="rounded border" style="height:72px;width:72px;object-fit:cover;" alt="customer photo">
+							 class="rounded border" style="height:72px;width:72px;object-fit:cover;" alt="{{ _('customer photo') }}">
 					</a>
 					{% endfor %}
 				</div>
@@ -1059,7 +1058,7 @@
 				<div class="d-flex gap-1 flex-wrap">
 					<a href="?rsort={{ review_sort }}#reviews"
 					   class="btn btn-sm {{ 'btn-dark' if review_star is none else 'btn-outline-dark' }}">
-						All stars
+						{{ _("All stars") }}
 					</a>
 					{% for star in [5, 4, 3, 2, 1] %}
 					<a href="?rstar={{ star }}&rsort={{ review_sort }}#reviews"
@@ -1086,8 +1085,8 @@
 				<div class="p-3 border-bottom">
 					<div class="d-flex justify-content-between">
 						<span class="ft-medium">
-							{{ r.user.name if r.user else 'Customer' }}
-							{% if r.is_verified %}<span class="badge bg-success ms-1">Verified Purchase</span>{% endif %}
+							{{ r.user.name if r.user else _('Customer') }}
+							{% if r.is_verified %}<span class="badge bg-success ms-1">{{ _("Verified Purchase") }}</span>{% endif %}
 						</span>
 						<span class="text-muted small">{{ r.created_at.strftime('%d %b %Y') if r.created_at }}</span>
 					</div>
@@ -1110,7 +1109,7 @@
 
 			{# Pagination #}
 			{% if review_pagination.pages > 1 %}
-			<nav class="mt-3" aria-label="Review pages">
+			<nav class="mt-3" aria-label="{{ _('Review pages') }}">
 				<ul class="pagination pagination-sm pdp-review-pagination">
 					{% if review_pagination.has_prev %}
 					<li class="page-item">
@@ -1136,10 +1135,10 @@
 			{% endif %}
 
 			{% elif not product.rating_count %}
-			<p class="text-muted">Be the first to review this product.</p>
+			<p class="text-muted">{{ _("Be the first to review this product.") }}</p>
 			{% else %}
-			<p class="text-muted">No reviews match this filter.
-				<a href="?rsort={{ review_sort }}#reviews" class="text-decoration-none">Clear filter</a>
+			<p class="text-muted">{{ _("No reviews match this filter.") }}
+				<a href="?rsort={{ review_sort }}#reviews" class="text-decoration-none">{{ _("Clear filter") }}</a>
 			</p>
 			{% endif %}
 		</div>
@@ -1172,7 +1171,7 @@
 		<!-- Similar products (content-based) -->
 		{% if related %}
 			<div class="mt-5">
-				<h5 class="ft-bold mb-3">Similar Products</h5>
+				<h5 class="ft-bold mb-3">{{ _("Similar Products") }}</h5>
 				<div class="row g-2">
 					{% for p in related %}{{ product_card(p) }}{% endfor %}
 				</div>
@@ -1182,7 +1181,7 @@
 		<!-- Customers also viewed (collaborative) -->
 		{% if also_viewed %}
 			<div class="mt-5">
-				<h5 class="ft-bold mb-3">Customers Also Viewed</h5>
+				<h5 class="ft-bold mb-3">{{ _("Customers Also Viewed") }}</h5>
 				<div class="row g-2">
 					{% for p in also_viewed %}{{ product_card(p) }}{% endfor %}
 				</div>
@@ -1335,12 +1334,12 @@
 		function pad(n) { return String(n).padStart(2, '0'); }
 		function tick() {
 			const ms = endsAt - Date.now();
-			if (ms <= 0) { node.textContent = 'Ended'; return; }
+			if (ms <= 0) { node.textContent = '{{ _("Ended") }}'; return; }
 			const days = Math.floor(ms / 86400000);
 			const hours = Math.floor((ms % 86400000) / 3600000);
 			const mins = Math.floor((ms % 3600000) / 60000);
 			const secs = Math.floor((ms % 60000) / 1000);
-			node.textContent = `Ends in ${days}d ${pad(hours)}h ${pad(mins)}m ${pad(secs)}s`;
+			node.textContent = `{{ _("Ends in") }} ${days}d ${pad(hours)}h ${pad(mins)}m ${pad(secs)}s`;
 			setTimeout(tick, 1000);
 		}
 		tick();
@@ -1362,7 +1361,7 @@
 					document.execCommand('copy');
 				}
 				const original = affBtn.textContent;
-				affBtn.textContent = 'Copied!';
+				affBtn.textContent = '{{ _("Copied!") }}';
 				setTimeout(() => affBtn.textContent = original, 1500);
 			} catch (_) {}
 		});
@@ -1378,8 +1377,8 @@
 			});
 			specsToggle.dataset.state = expanded ? 'collapsed' : 'expanded';
 			specsToggle.innerHTML = expanded
-				? 'View More <i class="lni lni-chevron-down ms-1"></i>'
-				: 'View Less <i class="lni lni-chevron-up ms-1"></i>';
+				? '{{ _("View More") }} <i class="lni lni-chevron-down ms-1"></i>'
+				: '{{ _("View Less") }} <i class="lni lni-chevron-up ms-1"></i>';
 		});
 	}
 

@@ -3,15 +3,11 @@
 {% block heading %}{{ 'Edit' if page else 'New' }} Static Page{% endblock %}
 {% block content %}
 
-<form method="post" class="border rounded bg-white p-4" style="max-width:960px">
+<form method="post" class="border rounded bg-white p-4" style="max-width:1080px">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-    <div class="row g-3">
-        <div class="col-md-6">
-            <label class="form-label ft-medium">Title</label>
-            <input type="text" name="title" class="form-control" required
-                   value="{{ (page.title if page else '') }}">
-        </div>
+    {# Slug + section + meta (single shared row) #}
+    <div class="row g-3 mb-3">
         <div class="col-md-6">
             <label class="form-label ft-medium">
                 Slug <span class="text-muted small">— URL path without leading slash</span>
@@ -20,13 +16,7 @@
                    placeholder="e.g. help/how-to-order, sell/payouts, careers"
                    value="{{ (page.slug if page else '') }}">
         </div>
-
-        <div class="col-md-8">
-            <label class="form-label ft-medium">Subtitle / tagline</label>
-            <input type="text" name="subtitle" class="form-control" maxlength="400"
-                   value="{{ (page.subtitle if page else '') or '' }}">
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <label class="form-label ft-medium">Section</label>
             <select name="section" class="form-select">
                 {% set current_section = page.section if page else 'Misc' %}
@@ -35,6 +25,12 @@
                 <option value="{{ sec }}" {{ 'selected' if current_section == sec }}>{{ sec }}</option>
                 {% endfor %}
             </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label ft-medium">Section (বাংলা)</label>
+            <input type="text" name="section_bn" class="form-control"
+                   placeholder="(optional — falls back to English)"
+                   value="{{ (page.section_bn if page else '') or '' }}">
         </div>
 
         <div class="col-md-6">
@@ -52,54 +48,133 @@
             <input type="number" name="sort_order" class="form-control"
                    value="{{ (page.sort_order if page else 0) }}">
         </div>
+    </div>
 
-        <div class="col-12">
-            <label class="form-label ft-medium">Body (HTML)</label>
-            <textarea name="body_html" class="form-control" rows="14"
-                      style="font-family:monospace;font-size:13px;">{{ (page.body_html if page else '') or '' }}</textarea>
-            <div class="form-text">
-                Raw HTML — <code>&lt;h2 id="anchor"&gt;</code>, <code>&lt;p&gt;</code>,
-                <code>&lt;ul&gt;</code>, <code>&lt;table&gt;</code>, <code>&lt;blockquote&gt;</code>
-                are all styled by the page shell.
+    {# Tabbed EN | BN editor #}
+    <ul class="nav nav-tabs mb-3" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab"
+                    data-bs-target="#tab-en" type="button" role="tab">
+                <i class="bi bi-globe me-1"></i>English
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab"
+                    data-bs-target="#tab-bn" type="button" role="tab">
+                <i class="bi bi-translate me-1"></i>বাংলা
+                <span class="badge bg-secondary ms-1">optional</span>
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        {# ===== English tab ===== #}
+        <div class="tab-pane fade show active" id="tab-en" role="tabpanel">
+            <div class="row g-3">
+                <div class="col-12">
+                    <label class="form-label ft-medium">Title (English)</label>
+                    <input type="text" name="title" class="form-control" required
+                           value="{{ (page.title if page else '') }}">
+                </div>
+                <div class="col-12">
+                    <label class="form-label ft-medium">Subtitle / tagline</label>
+                    <input type="text" name="subtitle" class="form-control" maxlength="400"
+                           value="{{ (page.subtitle if page else '') or '' }}">
+                </div>
+                <div class="col-12">
+                    <label class="form-label ft-medium">Body (HTML)</label>
+                    <textarea name="body_html" class="form-control" rows="14"
+                              style="font-family:monospace;font-size:13px;">{{ (page.body_html if page else '') or '' }}</textarea>
+                    <div class="form-text">
+                        Raw HTML — <code>&lt;h2 id="anchor"&gt;</code>, <code>&lt;p&gt;</code>,
+                        <code>&lt;ul&gt;</code>, <code>&lt;table&gt;</code>, <code>&lt;blockquote&gt;</code>
+                        are all styled by the page shell.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label ft-medium">Table of Contents (JSON)</label>
+                    <textarea name="toc_json" class="form-control" rows="6"
+                              style="font-family:monospace;font-size:12px;"
+                              placeholder='[{"anchor":"scope","label":"1. Scope"}]'>{{ (page.toc_json if page else '[]') or '[]' }}</textarea>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label ft-medium">FAQ items (JSON)</label>
+                    <textarea name="faq_json" class="form-control" rows="6"
+                              style="font-family:monospace;font-size:12px;"
+                              placeholder='[{"q":"...","a":"..."}]'>{{ (page.faq_json if page else '[]') or '[]' }}</textarea>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label ft-medium">Related pages (JSON)</label>
+                    <textarea name="related_json" class="form-control" rows="6"
+                              style="font-family:monospace;font-size:12px;"
+                              placeholder='[{"href":"/terms/","title":"Terms","desc":"..."}]'>{{ (page.related_json if page else '[]') or '[]' }}</textarea>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <label class="form-label ft-medium">Table of Contents (JSON array)</label>
-            <textarea name="toc_json" class="form-control" rows="6"
-                      style="font-family:monospace;font-size:12px;"
-                      placeholder='[{"anchor":"scope","label":"1. Scope"}]'>{{ (page.toc_json if page else '[]') or '[]' }}</textarea>
+        {# ===== Bangla tab ===== #}
+        <div class="tab-pane fade" id="tab-bn" role="tabpanel">
+            <div class="alert alert-info py-2 small mb-3">
+                বাংলা ক্ষেত্রগুলো ঐচ্ছিক। ফাঁকা রাখলে ইংরেজি version দেখানো হবে।
+                Public site-এ language toggle Bangla হলে এই content render হবে।
+            </div>
+            <div class="row g-3">
+                <div class="col-12">
+                    <label class="form-label ft-medium">Title (বাংলা)</label>
+                    <input type="text" name="title_bn" class="form-control"
+                           value="{{ (page.title_bn if page else '') or '' }}">
+                </div>
+                <div class="col-12">
+                    <label class="form-label ft-medium">Subtitle / tagline (বাংলা)</label>
+                    <input type="text" name="subtitle_bn" class="form-control" maxlength="400"
+                           value="{{ (page.subtitle_bn if page else '') or '' }}">
+                </div>
+                <div class="col-12">
+                    <label class="form-label ft-medium">Body HTML (বাংলা)</label>
+                    <textarea name="body_html_bn" class="form-control" rows="14"
+                              style="font-family:monospace;font-size:13px;">{{ (page.body_html_bn if page else '') or '' }}</textarea>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label ft-medium">Table of Contents (JSON, বাংলা)</label>
+                    <textarea name="toc_json_bn" class="form-control" rows="6"
+                              style="font-family:monospace;font-size:12px;"
+                              placeholder='[{"anchor":"scope","label":"১. পরিধি"}]'>{{ (page.toc_json_bn if page else '') or '' }}</textarea>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label ft-medium">FAQ items (JSON, বাংলা)</label>
+                    <textarea name="faq_json_bn" class="form-control" rows="6"
+                              style="font-family:monospace;font-size:12px;"
+                              placeholder='[{"q":"...","a":"..."}]'>{{ (page.faq_json_bn if page else '') or '' }}</textarea>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label ft-medium">Related pages (JSON, বাংলা)</label>
+                    <textarea name="related_json_bn" class="form-control" rows="6"
+                              style="font-family:monospace;font-size:12px;"
+                              placeholder='[{"href":"/terms/","title":"Terms","desc":"..."}]'>{{ (page.related_json_bn if page else '') or '' }}</textarea>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <label class="form-label ft-medium">FAQ items (JSON array)</label>
-            <textarea name="faq_json" class="form-control" rows="6"
-                      style="font-family:monospace;font-size:12px;"
-                      placeholder='[{"q":"...","a":"..."}]'>{{ (page.faq_json if page else '[]') or '[]' }}</textarea>
-        </div>
-        <div class="col-md-4">
-            <label class="form-label ft-medium">Related pages (JSON array)</label>
-            <textarea name="related_json" class="form-control" rows="6"
-                      style="font-family:monospace;font-size:12px;"
-                      placeholder='[{"href":"/terms/","title":"Terms","desc":"..."}]'>{{ (page.related_json if page else '[]') or '[]' }}</textarea>
-        </div>
+    </div>
 
-        <div class="col-12">
-            <label class="d-inline-flex align-items-center">
-                <input type="checkbox" name="is_published" class="form-check-input me-2"
-                       {{ 'checked' if (page is none) or page.is_published }}>
-                <span class="ft-medium">Published</span>
-            </label>
-            <span class="text-muted small ms-2">
-                Unpublish to hide the page from the public site without deleting it.
-            </span>
-        </div>
+    <div class="mt-4 pt-3 border-top">
+        <label class="d-inline-flex align-items-center me-3">
+            <input type="checkbox" name="is_published" class="form-check-input me-2"
+                   {{ 'checked' if (page is none) or page.is_published }}>
+            <span class="ft-medium">Published</span>
+        </label>
+        <span class="text-muted small">
+            Unpublish to hide the page from the public site without deleting it.
+        </span>
     </div>
 
     <div class="mt-4">
         <button class="btn btn-primary">Save page</button>
         {% if page %}
         <a href="/{{ page.slug }}/" target="_blank" class="btn btn-outline-dark ms-1">
-            View public page <i class="bi bi-box-arrow-up-right"></i>
+            EN preview <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+        <a href="/{{ page.slug }}/?lang=bn" target="_blank" class="btn btn-outline-dark ms-1">
+            বাংলা preview <i class="bi bi-box-arrow-up-right"></i>
         </a>
         {% endif %}
         <a href="{{ url_for('static_pages.admin_list') }}" class="btn btn-link">Cancel</a>

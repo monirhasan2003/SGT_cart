@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-26 04:58+0600\n"
+"POT-Creation-Date: 2026-05-26 05:28+0600\n"
 "PO-Revision-Date: 2026-05-26 04:58+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: bn\n"
@@ -17,4 +17,2036 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+
+#: app/templates/Base/_cookie_banner.html:16
+msgid "SGT Cart uses"
+msgstr "SGT Cart ব্যবহার করে"
+
+#: app/templates/Base/_cookie_banner.html:16
+msgid "essential cookies"
+msgstr "প্রয়োজনীয় cookies"
+
+#: app/templates/Base/_cookie_banner.html:16
+msgid "to keep you signed in and your cart working. We'd also like to set optional analytics cookies to help us improve the site. Read our"
+msgstr "আপনাকে signed in রাখতে ও cart কাজ করার জন্য। আমরা ঐচ্ছিক analytics cookies-ও সেট করতে চাই, যাতে site উন্নত করা যায়। আরও পড়ুন আমাদের"
+
+#: app/templates/Base/_cookie_banner.html:18 app/templates/Base/footer.html:103
+msgid "Cookie Policy"
+msgstr "Cookie Policy"
+
+#: app/templates/Base/_cookie_banner.html:19
+msgid "and"
+msgstr "এবং"
+
+#: app/templates/Base/_cookie_banner.html:21 app/templates/Base/footer.html:102
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+#: app/templates/Base/_cookie_banner.html:26
+msgid "Necessary only"
+msgstr "শুধু প্রয়োজনীয়"
+
+#: app/templates/Base/_cookie_banner.html:30
+msgid "Accept all"
+msgstr "সব গ্রহণ করুন"
+
+#: app/templates/Base/flash_messages.html:8
+msgid "Close"
+msgstr "বন্ধ করুন"
+
+#: app/templates/Base/footer.html:29
+msgid "Mirpur, Dhaka 1216"
+msgstr "মিরপুর, ঢাকা ১২১৬"
+
+#: app/templates/Base/footer.html:29
+msgid "Bangladesh"
+msgstr "বাংলাদেশ"
+
+#: app/templates/Base/footer.html:37
+msgid "Facebook"
+msgstr "Facebook"
+
+#: app/templates/Base/footer.html:38
+msgid "YouTube"
+msgstr "YouTube"
+
+#: app/templates/Base/footer.html:39
+msgid "Instagram"
+msgstr "Instagram"
+
+#: app/templates/Base/footer.html:48 app/templates/pages/product.html:775
+msgid "Buy"
+msgstr "কিনুন"
+
+#: app/templates/Base/footer.html:50
+msgid "Help Center"
+msgstr "সাহায্য কেন্দ্র"
+
+#: app/templates/Base/footer.html:51
+msgid "How to Order"
+msgstr "Order করার নিয়ম"
+
+#: app/templates/Base/footer.html:52
+msgid "Payment Methods"
+msgstr "Payment পদ্ধতি"
+
+#: app/templates/Base/footer.html:53
+msgid "Shipping &amp; Delivery"
+msgstr "Shipping ও Delivery"
+
+#: app/templates/Base/footer.html:54
+msgid "Returns"
+msgstr "ফেরত"
+
+#: app/templates/Base/footer.html:55
+msgid "Refund Policy"
+msgstr "Refund Policy"
+
+#: app/templates/Base/footer.html:56
+msgid "Cancellations"
+msgstr "Order বাতিল"
+
+#: app/templates/Base/footer.html:57
+msgid "Buyer Protection"
+msgstr "Buyer Protection"
+
+#: app/templates/Base/footer.html:65
+msgid "Sell"
+msgstr "বিক্রি করুন"
+
+#: app/templates/Base/footer.html:67
+msgid "Sell on SGT Cart"
+msgstr "SGT Cart-এ বিক্রি করুন"
+
+#: app/templates/Base/footer.html:68
+msgid "Onboarding Guide"
+msgstr "শুরু করার নির্দেশিকা"
+
+#: app/templates/Base/footer.html:69
+msgid "Fees &amp; Commission"
+msgstr "ফি ও কমিশন"
+
+#: app/templates/Base/footer.html:70
+msgid "Payouts"
+msgstr "Payouts"
+
+#: app/templates/Base/footer.html:71
+msgid "Listing Guidelines"
+msgstr "Listing নির্দেশিকা"
+
+#: app/templates/Base/footer.html:72
+msgid "Prohibited Items"
+msgstr "নিষিদ্ধ পণ্য"
+
+#: app/templates/Base/footer.html:73
+msgid "Seller Protection"
+msgstr "Seller Protection"
+
+#: app/templates/Base/footer.html:74
+msgid "Code of Conduct"
+msgstr "আচরণবিধি"
+
+#: app/templates/Base/footer.html:82
+msgid "Company"
+msgstr "কোম্পানি"
+
+#: app/templates/Base/footer.html:84
+msgid "About SGT Cart"
+msgstr "SGT Cart সম্পর্কে"
+
+#: app/templates/Base/footer.html:85
+msgid "Contact Us"
+msgstr "যোগাযোগ করুন"
+
+#: app/templates/Base/footer.html:86
+msgid "Careers"
+msgstr "ক্যারিয়ার"
+
+#: app/templates/Base/footer.html:87
+msgid "Newsroom"
+msgstr "Newsroom"
+
+#: app/templates/Base/footer.html:88
+msgid "Sustainability"
+msgstr "টেকসইতা"
+
+#: app/templates/Base/footer.html:89
+msgid "FAQ"
+msgstr "FAQ"
+
+#: app/templates/Base/footer.html:90
+msgid "Open Support Ticket"
+msgstr "Support Ticket খুলুন"
+
+#: app/templates/Base/footer.html:98
+msgid "Legal"
+msgstr "Legal"
+
+#: app/templates/Base/footer.html:100
+msgid "Customer Terms"
+msgstr "Customer Terms"
+
+#: app/templates/Base/footer.html:101
+msgid "Seller Agreement"
+msgstr "Seller Agreement"
+
+#: app/templates/Base/footer.html:104
+msgid "IP Policy"
+msgstr "IP Policy"
+
+#: app/templates/Base/footer.html:105
+msgid "Dispute Resolution"
+msgstr "বিরোধ নিষ্পত্তি"
+
+#: app/templates/Base/footer.html:106
+msgid "Accessibility"
+msgstr "অ্যাক্সেসিবিলিটি"
+
+#: app/templates/Base/footer.html:107
+msgid "Governing Law"
+msgstr "প্রযোজ্য আইন"
+
+#: app/templates/Base/footer.html:115
+msgid "Trust"
+msgstr "নির্ভরযোগ্যতা"
+
+#: app/templates/Base/footer.html:117
+msgid "Trust &amp; Safety"
+msgstr "Trust ও Safety"
+
+#: app/templates/Base/footer.html:118
+msgid "Transparency"
+msgstr "স্বচ্ছতা"
+
+#: app/templates/Base/footer.html:119
+msgid "Report Illegal"
+msgstr "অবৈধ কনটেন্ট রিপোর্ট"
+
+#: app/templates/Base/footer.html:120
+msgid "Anti-Counterfeit"
+msgstr "নকল পণ্য প্রতিরোধ"
+
+#: app/templates/Base/footer.html:121
+msgid "Security"
+msgstr "নিরাপত্তা"
+
+#: app/templates/Base/footer.html:124
+msgid "COD"
+msgstr "COD"
+
+#: app/templates/Base/footer.html:124
+msgid "Card"
+msgstr "Card"
+
+#: app/templates/Base/footer.html:138
+msgid "Smart Global Trade Cart (SGT Cart)"
+msgstr "Smart Global Trade Cart (SGT Cart)"
+
+#: app/templates/Base/footer.html:140
+msgid "All rights reserved."
+msgstr "সর্বস্বত্ব সংরক্ষিত।"
+
+#: app/templates/Base/footer.html:143
+msgid "SSL Secure"
+msgstr "SSL Secure"
+
+#: app/templates/Base/footer.html:144
+msgid "PCI via SSLCommerz"
+msgstr "PCI via SSLCommerz"
+
+#: app/templates/Base/footer.html:145
+msgid "BD Registered"
+msgstr "BD Registered"
+
+#: app/templates/errors/403.html:6
+msgid "Access Denied — SGT Cart"
+msgstr "প্রবেশ নিষেধ — SGT Cart"
+
+#: app/templates/errors/403.html:13
+msgid "Access Denied"
+msgstr "প্রবেশ নিষেধ"
+
+#: app/templates/errors/403.html:15
+msgid "This area requires a different account type."
+msgstr "এই অংশে প্রবেশের জন্য ভিন্ন ধরনের account দরকার।"
+
+#: app/templates/errors/403.html:19
+#, python-format
+msgid "You are signed in as %(name)s (%(role)s). The Admin Panel needs an admin account — please log out and sign in with your admin account."
+msgstr "আপনি %(name)s (%(role)s) হিসেবে signed in আছেন। Admin Panel-এ admin account প্রয়োজন — অনুগ্রহ করে log out করে admin account দিয়ে আবার login করুন।"
+
+#: app/templates/errors/403.html:22
+msgid "Please log in with an account that has access."
+msgstr "অনুগ্রহ করে এমন account দিয়ে login করুন যার প্রবেশাধিকার আছে।"
+
+#: app/templates/errors/403.html:25 app/templates/pages/addresses.html:43
+#: app/templates/pages/customer-dashboard.html:50
+#: app/templates/pages/my-orders.html:43
+#: app/templates/pages/profile-info.html:50
+#: app/templates/pages/wishlist.html:50
+msgid "Log Out"
+msgstr "Logout"
+
+#: app/templates/errors/403.html:26 app/templates/pages/login.html:16
+#: app/templates/pages/login.html:75 app/templates/pages/reset-password.html:15
+#: app/templates/pages/verify-otp.html:15
+msgid "Login"
+msgstr "Login"
+
+#: app/templates/errors/403.html:27
+msgid "Go Home"
+msgstr "Home-এ যান"
+
+#: app/templates/pages/404.html:14 app/templates/pages/addresses.html:11
+#: app/templates/pages/checkout.html:11
+#: app/templates/pages/complete-order.html:14
+#: app/templates/pages/customer-dashboard.html:14
+#: app/templates/pages/edit-account-address.html:11
+#: app/templates/pages/flash-sales.html:12
+#: app/templates/pages/forgot-password.html:14
+#: app/templates/pages/login.html:14 app/templates/pages/messages.html:11
+#: app/templates/pages/my-orders.html:11 app/templates/pages/my-reviews.html:11
+#: app/templates/pages/notifications.html:11
+#: app/templates/pages/order-detail.html:11 app/templates/pages/product.html:48
+#: app/templates/pages/profile-info.html:14 app/templates/pages/refer.html:11
+#: app/templates/pages/reset-password.html:14
+#: app/templates/pages/review-form.html:11 app/templates/pages/rewards.html:11
+#: app/templates/pages/shop.html:13 app/templates/pages/shoping-cart.html:11
+#: app/templates/pages/verify-otp.html:14 app/templates/pages/wishlist.html:14
+msgid "Home"
+msgstr "Home"
+
+#: app/templates/pages/404.html:15
+msgid "Page"
+msgstr "পেজ"
+
+#: app/templates/pages/404.html:16
+msgid "Error Page"
+msgstr "Error পেজ"
+
+#: app/templates/pages/404.html:35
+msgid "404. Page not found."
+msgstr "৪০৪। পেজটি খুঁজে পাওয়া যায়নি।"
+
+#: app/templates/pages/404.html:37
+msgid "Sorry, we couldn't find the page you where looking for. We suggest that you return to home page."
+msgstr "দুঃখিত, আপনি যে পেজ খুঁজছিলেন সেটি পাওয়া যায়নি। অনুগ্রহ করে Home পেজে ফিরে যান।"
+
+#: app/templates/pages/404.html:39
+msgid "Go To Home Page"
+msgstr "Home পেজে যান"
+
+#: app/templates/pages/_product_card.html:19
+#: app/templates/pages/product.html:159
+msgid "Sponsored"
+msgstr "Sponsored"
+
+#: app/templates/pages/addresses.html:12 app/templates/pages/addresses.html:37
+#: app/templates/pages/customer-dashboard.html:15
+#: app/templates/pages/customer-dashboard.html:44
+#: app/templates/pages/my-orders.html:12 app/templates/pages/my-orders.html:37
+#: app/templates/pages/profile-info.html:15
+#: app/templates/pages/wishlist.html:15
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: app/templates/pages/addresses.html:13 app/templates/pages/addresses.html:41
+#: app/templates/pages/customer-dashboard.html:48
+#: app/templates/pages/customer-dashboard.html:91
+#: app/templates/pages/edit-account-address.html:12
+#: app/templates/pages/my-orders.html:41
+#: app/templates/pages/profile-info.html:48
+#: app/templates/pages/wishlist.html:48
+msgid "Addresses"
+msgstr "ঠিকানা"
+
+#: app/templates/pages/addresses.html:35
+#: app/templates/pages/customer-dashboard.html:42
+#: app/templates/pages/my-orders.html:35
+#: app/templates/pages/profile-info.html:43
+#: app/templates/pages/wishlist.html:43
+msgid "Dashboard Navigation"
+msgstr "Dashboard Navigation"
+
+#: app/templates/pages/addresses.html:38
+#: app/templates/pages/customer-dashboard.html:45
+#: app/templates/pages/my-orders.html:38
+#: app/templates/pages/profile-info.html:45
+#: app/templates/pages/wishlist.html:45
+msgid "My Order"
+msgstr "আমার Order"
+
+#: app/templates/pages/addresses.html:39
+#: app/templates/pages/customer-dashboard.html:46
+#: app/templates/pages/customer-dashboard.html:80
+#: app/templates/pages/my-orders.html:39
+#: app/templates/pages/profile-info.html:46
+#: app/templates/pages/wishlist.html:16 app/templates/pages/wishlist.html:46
+msgid "Wishlist"
+msgstr "Wishlist"
+
+#: app/templates/pages/addresses.html:40
+#: app/templates/pages/customer-dashboard.html:47
+#: app/templates/pages/customer-dashboard.html:100
+#: app/templates/pages/my-orders.html:40
+#: app/templates/pages/profile-info.html:16
+#: app/templates/pages/profile-info.html:47
+#: app/templates/pages/wishlist.html:47
+msgid "Profile Info"
+msgstr "Profile তথ্য"
+
+#: app/templates/pages/addresses.html:42 app/templates/pages/checkout.html:130
+#: app/templates/pages/customer-dashboard.html:49
+#: app/templates/pages/my-orders.html:42
+#: app/templates/pages/profile-info.html:49
+#: app/templates/pages/wishlist.html:49
+msgid "Payment Method"
+msgstr "Payment পদ্ধতি"
+
+#: app/templates/pages/addresses.html:54
+msgid "My Addresses"
+msgstr "আমার ঠিকানা"
+
+#: app/templates/pages/addresses.html:56
+#: app/templates/pages/edit-account-address.html:31
+msgid "Add New Address"
+msgstr "নতুন ঠিকানা যোগ করুন"
+
+#: app/templates/pages/addresses.html:65
+#: app/templates/pages/edit-account-address.html:56
+msgid "Address"
+msgstr "ঠিকানা"
+
+#: app/templates/pages/addresses.html:67
+msgid "Default"
+msgstr "Default"
+
+#: app/templates/pages/addresses.html:72 app/templates/pages/my-reviews.html:59
+msgid "Edit"
+msgstr "Edit"
+
+#: app/templates/pages/addresses.html:74
+msgid "Delete this address?"
+msgstr "এই ঠিকানা মুছবেন?"
+
+#: app/templates/pages/addresses.html:76 app/templates/pages/my-reviews.html:63
+msgid "Delete"
+msgstr "মুছুন"
+
+#: app/templates/pages/addresses.html:88
+msgid "Phone:"
+msgstr "ফোন:"
+
+#: app/templates/pages/addresses.html:92
+msgid "Set as default"
+msgstr "Default হিসেবে সেট করুন"
+
+#: app/templates/pages/addresses.html:101
+msgid "You have no saved addresses. Add one for faster checkout."
+msgstr "কোনো ঠিকানা সংরক্ষিত নেই। দ্রুত checkout-এর জন্য একটি যোগ করুন।"
+
+#: app/templates/pages/checkout.html:12
+msgid "Cart"
+msgstr "Cart"
+
+#: app/templates/pages/checkout.html:13 app/templates/pages/checkout.html:24
+msgid "Checkout"
+msgstr "Checkout"
+
+#: app/templates/pages/checkout.html:34
+msgid "Delivery Address"
+msgstr "Delivery ঠিকানা"
+
+#: app/templates/pages/checkout.html:35
+msgid "+ Add New"
+msgstr "+ নতুন যোগ করুন"
+
+#: app/templates/pages/checkout.html:50
+msgid "You have no saved address."
+msgstr "কোনো ঠিকানা সংরক্ষিত নেই।"
+
+#: app/templates/pages/checkout.html:51
+msgid "Add one"
+msgstr "একটি যোগ করুন"
+
+#: app/templates/pages/checkout.html:51
+msgid "to continue."
+msgstr "চালিয়ে যেতে।"
+
+#: app/templates/pages/checkout.html:57
+msgid "Your Items"
+msgstr "আপনার পণ্যসমূহ"
+
+#: app/templates/pages/checkout.html:61
+#, python-format
+msgid "Sold by %(name)s"
+msgstr "বিক্রেতা: %(name)s"
+
+#: app/templates/pages/checkout.html:87
+#: app/templates/pages/shoping-cart.html:83
+msgid "Order Summary"
+msgstr "Order Summary"
+
+#: app/templates/pages/checkout.html:89
+#: app/templates/pages/order-detail.html:118
+#: app/templates/pages/shoping-cart.html:85
+msgid "Subtotal"
+msgstr "সাবটোটাল"
+
+#: app/templates/pages/checkout.html:92
+#: app/templates/pages/order-detail.html:121
+#: app/templates/pages/shoping-cart.html:89
+msgid "Shipping"
+msgstr "Shipping"
+
+#: app/templates/pages/checkout.html:92
+#, python-format
+msgid "%(n)s seller"
+msgstr "%(n)s জন বিক্রেতা"
+
+#: app/templates/pages/checkout.html:98
+msgid "Coupon"
+msgstr "Coupon"
+
+#: app/templates/pages/checkout.html:100
+msgid "remove"
+msgstr "সরান"
+
+#: app/templates/pages/checkout.html:108
+msgid "Coupon code"
+msgstr "Coupon code"
+
+#: app/templates/pages/checkout.html:110 app/templates/pages/shop.html:80
+#: app/templates/pages/store.html:108
+msgid "Apply"
+msgstr "প্রয়োগ করুন"
+
+#: app/templates/pages/checkout.html:119
+#, python-format
+msgid "Use my %(n)s reward points"
+msgstr "আমার %(n)s reward points ব্যবহার করুন"
+
+#: app/templates/pages/checkout.html:120
+#, python-format
+msgid "৳%(n)s off"
+msgstr "৳%(n)s ছাড়"
+
+#: app/templates/pages/checkout.html:126 app/templates/pages/my-orders.html:58
+#: app/templates/pages/order-detail.html:125
+#: app/templates/pages/shoping-cart.html:31
+#: app/templates/pages/shoping-cart.html:94
+msgid "Total"
+msgstr "মোট"
+
+#: app/templates/pages/checkout.html:133 app/templates/pages/index.html:121
+#: app/templates/pages/order-detail.html:51
+#: app/templates/pages/product.html:151 app/templates/pages/product.html:331
+msgid "Cash on Delivery"
+msgstr "Cash on Delivery"
+
+#: app/templates/pages/checkout.html:134
+msgid "Pay when the order arrives."
+msgstr "Order পৌঁছালে পরিশোধ করুন।"
+
+#: app/templates/pages/checkout.html:138
+msgid "Online Payment"
+msgstr "Online Payment"
+
+#: app/templates/pages/checkout.html:139
+msgid "Card, bKash, Nagad & more via SSLCommerz."
+msgstr "Card, bKash, Nagad সহ আরও — SSLCommerz-এর মাধ্যমে।"
+
+#: app/templates/pages/checkout.html:143
+msgid "Place Order"
+msgstr "Order Place করুন"
+
+#: app/templates/pages/complete-order.html:15
+msgid "Support"
+msgstr "Support"
+
+#: app/templates/pages/complete-order.html:16
+msgid "Complete Order"
+msgstr "Order সম্পন্ন"
+
+#: app/templates/pages/complete-order.html:35
+msgid "Your Order is Completed!"
+msgstr "আপনার Order সম্পন্ন হয়েছে!"
+
+#: app/templates/pages/complete-order.html:37
+msgid "Your order"
+msgstr "আপনার Order"
+
+#: app/templates/pages/complete-order.html:37
+msgid "has been completed. Your order details are shown for your personal accont."
+msgstr "সম্পন্ন হয়েছে। Order বিস্তারিত আপনার account-এ দেখানো হলো।"
+
+#: app/templates/pages/complete-order.html:39
+msgid "Track Your Orders"
+msgstr "Order Track করুন"
+
+#: app/templates/pages/customer-dashboard.html:62
+#, python-format
+msgid "Welcome back, %(name)s!"
+msgstr "আবার স্বাগতম, %(name)s!"
+
+#: app/templates/pages/customer-dashboard.html:63
+msgid "Manage your orders, wishlist, addresses and profile from here."
+msgstr "এখান থেকে আপনার orders, wishlist, ঠিকানা ও profile পরিচালনা করুন।"
+
+#: app/templates/pages/customer-dashboard.html:71
+#: app/templates/pages/my-orders.html:13 app/templates/pages/my-orders.html:53
+#: app/templates/pages/order-detail.html:12
+#: app/templates/pages/order-detail.html:132
+msgid "My Orders"
+msgstr "আমার Orders"
+
+#: app/templates/pages/customer-dashboard.html:72
+msgid "Track and review"
+msgstr "Track ও review করুন"
+
+#: app/templates/pages/customer-dashboard.html:83
+msgid "Saved items"
+msgstr "সংরক্ষিত পণ্য"
+
+#: app/templates/pages/customer-dashboard.html:92
+msgid "Delivery addresses"
+msgstr "Delivery ঠিকানা"
+
+#: app/templates/pages/customer-dashboard.html:101
+msgid "Details & password"
+msgstr "বিস্তারিত ও Password"
+
+#: app/templates/pages/customer-dashboard.html:109
+#: app/templates/pages/messages.html:12 app/templates/pages/messages.html:24
+msgid "Messages"
+msgstr "Messages"
+
+#: app/templates/pages/customer-dashboard.html:110
+msgid "Sellers & SGT Support"
+msgstr "বিক্রেতা ও SGT Support"
+
+#: app/templates/pages/customer-dashboard.html:118
+#: app/templates/pages/my-reviews.html:12
+#: app/templates/pages/my-reviews.html:23
+msgid "My Reviews"
+msgstr "আমার Reviews"
+
+#: app/templates/pages/customer-dashboard.html:119
+msgid "Rate delivered items"
+msgstr "Delivered পণ্য Rate করুন"
+
+#: app/templates/pages/customer-dashboard.html:127
+#: app/templates/pages/rewards.html:12
+msgid "Reward Points"
+msgstr "Reward Points"
+
+#: app/templates/pages/customer-dashboard.html:130
+msgid "Earn & redeem"
+msgstr "অর্জন ও ব্যবহার"
+
+#: app/templates/pages/customer-dashboard.html:138
+#: app/templates/pages/refer.html:12 app/templates/pages/refer.html:23
+msgid "Refer & Earn"
+msgstr "Refer করুন ও আয় করুন"
+
+#: app/templates/pages/customer-dashboard.html:139
+msgid "Invite friends"
+msgstr "বন্ধুদের আমন্ত্রণ"
+
+#: app/templates/pages/customer-dashboard.html:155
+#: app/templates/pages/index.html:248
+msgid "Recommended for you"
+msgstr "আপনার জন্য suggested"
+
+#: app/templates/pages/edit-account-address.html:14
+#: app/templates/pages/edit-account-address.html:31
+msgid "Edit Address"
+msgstr "ঠিকানা Edit করুন"
+
+#: app/templates/pages/edit-account-address.html:14
+msgid "New Address"
+msgstr "নতুন ঠিকানা"
+
+#: app/templates/pages/edit-account-address.html:36
+msgid "Label"
+msgstr "Label"
+
+#: app/templates/pages/edit-account-address.html:36
+msgid "(Home / Office)"
+msgstr "(বাসা / অফিস)"
+
+#: app/templates/pages/edit-account-address.html:41
+msgid "Full Name"
+msgstr "পুরো নাম"
+
+#: app/templates/pages/edit-account-address.html:46
+msgid "Phone Number"
+msgstr "ফোন নম্বর"
+
+#: app/templates/pages/edit-account-address.html:51
+msgid "Postal Code"
+msgstr "Postal Code"
+
+#: app/templates/pages/edit-account-address.html:57
+msgid "House, road, etc."
+msgstr "বাসা, রাস্তা, ইত্যাদি"
+
+#: app/templates/pages/edit-account-address.html:61
+msgid "Area"
+msgstr "এলাকা"
+
+#: app/templates/pages/edit-account-address.html:66
+msgid "City"
+msgstr "শহর"
+
+#: app/templates/pages/edit-account-address.html:71
+msgid "District"
+msgstr "জেলা"
+
+#: app/templates/pages/edit-account-address.html:79
+msgid "Set as default delivery address"
+msgstr "Default delivery ঠিকানা হিসেবে সেট করুন"
+
+#: app/templates/pages/edit-account-address.html:86
+msgid "Avoid delivery during Jumma / Maghrib"
+msgstr "জুমা / মাগরিবের সময়ে delivery এড়িয়ে চলুন"
+
+#: app/templates/pages/edit-account-address.html:92
+msgid "Update Address"
+msgstr "ঠিকানা Update করুন"
+
+#: app/templates/pages/edit-account-address.html:92
+msgid "Save Address"
+msgstr "ঠিকানা সংরক্ষণ করুন"
+
+#: app/templates/pages/edit-account-address.html:93
+#: app/templates/pages/review-form.html:64
+msgid "Cancel"
+msgstr "বাতিল"
+
+#: app/templates/pages/flash-sales.html:13
+#: app/templates/pages/flash-sales.html:22
+msgid "Flash Sales"
+msgstr "Flash Sales"
+
+#: app/templates/pages/flash-sales.html:23
+msgid "Limited-time deals — grab them before the timer runs out."
+msgstr "সীমিত-সময়ের deals — timer শেষ হওয়ার আগেই নিয়ে নিন।"
+
+#: app/templates/pages/flash-sales.html:28
+msgid "Search within flash deals"
+msgstr "Flash deals-এর মধ্যে খুঁজুন"
+
+#: app/templates/pages/flash-sales.html:30
+msgid "Search by product name…"
+msgstr "পণ্যের নাম দিয়ে খুঁজুন…"
+
+#: app/templates/pages/flash-sales.html:33
+msgid "Min price (৳)"
+msgstr "সর্বনিম্ন দাম (৳)"
+
+#: app/templates/pages/flash-sales.html:38
+msgid "Max price (৳)"
+msgstr "সর্বোচ্চ দাম (৳)"
+
+#: app/templates/pages/flash-sales.html:43
+msgid "Filter"
+msgstr "Filter"
+
+#: app/templates/pages/flash-sales.html:55
+msgid "by"
+msgstr "—"
+
+#: app/templates/pages/flash-sales.html:60
+msgid "Marketplace-wide deal"
+msgstr "Marketplace-wide deal"
+
+#: app/templates/pages/flash-sales.html:64
+#, python-format
+msgid "Ends %(date)s"
+msgstr "শেষ %(date)s"
+
+#: app/templates/pages/flash-sales.html:81
+msgid "No flash deals match your filters —"
+msgstr "আপনার filter-এর সাথে কোনো flash deal মেলেনি —"
+
+#: app/templates/pages/flash-sales.html:81
+msgid "clear them"
+msgstr "Filter সরান"
+
+#: app/templates/pages/flash-sales.html:83
+msgid "No flash sales running right now — check back soon!"
+msgstr "এই মুহূর্তে কোনো flash sale চলছে না — শীঘ্রই আবার দেখুন!"
+
+#: app/templates/pages/forgot-password.html:15
+#: app/templates/pages/login.html:15
+msgid "Pages"
+msgstr "পেজ"
+
+#: app/templates/pages/forgot-password.html:16
+msgid "Forgot Password"
+msgstr "Password ভুলে গেছেন"
+
+#: app/templates/pages/forgot-password.html:37
+#: app/templates/pages/login.html:53
+msgid "Email"
+msgstr "Email"
+
+#: app/templates/pages/forgot-password.html:38
+msgid "Your account email"
+msgstr "আপনার account email"
+
+#: app/templates/pages/forgot-password.html:39
+msgid "We'll email you a one-time code to reset your password."
+msgstr "Password reset-এর জন্য একটি one-time code Email-এ পাঠানো হবে।"
+
+#: app/templates/pages/forgot-password.html:43
+msgid "Send Reset Code"
+msgstr "Reset Code পাঠান"
+
+#: app/templates/pages/forgot-password.html:46
+msgid "Remember your password ?"
+msgstr "Password মনে আছে?"
+
+#: app/templates/pages/forgot-password.html:46
+msgid "Sign in"
+msgstr "Sign in"
+
+#: app/templates/pages/index.html:125
+msgid "Verified sellers"
+msgstr "Verified বিক্রেতা"
+
+#: app/templates/pages/index.html:129
+msgid "7-day return"
+msgstr "৭ দিনের ফেরত"
+
+#: app/templates/pages/index.html:133
+msgid "Secure payment"
+msgstr "Secure payment"
+
+#: app/templates/pages/index.html:143 app/templates/pages/shop.html:40
+#: app/templates/pages/store.html:80
+msgid "Categories"
+msgstr "Categories"
+
+#: app/templates/pages/index.html:188
+#, python-format
+msgid "ends %(date)s"
+msgstr "শেষ %(date)s"
+
+#: app/templates/pages/index.html:191
+msgid "View all flash deals →"
+msgstr "সব flash deals দেখুন →"
+
+#: app/templates/pages/index.html:209
+msgid "Best Sellers"
+msgstr "Best Sellers"
+
+#: app/templates/pages/index.html:210
+msgid "Browse shop →"
+msgstr "Shop দেখুন →"
+
+#: app/templates/pages/index.html:223
+msgid "New Arrivals"
+msgstr "নতুন এসেছে"
+
+#: app/templates/pages/index.html:235
+msgid "Top Rated"
+msgstr "Top Rated"
+
+#: app/templates/pages/index.html:249
+msgid "Just for you"
+msgstr "শুধু আপনার জন্য"
+
+#: app/templates/pages/index.html:263
+msgid "Featured Stores"
+msgstr "Featured Stores"
+
+#: app/templates/pages/index.html:264
+msgid "Sell on SGT →"
+msgstr "SGT-তে বিক্রি করুন →"
+
+#: app/templates/pages/login.html:37
+msgid "Login As"
+msgstr "Login করুন হিসেবে"
+
+#: app/templates/pages/login.html:42 app/templates/pages/product.html:836
+#: app/templates/pages/product.html:1088
+msgid "Customer"
+msgstr "Customer"
+
+#: app/templates/pages/login.html:47 app/templates/pages/messages.html:41
+#: app/templates/pages/product.html:853
+msgid "Seller"
+msgstr "Seller"
+
+#: app/templates/pages/login.html:54
+msgid "Email address"
+msgstr "Email ঠিকানা"
+
+#: app/templates/pages/login.html:58 app/templates/pages/login.html:59
+msgid "Password"
+msgstr "Password"
+
+#: app/templates/pages/login.html:66
+msgid "Remember Me"
+msgstr "মনে রাখুন"
+
+#: app/templates/pages/login.html:69
+msgid "Lost Your Password?"
+msgstr "Password ভুলে গেছেন?"
+
+#: app/templates/pages/login.html:78
+msgid "Don't have an account ?"
+msgstr "Account নেই?"
+
+#: app/templates/pages/login.html:78
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: app/templates/pages/messages.html:26
+msgid "New conversation"
+msgstr "নতুন কথোপকথন"
+
+#: app/templates/pages/messages.html:43
+msgid "Conversation"
+msgstr "কথোপকথন"
+
+#: app/templates/pages/messages.html:65
+msgid "You have no conversations yet."
+msgstr "এখনো কোনো কথোপকথন নেই।"
+
+#: app/templates/pages/messages.html:68
+msgid "Start a conversation"
+msgstr "কথোপকথন শুরু করুন"
+
+#: app/templates/pages/my-orders.html:58
+msgid "Order"
+msgstr "Order"
+
+#: app/templates/pages/my-orders.html:58
+msgid "Date"
+msgstr "তারিখ"
+
+#: app/templates/pages/my-orders.html:58
+msgid "Items"
+msgstr "পণ্যসমূহ"
+
+#: app/templates/pages/my-orders.html:58
+#: app/templates/pages/order-detail.html:49
+msgid "Payment"
+msgstr "Payment"
+
+#: app/templates/pages/my-orders.html:68
+#: app/templates/pages/order-detail.html:53
+msgid "Paid"
+msgstr "পরিশোধিত"
+
+#: app/templates/pages/my-orders.html:69
+#: app/templates/pages/order-detail.html:54
+msgid "Failed"
+msgstr "ব্যর্থ"
+
+#: app/templates/pages/my-orders.html:70
+#: app/templates/pages/order-detail.html:55
+#: app/templates/pages/order-detail.html:145
+msgid "Pending"
+msgstr "অপেক্ষমাণ"
+
+#: app/templates/pages/my-orders.html:74
+msgid "View"
+msgstr "দেখুন"
+
+#: app/templates/pages/my-orders.html:79
+msgid "You have no orders yet."
+msgstr "এখনো কোনো order নেই।"
+
+#: app/templates/pages/my-orders.html:80
+msgid "Start shopping"
+msgstr "Shopping শুরু করুন"
+
+#: app/templates/pages/my-reviews.html:26
+#, python-format
+msgid "Waiting for your review (%(count)s)"
+msgstr "আপনার review-এর অপেক্ষায় (%(count)s)"
+
+#: app/templates/pages/my-reviews.html:34
+msgid "Write review"
+msgstr "Review লিখুন"
+
+#: app/templates/pages/my-reviews.html:40
+msgid "Nothing waiting — reviews open once an order is delivered."
+msgstr "কিছুই অপেক্ষমাণ নেই — order delivered হলে review-এর সুযোগ আসবে।"
+
+#: app/templates/pages/my-reviews.html:44
+#, python-format
+msgid "Your reviews (%(count)s)"
+msgstr "আপনার Reviews (%(count)s)"
+
+#: app/templates/pages/my-reviews.html:61
+msgid "Delete this review?"
+msgstr "এই review মুছবেন?"
+
+#: app/templates/pages/my-reviews.html:70
+msgid "You haven't written any reviews yet."
+msgstr "এখনো কোনো review লেখেননি।"
+
+#: app/templates/pages/notifications.html:12
+#: app/templates/pages/notifications.html:24
+msgid "Notifications"
+msgstr "Notifications"
+
+#: app/templates/pages/notifications.html:28
+msgid "Mark all as read"
+msgstr "সব Read হিসেবে চিহ্নিত করুন"
+
+#: app/templates/pages/notifications.html:49
+msgid "new"
+msgstr "নতুন"
+
+#: app/templates/pages/notifications.html:62
+msgid "You have no notifications yet."
+msgstr "এখনো কোনো notification নেই।"
+
+#: app/templates/pages/order-detail.html:29
+#, python-format
+msgid "Order %(num)s"
+msgstr "Order %(num)s"
+
+#: app/templates/pages/order-detail.html:31
+#, python-format
+msgid "Placed on %(date)s"
+msgstr "%(date)s-এ Place করা হয়েছে"
+
+#: app/templates/pages/order-detail.html:38
+msgid "Shipping Address"
+msgstr "Shipping ঠিকানা"
+
+#: app/templates/pages/order-detail.html:51
+msgid "Method:"
+msgstr "Method:"
+
+#: app/templates/pages/order-detail.html:52
+msgid "Status:"
+msgstr "Status:"
+
+#: app/templates/pages/order-detail.html:84
+#: app/templates/pages/review-form.html:31
+msgid "Write a review"
+msgstr "একটি Review লিখুন"
+
+#: app/templates/pages/order-detail.html:93
+msgid "Items subtotal"
+msgstr "পণ্য সাবটোটাল"
+
+#: app/templates/pages/order-detail.html:99
+msgid "Tracking"
+msgstr "Tracking"
+
+#: app/templates/pages/order-detail.html:131
+#: app/templates/pages/shoping-cart.html:76
+msgid "Continue Shopping"
+msgstr "Shopping চালিয়ে যান"
+
+#: app/templates/pages/order-detail.html:146
+msgid "Processing"
+msgstr "প্রস্তুত হচ্ছে"
+
+#: app/templates/pages/order-detail.html:147
+msgid "Shipped"
+msgstr "পাঠানো হয়েছে"
+
+#: app/templates/pages/order-detail.html:148
+msgid "Delivered"
+msgstr "পৌঁছেছে"
+
+#: app/templates/pages/order-detail.html:149
+msgid "Cancelled"
+msgstr "বাতিল"
+
+#: app/templates/pages/order-detail.html:166
+msgid "just now"
+msgstr "এইমাত্র"
+
+#: app/templates/pages/product.html:13
+msgid "Flash Sale:"
+msgstr "Flash Sale:"
+
+#: app/templates/pages/product.html:18 app/templates/pages/product.html:38
+msgid "Ends soon"
+msgstr "শীঘ্রই শেষ"
+
+#: app/templates/pages/product.html:49 app/templates/pages/shop.html:15
+msgid "Shop"
+msgstr "Shop"
+
+#: app/templates/pages/product.html:70 app/templates/pages/product.html:169
+msgid "Out of Stock"
+msgstr "Stock-এ নেই"
+
+#: app/templates/pages/product.html:72
+#, python-format
+msgid "Only %(n)s left"
+msgstr "মাত্র %(n)s টি বাকি"
+
+#: app/templates/pages/product.html:108
+msgid "Share"
+msgstr "Share"
+
+#: app/templates/pages/product.html:112
+msgid "Save to wishlist"
+msgstr "Wishlist-এ সংরক্ষণ"
+
+#: app/templates/pages/product.html:122 app/templates/pages/product.html:974
+#, python-format
+msgid "%(n)s review"
+msgstr "%(n)s টি review"
+
+#: app/templates/pages/product.html:122 app/templates/pages/product.html:974
+#, python-format
+msgid "%(n)s reviews"
+msgstr "%(n)s টি reviews"
+
+#: app/templates/pages/product.html:124 app/templates/pages/product.html:947
+msgid "No reviews yet"
+msgstr "এখনো কোনো review নেই"
+
+#: app/templates/pages/product.html:130
+#, python-format
+msgid "%(n)s Answered Question"
+msgstr "%(n)s টি প্রশ্নের উত্তর"
+
+#: app/templates/pages/product.html:130
+#, python-format
+msgid "%(n)s Answered Questions"
+msgstr "%(n)s টি প্রশ্নের উত্তর"
+
+#: app/templates/pages/product.html:134
+msgid "Brand:"
+msgstr "Brand:"
+
+#: app/templates/pages/product.html:155 app/templates/pages/product.html:336
+msgid "Free Shipping"
+msgstr "Free Shipping"
+
+#: app/templates/pages/product.html:166
+msgid "In Stock"
+msgstr "Stock-এ আছে"
+
+#: app/templates/pages/product.html:167
+#, python-format
+msgid "%(n)s available"
+msgstr "%(n)s টি available"
+
+#: app/templates/pages/product.html:171
+msgid "SKU:"
+msgstr "SKU:"
+
+#: app/templates/pages/product.html:178
+#, python-format
+msgid "Only %(n)s left in stock!"
+msgstr "Stock-এ মাত্র %(n)s টি বাকি!"
+
+#: app/templates/pages/product.html:183
+#, python-format
+msgid "%(n)s sold in last 24h"
+msgstr "গত ২৪ ঘণ্টায় %(n)s টি বিক্রি"
+
+#: app/templates/pages/product.html:188
+#, python-format
+msgid "%(n)s viewing now"
+msgstr "এখন %(n)s জন দেখছেন"
+
+#: app/templates/pages/product.html:197
+msgid "Notify me when back in stock"
+msgstr "আবার stock-এ এলে জানান"
+
+#: app/templates/pages/product.html:204
+msgid "Your email"
+msgstr "আপনার Email"
+
+#: app/templates/pages/product.html:207
+msgid "Notify me"
+msgstr "আমাকে জানান"
+
+#: app/templates/pages/product.html:211
+#, python-format
+msgid "%(n)s other waiting for this product."
+msgstr "%(n)s জন এই পণ্যের জন্য অপেক্ষা করছেন।"
+
+#: app/templates/pages/product.html:211
+#, python-format
+msgid "%(n)s others waiting for this product."
+msgstr "%(n)s জন এই পণ্যের জন্য অপেক্ষা করছেন।"
+
+#: app/templates/pages/product.html:229
+msgid "Color:"
+msgstr "রং:"
+
+#: app/templates/pages/product.html:244
+msgid "Size:"
+msgstr "Size:"
+
+#: app/templates/pages/product.html:273
+msgid "Add to Cart"
+msgstr "Cart-এ যোগ করুন"
+
+#: app/templates/pages/product.html:278
+msgid "Buy Now"
+msgstr "এখনই কিনুন"
+
+#: app/templates/pages/product.html:283
+msgid "Description"
+msgstr "বিবরণ"
+
+#: app/templates/pages/product.html:292
+msgid "Delivery"
+msgstr "Delivery"
+
+#: app/templates/pages/product.html:299
+msgid "Same-city seller — faster delivery"
+msgstr "একই শহরের বিক্রেতা — দ্রুত delivery"
+
+#: app/templates/pages/product.html:306
+msgid "Deliver to"
+msgstr "Delivery-র জন্য"
+
+#: app/templates/pages/product.html:312
+msgid "Set location"
+msgstr "Location সেট করুন"
+
+#: app/templates/pages/product.html:318
+msgid "Estimated"
+msgstr "আনুমানিক"
+
+#: app/templates/pages/product.html:323
+#, python-format
+msgid "%(a)s-%(b)s days"
+msgstr "%(a)s-%(b)s দিন"
+
+#: app/templates/pages/product.html:327
+msgid "Shipping fee"
+msgstr "Shipping fee"
+
+#: app/templates/pages/product.html:332
+msgid "Available"
+msgstr "Available"
+
+#: app/templates/pages/product.html:336
+#, python-format
+msgid "Add ৳%(n)s more to unlock"
+msgstr "Free shipping-এর জন্য আরও ৳%(n)s যোগ করুন"
+
+#: app/templates/pages/product.html:343
+msgid "Return policy"
+msgstr "Return policy"
+
+#: app/templates/pages/product.html:345
+#, python-format
+msgid "%(n)s-day return"
+msgstr "%(n)s দিনের ফেরত"
+
+#: app/templates/pages/product.html:345
+msgid "Non-returnable"
+msgstr "ফেরতযোগ্য নয়"
+
+#: app/templates/pages/product.html:349
+msgid "Warranty"
+msgstr "Warranty"
+
+#: app/templates/pages/product.html:357
+msgid "Avoiding Jumma / Maghrib delivery"
+msgstr "জুমা / মাগরিবের সময় delivery এড়ানো হবে"
+
+#: app/templates/pages/product.html:370
+msgid "Sold By"
+msgstr "বিক্রেতা"
+
+#: app/templates/pages/product.html:388
+msgid "Mall"
+msgstr "Mall"
+
+#: app/templates/pages/product.html:392
+msgid "KYC verified by SGT"
+msgstr "SGT দ্বারা KYC verified"
+
+#: app/templates/pages/product.html:393
+msgid "Verified by SGT"
+msgstr "SGT-দ্বারা Verified"
+
+#: app/templates/pages/product.html:401
+msgid "Seller rating"
+msgstr "Seller rating"
+
+#: app/templates/pages/product.html:407
+msgid "No ratings yet"
+msgstr "এখনো কোনো rating নেই"
+
+#: app/templates/pages/product.html:413
+msgid "Avg delivery"
+msgstr "গড় delivery"
+
+#: app/templates/pages/product.html:414
+#, python-format
+msgid "%(n)s day(s)"
+msgstr "%(n)s দিন"
+
+#: app/templates/pages/product.html:419
+msgid "Cancel rate"
+msgstr "Cancel rate"
+
+#: app/templates/pages/product.html:432
+msgid "Online now"
+msgstr "এখন Online"
+
+#: app/templates/pages/product.html:437
+#, python-format
+msgid "Last seen %(t)s"
+msgstr "শেষ Online %(t)s"
+
+#: app/templates/pages/product.html:441
+msgid "Offline"
+msgstr "Offline"
+
+#: app/templates/pages/product.html:448
+#, python-format
+msgid "Typically replies in ~%(n)s min"
+msgstr "সাধারণত ~%(n)s মিনিটে উত্তর দেন"
+
+#: app/templates/pages/product.html:450
+#, python-format
+msgid "Typically replies in ~%(n)s hr"
+msgstr "সাধারণত ~%(n)s ঘণ্টায় উত্তর দেন"
+
+#: app/templates/pages/product.html:459
+msgid "Visit Store"
+msgstr "Store দেখুন"
+
+#: app/templates/pages/product.html:467 app/templates/pages/product.html:472
+msgid "Chat Now"
+msgstr "এখনই Chat করুন"
+
+#: app/templates/pages/product.html:480
+msgid "Quick questions:"
+msgstr "দ্রুত প্রশ্ন:"
+
+#: app/templates/pages/product.html:505
+msgid "Verification"
+msgstr "Verification"
+
+#: app/templates/pages/product.html:511
+msgid "Trade License Verified"
+msgstr "Trade License Verified"
+
+#: app/templates/pages/product.html:520
+msgid "NID Verified"
+msgstr "NID Verified"
+
+#: app/templates/pages/product.html:532
+msgid "Why buy from this seller?"
+msgstr "এই বিক্রেতার কাছ থেকে কেন কিনবেন?"
+
+#: app/templates/pages/product.html:539
+#, python-format
+msgid "%(n)s%% positive"
+msgstr "%(n)s%% positive"
+
+#: app/templates/pages/product.html:540
+#, python-format
+msgid "across %(n)s review"
+msgstr "%(n)s টি review-এর ভিত্তিতে"
+
+#: app/templates/pages/product.html:540
+#, python-format
+msgid "across %(n)s reviews"
+msgstr "%(n)s টি reviews-এর ভিত্তিতে"
+
+#: app/templates/pages/product.html:549
+#, python-format
+msgid "%(n)s-day delivery"
+msgstr "%(n)s দিনে delivery"
+
+#: app/templates/pages/product.html:551
+msgid "on average"
+msgstr "গড়ে"
+
+#: app/templates/pages/product.html:561
+#, python-format
+msgid "Replies in ~%(n)s min"
+msgstr "~%(n)s মিনিটে উত্তর"
+
+#: app/templates/pages/product.html:563
+#, python-format
+msgid "Replies in ~%(n)s hr"
+msgstr "~%(n)s ঘণ্টায় উত্তর"
+
+#: app/templates/pages/product.html:566
+msgid "typical chat reply"
+msgstr "সাধারণ chat reply"
+
+#: app/templates/pages/product.html:574
+#, python-format
+msgid "%(n)s%% order success"
+msgstr "%(n)s%% order সফল"
+
+#: app/templates/pages/product.html:575
+#, python-format
+msgid "— %(n)s%% cancellations"
+msgstr "— %(n)s%% cancellations"
+
+#: app/templates/pages/product.html:587
+msgid "Get the SGT app"
+msgstr "SGT app নিন"
+
+#: app/templates/pages/product.html:589
+msgid "App download QR"
+msgstr "App download QR"
+
+#: app/templates/pages/product.html:592
+msgid "Scan to download"
+msgstr "Download করতে Scan করুন"
+
+#: app/templates/pages/product.html:604
+msgid "Specifications"
+msgstr "Specifications"
+
+#: app/templates/pages/product.html:620
+#, python-format
+msgid "View More (%(n)s more)"
+msgstr "আরও দেখুন (%(n)s টি)"
+
+#: app/templates/pages/product.html:632
+msgid "Frequently Bought Together"
+msgstr "একসাথে প্রায়ই কেনা হয়"
+
+#: app/templates/pages/product.html:647
+msgid "This product"
+msgstr "এই পণ্য"
+
+#: app/templates/pages/product.html:680
+msgid "Save more on this product"
+msgstr "এই পণ্যে আরও সাশ্রয় করুন"
+
+#: app/templates/pages/product.html:689
+#, python-format
+msgid "Earn %(n)s point"
+msgstr "%(n)s point অর্জন করুন"
+
+#: app/templates/pages/product.html:689
+#, python-format
+msgid "Earn %(n)s points"
+msgstr "%(n)s points অর্জন করুন"
+
+#: app/templates/pages/product.html:692
+msgid "Earned when delivered. 1 point = ৳1 at checkout."
+msgstr "Delivery হলে অর্জিত হবে। ১ point = checkout-এ ৳১।"
+
+#: app/templates/pages/product.html:704
+#, python-format
+msgid "You have %(n)s points"
+msgstr "আপনার %(n)s points আছে"
+
+#: app/templates/pages/product.html:707
+#, python-format
+msgid "Worth ৳%(n)s. Tick"
+msgstr "মূল্য ৳%(n)s। Tick করুন"
+
+#: app/templates/pages/product.html:707
+msgid "Use my points"
+msgstr "আমার points ব্যবহার করুন"
+
+#: app/templates/pages/product.html:707 app/templates/pages/product.html:743
+msgid "at checkout."
+msgstr "checkout-এ।"
+
+#: app/templates/pages/product.html:710
+msgid "View ledger →"
+msgstr "Ledger দেখুন →"
+
+#: app/templates/pages/product.html:721
+msgid "Earn by sharing"
+msgstr "Share করে অর্জন করুন"
+
+#: app/templates/pages/product.html:727
+msgid "Copy"
+msgstr "Copy"
+
+#: app/templates/pages/product.html:738
+msgid "Have a coupon?"
+msgstr "Coupon আছে?"
+
+#: app/templates/pages/product.html:742
+msgid "would save"
+msgstr "সাশ্রয় হবে"
+
+#: app/templates/pages/product.html:750
+msgid "Clear"
+msgstr "Clear"
+
+#: app/templates/pages/product.html:758
+msgid "Enter code"
+msgstr "Code দিন"
+
+#: app/templates/pages/product.html:759
+msgid "Check"
+msgstr "Check"
+
+#: app/templates/pages/product.html:771
+msgid "Bulk Pricing"
+msgstr "Bulk Pricing"
+
+#: app/templates/pages/product.html:775
+msgid "Unit"
+msgstr "Unit"
+
+#: app/templates/pages/product.html:775
+msgid "Save"
+msgstr "সাশ্রয়"
+
+#: app/templates/pages/product.html:797
+msgid "Questions & Answers"
+msgstr "প্রশ্ন ও উত্তর"
+
+#: app/templates/pages/product.html:799
+#, python-format
+msgid "%(a)s Answered · %(b)s Asked"
+msgstr "%(a)s টি উত্তরিত · %(b)s টি জিজ্ঞাসিত"
+
+#: app/templates/pages/product.html:812
+msgid "Ask a public question about this product…"
+msgstr "এই পণ্য সম্পর্কে public-ভাবে প্রশ্ন করুন…"
+
+#: app/templates/pages/product.html:813
+msgid "Ask"
+msgstr "জিজ্ঞাসা করুন"
+
+#: app/templates/pages/product.html:815
+msgid "Please don't share phone numbers — they'll be removed."
+msgstr "অনুগ্রহ করে ফোন নম্বর share করবেন না — সরিয়ে দেওয়া হবে।"
+
+#: app/templates/pages/product.html:819
+msgid "Log in"
+msgstr "Login করুন"
+
+#: app/templates/pages/product.html:820
+msgid "to ask a question."
+msgstr "প্রশ্ন করতে।"
+
+#: app/templates/pages/product.html:836
+#, python-format
+msgid "Asked by %(name)s"
+msgstr "জিজ্ঞাসা করেছেন %(name)s"
+
+#: app/templates/pages/product.html:851
+msgid "User"
+msgstr "User"
+
+#: app/templates/pages/product.html:865
+msgid "Remove helpful vote"
+msgstr "Helpful vote সরান"
+
+#: app/templates/pages/product.html:865
+msgid "Mark as helpful"
+msgstr "Helpful হিসেবে চিহ্নিত করুন"
+
+#: app/templates/pages/product.html:866
+msgid "Helpful"
+msgstr "Helpful"
+
+#: app/templates/pages/product.html:881
+msgid "No answers yet."
+msgstr "এখনো কোনো উত্তর নেই।"
+
+#: app/templates/pages/product.html:892
+msgid "Write an answer…"
+msgstr "একটি উত্তর লিখুন…"
+
+#: app/templates/pages/product.html:893
+msgid "Reply"
+msgstr "Reply"
+
+#: app/templates/pages/product.html:901
+msgid "No questions yet — be the first to ask."
+msgstr "এখনো কোনো প্রশ্ন নেই — প্রথমে জিজ্ঞাসা করুন।"
+
+#: app/templates/pages/product.html:909
+#, python-format
+msgid "More from %(name)s"
+msgstr "%(name)s-এর আরও পণ্য"
+
+#: app/templates/pages/product.html:911
+msgid "See all"
+msgstr "সব দেখুন"
+
+#: app/templates/pages/product.html:942
+msgid "Ratings & Reviews"
+msgstr "Ratings ও Reviews"
+
+#: app/templates/pages/product.html:952 app/templates/pages/review-form.html:31
+msgid "Edit your review"
+msgstr "আপনার Review Edit করুন"
+
+#: app/templates/pages/product.html:952
+msgid "Write a review (with photos)"
+msgstr "Review লিখুন (ছবিসহ)"
+
+#: app/templates/pages/product.html:955
+msgid "Only customers with a delivered order can review this product"
+msgstr "শুধু delivered order থাকা customers এই পণ্যের review দিতে পারবেন"
+
+#: app/templates/pages/product.html:956
+msgid "Buy + receive delivery to review"
+msgstr "Review-এর জন্য পণ্য কিনুন ও delivery নিন"
+
+#: app/templates/pages/product.html:960
+msgid "Verified buyers can post photo reviews"
+msgstr "Verified buyers ছবিসহ review পোস্ট করতে পারবেন"
+
+#: app/templates/pages/product.html:1005
+msgid "What buyers like"
+msgstr "Buyers যা পছন্দ করেছেন"
+
+#: app/templates/pages/product.html:1012
+msgid "Not enough positive feedback yet."
+msgstr "এখনো যথেষ্ট positive feedback নেই।"
+
+#: app/templates/pages/product.html:1019
+msgid "What to watch for"
+msgstr "যা দেখে রাখবেন"
+
+#: app/templates/pages/product.html:1026
+msgid "No notable complaints yet."
+msgstr "উল্লেখযোগ্য কোনো অভিযোগ নেই।"
+
+#: app/templates/pages/product.html:1032
+msgid "Auto-summarised from recent customer reviews."
+msgstr "সাম্প্রতিক customer reviews থেকে auto-summarised।"
+
+#: app/templates/pages/product.html:1042
+msgid "Customer Photos"
+msgstr "Customer Photos"
+
+#: app/templates/pages/product.html:1043
+#, python-format
+msgid "%(n)s photo"
+msgstr "%(n)s টি ছবি"
+
+#: app/templates/pages/product.html:1043
+#, python-format
+msgid "%(n)s photos"
+msgstr "%(n)s টি ছবি"
+
+#: app/templates/pages/product.html:1049
+msgid "customer photo"
+msgstr "customer photo"
+
+#: app/templates/pages/product.html:1061
+msgid "All stars"
+msgstr "সব stars"
+
+#: app/templates/pages/product.html:1089
+msgid "Verified Purchase"
+msgstr "Verified Purchase"
+
+#: app/templates/pages/product.html:1112
+msgid "Review pages"
+msgstr "Review পেজ"
+
+#: app/templates/pages/product.html:1138
+msgid "Be the first to review this product."
+msgstr "প্রথম review আপনি দিন।"
+
+#: app/templates/pages/product.html:1140
+msgid "No reviews match this filter."
+msgstr "এই filter-এর সাথে কোনো review মেলেনি।"
+
+#: app/templates/pages/product.html:1141
+msgid "Clear filter"
+msgstr "Filter সরান"
+
+#: app/templates/pages/product.html:1174
+msgid "Similar Products"
+msgstr "অনুরূপ পণ্য"
+
+#: app/templates/pages/product.html:1184
+msgid "Customers Also Viewed"
+msgstr "Customers আরও দেখেছেন"
+
+#: app/templates/pages/product.html:1337
+msgid "Ended"
+msgstr "শেষ হয়েছে"
+
+#: app/templates/pages/product.html:1342
+msgid "Ends in"
+msgstr "শেষ হবে"
+
+#: app/templates/pages/product.html:1364
+msgid "Copied!"
+msgstr "Copy হয়েছে!"
+
+#: app/templates/pages/product.html:1380
+msgid "View More"
+msgstr "আরও দেখুন"
+
+#: app/templates/pages/product.html:1381
+msgid "View Less"
+msgstr "কম দেখুন"
+
+#: app/templates/pages/profile-info.html:64
+msgid "Profile Details"
+msgstr "Profile বিস্তারিত"
+
+#: app/templates/pages/profile-info.html:68
+msgid "First Name"
+msgstr "First Name"
+
+#: app/templates/pages/profile-info.html:76
+msgid "Last Name"
+msgstr "Last Name"
+
+#: app/templates/pages/profile-info.html:84
+msgid "Email ID"
+msgstr "Email ID"
+
+#: app/templates/pages/profile-info.html:91
+msgid "Phone"
+msgstr "ফোন"
+
+#: app/templates/pages/profile-info.html:97
+msgid "Save Changes"
+msgstr "পরিবর্তন সংরক্ষণ করুন"
+
+#: app/templates/pages/profile-info.html:104
+#: app/templates/pages/profile-info.html:128
+msgid "Change Password"
+msgstr "Password পরিবর্তন"
+
+#: app/templates/pages/profile-info.html:108
+msgid "Current Password"
+msgstr "বর্তমান Password"
+
+#: app/templates/pages/profile-info.html:115
+#: app/templates/pages/reset-password.html:49
+msgid "New Password"
+msgstr "নতুন Password"
+
+#: app/templates/pages/profile-info.html:122
+#: app/templates/pages/reset-password.html:53
+msgid "Confirm Password"
+msgstr "Password নিশ্চিত করুন"
+
+#: app/templates/pages/refer.html:25
+#, python-format
+msgid "Share your code — earn %(points)s points when a friend signs up and places their first order, plus a commission on every sale through your share links."
+msgstr "আপনার code share করুন — কোনো বন্ধু signup করে প্রথম order দিলে %(points)s points পান, এবং আপনার share link-এর প্রতিটি sale-এ commission পান।"
+
+#: app/templates/pages/refer.html:31
+msgid "Your referral code"
+msgstr "আপনার Referral code"
+
+#: app/templates/pages/refer.html:33
+msgid "Share this link:"
+msgstr "এই link share করুন:"
+
+#: app/templates/pages/refer.html:37
+msgid "Friends signing up with your code, or buying through your shared product links, earn you points."
+msgstr "আপনার code দিয়ে signup করা বা আপনার শেয়ার করা product link-এর মাধ্যমে কেনা বন্ধুরা আপনাকে points এনে দেয়।"
+
+#: app/templates/pages/refer.html:43
+msgid "Your earnings"
+msgstr "আপনার আয়"
+
+#: app/templates/pages/refer.html:45
+msgid "Friends referred"
+msgstr "Refer করা বন্ধু"
+
+#: app/templates/pages/refer.html:49
+msgid "Referral rewards paid"
+msgstr "Referral reward প্রদত্ত"
+
+#: app/templates/pages/refer.html:53
+msgid "Affiliate sales"
+msgstr "Affiliate বিক্রি"
+
+#: app/templates/pages/refer.html:58
+msgid "Points earned"
+msgstr "অর্জিত points"
+
+#: app/templates/pages/refer.html:66
+msgid "People you referred"
+msgstr "আপনার Refer করা ব্যক্তি"
+
+#: app/templates/pages/refer.html:74
+#, python-format
+msgid "Joined %(date)s"
+msgstr "%(date)s-এ যোগ দিয়েছেন"
+
+#: app/templates/pages/refer.html:77
+#, python-format
+msgid "+%(points)s pts"
+msgstr "+%(points)s points"
+
+#: app/templates/pages/refer.html:80
+msgid "Pending first order"
+msgstr "প্রথম order অপেক্ষমাণ"
+
+#: app/templates/pages/refer.html:87
+msgid "No referrals yet — share your code to start earning."
+msgstr "এখনো কোনো referral নেই — আয় শুরু করতে আপনার code share করুন।"
+
+#: app/templates/pages/reset-password.html:16
+#: app/templates/pages/reset-password.html:59
+msgid "Reset Password"
+msgstr "Password Reset"
+
+#: app/templates/pages/reset-password.html:37
+msgid "Set a New Password"
+msgstr "একটি নতুন Password সেট করুন"
+
+#: app/templates/pages/reset-password.html:38
+#, python-format
+msgid "Enter the code sent to %(email)s and choose a new password."
+msgstr "%(email)s-এ পাঠানো code দিন ও একটি নতুন password বেছে নিন।"
+
+#: app/templates/pages/reset-password.html:42
+msgid "Reset Code"
+msgstr "Reset Code"
+
+#: app/templates/pages/reset-password.html:43
+#: app/templates/pages/verify-otp.html:43
+msgid "6-digit code"
+msgstr "৬-অঙ্কের code"
+
+#: app/templates/pages/reset-password.html:50
+msgid "New password"
+msgstr "নতুন password"
+
+#: app/templates/pages/reset-password.html:54
+msgid "Confirm password"
+msgstr "Password নিশ্চিত করুন"
+
+#: app/templates/pages/reset-password.html:62
+msgid "Request a new code"
+msgstr "নতুন code চান"
+
+#: app/templates/pages/review-form.html:16
+msgid "Review"
+msgstr "Review"
+
+#: app/templates/pages/review-form.html:38
+msgid "Your rating"
+msgstr "আপনার rating"
+
+#: app/templates/pages/review-form.html:48
+msgid "Title"
+msgstr "Title"
+
+#: app/templates/pages/review-form.html:48
+#: app/templates/pages/review-form.html:56
+msgid "(optional)"
+msgstr "(ঐচ্ছিক)"
+
+#: app/templates/pages/review-form.html:50
+msgid "Sum up your experience"
+msgstr "আপনার অভিজ্ঞতা সংক্ষেপে বলুন"
+
+#: app/templates/pages/review-form.html:52
+msgid "Your review"
+msgstr "আপনার review"
+
+#: app/templates/pages/review-form.html:54
+msgid "What did you like or dislike?"
+msgstr "কী পছন্দ হয়েছে বা হয়নি?"
+
+#: app/templates/pages/review-form.html:56
+msgid "Photos"
+msgstr "ছবি"
+
+#: app/templates/pages/review-form.html:61
+msgid "Update review"
+msgstr "Review Update করুন"
+
+#: app/templates/pages/review-form.html:61
+msgid "Post review"
+msgstr "Review পোস্ট করুন"
+
+#: app/templates/pages/rewards.html:24
+msgid "Your reward points balance"
+msgstr "আপনার reward points balance"
+
+#: app/templates/pages/rewards.html:27
+#, python-format
+msgid "Worth ৳%(amount)s — redeem at checkout."
+msgstr "মূল্য ৳%(amount)s — checkout-এ ব্যবহার করুন।"
+
+#: app/templates/pages/rewards.html:28
+msgid "Earn 1 point per ৳100 on delivered orders."
+msgstr "প্রতি ৳১০০ delivered order-এ ১ point অর্জন করুন।"
+
+#: app/templates/pages/rewards.html:32
+msgid "Points history"
+msgstr "Points history"
+
+#: app/templates/pages/rewards.html:38
+msgid "Adjustment"
+msgstr "সমন্বয়"
+
+#: app/templates/pages/rewards.html:50
+msgid "No points activity yet — points are credited when your orders are delivered."
+msgstr "এখনো কোনো points activity নেই — order delivered হলে points credit হয়।"
+
+#: app/templates/pages/shop.html:30
+msgid "Search"
+msgstr "Search"
+
+#: app/templates/pages/shop.html:33 app/templates/pages/store.html:74
+msgid "Search products"
+msgstr "পণ্য খুঁজুন"
+
+#: app/templates/pages/shop.html:45 app/templates/pages/shop.html:88
+#: app/templates/pages/store.html:84 app/templates/pages/store.html:116
+msgid "All Products"
+msgstr "সব পণ্য"
+
+#: app/templates/pages/shop.html:67 app/templates/pages/store.html:99
+msgid "Price Range"
+msgstr "দামের সীমা"
+
+#: app/templates/pages/shop.html:74 app/templates/pages/store.html:103
+msgid "Min"
+msgstr "সর্বনিম্ন"
+
+#: app/templates/pages/shop.html:77 app/templates/pages/store.html:105
+msgid "Max"
+msgstr "সর্বোচ্চ"
+
+#: app/templates/pages/shop.html:90 app/templates/pages/store.html:33
+#, python-format
+msgid "%(count)s product(s)"
+msgstr "%(count)s টি পণ্য"
+
+#: app/templates/pages/shop.html:98
+msgid "No products found. Try a different category or search."
+msgstr "কোনো পণ্য পাওয়া যায়নি। অন্য category বা search চেষ্টা করুন।"
+
+#: app/templates/pages/shop.html:107 app/templates/pages/shop.html:142
+#: app/templates/pages/shop.html:150
+msgid "Load more products"
+msgstr "আরও পণ্য লোড করুন"
+
+#: app/templates/pages/shop.html:127
+msgid "Loading…"
+msgstr "লোড হচ্ছে…"
+
+#: app/templates/pages/shoping-cart.html:12
+#: app/templates/pages/shoping-cart.html:23
+msgid "Shopping Cart"
+msgstr "Shopping Cart"
+
+#: app/templates/pages/shoping-cart.html:31
+msgid "Product"
+msgstr "পণ্য"
+
+#: app/templates/pages/shoping-cart.html:31
+msgid "Price"
+msgstr "দাম"
+
+#: app/templates/pages/shoping-cart.html:31
+msgid "Quantity"
+msgstr "পরিমাণ"
+
+#: app/templates/pages/shoping-cart.html:59
+msgid "Update"
+msgstr "Update"
+
+#: app/templates/pages/shoping-cart.html:90
+msgid "Calculated at checkout"
+msgstr "Checkout-এ হিসাব হবে"
+
+#: app/templates/pages/shoping-cart.html:97
+msgid "Proceed to Checkout"
+msgstr "Checkout-এ এগিয়ে যান"
+
+#: app/templates/pages/shoping-cart.html:105
+msgid "Your cart is empty"
+msgstr "আপনার Cart খালি"
+
+#: app/templates/pages/shoping-cart.html:106
+msgid "Browse the shop and add your favourite items."
+msgstr "Shop দেখুন ও পছন্দের পণ্য যোগ করুন।"
+
+#: app/templates/pages/shoping-cart.html:107
+#: app/templates/pages/wishlist.html:104
+msgid "Shop Now"
+msgstr "এখনই কিনুন"
+
+#: app/templates/pages/store.html:72
+msgid "Search this store"
+msgstr "এই store-এ খুঁজুন"
+
+#: app/templates/pages/store.html:93
+msgid "No categories yet."
+msgstr "এখনো কোনো category নেই।"
+
+#: app/templates/pages/store.html:118
+#, python-format
+msgid "%(count)s found"
+msgstr "%(count)s টি পাওয়া গেছে"
+
+#: app/templates/pages/store.html:125
+msgid "No products found in this store."
+msgstr "এই store-এ কোনো পণ্য পাওয়া যায়নি।"
+
+#: app/templates/pages/store.html:136
+msgid "Prev"
+msgstr "আগের"
+
+#: app/templates/pages/store.html:148
+msgid "Next"
+msgstr "পরের"
+
+#: app/templates/pages/verify-otp.html:16
+msgid "Verify Code"
+msgstr "Code Verify করুন"
+
+#: app/templates/pages/verify-otp.html:37
+msgid "Enter Verification Code"
+msgstr "Verification Code দিন"
+
+#: app/templates/pages/verify-otp.html:38
+#, python-format
+msgid "We sent a one-time code to %(email)s."
+msgstr "%(email)s-এ একটি one-time code পাঠানো হয়েছে।"
+
+#: app/templates/pages/verify-otp.html:42
+msgid "Verification Code"
+msgstr "Verification Code"
+
+#: app/templates/pages/verify-otp.html:48
+msgid "Verify & Continue"
+msgstr "Verify ও Continue"
+
+#: app/templates/pages/verify-otp.html:54
+msgid "Didn't get the code ?"
+msgstr "Code পাননি?"
+
+#: app/templates/pages/verify-otp.html:55
+msgid "Resend Code"
+msgstr "Code আবার পাঠান"
+
+#: app/templates/pages/wishlist.html:38
+msgid "Australia"
+msgstr "Australia"
+
+#: app/templates/pages/wishlist.html:76
+msgid "Quick View"
+msgstr "Quick View"
+
+#: app/templates/pages/wishlist.html:101
+msgid "Your Wishlist is empty!"
+msgstr "আপনার Wishlist খালি!"
+
+#: app/templates/pages/wishlist.html:102
+msgid "Your Wishlist is empty please go to the shop page and select your favourite items."
+msgstr "আপনার Wishlist খালি — অনুগ্রহ করে shop পেজে গিয়ে পছন্দের পণ্য বেছে নিন।"
 

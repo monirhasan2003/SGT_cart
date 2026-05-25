@@ -11,9 +11,9 @@
 			<div class="colxl-12 col-lg-12 col-md-12">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="/">Home</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0);">Pages</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Login</li>
+						<li class="breadcrumb-item"><a href="/">{{ _("Home") }}</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0);">{{ _("Pages") }}</a></li>
+						<li class="breadcrumb-item active" aria-current="page">{{ _("Login") }}</li>
 					</ol>
 				</nav>
 			</div>
@@ -34,48 +34,48 @@
 					{% include 'Base/flash_messages.html' %}
 
 					<div class="form-group mb-3">
-						<label class="mb-2">Login As *</label>
+						<label class="mb-2">{{ _("Login As") }} *</label>
 						<div class="d-flex gap-4">
 							<div>
 								<input id="lt_customer" class="checkbox-custom" type="radio" name="account_type"
 									value="customer" {{ 'checked' if request.form.get('account_type') != 'seller' }}>
-								<label for="lt_customer" class="checkbox-custom-label">Customer</label>
+								<label for="lt_customer" class="checkbox-custom-label">{{ _("Customer") }}</label>
 							</div>
 							<div>
 								<input id="lt_seller" class="checkbox-custom" type="radio" name="account_type"
 									value="seller" {{ 'checked' if request.form.get('account_type') == 'seller' }}>
-								<label for="lt_seller" class="checkbox-custom-label">Seller</label>
+								<label for="lt_seller" class="checkbox-custom-label">{{ _("Seller") }}</label>
 							</div>
 						</div>
 					</div>
 
 					<div class="form-group mb-3">
-						<label class="mb-2">Email *</label>
-						<input type="email" name="email" class="form-control" placeholder="Email address" required>
+						<label class="mb-2">{{ _("Email") }} *</label>
+						<input type="email" name="email" class="form-control" placeholder="{{ _('Email address') }}" required>
 					</div>
 
 					<div class="form-group mb-3">
-						<label class="mb-2">Password *</label>
-						<input type="password" name="password" class="form-control" placeholder="Password" required>
+						<label class="mb-2">{{ _("Password") }} *</label>
+						<input type="password" name="password" class="form-control" placeholder="{{ _('Password') }}" required>
 					</div>
 
 					<div class="form-group mb-3">
 						<div class="d-flex align-items-center justify-content-between">
 							<div class="flex-1">
 								<input id="dd" class="checkbox-custom" name="remember" type="checkbox">
-								<label for="dd" class="checkbox-custom-label">Remember Me</label>
+								<label for="dd" class="checkbox-custom-label">{{ _("Remember Me") }}</label>
 							</div>
 							<div class="eltio_k2">
-								<a href="/forgot-password/">Lost Your Password?</a>
+								<a href="/forgot-password/">{{ _("Lost Your Password?") }}</a>
 							</div>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-md full-width bg-dark text-light fs-md ft-medium">Login</button>
+						<button type="submit" class="btn btn-md full-width bg-dark text-light fs-md ft-medium">{{ _("Login") }}</button>
 					</div>
 					<div class="text-center mt-3">
-						<span class="text-slate-400 me-2">Don't have an account ?</span> <a href="/signup/" class="text-slate-900 dark:text-white font-bold inline-block">Sign Up</a>
+						<span class="text-slate-400 me-2">{{ _("Don't have an account ?") }}</span> <a href="/signup/" class="text-slate-900 dark:text-white font-bold inline-block">{{ _("Sign Up") }}</a>
 					</div>
 				</form>
 			</div>

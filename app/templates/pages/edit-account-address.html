@@ -8,10 +8,10 @@
 	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><a href="/">Home</a></li>
-				<li class="breadcrumb-item"><a href="/addresses/">Addresses</a></li>
+				<li class="breadcrumb-item"><a href="/">{{ _("Home") }}</a></li>
+				<li class="breadcrumb-item"><a href="/addresses/">{{ _("Addresses") }}</a></li>
 				<li class="breadcrumb-item active" aria-current="page">
-					{{ 'Edit Address' if address else 'New Address' }}
+					{{ _('Edit Address') if address else _('New Address') }}
 				</li>
 			</ol>
 		</nav>
@@ -28,47 +28,47 @@
 				<form method="post" class="border rounded p-4"
 				      action="{{ url_for('account.address_edit', address_id=address.id) if address else url_for('account.address_create') }}">
 					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-					<h4 class="ft-bold mb-3">{{ 'Edit Address' if address else 'Add New Address' }}</h4>
+					<h4 class="ft-bold mb-3">{{ _('Edit Address') if address else _('Add New Address') }}</h4>
 
 					{% set a = address %}
 					<div class="row g-3">
 						<div class="col-md-6">
-							<label class="mb-2">Label <span class="text-slate-400">(Home / Office)</span></label>
+							<label class="mb-2">{{ _("Label") }} <span class="text-slate-400">{{ _("(Home / Office)") }}</span></label>
 							<input type="text" name="label" class="form-control"
 							       value="{{ form.get('label') or (a.label if a else '') }}">
 						</div>
 						<div class="col-md-6">
-							<label class="mb-2">Full Name *</label>
+							<label class="mb-2">{{ _("Full Name") }} *</label>
 							<input type="text" name="full_name" class="form-control"
 							       value="{{ form.get('full_name') or (a.full_name if a else '') }}" required>
 						</div>
 						<div class="col-md-6">
-							<label class="mb-2">Phone Number *</label>
+							<label class="mb-2">{{ _("Phone Number") }} *</label>
 							<input type="text" name="phone" class="form-control"
 							       value="{{ form.get('phone') or (a.phone if a else '') }}" required>
 						</div>
 						<div class="col-md-6">
-							<label class="mb-2">Postal Code</label>
+							<label class="mb-2">{{ _("Postal Code") }}</label>
 							<input type="text" name="postal_code" class="form-control"
 							       value="{{ form.get('postal_code') or (a.postal_code if a else '') }}">
 						</div>
 						<div class="col-12">
-							<label class="mb-2">Address *</label>
-							<input type="text" name="address_line" class="form-control" placeholder="House, road, etc."
+							<label class="mb-2">{{ _("Address") }} *</label>
+							<input type="text" name="address_line" class="form-control" placeholder="{{ _('House, road, etc.') }}"
 							       value="{{ form.get('address_line') or (a.address_line if a else '') }}" required>
 						</div>
 						<div class="col-md-4">
-							<label class="mb-2">Area</label>
+							<label class="mb-2">{{ _("Area") }}</label>
 							<input type="text" name="area" class="form-control"
 							       value="{{ form.get('area') or (a.area if a else '') }}">
 						</div>
 						<div class="col-md-4">
-							<label class="mb-2">City *</label>
+							<label class="mb-2">{{ _("City") }} *</label>
 							<input type="text" name="city" class="form-control"
 							       value="{{ form.get('city') or (a.city if a else '') }}" required>
 						</div>
 						<div class="col-md-4">
-							<label class="mb-2">District</label>
+							<label class="mb-2">{{ _("District") }}</label>
 							<input type="text" name="district" class="form-control"
 							       value="{{ form.get('district') or (a.district if a else '') }}">
 						</div>
@@ -76,21 +76,21 @@
 							<div class="form-check">
 								<input type="checkbox" name="is_default" id="is_default" class="form-check-input"
 									{{ 'checked' if (form.get('is_default') if form else (a.is_default if a else False)) }}>
-								<label for="is_default" class="form-check-label">Set as default delivery address</label>
+								<label for="is_default" class="form-check-label">{{ _("Set as default delivery address") }}</label>
 							</div>
 							<div class="form-check mt-2">
 								<input type="checkbox" name="prayer_time_delivery" id="prayer_time_delivery"
 								       class="form-check-input"
 									{{ 'checked' if (form.get('prayer_time_delivery') if form else (a.prayer_time_delivery if a else False)) }}>
 								<label for="prayer_time_delivery" class="form-check-label">
-									Avoid delivery during Jumma / Maghrib
+									{{ _("Avoid delivery during Jumma / Maghrib") }}
 									<span class="text-muted small" lang="bn">— জুম্মা / মাগরিবের সময় ডেলিভারি না করার অনুরোধ</span>
 								</label>
 							</div>
 						</div>
 						<div class="col-12">
-							<button type="submit" class="btn btn-dark">{{ 'Update' if address else 'Save' }} Address</button>
-							<a href="/addresses/" class="btn btn-outline-secondary">Cancel</a>
+							<button type="submit" class="btn btn-dark">{{ _("Update Address") if address else _("Save Address") }}</button>
+							<a href="/addresses/" class="btn btn-outline-secondary">{{ _("Cancel") }}</a>
 						</div>
 					</div>
 				</form>

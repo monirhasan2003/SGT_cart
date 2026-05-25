@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-26 04:58+0600\n"
+"POT-Creation-Date: 2026-05-26 05:28+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,4 +16,2051 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+
+#: app/templates/Base/_cookie_banner.html:16
+msgid "SGT Cart uses"
+msgstr ""
+
+#: app/templates/Base/_cookie_banner.html:16
+msgid "essential cookies"
+msgstr ""
+
+#: app/templates/Base/_cookie_banner.html:16
+msgid ""
+"to keep you signed in and your cart working. We'd also like to set "
+"optional analytics cookies to help us improve the site. Read our"
+msgstr ""
+
+#: app/templates/Base/_cookie_banner.html:18 app/templates/Base/footer.html:103
+msgid "Cookie Policy"
+msgstr ""
+
+#: app/templates/Base/_cookie_banner.html:19
+msgid "and"
+msgstr ""
+
+#: app/templates/Base/_cookie_banner.html:21 app/templates/Base/footer.html:102
+msgid "Privacy Policy"
+msgstr ""
+
+#: app/templates/Base/_cookie_banner.html:26
+msgid "Necessary only"
+msgstr ""
+
+#: app/templates/Base/_cookie_banner.html:30
+msgid "Accept all"
+msgstr ""
+
+#: app/templates/Base/flash_messages.html:8
+msgid "Close"
+msgstr ""
+
+#: app/templates/Base/footer.html:29
+msgid "Mirpur, Dhaka 1216"
+msgstr ""
+
+#: app/templates/Base/footer.html:29
+msgid "Bangladesh"
+msgstr ""
+
+#: app/templates/Base/footer.html:37
+msgid "Facebook"
+msgstr ""
+
+#: app/templates/Base/footer.html:38
+msgid "YouTube"
+msgstr ""
+
+#: app/templates/Base/footer.html:39
+msgid "Instagram"
+msgstr ""
+
+#: app/templates/Base/footer.html:48 app/templates/pages/product.html:775
+msgid "Buy"
+msgstr ""
+
+#: app/templates/Base/footer.html:50
+msgid "Help Center"
+msgstr ""
+
+#: app/templates/Base/footer.html:51
+msgid "How to Order"
+msgstr ""
+
+#: app/templates/Base/footer.html:52
+msgid "Payment Methods"
+msgstr ""
+
+#: app/templates/Base/footer.html:53
+msgid "Shipping &amp; Delivery"
+msgstr ""
+
+#: app/templates/Base/footer.html:54
+msgid "Returns"
+msgstr ""
+
+#: app/templates/Base/footer.html:55
+msgid "Refund Policy"
+msgstr ""
+
+#: app/templates/Base/footer.html:56
+msgid "Cancellations"
+msgstr ""
+
+#: app/templates/Base/footer.html:57
+msgid "Buyer Protection"
+msgstr ""
+
+#: app/templates/Base/footer.html:65
+msgid "Sell"
+msgstr ""
+
+#: app/templates/Base/footer.html:67
+msgid "Sell on SGT Cart"
+msgstr ""
+
+#: app/templates/Base/footer.html:68
+msgid "Onboarding Guide"
+msgstr ""
+
+#: app/templates/Base/footer.html:69
+msgid "Fees &amp; Commission"
+msgstr ""
+
+#: app/templates/Base/footer.html:70
+msgid "Payouts"
+msgstr ""
+
+#: app/templates/Base/footer.html:71
+msgid "Listing Guidelines"
+msgstr ""
+
+#: app/templates/Base/footer.html:72
+msgid "Prohibited Items"
+msgstr ""
+
+#: app/templates/Base/footer.html:73
+msgid "Seller Protection"
+msgstr ""
+
+#: app/templates/Base/footer.html:74
+msgid "Code of Conduct"
+msgstr ""
+
+#: app/templates/Base/footer.html:82
+msgid "Company"
+msgstr ""
+
+#: app/templates/Base/footer.html:84
+msgid "About SGT Cart"
+msgstr ""
+
+#: app/templates/Base/footer.html:85
+msgid "Contact Us"
+msgstr ""
+
+#: app/templates/Base/footer.html:86
+msgid "Careers"
+msgstr ""
+
+#: app/templates/Base/footer.html:87
+msgid "Newsroom"
+msgstr ""
+
+#: app/templates/Base/footer.html:88
+msgid "Sustainability"
+msgstr ""
+
+#: app/templates/Base/footer.html:89
+msgid "FAQ"
+msgstr ""
+
+#: app/templates/Base/footer.html:90
+msgid "Open Support Ticket"
+msgstr ""
+
+#: app/templates/Base/footer.html:98
+msgid "Legal"
+msgstr ""
+
+#: app/templates/Base/footer.html:100
+msgid "Customer Terms"
+msgstr ""
+
+#: app/templates/Base/footer.html:101
+msgid "Seller Agreement"
+msgstr ""
+
+#: app/templates/Base/footer.html:104
+msgid "IP Policy"
+msgstr ""
+
+#: app/templates/Base/footer.html:105
+msgid "Dispute Resolution"
+msgstr ""
+
+#: app/templates/Base/footer.html:106
+msgid "Accessibility"
+msgstr ""
+
+#: app/templates/Base/footer.html:107
+msgid "Governing Law"
+msgstr ""
+
+#: app/templates/Base/footer.html:115
+msgid "Trust"
+msgstr ""
+
+#: app/templates/Base/footer.html:117
+msgid "Trust &amp; Safety"
+msgstr ""
+
+#: app/templates/Base/footer.html:118
+msgid "Transparency"
+msgstr ""
+
+#: app/templates/Base/footer.html:119
+msgid "Report Illegal"
+msgstr ""
+
+#: app/templates/Base/footer.html:120
+msgid "Anti-Counterfeit"
+msgstr ""
+
+#: app/templates/Base/footer.html:121
+msgid "Security"
+msgstr ""
+
+#: app/templates/Base/footer.html:124
+msgid "COD"
+msgstr ""
+
+#: app/templates/Base/footer.html:124
+msgid "Card"
+msgstr ""
+
+#: app/templates/Base/footer.html:138
+msgid "Smart Global Trade Cart (SGT Cart)"
+msgstr ""
+
+#: app/templates/Base/footer.html:140
+msgid "All rights reserved."
+msgstr ""
+
+#: app/templates/Base/footer.html:143
+msgid "SSL Secure"
+msgstr ""
+
+#: app/templates/Base/footer.html:144
+msgid "PCI via SSLCommerz"
+msgstr ""
+
+#: app/templates/Base/footer.html:145
+msgid "BD Registered"
+msgstr ""
+
+#: app/templates/errors/403.html:6
+msgid "Access Denied — SGT Cart"
+msgstr ""
+
+#: app/templates/errors/403.html:13
+msgid "Access Denied"
+msgstr ""
+
+#: app/templates/errors/403.html:15
+msgid "This area requires a different account type."
+msgstr ""
+
+#: app/templates/errors/403.html:19
+#, python-format
+msgid ""
+"You are signed in as %(name)s (%(role)s). The Admin Panel needs an admin "
+"account — please log out and sign in with your admin account."
+msgstr ""
+
+#: app/templates/errors/403.html:22
+msgid "Please log in with an account that has access."
+msgstr ""
+
+#: app/templates/errors/403.html:25 app/templates/pages/addresses.html:43
+#: app/templates/pages/customer-dashboard.html:50
+#: app/templates/pages/my-orders.html:43
+#: app/templates/pages/profile-info.html:50
+#: app/templates/pages/wishlist.html:50
+msgid "Log Out"
+msgstr ""
+
+#: app/templates/errors/403.html:26 app/templates/pages/login.html:16
+#: app/templates/pages/login.html:75 app/templates/pages/reset-password.html:15
+#: app/templates/pages/verify-otp.html:15
+msgid "Login"
+msgstr ""
+
+#: app/templates/errors/403.html:27
+msgid "Go Home"
+msgstr ""
+
+#: app/templates/pages/404.html:14 app/templates/pages/addresses.html:11
+#: app/templates/pages/checkout.html:11
+#: app/templates/pages/complete-order.html:14
+#: app/templates/pages/customer-dashboard.html:14
+#: app/templates/pages/edit-account-address.html:11
+#: app/templates/pages/flash-sales.html:12
+#: app/templates/pages/forgot-password.html:14
+#: app/templates/pages/login.html:14 app/templates/pages/messages.html:11
+#: app/templates/pages/my-orders.html:11 app/templates/pages/my-reviews.html:11
+#: app/templates/pages/notifications.html:11
+#: app/templates/pages/order-detail.html:11 app/templates/pages/product.html:48
+#: app/templates/pages/profile-info.html:14 app/templates/pages/refer.html:11
+#: app/templates/pages/reset-password.html:14
+#: app/templates/pages/review-form.html:11 app/templates/pages/rewards.html:11
+#: app/templates/pages/shop.html:13 app/templates/pages/shoping-cart.html:11
+#: app/templates/pages/verify-otp.html:14 app/templates/pages/wishlist.html:14
+msgid "Home"
+msgstr ""
+
+#: app/templates/pages/404.html:15
+msgid "Page"
+msgstr ""
+
+#: app/templates/pages/404.html:16
+msgid "Error Page"
+msgstr ""
+
+#: app/templates/pages/404.html:35
+msgid "404. Page not found."
+msgstr ""
+
+#: app/templates/pages/404.html:37
+msgid ""
+"Sorry, we couldn't find the page you where looking for. We suggest that "
+"you return to home page."
+msgstr ""
+
+#: app/templates/pages/404.html:39
+msgid "Go To Home Page"
+msgstr ""
+
+#: app/templates/pages/_product_card.html:19
+#: app/templates/pages/product.html:159
+msgid "Sponsored"
+msgstr ""
+
+#: app/templates/pages/addresses.html:12 app/templates/pages/addresses.html:37
+#: app/templates/pages/customer-dashboard.html:15
+#: app/templates/pages/customer-dashboard.html:44
+#: app/templates/pages/my-orders.html:12 app/templates/pages/my-orders.html:37
+#: app/templates/pages/profile-info.html:15
+#: app/templates/pages/wishlist.html:15
+msgid "Dashboard"
+msgstr ""
+
+#: app/templates/pages/addresses.html:13 app/templates/pages/addresses.html:41
+#: app/templates/pages/customer-dashboard.html:48
+#: app/templates/pages/customer-dashboard.html:91
+#: app/templates/pages/edit-account-address.html:12
+#: app/templates/pages/my-orders.html:41
+#: app/templates/pages/profile-info.html:48
+#: app/templates/pages/wishlist.html:48
+msgid "Addresses"
+msgstr ""
+
+#: app/templates/pages/addresses.html:35
+#: app/templates/pages/customer-dashboard.html:42
+#: app/templates/pages/my-orders.html:35
+#: app/templates/pages/profile-info.html:43
+#: app/templates/pages/wishlist.html:43
+msgid "Dashboard Navigation"
+msgstr ""
+
+#: app/templates/pages/addresses.html:38
+#: app/templates/pages/customer-dashboard.html:45
+#: app/templates/pages/my-orders.html:38
+#: app/templates/pages/profile-info.html:45
+#: app/templates/pages/wishlist.html:45
+msgid "My Order"
+msgstr ""
+
+#: app/templates/pages/addresses.html:39
+#: app/templates/pages/customer-dashboard.html:46
+#: app/templates/pages/customer-dashboard.html:80
+#: app/templates/pages/my-orders.html:39
+#: app/templates/pages/profile-info.html:46
+#: app/templates/pages/wishlist.html:16 app/templates/pages/wishlist.html:46
+msgid "Wishlist"
+msgstr ""
+
+#: app/templates/pages/addresses.html:40
+#: app/templates/pages/customer-dashboard.html:47
+#: app/templates/pages/customer-dashboard.html:100
+#: app/templates/pages/my-orders.html:40
+#: app/templates/pages/profile-info.html:16
+#: app/templates/pages/profile-info.html:47
+#: app/templates/pages/wishlist.html:47
+msgid "Profile Info"
+msgstr ""
+
+#: app/templates/pages/addresses.html:42 app/templates/pages/checkout.html:130
+#: app/templates/pages/customer-dashboard.html:49
+#: app/templates/pages/my-orders.html:42
+#: app/templates/pages/profile-info.html:49
+#: app/templates/pages/wishlist.html:49
+msgid "Payment Method"
+msgstr ""
+
+#: app/templates/pages/addresses.html:54
+msgid "My Addresses"
+msgstr ""
+
+#: app/templates/pages/addresses.html:56
+#: app/templates/pages/edit-account-address.html:31
+msgid "Add New Address"
+msgstr ""
+
+#: app/templates/pages/addresses.html:65
+#: app/templates/pages/edit-account-address.html:56
+msgid "Address"
+msgstr ""
+
+#: app/templates/pages/addresses.html:67
+msgid "Default"
+msgstr ""
+
+#: app/templates/pages/addresses.html:72 app/templates/pages/my-reviews.html:59
+msgid "Edit"
+msgstr ""
+
+#: app/templates/pages/addresses.html:74
+msgid "Delete this address?"
+msgstr ""
+
+#: app/templates/pages/addresses.html:76 app/templates/pages/my-reviews.html:63
+msgid "Delete"
+msgstr ""
+
+#: app/templates/pages/addresses.html:88
+msgid "Phone:"
+msgstr ""
+
+#: app/templates/pages/addresses.html:92
+msgid "Set as default"
+msgstr ""
+
+#: app/templates/pages/addresses.html:101
+msgid "You have no saved addresses. Add one for faster checkout."
+msgstr ""
+
+#: app/templates/pages/checkout.html:12
+msgid "Cart"
+msgstr ""
+
+#: app/templates/pages/checkout.html:13 app/templates/pages/checkout.html:24
+msgid "Checkout"
+msgstr ""
+
+#: app/templates/pages/checkout.html:34
+msgid "Delivery Address"
+msgstr ""
+
+#: app/templates/pages/checkout.html:35
+msgid "+ Add New"
+msgstr ""
+
+#: app/templates/pages/checkout.html:50
+msgid "You have no saved address."
+msgstr ""
+
+#: app/templates/pages/checkout.html:51
+msgid "Add one"
+msgstr ""
+
+#: app/templates/pages/checkout.html:51
+msgid "to continue."
+msgstr ""
+
+#: app/templates/pages/checkout.html:57
+msgid "Your Items"
+msgstr ""
+
+#: app/templates/pages/checkout.html:61
+#, python-format
+msgid "Sold by %(name)s"
+msgstr ""
+
+#: app/templates/pages/checkout.html:87
+#: app/templates/pages/shoping-cart.html:83
+msgid "Order Summary"
+msgstr ""
+
+#: app/templates/pages/checkout.html:89
+#: app/templates/pages/order-detail.html:118
+#: app/templates/pages/shoping-cart.html:85
+msgid "Subtotal"
+msgstr ""
+
+#: app/templates/pages/checkout.html:92
+#: app/templates/pages/order-detail.html:121
+#: app/templates/pages/shoping-cart.html:89
+msgid "Shipping"
+msgstr ""
+
+#: app/templates/pages/checkout.html:92
+#, python-format
+msgid "%(n)s seller"
+msgstr ""
+
+#: app/templates/pages/checkout.html:98
+msgid "Coupon"
+msgstr ""
+
+#: app/templates/pages/checkout.html:100
+msgid "remove"
+msgstr ""
+
+#: app/templates/pages/checkout.html:108
+msgid "Coupon code"
+msgstr ""
+
+#: app/templates/pages/checkout.html:110 app/templates/pages/shop.html:80
+#: app/templates/pages/store.html:108
+msgid "Apply"
+msgstr ""
+
+#: app/templates/pages/checkout.html:119
+#, python-format
+msgid "Use my %(n)s reward points"
+msgstr ""
+
+#: app/templates/pages/checkout.html:120
+#, python-format
+msgid "৳%(n)s off"
+msgstr ""
+
+#: app/templates/pages/checkout.html:126 app/templates/pages/my-orders.html:58
+#: app/templates/pages/order-detail.html:125
+#: app/templates/pages/shoping-cart.html:31
+#: app/templates/pages/shoping-cart.html:94
+msgid "Total"
+msgstr ""
+
+#: app/templates/pages/checkout.html:133 app/templates/pages/index.html:121
+#: app/templates/pages/order-detail.html:51
+#: app/templates/pages/product.html:151 app/templates/pages/product.html:331
+msgid "Cash on Delivery"
+msgstr ""
+
+#: app/templates/pages/checkout.html:134
+msgid "Pay when the order arrives."
+msgstr ""
+
+#: app/templates/pages/checkout.html:138
+msgid "Online Payment"
+msgstr ""
+
+#: app/templates/pages/checkout.html:139
+msgid "Card, bKash, Nagad & more via SSLCommerz."
+msgstr ""
+
+#: app/templates/pages/checkout.html:143
+msgid "Place Order"
+msgstr ""
+
+#: app/templates/pages/complete-order.html:15
+msgid "Support"
+msgstr ""
+
+#: app/templates/pages/complete-order.html:16
+msgid "Complete Order"
+msgstr ""
+
+#: app/templates/pages/complete-order.html:35
+msgid "Your Order is Completed!"
+msgstr ""
+
+#: app/templates/pages/complete-order.html:37
+msgid "Your order"
+msgstr ""
+
+#: app/templates/pages/complete-order.html:37
+msgid "has been completed. Your order details are shown for your personal accont."
+msgstr ""
+
+#: app/templates/pages/complete-order.html:39
+msgid "Track Your Orders"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:62
+#, python-format
+msgid "Welcome back, %(name)s!"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:63
+msgid "Manage your orders, wishlist, addresses and profile from here."
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:71
+#: app/templates/pages/my-orders.html:13 app/templates/pages/my-orders.html:53
+#: app/templates/pages/order-detail.html:12
+#: app/templates/pages/order-detail.html:132
+msgid "My Orders"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:72
+msgid "Track and review"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:83
+msgid "Saved items"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:92
+msgid "Delivery addresses"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:101
+msgid "Details & password"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:109
+#: app/templates/pages/messages.html:12 app/templates/pages/messages.html:24
+msgid "Messages"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:110
+msgid "Sellers & SGT Support"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:118
+#: app/templates/pages/my-reviews.html:12
+#: app/templates/pages/my-reviews.html:23
+msgid "My Reviews"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:119
+msgid "Rate delivered items"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:127
+#: app/templates/pages/rewards.html:12
+msgid "Reward Points"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:130
+msgid "Earn & redeem"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:138
+#: app/templates/pages/refer.html:12 app/templates/pages/refer.html:23
+msgid "Refer & Earn"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:139
+msgid "Invite friends"
+msgstr ""
+
+#: app/templates/pages/customer-dashboard.html:155
+#: app/templates/pages/index.html:248
+msgid "Recommended for you"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:14
+#: app/templates/pages/edit-account-address.html:31
+msgid "Edit Address"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:14
+msgid "New Address"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:36
+msgid "Label"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:36
+msgid "(Home / Office)"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:41
+msgid "Full Name"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:46
+msgid "Phone Number"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:51
+msgid "Postal Code"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:57
+msgid "House, road, etc."
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:61
+msgid "Area"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:66
+msgid "City"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:71
+msgid "District"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:79
+msgid "Set as default delivery address"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:86
+msgid "Avoid delivery during Jumma / Maghrib"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:92
+msgid "Update Address"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:92
+msgid "Save Address"
+msgstr ""
+
+#: app/templates/pages/edit-account-address.html:93
+#: app/templates/pages/review-form.html:64
+msgid "Cancel"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:13
+#: app/templates/pages/flash-sales.html:22
+msgid "Flash Sales"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:23
+msgid "Limited-time deals — grab them before the timer runs out."
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:28
+msgid "Search within flash deals"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:30
+msgid "Search by product name…"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:33
+msgid "Min price (৳)"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:38
+msgid "Max price (৳)"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:43
+msgid "Filter"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:55
+msgid "by"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:60
+msgid "Marketplace-wide deal"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:64
+#, python-format
+msgid "Ends %(date)s"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:81
+msgid "No flash deals match your filters —"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:81
+msgid "clear them"
+msgstr ""
+
+#: app/templates/pages/flash-sales.html:83
+msgid "No flash sales running right now — check back soon!"
+msgstr ""
+
+#: app/templates/pages/forgot-password.html:15
+#: app/templates/pages/login.html:15
+msgid "Pages"
+msgstr ""
+
+#: app/templates/pages/forgot-password.html:16
+msgid "Forgot Password"
+msgstr ""
+
+#: app/templates/pages/forgot-password.html:37
+#: app/templates/pages/login.html:53
+msgid "Email"
+msgstr ""
+
+#: app/templates/pages/forgot-password.html:38
+msgid "Your account email"
+msgstr ""
+
+#: app/templates/pages/forgot-password.html:39
+msgid "We'll email you a one-time code to reset your password."
+msgstr ""
+
+#: app/templates/pages/forgot-password.html:43
+msgid "Send Reset Code"
+msgstr ""
+
+#: app/templates/pages/forgot-password.html:46
+msgid "Remember your password ?"
+msgstr ""
+
+#: app/templates/pages/forgot-password.html:46
+msgid "Sign in"
+msgstr ""
+
+#: app/templates/pages/index.html:125
+msgid "Verified sellers"
+msgstr ""
+
+#: app/templates/pages/index.html:129
+msgid "7-day return"
+msgstr ""
+
+#: app/templates/pages/index.html:133
+msgid "Secure payment"
+msgstr ""
+
+#: app/templates/pages/index.html:143 app/templates/pages/shop.html:40
+#: app/templates/pages/store.html:80
+msgid "Categories"
+msgstr ""
+
+#: app/templates/pages/index.html:188
+#, python-format
+msgid "ends %(date)s"
+msgstr ""
+
+#: app/templates/pages/index.html:191
+msgid "View all flash deals →"
+msgstr ""
+
+#: app/templates/pages/index.html:209
+msgid "Best Sellers"
+msgstr ""
+
+#: app/templates/pages/index.html:210
+msgid "Browse shop →"
+msgstr ""
+
+#: app/templates/pages/index.html:223
+msgid "New Arrivals"
+msgstr ""
+
+#: app/templates/pages/index.html:235
+msgid "Top Rated"
+msgstr ""
+
+#: app/templates/pages/index.html:249
+msgid "Just for you"
+msgstr ""
+
+#: app/templates/pages/index.html:263
+msgid "Featured Stores"
+msgstr ""
+
+#: app/templates/pages/index.html:264
+msgid "Sell on SGT →"
+msgstr ""
+
+#: app/templates/pages/login.html:37
+msgid "Login As"
+msgstr ""
+
+#: app/templates/pages/login.html:42 app/templates/pages/product.html:836
+#: app/templates/pages/product.html:1088
+msgid "Customer"
+msgstr ""
+
+#: app/templates/pages/login.html:47 app/templates/pages/messages.html:41
+#: app/templates/pages/product.html:853
+msgid "Seller"
+msgstr ""
+
+#: app/templates/pages/login.html:54
+msgid "Email address"
+msgstr ""
+
+#: app/templates/pages/login.html:58 app/templates/pages/login.html:59
+msgid "Password"
+msgstr ""
+
+#: app/templates/pages/login.html:66
+msgid "Remember Me"
+msgstr ""
+
+#: app/templates/pages/login.html:69
+msgid "Lost Your Password?"
+msgstr ""
+
+#: app/templates/pages/login.html:78
+msgid "Don't have an account ?"
+msgstr ""
+
+#: app/templates/pages/login.html:78
+msgid "Sign Up"
+msgstr ""
+
+#: app/templates/pages/messages.html:26
+msgid "New conversation"
+msgstr ""
+
+#: app/templates/pages/messages.html:43
+msgid "Conversation"
+msgstr ""
+
+#: app/templates/pages/messages.html:65
+msgid "You have no conversations yet."
+msgstr ""
+
+#: app/templates/pages/messages.html:68
+msgid "Start a conversation"
+msgstr ""
+
+#: app/templates/pages/my-orders.html:58
+msgid "Order"
+msgstr ""
+
+#: app/templates/pages/my-orders.html:58
+msgid "Date"
+msgstr ""
+
+#: app/templates/pages/my-orders.html:58
+msgid "Items"
+msgstr ""
+
+#: app/templates/pages/my-orders.html:58
+#: app/templates/pages/order-detail.html:49
+msgid "Payment"
+msgstr ""
+
+#: app/templates/pages/my-orders.html:68
+#: app/templates/pages/order-detail.html:53
+msgid "Paid"
+msgstr ""
+
+#: app/templates/pages/my-orders.html:69
+#: app/templates/pages/order-detail.html:54
+msgid "Failed"
+msgstr ""
+
+#: app/templates/pages/my-orders.html:70
+#: app/templates/pages/order-detail.html:55
+#: app/templates/pages/order-detail.html:145
+msgid "Pending"
+msgstr ""
+
+#: app/templates/pages/my-orders.html:74
+msgid "View"
+msgstr ""
+
+#: app/templates/pages/my-orders.html:79
+msgid "You have no orders yet."
+msgstr ""
+
+#: app/templates/pages/my-orders.html:80
+msgid "Start shopping"
+msgstr ""
+
+#: app/templates/pages/my-reviews.html:26
+#, python-format
+msgid "Waiting for your review (%(count)s)"
+msgstr ""
+
+#: app/templates/pages/my-reviews.html:34
+msgid "Write review"
+msgstr ""
+
+#: app/templates/pages/my-reviews.html:40
+msgid "Nothing waiting — reviews open once an order is delivered."
+msgstr ""
+
+#: app/templates/pages/my-reviews.html:44
+#, python-format
+msgid "Your reviews (%(count)s)"
+msgstr ""
+
+#: app/templates/pages/my-reviews.html:61
+msgid "Delete this review?"
+msgstr ""
+
+#: app/templates/pages/my-reviews.html:70
+msgid "You haven't written any reviews yet."
+msgstr ""
+
+#: app/templates/pages/notifications.html:12
+#: app/templates/pages/notifications.html:24
+msgid "Notifications"
+msgstr ""
+
+#: app/templates/pages/notifications.html:28
+msgid "Mark all as read"
+msgstr ""
+
+#: app/templates/pages/notifications.html:49
+msgid "new"
+msgstr ""
+
+#: app/templates/pages/notifications.html:62
+msgid "You have no notifications yet."
+msgstr ""
+
+#: app/templates/pages/order-detail.html:29
+#, python-format
+msgid "Order %(num)s"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:31
+#, python-format
+msgid "Placed on %(date)s"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:38
+msgid "Shipping Address"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:51
+msgid "Method:"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:52
+msgid "Status:"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:84
+#: app/templates/pages/review-form.html:31
+msgid "Write a review"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:93
+msgid "Items subtotal"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:99
+msgid "Tracking"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:131
+#: app/templates/pages/shoping-cart.html:76
+msgid "Continue Shopping"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:146
+msgid "Processing"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:147
+msgid "Shipped"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:148
+msgid "Delivered"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:149
+msgid "Cancelled"
+msgstr ""
+
+#: app/templates/pages/order-detail.html:166
+msgid "just now"
+msgstr ""
+
+#: app/templates/pages/product.html:13
+msgid "Flash Sale:"
+msgstr ""
+
+#: app/templates/pages/product.html:18 app/templates/pages/product.html:38
+msgid "Ends soon"
+msgstr ""
+
+#: app/templates/pages/product.html:49 app/templates/pages/shop.html:15
+msgid "Shop"
+msgstr ""
+
+#: app/templates/pages/product.html:70 app/templates/pages/product.html:169
+msgid "Out of Stock"
+msgstr ""
+
+#: app/templates/pages/product.html:72
+#, python-format
+msgid "Only %(n)s left"
+msgstr ""
+
+#: app/templates/pages/product.html:108
+msgid "Share"
+msgstr ""
+
+#: app/templates/pages/product.html:112
+msgid "Save to wishlist"
+msgstr ""
+
+#: app/templates/pages/product.html:122 app/templates/pages/product.html:974
+#, python-format
+msgid "%(n)s review"
+msgstr ""
+
+#: app/templates/pages/product.html:122 app/templates/pages/product.html:974
+#, python-format
+msgid "%(n)s reviews"
+msgstr ""
+
+#: app/templates/pages/product.html:124 app/templates/pages/product.html:947
+msgid "No reviews yet"
+msgstr ""
+
+#: app/templates/pages/product.html:130
+#, python-format
+msgid "%(n)s Answered Question"
+msgstr ""
+
+#: app/templates/pages/product.html:130
+#, python-format
+msgid "%(n)s Answered Questions"
+msgstr ""
+
+#: app/templates/pages/product.html:134
+msgid "Brand:"
+msgstr ""
+
+#: app/templates/pages/product.html:155 app/templates/pages/product.html:336
+msgid "Free Shipping"
+msgstr ""
+
+#: app/templates/pages/product.html:166
+msgid "In Stock"
+msgstr ""
+
+#: app/templates/pages/product.html:167
+#, python-format
+msgid "%(n)s available"
+msgstr ""
+
+#: app/templates/pages/product.html:171
+msgid "SKU:"
+msgstr ""
+
+#: app/templates/pages/product.html:178
+#, python-format
+msgid "Only %(n)s left in stock!"
+msgstr ""
+
+#: app/templates/pages/product.html:183
+#, python-format
+msgid "%(n)s sold in last 24h"
+msgstr ""
+
+#: app/templates/pages/product.html:188
+#, python-format
+msgid "%(n)s viewing now"
+msgstr ""
+
+#: app/templates/pages/product.html:197
+msgid "Notify me when back in stock"
+msgstr ""
+
+#: app/templates/pages/product.html:204
+msgid "Your email"
+msgstr ""
+
+#: app/templates/pages/product.html:207
+msgid "Notify me"
+msgstr ""
+
+#: app/templates/pages/product.html:211
+#, python-format
+msgid "%(n)s other waiting for this product."
+msgstr ""
+
+#: app/templates/pages/product.html:211
+#, python-format
+msgid "%(n)s others waiting for this product."
+msgstr ""
+
+#: app/templates/pages/product.html:229
+msgid "Color:"
+msgstr ""
+
+#: app/templates/pages/product.html:244
+msgid "Size:"
+msgstr ""
+
+#: app/templates/pages/product.html:273
+msgid "Add to Cart"
+msgstr ""
+
+#: app/templates/pages/product.html:278
+msgid "Buy Now"
+msgstr ""
+
+#: app/templates/pages/product.html:283
+msgid "Description"
+msgstr ""
+
+#: app/templates/pages/product.html:292
+msgid "Delivery"
+msgstr ""
+
+#: app/templates/pages/product.html:299
+msgid "Same-city seller — faster delivery"
+msgstr ""
+
+#: app/templates/pages/product.html:306
+msgid "Deliver to"
+msgstr ""
+
+#: app/templates/pages/product.html:312
+msgid "Set location"
+msgstr ""
+
+#: app/templates/pages/product.html:318
+msgid "Estimated"
+msgstr ""
+
+#: app/templates/pages/product.html:323
+#, python-format
+msgid "%(a)s-%(b)s days"
+msgstr ""
+
+#: app/templates/pages/product.html:327
+msgid "Shipping fee"
+msgstr ""
+
+#: app/templates/pages/product.html:332
+msgid "Available"
+msgstr ""
+
+#: app/templates/pages/product.html:336
+#, python-format
+msgid "Add ৳%(n)s more to unlock"
+msgstr ""
+
+#: app/templates/pages/product.html:343
+msgid "Return policy"
+msgstr ""
+
+#: app/templates/pages/product.html:345
+#, python-format
+msgid "%(n)s-day return"
+msgstr ""
+
+#: app/templates/pages/product.html:345
+msgid "Non-returnable"
+msgstr ""
+
+#: app/templates/pages/product.html:349
+msgid "Warranty"
+msgstr ""
+
+#: app/templates/pages/product.html:357
+msgid "Avoiding Jumma / Maghrib delivery"
+msgstr ""
+
+#: app/templates/pages/product.html:370
+msgid "Sold By"
+msgstr ""
+
+#: app/templates/pages/product.html:388
+msgid "Mall"
+msgstr ""
+
+#: app/templates/pages/product.html:392
+msgid "KYC verified by SGT"
+msgstr ""
+
+#: app/templates/pages/product.html:393
+msgid "Verified by SGT"
+msgstr ""
+
+#: app/templates/pages/product.html:401
+msgid "Seller rating"
+msgstr ""
+
+#: app/templates/pages/product.html:407
+msgid "No ratings yet"
+msgstr ""
+
+#: app/templates/pages/product.html:413
+msgid "Avg delivery"
+msgstr ""
+
+#: app/templates/pages/product.html:414
+#, python-format
+msgid "%(n)s day(s)"
+msgstr ""
+
+#: app/templates/pages/product.html:419
+msgid "Cancel rate"
+msgstr ""
+
+#: app/templates/pages/product.html:432
+msgid "Online now"
+msgstr ""
+
+#: app/templates/pages/product.html:437
+#, python-format
+msgid "Last seen %(t)s"
+msgstr ""
+
+#: app/templates/pages/product.html:441
+msgid "Offline"
+msgstr ""
+
+#: app/templates/pages/product.html:448
+#, python-format
+msgid "Typically replies in ~%(n)s min"
+msgstr ""
+
+#: app/templates/pages/product.html:450
+#, python-format
+msgid "Typically replies in ~%(n)s hr"
+msgstr ""
+
+#: app/templates/pages/product.html:459
+msgid "Visit Store"
+msgstr ""
+
+#: app/templates/pages/product.html:467 app/templates/pages/product.html:472
+msgid "Chat Now"
+msgstr ""
+
+#: app/templates/pages/product.html:480
+msgid "Quick questions:"
+msgstr ""
+
+#: app/templates/pages/product.html:505
+msgid "Verification"
+msgstr ""
+
+#: app/templates/pages/product.html:511
+msgid "Trade License Verified"
+msgstr ""
+
+#: app/templates/pages/product.html:520
+msgid "NID Verified"
+msgstr ""
+
+#: app/templates/pages/product.html:532
+msgid "Why buy from this seller?"
+msgstr ""
+
+#: app/templates/pages/product.html:539
+#, python-format
+msgid "%(n)s%% positive"
+msgstr ""
+
+#: app/templates/pages/product.html:540
+#, python-format
+msgid "across %(n)s review"
+msgstr ""
+
+#: app/templates/pages/product.html:540
+#, python-format
+msgid "across %(n)s reviews"
+msgstr ""
+
+#: app/templates/pages/product.html:549
+#, python-format
+msgid "%(n)s-day delivery"
+msgstr ""
+
+#: app/templates/pages/product.html:551
+msgid "on average"
+msgstr ""
+
+#: app/templates/pages/product.html:561
+#, python-format
+msgid "Replies in ~%(n)s min"
+msgstr ""
+
+#: app/templates/pages/product.html:563
+#, python-format
+msgid "Replies in ~%(n)s hr"
+msgstr ""
+
+#: app/templates/pages/product.html:566
+msgid "typical chat reply"
+msgstr ""
+
+#: app/templates/pages/product.html:574
+#, python-format
+msgid "%(n)s%% order success"
+msgstr ""
+
+#: app/templates/pages/product.html:575
+#, python-format
+msgid "— %(n)s%% cancellations"
+msgstr ""
+
+#: app/templates/pages/product.html:587
+msgid "Get the SGT app"
+msgstr ""
+
+#: app/templates/pages/product.html:589
+msgid "App download QR"
+msgstr ""
+
+#: app/templates/pages/product.html:592
+msgid "Scan to download"
+msgstr ""
+
+#: app/templates/pages/product.html:604
+msgid "Specifications"
+msgstr ""
+
+#: app/templates/pages/product.html:620
+#, python-format
+msgid "View More (%(n)s more)"
+msgstr ""
+
+#: app/templates/pages/product.html:632
+msgid "Frequently Bought Together"
+msgstr ""
+
+#: app/templates/pages/product.html:647
+msgid "This product"
+msgstr ""
+
+#: app/templates/pages/product.html:680
+msgid "Save more on this product"
+msgstr ""
+
+#: app/templates/pages/product.html:689
+#, python-format
+msgid "Earn %(n)s point"
+msgstr ""
+
+#: app/templates/pages/product.html:689
+#, python-format
+msgid "Earn %(n)s points"
+msgstr ""
+
+#: app/templates/pages/product.html:692
+msgid "Earned when delivered. 1 point = ৳1 at checkout."
+msgstr ""
+
+#: app/templates/pages/product.html:704
+#, python-format
+msgid "You have %(n)s points"
+msgstr ""
+
+#: app/templates/pages/product.html:707
+#, python-format
+msgid "Worth ৳%(n)s. Tick"
+msgstr ""
+
+#: app/templates/pages/product.html:707
+msgid "Use my points"
+msgstr ""
+
+#: app/templates/pages/product.html:707 app/templates/pages/product.html:743
+msgid "at checkout."
+msgstr ""
+
+#: app/templates/pages/product.html:710
+msgid "View ledger →"
+msgstr ""
+
+#: app/templates/pages/product.html:721
+msgid "Earn by sharing"
+msgstr ""
+
+#: app/templates/pages/product.html:727
+msgid "Copy"
+msgstr ""
+
+#: app/templates/pages/product.html:738
+msgid "Have a coupon?"
+msgstr ""
+
+#: app/templates/pages/product.html:742
+msgid "would save"
+msgstr ""
+
+#: app/templates/pages/product.html:750
+msgid "Clear"
+msgstr ""
+
+#: app/templates/pages/product.html:758
+msgid "Enter code"
+msgstr ""
+
+#: app/templates/pages/product.html:759
+msgid "Check"
+msgstr ""
+
+#: app/templates/pages/product.html:771
+msgid "Bulk Pricing"
+msgstr ""
+
+#: app/templates/pages/product.html:775
+msgid "Unit"
+msgstr ""
+
+#: app/templates/pages/product.html:775
+msgid "Save"
+msgstr ""
+
+#: app/templates/pages/product.html:797
+msgid "Questions & Answers"
+msgstr ""
+
+#: app/templates/pages/product.html:799
+#, python-format
+msgid "%(a)s Answered · %(b)s Asked"
+msgstr ""
+
+#: app/templates/pages/product.html:812
+msgid "Ask a public question about this product…"
+msgstr ""
+
+#: app/templates/pages/product.html:813
+msgid "Ask"
+msgstr ""
+
+#: app/templates/pages/product.html:815
+msgid "Please don't share phone numbers — they'll be removed."
+msgstr ""
+
+#: app/templates/pages/product.html:819
+msgid "Log in"
+msgstr ""
+
+#: app/templates/pages/product.html:820
+msgid "to ask a question."
+msgstr ""
+
+#: app/templates/pages/product.html:836
+#, python-format
+msgid "Asked by %(name)s"
+msgstr ""
+
+#: app/templates/pages/product.html:851
+msgid "User"
+msgstr ""
+
+#: app/templates/pages/product.html:865
+msgid "Remove helpful vote"
+msgstr ""
+
+#: app/templates/pages/product.html:865
+msgid "Mark as helpful"
+msgstr ""
+
+#: app/templates/pages/product.html:866
+msgid "Helpful"
+msgstr ""
+
+#: app/templates/pages/product.html:881
+msgid "No answers yet."
+msgstr ""
+
+#: app/templates/pages/product.html:892
+msgid "Write an answer…"
+msgstr ""
+
+#: app/templates/pages/product.html:893
+msgid "Reply"
+msgstr ""
+
+#: app/templates/pages/product.html:901
+msgid "No questions yet — be the first to ask."
+msgstr ""
+
+#: app/templates/pages/product.html:909
+#, python-format
+msgid "More from %(name)s"
+msgstr ""
+
+#: app/templates/pages/product.html:911
+msgid "See all"
+msgstr ""
+
+#: app/templates/pages/product.html:942
+msgid "Ratings & Reviews"
+msgstr ""
+
+#: app/templates/pages/product.html:952 app/templates/pages/review-form.html:31
+msgid "Edit your review"
+msgstr ""
+
+#: app/templates/pages/product.html:952
+msgid "Write a review (with photos)"
+msgstr ""
+
+#: app/templates/pages/product.html:955
+msgid "Only customers with a delivered order can review this product"
+msgstr ""
+
+#: app/templates/pages/product.html:956
+msgid "Buy + receive delivery to review"
+msgstr ""
+
+#: app/templates/pages/product.html:960
+msgid "Verified buyers can post photo reviews"
+msgstr ""
+
+#: app/templates/pages/product.html:1005
+msgid "What buyers like"
+msgstr ""
+
+#: app/templates/pages/product.html:1012
+msgid "Not enough positive feedback yet."
+msgstr ""
+
+#: app/templates/pages/product.html:1019
+msgid "What to watch for"
+msgstr ""
+
+#: app/templates/pages/product.html:1026
+msgid "No notable complaints yet."
+msgstr ""
+
+#: app/templates/pages/product.html:1032
+msgid "Auto-summarised from recent customer reviews."
+msgstr ""
+
+#: app/templates/pages/product.html:1042
+msgid "Customer Photos"
+msgstr ""
+
+#: app/templates/pages/product.html:1043
+#, python-format
+msgid "%(n)s photo"
+msgstr ""
+
+#: app/templates/pages/product.html:1043
+#, python-format
+msgid "%(n)s photos"
+msgstr ""
+
+#: app/templates/pages/product.html:1049
+msgid "customer photo"
+msgstr ""
+
+#: app/templates/pages/product.html:1061
+msgid "All stars"
+msgstr ""
+
+#: app/templates/pages/product.html:1089
+msgid "Verified Purchase"
+msgstr ""
+
+#: app/templates/pages/product.html:1112
+msgid "Review pages"
+msgstr ""
+
+#: app/templates/pages/product.html:1138
+msgid "Be the first to review this product."
+msgstr ""
+
+#: app/templates/pages/product.html:1140
+msgid "No reviews match this filter."
+msgstr ""
+
+#: app/templates/pages/product.html:1141
+msgid "Clear filter"
+msgstr ""
+
+#: app/templates/pages/product.html:1174
+msgid "Similar Products"
+msgstr ""
+
+#: app/templates/pages/product.html:1184
+msgid "Customers Also Viewed"
+msgstr ""
+
+#: app/templates/pages/product.html:1337
+msgid "Ended"
+msgstr ""
+
+#: app/templates/pages/product.html:1342
+msgid "Ends in"
+msgstr ""
+
+#: app/templates/pages/product.html:1364
+msgid "Copied!"
+msgstr ""
+
+#: app/templates/pages/product.html:1380
+msgid "View More"
+msgstr ""
+
+#: app/templates/pages/product.html:1381
+msgid "View Less"
+msgstr ""
+
+#: app/templates/pages/profile-info.html:64
+msgid "Profile Details"
+msgstr ""
+
+#: app/templates/pages/profile-info.html:68
+msgid "First Name"
+msgstr ""
+
+#: app/templates/pages/profile-info.html:76
+msgid "Last Name"
+msgstr ""
+
+#: app/templates/pages/profile-info.html:84
+msgid "Email ID"
+msgstr ""
+
+#: app/templates/pages/profile-info.html:91
+msgid "Phone"
+msgstr ""
+
+#: app/templates/pages/profile-info.html:97
+msgid "Save Changes"
+msgstr ""
+
+#: app/templates/pages/profile-info.html:104
+#: app/templates/pages/profile-info.html:128
+msgid "Change Password"
+msgstr ""
+
+#: app/templates/pages/profile-info.html:108
+msgid "Current Password"
+msgstr ""
+
+#: app/templates/pages/profile-info.html:115
+#: app/templates/pages/reset-password.html:49
+msgid "New Password"
+msgstr ""
+
+#: app/templates/pages/profile-info.html:122
+#: app/templates/pages/reset-password.html:53
+msgid "Confirm Password"
+msgstr ""
+
+#: app/templates/pages/refer.html:25
+#, python-format
+msgid ""
+"Share your code — earn %(points)s points when a friend signs up and "
+"places their first order, plus a commission on every sale through your "
+"share links."
+msgstr ""
+
+#: app/templates/pages/refer.html:31
+msgid "Your referral code"
+msgstr ""
+
+#: app/templates/pages/refer.html:33
+msgid "Share this link:"
+msgstr ""
+
+#: app/templates/pages/refer.html:37
+msgid ""
+"Friends signing up with your code, or buying through your shared product "
+"links, earn you points."
+msgstr ""
+
+#: app/templates/pages/refer.html:43
+msgid "Your earnings"
+msgstr ""
+
+#: app/templates/pages/refer.html:45
+msgid "Friends referred"
+msgstr ""
+
+#: app/templates/pages/refer.html:49
+msgid "Referral rewards paid"
+msgstr ""
+
+#: app/templates/pages/refer.html:53
+msgid "Affiliate sales"
+msgstr ""
+
+#: app/templates/pages/refer.html:58
+msgid "Points earned"
+msgstr ""
+
+#: app/templates/pages/refer.html:66
+msgid "People you referred"
+msgstr ""
+
+#: app/templates/pages/refer.html:74
+#, python-format
+msgid "Joined %(date)s"
+msgstr ""
+
+#: app/templates/pages/refer.html:77
+#, python-format
+msgid "+%(points)s pts"
+msgstr ""
+
+#: app/templates/pages/refer.html:80
+msgid "Pending first order"
+msgstr ""
+
+#: app/templates/pages/refer.html:87
+msgid "No referrals yet — share your code to start earning."
+msgstr ""
+
+#: app/templates/pages/reset-password.html:16
+#: app/templates/pages/reset-password.html:59
+msgid "Reset Password"
+msgstr ""
+
+#: app/templates/pages/reset-password.html:37
+msgid "Set a New Password"
+msgstr ""
+
+#: app/templates/pages/reset-password.html:38
+#, python-format
+msgid "Enter the code sent to %(email)s and choose a new password."
+msgstr ""
+
+#: app/templates/pages/reset-password.html:42
+msgid "Reset Code"
+msgstr ""
+
+#: app/templates/pages/reset-password.html:43
+#: app/templates/pages/verify-otp.html:43
+msgid "6-digit code"
+msgstr ""
+
+#: app/templates/pages/reset-password.html:50
+msgid "New password"
+msgstr ""
+
+#: app/templates/pages/reset-password.html:54
+msgid "Confirm password"
+msgstr ""
+
+#: app/templates/pages/reset-password.html:62
+msgid "Request a new code"
+msgstr ""
+
+#: app/templates/pages/review-form.html:16
+msgid "Review"
+msgstr ""
+
+#: app/templates/pages/review-form.html:38
+msgid "Your rating"
+msgstr ""
+
+#: app/templates/pages/review-form.html:48
+msgid "Title"
+msgstr ""
+
+#: app/templates/pages/review-form.html:48
+#: app/templates/pages/review-form.html:56
+msgid "(optional)"
+msgstr ""
+
+#: app/templates/pages/review-form.html:50
+msgid "Sum up your experience"
+msgstr ""
+
+#: app/templates/pages/review-form.html:52
+msgid "Your review"
+msgstr ""
+
+#: app/templates/pages/review-form.html:54
+msgid "What did you like or dislike?"
+msgstr ""
+
+#: app/templates/pages/review-form.html:56
+msgid "Photos"
+msgstr ""
+
+#: app/templates/pages/review-form.html:61
+msgid "Update review"
+msgstr ""
+
+#: app/templates/pages/review-form.html:61
+msgid "Post review"
+msgstr ""
+
+#: app/templates/pages/rewards.html:24
+msgid "Your reward points balance"
+msgstr ""
+
+#: app/templates/pages/rewards.html:27
+#, python-format
+msgid "Worth ৳%(amount)s — redeem at checkout."
+msgstr ""
+
+#: app/templates/pages/rewards.html:28
+msgid "Earn 1 point per ৳100 on delivered orders."
+msgstr ""
+
+#: app/templates/pages/rewards.html:32
+msgid "Points history"
+msgstr ""
+
+#: app/templates/pages/rewards.html:38
+msgid "Adjustment"
+msgstr ""
+
+#: app/templates/pages/rewards.html:50
+msgid ""
+"No points activity yet — points are credited when your orders are "
+"delivered."
+msgstr ""
+
+#: app/templates/pages/shop.html:30
+msgid "Search"
+msgstr ""
+
+#: app/templates/pages/shop.html:33 app/templates/pages/store.html:74
+msgid "Search products"
+msgstr ""
+
+#: app/templates/pages/shop.html:45 app/templates/pages/shop.html:88
+#: app/templates/pages/store.html:84 app/templates/pages/store.html:116
+msgid "All Products"
+msgstr ""
+
+#: app/templates/pages/shop.html:67 app/templates/pages/store.html:99
+msgid "Price Range"
+msgstr ""
+
+#: app/templates/pages/shop.html:74 app/templates/pages/store.html:103
+msgid "Min"
+msgstr ""
+
+#: app/templates/pages/shop.html:77 app/templates/pages/store.html:105
+msgid "Max"
+msgstr ""
+
+#: app/templates/pages/shop.html:90 app/templates/pages/store.html:33
+#, python-format
+msgid "%(count)s product(s)"
+msgstr ""
+
+#: app/templates/pages/shop.html:98
+msgid "No products found. Try a different category or search."
+msgstr ""
+
+#: app/templates/pages/shop.html:107 app/templates/pages/shop.html:142
+#: app/templates/pages/shop.html:150
+msgid "Load more products"
+msgstr ""
+
+#: app/templates/pages/shop.html:127
+msgid "Loading…"
+msgstr ""
+
+#: app/templates/pages/shoping-cart.html:12
+#: app/templates/pages/shoping-cart.html:23
+msgid "Shopping Cart"
+msgstr ""
+
+#: app/templates/pages/shoping-cart.html:31
+msgid "Product"
+msgstr ""
+
+#: app/templates/pages/shoping-cart.html:31
+msgid "Price"
+msgstr ""
+
+#: app/templates/pages/shoping-cart.html:31
+msgid "Quantity"
+msgstr ""
+
+#: app/templates/pages/shoping-cart.html:59
+msgid "Update"
+msgstr ""
+
+#: app/templates/pages/shoping-cart.html:90
+msgid "Calculated at checkout"
+msgstr ""
+
+#: app/templates/pages/shoping-cart.html:97
+msgid "Proceed to Checkout"
+msgstr ""
+
+#: app/templates/pages/shoping-cart.html:105
+msgid "Your cart is empty"
+msgstr ""
+
+#: app/templates/pages/shoping-cart.html:106
+msgid "Browse the shop and add your favourite items."
+msgstr ""
+
+#: app/templates/pages/shoping-cart.html:107
+#: app/templates/pages/wishlist.html:104
+msgid "Shop Now"
+msgstr ""
+
+#: app/templates/pages/store.html:72
+msgid "Search this store"
+msgstr ""
+
+#: app/templates/pages/store.html:93
+msgid "No categories yet."
+msgstr ""
+
+#: app/templates/pages/store.html:118
+#, python-format
+msgid "%(count)s found"
+msgstr ""
+
+#: app/templates/pages/store.html:125
+msgid "No products found in this store."
+msgstr ""
+
+#: app/templates/pages/store.html:136
+msgid "Prev"
+msgstr ""
+
+#: app/templates/pages/store.html:148
+msgid "Next"
+msgstr ""
+
+#: app/templates/pages/verify-otp.html:16
+msgid "Verify Code"
+msgstr ""
+
+#: app/templates/pages/verify-otp.html:37
+msgid "Enter Verification Code"
+msgstr ""
+
+#: app/templates/pages/verify-otp.html:38
+#, python-format
+msgid "We sent a one-time code to %(email)s."
+msgstr ""
+
+#: app/templates/pages/verify-otp.html:42
+msgid "Verification Code"
+msgstr ""
+
+#: app/templates/pages/verify-otp.html:48
+msgid "Verify & Continue"
+msgstr ""
+
+#: app/templates/pages/verify-otp.html:54
+msgid "Didn't get the code ?"
+msgstr ""
+
+#: app/templates/pages/verify-otp.html:55
+msgid "Resend Code"
+msgstr ""
+
+#: app/templates/pages/wishlist.html:38
+msgid "Australia"
+msgstr ""
+
+#: app/templates/pages/wishlist.html:76
+msgid "Quick View"
+msgstr ""
+
+#: app/templates/pages/wishlist.html:101
+msgid "Your Wishlist is empty!"
+msgstr ""
+
+#: app/templates/pages/wishlist.html:102
+msgid ""
+"Your Wishlist is empty please go to the shop page and select your "
+"favourite items."
+msgstr ""
 

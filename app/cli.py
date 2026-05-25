@@ -691,38 +691,55 @@ def register_cli(app):
         from datetime import datetime as _dt
         from app.models.static_page import StaticPage
         from app.static_page_content import FOOTER_PAGES
+        from app.static_page_content_bn import FOOTER_PAGES_BN
 
-        added = updated = skipped = 0
+        added = updated = skipped = bn_filled = 0
         for entry in FOOTER_PAGES:
             slug = entry["slug"]
             row = StaticPage.query.filter_by(slug=slug).first()
             if row is not None and not overwrite:
                 skipped += 1
-                continue
-            if row is None:
-                row = StaticPage(slug=slug)
-                db.session.add(row)
-                added += 1
             else:
-                updated += 1
-            row.title = entry["title"]
-            row.subtitle = entry.get("subtitle")
-            row.section = entry.get("section", "Misc")
-            row.contact_email = entry.get(
-                "contact_email", "support@sgtcart.com")
-            row.body_html = entry["body_html"]
-            row.toc_json = _json.dumps(entry.get("toc", []), ensure_ascii=False)
-            row.faq_json = _json.dumps(entry.get("faq", []), ensure_ascii=False)
-            row.related_json = _json.dumps(
-                entry.get("related", []), ensure_ascii=False)
-            row.version = entry.get("version", "v1.0")
-            row.reviewed_at = _dt.utcnow()
-            row.is_published = True
-            row.sort_order = entry.get("sort_order", 0)
+                if row is None:
+                    row = StaticPage(slug=slug)
+                    db.session.add(row)
+                    added += 1
+                else:
+                    updated += 1
+                row.title = entry["title"]
+                row.subtitle = entry.get("subtitle")
+                row.section = entry.get("section", "Misc")
+                row.contact_email = entry.get(
+                    "contact_email", "support@sgtcart.com")
+                row.body_html = entry["body_html"]
+                row.toc_json = _json.dumps(entry.get("toc", []), ensure_ascii=False)
+                row.faq_json = _json.dumps(entry.get("faq", []), ensure_ascii=False)
+                row.related_json = _json.dumps(
+                    entry.get("related", []), ensure_ascii=False)
+                row.version = entry.get("version", "v1.0")
+                row.reviewed_at = _dt.utcnow()
+                row.is_published = True
+                row.sort_order = entry.get("sort_order", 0)
+
+            # Always fill Bangla side when available — even on skip — so
+            # adding new bn translations doesn't require --overwrite.
+            bn = FOOTER_PAGES_BN.get(slug)
+            if bn and (overwrite or not row.title_bn):
+                row.title_bn = bn.get("title")
+                row.subtitle_bn = bn.get("subtitle")
+                row.section_bn = bn.get("section")
+                row.body_html_bn = bn.get("body_html")
+                if "toc" in bn:
+                    row.toc_json_bn = _json.dumps(bn["toc"], ensure_ascii=False)
+                if "faq" in bn:
+                    row.faq_json_bn = _json.dumps(bn["faq"], ensure_ascii=False)
+                if "related" in bn:
+                    row.related_json_bn = _json.dumps(bn["related"], ensure_ascii=False)
+                bn_filled += 1
         db.session.commit()
         click.echo(
             f"  Static pages — {added} added, {updated} updated, "
-            f"{skipped} skipped (already existed).")
+            f"{skipped} skipped, {bn_filled} Bangla translation(s) seeded.")
 
     @app.cli.command("seed-district-eta")
     def seed_district_eta():

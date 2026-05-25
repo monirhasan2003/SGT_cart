@@ -8,8 +8,8 @@
 	<div class="container">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><a href="/">Home</a></li>
-				<li class="breadcrumb-item active" aria-current="page">My Reviews</li>
+				<li class="breadcrumb-item"><a href="/">{{ _("Home") }}</a></li>
+				<li class="breadcrumb-item active" aria-current="page">{{ _("My Reviews") }}</li>
 			</ol>
 		</nav>
 	</div>
@@ -20,10 +20,10 @@
 
 		{% include 'Base/flash_messages.html' %}
 
-		<h4 class="ft-bold mb-3">My Reviews</h4>
+		<h4 class="ft-bold mb-3">{{ _("My Reviews") }}</h4>
 
 		<!-- Delivered products awaiting a review -->
-		<h6 class="ft-medium text-muted mb-2">Waiting for your review ({{ pending|length }})</h6>
+		<h6 class="ft-medium text-muted mb-2">{{ _("Waiting for your review (%(count)s)", count=pending|length) }}</h6>
 		{% if pending %}
 		<div class="row g-3 mb-4">
 			{% for p in pending %}
@@ -31,17 +31,17 @@
 				<div class="border rounded p-3 d-flex justify-content-between align-items-center">
 					<span class="ft-medium pe-2">{{ p.localized_title }}</span>
 					<a href="{{ url_for('review.write', slug=p.slug) }}"
-					   class="btn btn-sm btn-primary text-nowrap">Write review</a>
+					   class="btn btn-sm btn-primary text-nowrap">{{ _("Write review") }}</a>
 				</div>
 			</div>
 			{% endfor %}
 		</div>
 		{% else %}
-		<p class="text-muted mb-4">Nothing waiting — reviews open once an order is delivered.</p>
+		<p class="text-muted mb-4">{{ _("Nothing waiting — reviews open once an order is delivered.") }}</p>
 		{% endif %}
 
 		<!-- Reviews already written -->
-		<h6 class="ft-medium text-muted mb-2">Your reviews ({{ reviews|length }})</h6>
+		<h6 class="ft-medium text-muted mb-2">{{ _("Your reviews (%(count)s)", count=reviews|length) }}</h6>
 		{% if reviews %}
 		<div class="border rounded">
 			{% for r in reviews %}
@@ -56,18 +56,18 @@
 				</div>
 				<div class="text-nowrap">
 					<a href="{{ url_for('review.write', slug=r.product.slug) }}"
-					   class="btn btn-sm btn-outline-dark">Edit</a>
+					   class="btn btn-sm btn-outline-dark">{{ _("Edit") }}</a>
 					<form method="post" action="{{ url_for('review.remove', review_id=r.id) }}"
-					      class="d-inline" onsubmit="return confirm('Delete this review?');">
+					      class="d-inline" onsubmit="return confirm('{{ _("Delete this review?") }}');">
 						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-						<button class="btn btn-sm btn-outline-danger">Delete</button>
+						<button class="btn btn-sm btn-outline-danger">{{ _("Delete") }}</button>
 					</form>
 				</div>
 			</div>
 			{% endfor %}
 		</div>
 		{% else %}
-		<p class="text-muted">You haven't written any reviews yet.</p>
+		<p class="text-muted">{{ _("You haven't written any reviews yet.") }}</p>
 		{% endif %}
 
 	</div>

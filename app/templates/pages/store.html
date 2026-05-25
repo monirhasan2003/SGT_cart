@@ -30,7 +30,7 @@
 		<div class="ps-3" style="padding-bottom: 4px;">
 			<h2 class="ft-bold mb-1">{{ vendor.shop_name_en }}</h2>
 			<div class="text-muted small">
-				<i class="lni lni-package me-1"></i>{{ product_count }} product(s)
+				<i class="lni lni-package me-1"></i>{{ _("%(count)s product(s)", count=product_count) }}
 				{% if vendor.rating_count %}
 					· <span class="text-warning">{{ '%.1f'|format(vendor.rating_avg|float) }}★</span>
 					<span>({{ vendor.rating_count }})</span>
@@ -69,19 +69,19 @@
 			<!-- In-store filters -->
 			<div class="col-lg-3 col-md-4 mb-4">
 				<form method="get" action="{{ url_for('storefront.store', slug=vendor.slug) }}" class="border rounded p-3 mb-3">
-					<h6 class="ft-bold mb-2">Search this store</h6>
+					<h6 class="ft-bold mb-2">{{ _("Search this store") }}</h6>
 					<div class="input-group">
-						<input type="text" name="q" class="form-control" placeholder="Search products" value="{{ q }}">
+						<input type="text" name="q" class="form-control" placeholder="{{ _('Search products') }}" value="{{ q }}">
 						<button class="btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
 					</div>
 				</form>
 
 				<div class="border rounded p-3 mb-3">
-					<h6 class="ft-bold mb-2">Categories</h6>
+					<h6 class="ft-bold mb-2">{{ _("Categories") }}</h6>
 					<ul class="list-unstyled mb-0">
 						<li class="mb-1">
 							<a href="{{ url_for('storefront.store', slug=vendor.slug) }}"
-							   class="{{ 'ft-bold theme-cl' if not active_category else 'text-dark' }}">All Products</a>
+							   class="{{ 'ft-bold theme-cl' if not active_category else 'text-dark' }}">{{ _("All Products") }}</a>
 						</li>
 						{% for cat in store_categories %}
 							<li class="mb-1">
@@ -90,22 +90,22 @@
 									{{ cat.localized_name }}</a>
 							</li>
 						{% else %}
-							<li class="text-muted small">No categories yet.</li>
+							<li class="text-muted small">{{ _("No categories yet.") }}</li>
 						{% endfor %}
 					</ul>
 				</div>
 
 				<form method="get" action="{{ url_for('storefront.store', slug=vendor.slug) }}" class="border rounded p-3">
-					<h6 class="ft-bold mb-2">Price Range</h6>
+					<h6 class="ft-bold mb-2">{{ _("Price Range") }}</h6>
 					{% if active_category %}<input type="hidden" name="category" value="{{ active_category.slug }}">{% endif %}
 					{% if q %}<input type="hidden" name="q" value="{{ q }}">{% endif %}
 					<div class="row g-2">
-						<div class="col-6"><input type="number" name="min" class="form-control" placeholder="Min"
+						<div class="col-6"><input type="number" name="min" class="form-control" placeholder="{{ _('Min') }}"
 						       value="{{ min_price if min_price is not none else '' }}"></div>
-						<div class="col-6"><input type="number" name="max" class="form-control" placeholder="Max"
+						<div class="col-6"><input type="number" name="max" class="form-control" placeholder="{{ _('Max') }}"
 						       value="{{ max_price if max_price is not none else '' }}"></div>
 					</div>
-					<button class="btn btn-dark btn-sm w-100 mt-2" type="submit">Apply</button>
+					<button class="btn btn-dark btn-sm w-100 mt-2" type="submit">{{ _("Apply") }}</button>
 				</form>
 			</div>
 
@@ -113,16 +113,16 @@
 			<div class="col-lg-9 col-md-8">
 				<div class="d-flex justify-content-between align-items-center mb-3">
 					<h5 class="ft-bold mb-0">
-						{{ active_category.localized_name if active_category else 'All Products' }}
+						{{ active_category.localized_name if active_category else _('All Products') }}
 					</h5>
-					<span class="text-muted">{{ pagination.total }} found</span>
+					<span class="text-muted">{{ _("%(count)s found", count=pagination.total) }}</span>
 				</div>
 				<div class="row g-2">
 					{% for p in products %}
 						{{ product_card(p) }}
 					{% else %}
 						<div class="col-12">
-							<div class="border rounded p-5 text-center text-muted">No products found in this store.</div>
+							<div class="border rounded p-5 text-center text-muted">{{ _("No products found in this store.") }}</div>
 						</div>
 					{% endfor %}
 				</div>
@@ -133,7 +133,7 @@
 							{% set args = {'category': request.args.get('category',''), 'q': q,
 							                'min': request.args.get('min',''), 'max': request.args.get('max','')} %}
 							<li class="page-item {{ 'disabled' if not pagination.has_prev }}">
-								<a class="page-link" href="{{ url_for('storefront.store', slug=vendor.slug, page=pagination.prev_num, **args) }}">Prev</a>
+								<a class="page-link" href="{{ url_for('storefront.store', slug=vendor.slug, page=pagination.prev_num, **args) }}">{{ _("Prev") }}</a>
 							</li>
 							{% for pg in pagination.iter_pages() %}
 								{% if pg %}
@@ -145,7 +145,7 @@
 								{% endif %}
 							{% endfor %}
 							<li class="page-item {{ 'disabled' if not pagination.has_next }}">
-								<a class="page-link" href="{{ url_for('storefront.store', slug=vendor.slug, page=pagination.next_num, **args) }}">Next</a>
+								<a class="page-link" href="{{ url_for('storefront.store', slug=vendor.slug, page=pagination.next_num, **args) }}">{{ _("Next") }}</a>
 							</li>
 						</ul>
 					</nav>

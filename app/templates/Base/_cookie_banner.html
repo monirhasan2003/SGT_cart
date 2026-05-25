@@ -13,23 +13,21 @@
 	<div class="container d-flex flex-wrap gap-2 align-items-center justify-content-between">
 		<div class="small" style="max-width:760px;">
 			<i class="lni lni-shield me-1"></i>
-			SGT Cart uses <strong>essential cookies</strong> to keep you signed
-			in and your cart working. We'd also like to set optional analytics
-			cookies to help us improve the site. Read our
+			{{ _("SGT Cart uses") }} <strong>{{ _("essential cookies") }}</strong> {{ _("to keep you signed in and your cart working. We'd also like to set optional analytics cookies to help us improve the site. Read our") }}
 			<a href="/cookie-policy/" class="text-warning text-decoration-underline">
-				Cookie Policy</a>
-			and
+				{{ _("Cookie Policy") }}</a>
+			{{ _("and") }}
 			<a href="/privacy/" class="text-warning text-decoration-underline">
-				Privacy Policy</a>.
+				{{ _("Privacy Policy") }}</a>.
 		</div>
 		<div class="d-flex gap-2 flex-shrink-0">
 			<button type="button" id="sgtCookieNecessary"
 			        class="btn btn-sm btn-outline-light">
-				Necessary only
+				{{ _("Necessary only") }}
 			</button>
 			<button type="button" id="sgtCookieAccept"
 			        class="btn btn-sm btn-warning ft-medium">
-				Accept all
+				{{ _("Accept all") }}
 			</button>
 		</div>
 	</div>

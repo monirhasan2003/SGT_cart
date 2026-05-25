@@ -4,8 +4,8 @@
 
             <div class="col-md-6 col-sm-12 hide-ipad">
                 <p class="medium text-light m-0 p-0">
-                    Welcome to SGT Cart —
-                    <a href="{{ url_for('storefront.flash_sales') }}" class="text-light text-underline">browse today's flash deals</a>.
+                    {{ _("Welcome to SGT Cart —") }}
+                    <a href="{{ url_for('storefront.flash_sales') }}" class="text-light text-underline">{{ _("browse today's flash deals") }}</a>.
                 </p>
             </div>
 
@@ -18,7 +18,7 @@
 
                 <!-- Language toggle -->
                 <div class="language-selector-wrapper dropdown js-dropdown float-right me-3">
-                    <a class="popup-title" href="javascript:void(0)" data-bs-toggle="dropdown" title="Language">
+                    <a class="popup-title" href="javascript:void(0)" data-bs-toggle="dropdown" title="{{ _('Language') }}">
                         <span class="iso_code medium text-light">
                             {{ 'বাংলা' if current_locale == 'bn' else 'English' }}
                         </span>
@@ -26,22 +26,22 @@
                     </a>
                     <ul class="dropdown-menu popup-content link">
                         <li {{ 'class=current' if current_locale == 'en' }}>
-                            <a href="?lang=en" class="dropdown-item medium text-medium">English</a></li>
+                            <a href="?lang=en" class="dropdown-item medium text-medium">{{ _("English") }}</a></li>
                         <li {{ 'class=current' if current_locale == 'bn' }}>
                             <a href="?lang=bn" class="dropdown-item medium text-medium">বাংলা</a></li>
                     </ul>
                 </div>
 
                 <div class="float-right me-3">
-                    <a href="/wishlist/" class="text-light medium">Wishlist</a>
+                    <a href="/wishlist/" class="text-light medium">{{ _("Wishlist") }}</a>
                 </div>
 
                 <div class="float-right me-3">
                     {% if current_user.is_authenticated %}
                     <a href="{{ url_for('account.dashboard') }}" class="text-light medium">
-                        My Account</a>
+                        {{ _("My Account") }}</a>
                     {% else %}
-                    <a href="/login/" class="text-light medium">Login / Signup</a>
+                    <a href="/login/" class="text-light medium">{{ _("Login / Signup") }}</a>
                     {% endif %}
                 </div>
 
@@ -59,13 +59,13 @@
             <input id="headerSearch" name="q" type="search"
                    list="headerSuggest" autocomplete="off"
                    class="form-control form-control-lg me-2"
-                   placeholder="Search products, brands, categories…">
+                   placeholder="{{ _('Search products, brands, categories…') }}">
             <datalist id="headerSuggest"></datalist>
             <button type="button" id="headerMic" class="btn header-mic-btn me-2"
-                    title="Search by voice — speak your query">
+                    title="{{ _('Search by voice — speak your query') }}">
                 <i class="bi bi-mic-fill"></i></button>
             <a href="{{ url_for('storefront.search_by_image') }}"
-               class="btn header-cam-btn me-2" title="Search by image — upload a photo">
+               class="btn header-cam-btn me-2" title="{{ _('Search by image — upload a photo') }}">
                 <i class="bi bi-camera-fill"></i></a>
             <button type="submit" class="btn btn-dark px-3">
                 <i class="bi bi-search"></i></button>
@@ -154,10 +154,10 @@
         if (!SR) {
             // Voice search not supported by this browser (Firefox, older browsers).
             mic.disabled = true;
-            mic.title = "Voice search needs Chrome, Edge or Safari";
+            mic.title = "{{ _('Voice search needs Chrome, Edge or Safari') }}";
             mic.style.opacity = .5;
             mic.addEventListener("click", function () {
-                showStatus("Voice search needs Chrome, Edge or Safari.", "error");
+                showStatus("{{ _('Voice search needs Chrome, Edge or Safari.') }}", "error");
             });
         } else {
             var rec = new SR();
@@ -172,15 +172,15 @@
                     rec.start();
                     listening = true;
                     mic.classList.add("active");
-                    showStatus("Listening… speak your search.", "live");
+                    showStatus("{{ _('Listening… speak your search.') }}", "live");
                 } catch (e) {
-                    showStatus("Could not start voice — " + (e.message || e), "error");
+                    showStatus("{{ _('Could not start voice — ') }}" + (e.message || e), "error");
                 }
             });
             rec.onresult = function (e) {
                 var transcript = e.results[0][0].transcript;
                 box.value = transcript;
-                showStatus("Heard: " + transcript, "ok");
+                showStatus("{{ _('Heard: ') }}" + transcript, "ok");
                 sgtHeaderSearch();
             };
             rec.onend = function () {
@@ -192,12 +192,12 @@
                 mic.classList.remove("active");
                 // Specific messages for the common cases.
                 var msg = ({
-                    "not-allowed":        "Microphone permission denied — allow it in the browser address bar.",
-                    "service-not-allowed":"Voice search blocked by the browser.",
-                    "no-speech":          "Didn't hear anything — tap the mic and try again.",
-                    "audio-capture":      "No microphone found.",
-                    "network":            "Voice recognition needs internet."
-                })[e.error] || ("Voice error: " + e.error);
+                    "not-allowed":        "{{ _('Microphone permission denied — allow it in the browser address bar.') }}",
+                    "service-not-allowed":"{{ _('Voice search blocked by the browser.') }}",
+                    "no-speech":          '{{ _("Didn\'t hear anything — tap the mic and try again.") }}',
+                    "audio-capture":      "{{ _('No microphone found.') }}",
+                    "network":            "{{ _('Voice recognition needs internet.') }}"
+                })[e.error] || ("{{ _('Voice error: ') }}" + e.error);
                 showStatus(msg, "error");
             };
         }
@@ -234,7 +234,7 @@
                         </li>
                         {% if current_user.is_authenticated %}
                         <li>
-                            <a href="{{ url_for('notification.inbox') }}" title="Notifications">
+                            <a href="{{ url_for('notification.inbox') }}" title="{{ _('Notifications') }}">
                                 <i class="lni lni-alarm"></i>
                                 <span class="cart-count dn-counter theme-bg js-notif-count{% if not nav_unread_notifications %} d-none{% endif %}">
                                     {{ nav_unread_notifications or 0 }}
@@ -264,13 +264,13 @@
             <div class="nav-menus-wrapper" style="transition-property: none;">
                 <ul class="nav-menu">
 
-                    <li><a href="/" class="sub-menu-item">Home</a></li>
+                    <li><a href="/" class="sub-menu-item">{{ _("Home") }}</a></li>
 
-                    <li><a href="/shop/" class="sub-menu-item">Shop</a></li>
+                    <li><a href="/shop/" class="sub-menu-item">{{ _("Shop") }}</a></li>
 
                     {% if nav_categories %}
                     <li class="relative parent-parent-menu-item">
-                        <a href="javascript:void(0);" class="home-link">Categories</a>
+                        <a href="javascript:void(0);" class="home-link">{{ _("Categories") }}</a>
                         <ul class="nav-dropdown nav-submenu">
                             {% for cat in nav_categories %}
                             <li><a href="{{ url_for('storefront.shop', category=cat.slug) }}"
@@ -281,20 +281,20 @@
                     {% endif %}
 
                     <li><a href="{{ url_for('storefront.flash_sales') }}" class="sub-menu-item">
-                        <i class="lni lni-bolt me-1"></i>Flash Sales</a></li>
+                        <i class="lni lni-bolt me-1"></i>{{ _("Flash Sales") }}</a></li>
 
-                    <li><a href="/sell/" class="sub-menu-item">Sell on SGT</a></li>
+                    <li><a href="/sell/" class="sub-menu-item">{{ _("Sell on SGT") }}</a></li>
 
                     <li class="relative parent-parent-menu-item">
-                        <a href="javascript:void(0);" class="home-link">Help</a>
+                        <a href="javascript:void(0);" class="home-link">{{ _("Help") }}</a>
                         <ul class="nav-dropdown nav-submenu">
-                            <li><a href="/about/" class="sub-menu-item">About Us</a></li>
-                            <li><a href="/contact/" class="sub-menu-item">Contact</a></li>
-                            <li><a href="/faq/" class="sub-menu-item">FAQs</a></li>
-                            <li><a href="/shipping/" class="sub-menu-item">Shipping Info</a></li>
-                            <li><a href="/returns/" class="sub-menu-item">Return Policy</a></li>
-                            <li><a href="/terms/" class="sub-menu-item">Terms &amp; Conditions</a></li>
-                            <li><a href="/privacy/" class="sub-menu-item">Privacy Policy</a></li>
+                            <li><a href="/about/" class="sub-menu-item">{{ _("About Us") }}</a></li>
+                            <li><a href="/contact/" class="sub-menu-item">{{ _("Contact") }}</a></li>
+                            <li><a href="/faq/" class="sub-menu-item">{{ _("FAQs") }}</a></li>
+                            <li><a href="/shipping/" class="sub-menu-item">{{ _("Shipping Info") }}</a></li>
+                            <li><a href="/returns/" class="sub-menu-item">{{ _("Return Policy") }}</a></li>
+                            <li><a href="/terms/" class="sub-menu-item">{{ _("Terms &amp; Conditions") }}</a></li>
+                            <li><a href="/privacy/" class="sub-menu-item">{{ _("Privacy Policy") }}</a></li>
                         </ul>
                     </li>
 
@@ -313,7 +313,7 @@
                     </li>
                     {% if current_user.is_authenticated %}
                     <li>
-                        <a href="{{ url_for('notification.inbox') }}" title="Notifications">
+                        <a href="{{ url_for('notification.inbox') }}" title="{{ _('Notifications') }}">
                             <i class="lni lni-alarm"></i>
                             <span class="cart-count dn-counter theme-bg js-notif-count{% if not nav_unread_notifications %} d-none{% endif %}">
                                 {{ nav_unread_notifications or 0 }}
