@@ -55,6 +55,8 @@
             <i class="bi bi-bar-chart me-2"></i>Reports</a>
         <a href="{{ url_for('admin.abandoned_carts') }}" class="{{ 'active' if 'abandoned' in ep }}">
             <i class="bi bi-cart-x me-2"></i>Abandoned Carts</a>
+        <a href="{{ url_for('static_pages.admin_list') }}" class="{{ 'active' if 'static_pages' in ep }}">
+            <i class="bi bi-file-text me-2"></i>Static Pages</a>
         <a href="{{ url_for('admin.settings') }}" class="{{ 'active' if 'setting' in ep }}">
             <i class="bi bi-gear me-2"></i>Settings</a>
         <a href="{{ url_for('admin.policy_violations') }}" class="{{ 'active' if 'policy' in ep }}">

@@ -1,0 +1,74 @@
+{% extends "admin/base.html" %}
+{% block title %}Static Pages{% endblock %}
+{% block heading %}Static Pages (Footer){% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <p class="text-muted mb-0">
+        Every page linked from the footer that isn't a Wave-1 polished template lives here.
+        Edit body, FAQ, related links and Table of Contents directly.
+        New rows are reachable instantly at <code>/{{ '{slug}' }}/</code>.
+    </p>
+    <a href="{{ url_for('static_pages.admin_create') }}" class="btn btn-primary btn-sm">
+        + New Static Page</a>
+</div>
+
+{% if pages %}
+<div class="border rounded bg-white">
+    <table class="table align-middle mb-0">
+        <thead class="table-light">
+            <tr>
+                <th>Section</th><th>Title</th><th>Slug</th>
+                <th>Version</th><th>Reviewed</th><th>Status</th><th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in pages %}
+            <tr>
+                <td><span class="badge bg-secondary">{{ p.section or 'Misc' }}</span></td>
+                <td>
+                    <div class="ft-medium">{{ p.title }}</div>
+                    {% if p.subtitle %}
+                    <div class="small text-muted">{{ p.subtitle[:80] }}{% if p.subtitle|length > 80 %}…{% endif %}</div>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="/{{ p.slug }}/" target="_blank" class="small">
+                        /{{ p.slug }}/ <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                </td>
+                <td class="small">{{ p.version or '—' }}</td>
+                <td class="small text-muted">
+                    {{ p.reviewed_at.strftime('%d %b %Y') if p.reviewed_at else '—' }}
+                </td>
+                <td>
+                    {% if p.is_published %}
+                    <span class="badge bg-success">Published</span>
+                    {% else %}
+                    <span class="badge bg-warning text-dark">Draft</span>
+                    {% endif %}
+                </td>
+                <td class="text-end text-nowrap">
+                    <a href="{{ url_for('static_pages.admin_edit', page_id=p.id) }}"
+                       class="btn btn-sm btn-outline-dark">Edit</a>
+                    <form method="post"
+                          action="{{ url_for('static_pages.admin_delete', page_id=p.id) }}"
+                          class="d-inline"
+                          onsubmit="return confirm('Delete this page?');">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="border rounded bg-white p-5 text-center text-muted">
+    No static pages yet — run <code>flask seed-static-pages</code> on the server,
+    or click "+ New Static Page" to create one.
+</div>
+{% endif %}
+
+{% endblock %}

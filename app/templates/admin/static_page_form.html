@@ -1,0 +1,109 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ 'Edit' if page else 'New' }} Static Page{% endblock %}
+{% block heading %}{{ 'Edit' if page else 'New' }} Static Page{% endblock %}
+{% block content %}
+
+<form method="post" class="border rounded bg-white p-4" style="max-width:960px">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label ft-medium">Title</label>
+            <input type="text" name="title" class="form-control" required
+                   value="{{ (page.title if page else '') }}">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label ft-medium">
+                Slug <span class="text-muted small">— URL path without leading slash</span>
+            </label>
+            <input type="text" name="slug" class="form-control" required
+                   placeholder="e.g. help/how-to-order, sell/payouts, careers"
+                   value="{{ (page.slug if page else '') }}">
+        </div>
+
+        <div class="col-md-8">
+            <label class="form-label ft-medium">Subtitle / tagline</label>
+            <input type="text" name="subtitle" class="form-control" maxlength="400"
+                   value="{{ (page.subtitle if page else '') or '' }}">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label ft-medium">Section</label>
+            <select name="section" class="form-select">
+                {% set current_section = page.section if page else 'Misc' %}
+                {% for sec in ['Legal', 'Customer Help', 'Seller Resources',
+                               'Trust & Safety', 'Company', 'Misc'] %}
+                <option value="{{ sec }}" {{ 'selected' if current_section == sec }}>{{ sec }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label ft-medium">Contact email</label>
+            <input type="email" name="contact_email" class="form-control"
+                   value="{{ (page.contact_email if page else 'support@sgtcart.com') }}">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label ft-medium">Version</label>
+            <input type="text" name="version" class="form-control"
+                   value="{{ (page.version if page else 'v1.0') }}">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label ft-medium">Sort order</label>
+            <input type="number" name="sort_order" class="form-control"
+                   value="{{ (page.sort_order if page else 0) }}">
+        </div>
+
+        <div class="col-12">
+            <label class="form-label ft-medium">Body (HTML)</label>
+            <textarea name="body_html" class="form-control" rows="14"
+                      style="font-family:monospace;font-size:13px;">{{ (page.body_html if page else '') or '' }}</textarea>
+            <div class="form-text">
+                Raw HTML — <code>&lt;h2 id="anchor"&gt;</code>, <code>&lt;p&gt;</code>,
+                <code>&lt;ul&gt;</code>, <code>&lt;table&gt;</code>, <code>&lt;blockquote&gt;</code>
+                are all styled by the page shell.
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label ft-medium">Table of Contents (JSON array)</label>
+            <textarea name="toc_json" class="form-control" rows="6"
+                      style="font-family:monospace;font-size:12px;"
+                      placeholder='[{"anchor":"scope","label":"1. Scope"}]'>{{ (page.toc_json if page else '[]') or '[]' }}</textarea>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label ft-medium">FAQ items (JSON array)</label>
+            <textarea name="faq_json" class="form-control" rows="6"
+                      style="font-family:monospace;font-size:12px;"
+                      placeholder='[{"q":"...","a":"..."}]'>{{ (page.faq_json if page else '[]') or '[]' }}</textarea>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label ft-medium">Related pages (JSON array)</label>
+            <textarea name="related_json" class="form-control" rows="6"
+                      style="font-family:monospace;font-size:12px;"
+                      placeholder='[{"href":"/terms/","title":"Terms","desc":"..."}]'>{{ (page.related_json if page else '[]') or '[]' }}</textarea>
+        </div>
+
+        <div class="col-12">
+            <label class="d-inline-flex align-items-center">
+                <input type="checkbox" name="is_published" class="form-check-input me-2"
+                       {{ 'checked' if (page is none) or page.is_published }}>
+                <span class="ft-medium">Published</span>
+            </label>
+            <span class="text-muted small ms-2">
+                Unpublish to hide the page from the public site without deleting it.
+            </span>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <button class="btn btn-primary">Save page</button>
+        {% if page %}
+        <a href="/{{ page.slug }}/" target="_blank" class="btn btn-outline-dark ms-1">
+            View public page <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+        {% endif %}
+        <a href="{{ url_for('static_pages.admin_list') }}" class="btn btn-link">Cancel</a>
+    </div>
+</form>
+
+{% endblock %}

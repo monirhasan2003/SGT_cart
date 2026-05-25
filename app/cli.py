@@ -593,6 +593,52 @@ def register_cli(app):
         n = ai_summary_service.refresh_all_published()
         click.echo(f"  Refreshed AI summaries for {n} published product(s).")
 
+    @app.cli.command("seed-static-pages")
+    @click.option("--overwrite", is_flag=True,
+                  help="Replace content for slugs that already exist.")
+    def seed_static_pages(overwrite):
+        """Seed the 16 footer pages that were 404'ing.
+
+        Each row is admin-editable from /admin/static-pages/. Safe to
+        re-run — existing rows are kept unless --overwrite is passed.
+        """
+        import json as _json
+        from datetime import datetime as _dt
+        from app.models.static_page import StaticPage
+        from app.static_page_content import FOOTER_PAGES
+
+        added = updated = skipped = 0
+        for entry in FOOTER_PAGES:
+            slug = entry["slug"]
+            row = StaticPage.query.filter_by(slug=slug).first()
+            if row is not None and not overwrite:
+                skipped += 1
+                continue
+            if row is None:
+                row = StaticPage(slug=slug)
+                db.session.add(row)
+                added += 1
+            else:
+                updated += 1
+            row.title = entry["title"]
+            row.subtitle = entry.get("subtitle")
+            row.section = entry.get("section", "Misc")
+            row.contact_email = entry.get(
+                "contact_email", "support@sgtcart.com")
+            row.body_html = entry["body_html"]
+            row.toc_json = _json.dumps(entry.get("toc", []), ensure_ascii=False)
+            row.faq_json = _json.dumps(entry.get("faq", []), ensure_ascii=False)
+            row.related_json = _json.dumps(
+                entry.get("related", []), ensure_ascii=False)
+            row.version = entry.get("version", "v1.0")
+            row.reviewed_at = _dt.utcnow()
+            row.is_published = True
+            row.sort_order = entry.get("sort_order", 0)
+        db.session.commit()
+        click.echo(
+            f"  Static pages — {added} added, {updated} updated, "
+            f"{skipped} skipped (already existed).")
+
     @app.cli.command("seed-district-eta")
     def seed_district_eta():
         """Seed the district delivery-ETA table (Phase 15 D-9)."""

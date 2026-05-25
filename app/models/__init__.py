@@ -65,4 +65,5 @@ from .policy import (  # noqa: F401
     SELLER_VIOLATION_THRESHOLD,
 )
 from .stock import StockNotification  # noqa: F401
+from .static_page import StaticPage  # noqa: F401
 from .district import DistrictEta  # noqa: F401

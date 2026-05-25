@@ -1,0 +1,59 @@
+{# Public renderer for admin-editable StaticPage rows.
+
+   Re-uses the same shell as the Wave-1 hardcoded pages so the visual
+   style is identical — ToC, body, FAQ, related, contact card, version
+   footer all driven by the DB row. #}
+{% extends "pages/static/_layout.html" %}
+
+{% set page_title       = page.title %}
+{% set page_subtitle    = page.subtitle %}
+{% set page_section     = page.section %}
+{% set page_contact     = page.contact_email %}
+{% set page_version     = page.version %}
+{% set page_reviewed_at = page.reviewed_at.strftime('%d %b %Y') if page.reviewed_at %}
+
+{% block page_toc %}
+    {% for item in page.toc_items %}
+        <li><a href="#{{ item.anchor }}">{{ item.label }}</a></li>
+    {% endfor %}
+{% endblock %}
+
+{% block page_body %}
+    {{ page.body_html|safe }}
+{% endblock %}
+
+{% block page_faq %}
+    {% for item in page.faq_items %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="dbFaq{{ loop.index }}">
+                <button class="accordion-button collapsed" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#dbFaqBody{{ loop.index }}"
+                        aria-expanded="false"
+                        aria-controls="dbFaqBody{{ loop.index }}">
+                    {{ item.q }}
+                </button>
+            </h2>
+            <div id="dbFaqBody{{ loop.index }}"
+                 class="accordion-collapse collapse"
+                 aria-labelledby="dbFaq{{ loop.index }}"
+                 data-bs-parent="#docFaqAccordion">
+                <div class="accordion-body small text-muted">
+                    {{ item.a|safe }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block page_related %}
+    {% for item in page.related_items %}
+        <div class="col-md-4">
+            <a href="{{ item.href }}"
+               class="d-block border rounded p-3 text-decoration-none h-100">
+                <div class="ft-bold text-dark mb-1">{{ item.title }}</div>
+                <div class="small text-muted">{{ item.desc }}</div>
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}

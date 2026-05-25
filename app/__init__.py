@@ -200,6 +200,12 @@ def create_app(config_name=None):
     app.register_blueprint(api_blueprint)
     csrf.exempt(api_blueprint)
 
+    # Admin-editable footer pages. Registered LAST so the static_pages
+    # catch-all `<path:slug>/` route only matches when no specific
+    # `pages.py` / `legal.py` / other route handled the request.
+    from .blueprints.static_pages import static_pages as static_pages_blueprint
+    app.register_blueprint(static_pages_blueprint)
+
     # --- Real-time socket handlers (Phase 8) ---
     from .sockets import register_socket_handlers
     register_socket_handlers()
