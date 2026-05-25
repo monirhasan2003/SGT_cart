@@ -593,6 +593,84 @@ def register_cli(app):
         n = ai_summary_service.refresh_all_published()
         click.echo(f"  Refreshed AI summaries for {n} published product(s).")
 
+    @app.cli.command("optimize-banners")
+    @click.option("--max-width", default=1600, type=int,
+                  help="Cap the banner width in pixels.")
+    @click.option("--quality", default=85, type=int,
+                  help="JPEG quality (1-95).")
+    def optimize_banners(max_width, quality):
+        """Re-compress every HomepageBanner image in-place.
+
+        Use after introducing the upload-time resizer so that already
+        uploaded multi-megabyte PNG banners get shrunk to the same
+        bandwidth budget as new uploads. Updates the DB row to point at
+        the new file when the format changes (PNG -> JPG)."""
+        from PIL import Image, ImageOps
+        from app.models.banner import HomepageBanner
+
+        uploads_root = app.config["UPLOAD_FOLDER"]
+        static_root = os.path.join(app.root_path, "static")
+
+        banners = HomepageBanner.query.all()
+        shrunk = unchanged = missing = errors = 0
+        for b in banners:
+            if not b.image_path:
+                continue
+            src_path = os.path.join(static_root, b.image_path)
+            if not os.path.exists(src_path):
+                missing += 1
+                continue
+            old_size = os.path.getsize(src_path)
+            try:
+                img = Image.open(src_path)
+                img = ImageOps.exif_transpose(img)
+                has_alpha = img.mode in ("RGBA", "LA") or (
+                    img.mode == "P" and "transparency" in img.info)
+                use_jpeg = not has_alpha
+                if use_jpeg and img.mode != "RGB":
+                    img = img.convert("RGB")
+                w, h = img.size
+                if w > max_width:
+                    h = int(h * (max_width / w))
+                    w = max_width
+                    img = img.resize((w, h), Image.LANCZOS)
+
+                # Always keep files inside uploads/banners/ regardless of
+                # where they currently live; that's where new admin
+                # uploads go via save_image_upload.
+                import uuid as _uuid
+                out_dir = os.path.join(uploads_root, "banners")
+                os.makedirs(out_dir, exist_ok=True)
+                out_ext = "jpg" if use_jpeg else "png"
+                fname = f"{_uuid.uuid4().hex}.{out_ext}"
+                out_path = os.path.join(out_dir, fname)
+                save_kwargs = ({"format": "JPEG", "quality": quality,
+                                "optimize": True, "progressive": True}
+                               if use_jpeg
+                               else {"format": "PNG", "optimize": True})
+                img.save(out_path, **save_kwargs)
+                new_size = os.path.getsize(out_path)
+
+                if new_size >= old_size:
+                    os.remove(out_path)
+                    unchanged += 1
+                    continue
+
+                b.image_path = f"uploads/banners/{fname}"
+                shrunk += 1
+                click.echo(
+                    f"  {b.kind:5}  {old_size // 1024:>5} KB -> "
+                    f"{new_size // 1024:>5} KB  ({b.headline or '(no headline)'})"
+                )
+            except Exception as exc:  # noqa: BLE001 — keep going
+                errors += 1
+                click.echo(f"  ! {src_path} — {exc}")
+        db.session.commit()
+        click.echo(
+            f"Banners — {shrunk} shrunk, {unchanged} already small enough, "
+            f"{missing} missing, {errors} errors."
+        )
+
     @app.cli.command("seed-static-pages")
     @click.option("--overwrite", is_flag=True,
                   help="Replace content for slugs that already exist.")

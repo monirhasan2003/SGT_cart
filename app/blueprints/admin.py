@@ -43,7 +43,7 @@ from app.services import flash_sale_service, abandoned_cart_service, policy_serv
 from app.services.payout_service import process_due_payouts
 from app.services.analytics_service import platform_metrics
 from app.utils.decorators import admin_required
-from app.utils.uploads import save_upload
+from app.utils.uploads import save_upload, save_image_upload
 
 admin = Blueprint("admin", __name__, url_prefix="/admin")
 
@@ -841,7 +841,10 @@ def _read_banner_form(form, files, existing=None):
         errors.append("An image is required for a new banner.")
     image_path = existing.image_path if existing else None
     if image_file and getattr(image_file, "filename", ""):
-        saved = save_upload(image_file, "banners")
+        # Hero banners display at ~1600px wide max — resize + JPEG-compress
+        # at upload time so we don't ship 5-10 MB camera-original PNGs.
+        saved = save_image_upload(image_file, "banners",
+                                  max_width=1600, quality=85)
         if saved:
             image_path = saved
         else:

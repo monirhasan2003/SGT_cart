@@ -58,7 +58,10 @@
 					<a href="{{ b.button_url or '#' }}" class="d-block position-relative">
 						<img src="{{ url_for('static', filename=b.image_path) }}"
 						     class="d-block w-100" alt="{{ b.headline or '' }}"
-						     style="max-height:440px;object-fit:cover;">
+						     width="1600" height="440"
+						     {% if loop.first %}fetchpriority="high" loading="eager"
+						     {% else %}loading="lazy" decoding="async"{% endif %}
+						     style="max-height:440px;object-fit:cover;background:#e5e7eb;">
 						{% if b.headline or b.subheadline or b.button_text %}
 						<div class="carousel-caption text-start hero-caption">
 							{% if b.headline %}
