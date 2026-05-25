@@ -61,19 +61,13 @@
                    class="form-control form-control-lg me-2"
                    placeholder="Search products, brands, categories…">
             <datalist id="headerSuggest"></datalist>
-            <div class="btn-group me-2">
-                <button type="button" id="headerMic" class="btn btn-lg header-mic-btn"
-                        title="Search by voice — speak your query">
-                    <i class="bi bi-mic-fill"></i></button>
-                <button type="button" id="headerMicLang"
-                        class="btn btn-lg header-mic-lang-btn"
-                        title="Toggle recognition language">
-                    <span id="headerMicLangLabel">EN</span></button>
-            </div>
+            <button type="button" id="headerMic" class="btn header-mic-btn me-2"
+                    title="Search by voice — speak your query">
+                <i class="bi bi-mic-fill"></i></button>
             <a href="{{ url_for('storefront.search_by_image') }}"
-               class="btn btn-lg me-2 header-cam-btn" title="Search by image — upload a photo">
+               class="btn header-cam-btn me-2" title="Search by image — upload a photo">
                 <i class="bi bi-camera-fill"></i></a>
-            <button type="submit" class="btn btn-dark btn-lg px-4">
+            <button type="submit" class="btn btn-dark px-3">
                 <i class="bi bi-search"></i></button>
         </form>
         <div id="headerMicStatus" class="small mt-1 d-none"
@@ -83,35 +77,34 @@
     </div>
 </div>
 <style>
-    /* Voice + image search buttons — distinct colours so each action
-       is instantly recognisable in the search bar. */
+    /* Voice + image search buttons — compact, square, icon-only.
+       Matched height with the search input so the row stays tidy. */
+    .header-mic-btn, .header-cam-btn {
+        width: 38px; height: 38px; padding: 0;
+        display: inline-flex; align-items: center; justify-content: center;
+        font-size: 16px; line-height: 1; transition: all .15s;
+    }
     .header-mic-btn {
-        background: #dbeafe; color: #1d4ed8;
-        border: 1px solid #93c5fd; transition: all .15s;
+        background: #dbeafe; color: #1d4ed8; border: 1px solid #93c5fd;
     }
     .header-mic-btn:hover, .header-mic-btn.active {
         background: #1d4ed8; color: #fff; border-color: #1d4ed8;
     }
-    .header-mic-btn.active {
-        animation: micPulse 1.2s infinite;
-    }
+    .header-mic-btn.active { animation: micPulse 1.2s infinite; }
     @keyframes micPulse {
         0%   { box-shadow: 0 0 0 0 rgba(29, 78, 216, .55); }
-        70%  { box-shadow: 0 0 0 12px rgba(29, 78, 216, 0); }
+        70%  { box-shadow: 0 0 0 10px rgba(29, 78, 216, 0); }
         100% { box-shadow: 0 0 0 0 rgba(29, 78, 216, 0); }
     }
-    .header-mic-lang-btn {
-        background: #e0e7ff; color: #1d4ed8;
-        border: 1px solid #93c5fd; font-weight: 700; font-size: 13px;
-        padding-left: 8px; padding-right: 8px;
-    }
     .header-cam-btn {
-        background: #fef3c7; color: #b45309;
-        border: 1px solid #fcd34d; transition: all .15s;
+        background: #fef3c7; color: #b45309; border: 1px solid #fcd34d;
     }
     .header-cam-btn:hover {
         background: #b45309; color: #fff; border-color: #b45309;
     }
+    /* The search input is .form-control-lg — shrink it to match the
+       38px square action buttons, otherwise the row looks lopsided. */
+    #headerSearch { height: 38px; font-size: 14px; }
 </style>
 <script>
     (function () {
@@ -136,11 +129,13 @@
             }, 200);
         });
         // Voice search via browser Web Speech API.
+        // Recognition language tracks the page UI locale — the top-bar
+        // language switcher (English / বাংলা) controls both.
         var mic = document.getElementById("headerMic");
-        var micLang = document.getElementById("headerMicLang");
-        var micLangLabel = document.getElementById("headerMicLangLabel");
         var status = document.getElementById("headerMicStatus");
         var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        var pageLocale = "{{ current_locale }}";
+        var lang = pageLocale === "bn" ? "bn-BD" : "en-US";
 
         function showStatus(text, kind) {
             if (!status) return;
@@ -161,27 +156,10 @@
             mic.disabled = true;
             mic.title = "Voice search needs Chrome, Edge or Safari";
             mic.style.opacity = .5;
-            micLang.style.display = "none";
             mic.addEventListener("click", function () {
                 showStatus("Voice search needs Chrome, Edge or Safari.", "error");
             });
         } else {
-            // Toggle EN <-> BN recognition language.
-            var lang = localStorage.getItem("sgt_voice_lang") || "en-US";
-            function applyLang() {
-                micLangLabel.textContent = lang === "bn-BD" ? "বাং" : "EN";
-                micLang.title = lang === "bn-BD"
-                    ? "Bangla recognition (tap to switch to English)"
-                    : "English recognition (tap to switch to Bangla)";
-            }
-            applyLang();
-            micLang.addEventListener("click", function () {
-                lang = lang === "bn-BD" ? "en-US" : "bn-BD";
-                localStorage.setItem("sgt_voice_lang", lang);
-                applyLang();
-                showStatus("Voice language: " + (lang === "bn-BD" ? "বাংলা" : "English"), "ok");
-            });
-
             var rec = new SR();
             rec.interimResults = false;
             rec.maxAlternatives = 1;

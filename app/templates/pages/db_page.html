@@ -48,11 +48,11 @@
 
 {% block page_related %}
     {% for item in page.related_items %}
-        <div class="col-md-4">
+        <div class="col-md-6">
             <a href="{{ item.href }}"
-               class="d-block border rounded p-3 text-decoration-none h-100">
-                <div class="ft-bold text-dark mb-1">{{ item.title }}</div>
-                <div class="small text-muted">{{ item.desc }}</div>
+               class="d-block border rounded p-2 text-dark text-decoration-none">
+                <div class="ft-medium small">{{ item.title }}</div>
+                <div class="text-muted small">{{ item.desc }}</div>
             </a>
         </div>
     {% endfor %}
