@@ -624,11 +624,18 @@ def register_cli(app):
             try:
                 img = Image.open(src_path)
                 img = ImageOps.exif_transpose(img)
-                has_alpha = img.mode in ("RGBA", "LA") or (
-                    img.mode == "P" and "transparency" in img.info)
-                use_jpeg = not has_alpha
-                if use_jpeg and img.mode != "RGB":
-                    img = img.convert("RGB")
+                # Banners are full-bleed hero images — transparency is
+                # meaningless on the homepage, so flatten alpha onto a
+                # white background and always save as JPEG. That brings
+                # 6-7 MB RGBA PNGs down to ~150-300 KB.
+                use_jpeg = True
+                if img.mode != "RGB":
+                    if img.mode in ("RGBA", "LA"):
+                        bg = Image.new("RGB", img.size, (255, 255, 255))
+                        bg.paste(img, mask=img.split()[-1])
+                        img = bg
+                    else:
+                        img = img.convert("RGB")
                 w, h = img.size
                 if w > max_width:
                     h = int(h * (max_width / w))

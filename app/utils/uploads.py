@@ -56,7 +56,8 @@ def save_upload(file_storage, subdir):
 
 def save_image_upload(file_storage, subdir,
                       max_width=1600, max_height=None,
-                      quality=85, prefer_jpeg=True):
+                      quality=85, prefer_jpeg=True,
+                      force_jpeg=False, jpeg_bg=(255, 255, 255)):
     """Save an uploaded image, resized + recompressed to a sane size.
 
     Admins routinely upload 5–10 MB photos straight from a camera or
@@ -97,10 +98,18 @@ def save_image_upload(file_storage, subdir,
 
     has_alpha = img.mode in ("RGBA", "LA") or (
         img.mode == "P" and "transparency" in img.info)
-    use_jpeg = prefer_jpeg and not has_alpha
+    use_jpeg = force_jpeg or (prefer_jpeg and not has_alpha)
 
     if use_jpeg and img.mode != "RGB":
-        img = img.convert("RGB")
+        # Flatten alpha onto a solid background so the resulting JPEG
+        # doesn't end up with black artefacts where the source was
+        # transparent.
+        if img.mode in ("RGBA", "LA"):
+            bg = Image.new("RGB", img.size, jpeg_bg)
+            bg.paste(img, mask=img.split()[-1])
+            img = bg
+        else:
+            img = img.convert("RGB")
 
     # Downscale to the cap while preserving aspect ratio.
     w, h = img.size

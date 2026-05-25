@@ -844,7 +844,8 @@ def _read_banner_form(form, files, existing=None):
         # Hero banners display at ~1600px wide max — resize + JPEG-compress
         # at upload time so we don't ship 5-10 MB camera-original PNGs.
         saved = save_image_upload(image_file, "banners",
-                                  max_width=1600, quality=85)
+                                  max_width=1600, quality=85,
+                                  force_jpeg=True)
         if saved:
             image_path = saved
         else:
