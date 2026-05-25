@@ -257,4 +257,10 @@ def create_app(config_name=None):
     # --- Jinja helpers ---
     app.jinja_env.filters["slugify"] = slugify
 
+    # `{{ obj|tr('title') }}` -> locale-aware field picker. See
+    # app/utils/i18n.py for the lookup rules. Use this wherever a
+    # template needs a DB-stored string in the current locale.
+    from .utils.i18n import tr as _tr_filter
+    app.jinja_env.filters["tr"] = _tr_filter
+
     return app

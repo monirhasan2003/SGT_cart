@@ -6,6 +6,7 @@ stores Firebase Cloud Messaging tokens so the backend can push to the apps.
 from datetime import datetime
 
 from app.extensions import db
+from app.utils.i18n import localized
 
 # Notification categories — used to pick an icon and a destination.
 NOTIF_ORDER = "order"        # order placed / status changed
@@ -32,7 +33,9 @@ class Notification(db.Model):
     )
     kind = db.Column(db.String(20), nullable=False, default=NOTIF_SYSTEM)
     title = db.Column(db.String(160), nullable=False)
+    title_bn = db.Column(db.String(160))
     body = db.Column(db.String(500))
+    body_bn = db.Column(db.String(500))
     url = db.Column(db.String(255))            # in-app link to open
     is_read = db.Column(db.Boolean, nullable=False, default=False, index=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, index=True)
@@ -40,6 +43,14 @@ class Notification(db.Model):
     user = db.relationship(
         "User", backref=db.backref("notifications", cascade="all, delete-orphan")
     )
+
+    @property
+    def localized_title(self):
+        return localized(self.title, self.title_bn)
+
+    @property
+    def localized_body(self):
+        return localized(self.body, self.body_bn)
 
     def __repr__(self):
         return f"<Notification {self.id} user={self.user_id} {self.kind}>"

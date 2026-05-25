@@ -10,6 +10,7 @@ be enforced.
 from datetime import datetime
 
 from app.extensions import db
+from app.utils.i18n import localized
 
 COUPON_PLATFORM = "platform"
 COUPON_VENDOR = "vendor"
@@ -28,6 +29,7 @@ class Coupon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String(40), unique=True, nullable=False, index=True)
     description = db.Column(db.String(200))
+    description_bn = db.Column(db.String(200))
 
     scope = db.Column(db.String(20), nullable=False, default=COUPON_PLATFORM)
     # Set for vendor coupons — the only store the coupon is valid on.
@@ -58,6 +60,10 @@ class Coupon(db.Model):
     def is_vendor_coupon(self):
         return self.scope == COUPON_VENDOR
 
+    @property
+    def localized_description(self):
+        return localized(self.description, self.description_bn)
+
     def __repr__(self):
         return f"<Coupon {self.code} ({self.scope})>"
 
@@ -75,8 +81,10 @@ class FlashSale(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(160), nullable=False)
+    title_bn = db.Column(db.String(160))
     slug = db.Column(db.String(180), unique=True, nullable=False, index=True)
     description = db.Column(db.Text)
+    description_bn = db.Column(db.Text)
     banner = db.Column(db.String(255))
 
     # Seller-led flash sales (Phase 15 Chunk C). Null = admin/platform sale.
@@ -96,6 +104,14 @@ class FlashSale(db.Model):
     @property
     def is_seller_owned(self):
         return self.vendor_id is not None
+
+    @property
+    def localized_title(self):
+        return localized(self.title, self.title_bn)
+
+    @property
+    def localized_description(self):
+        return localized(self.description, self.description_bn)
 
     def __repr__(self):
         return f"<FlashSale {self.slug}>"

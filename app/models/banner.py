@@ -11,6 +11,7 @@ optional button. Admins manage them from `/admin/banners/`.
 from datetime import datetime
 
 from app.extensions import db
+from app.utils.i18n import localized
 
 BANNER_HERO = "hero"
 BANNER_STRIP = "strip"
@@ -24,14 +25,29 @@ class HomepageBanner(db.Model):
     kind = db.Column(db.String(10), nullable=False, default=BANNER_HERO, index=True)
 
     image_path = db.Column(db.String(255), nullable=False)   # relative to /static/
-    headline = db.Column(db.String(160))
+    headline = db.Column(db.String(160))                     # English (canonical)
+    headline_bn = db.Column(db.String(160))                  # Bangla (optional)
     subheadline = db.Column(db.String(300))
+    subheadline_bn = db.Column(db.String(300))
     button_text = db.Column(db.String(60))
+    button_text_bn = db.Column(db.String(60))
     button_url = db.Column(db.String(255))
 
     sort_order = db.Column(db.Integer, nullable=False, default=0)
     is_active = db.Column(db.Boolean, nullable=False, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    @property
+    def localized_headline(self):
+        return localized(self.headline, self.headline_bn)
+
+    @property
+    def localized_subheadline(self):
+        return localized(self.subheadline, self.subheadline_bn)
+
+    @property
+    def localized_button_text(self):
+        return localized(self.button_text, self.button_text_bn)
 
     def __repr__(self):
         return f"<HomepageBanner {self.id} {self.kind}>"

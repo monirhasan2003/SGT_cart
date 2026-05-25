@@ -50,11 +50,16 @@ class Brand(db.Model):
     __tablename__ = "brands"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), nullable=False)
+    name = db.Column(db.String(120), nullable=False)         # English (canonical)
+    name_bn = db.Column(db.String(120))                       # Bangla (optional)
     slug = db.Column(db.String(150), unique=True, nullable=False, index=True)
     logo = db.Column(db.String(255))
     is_active = db.Column(db.Boolean, nullable=False, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    @property
+    def localized_name(self):
+        return localized(self.name, self.name_bn)
 
     def __repr__(self):
         return f"<Brand {self.slug}>"
@@ -245,13 +250,23 @@ class ProductSpec(db.Model):
         db.Integer, db.ForeignKey("products.id"), nullable=False, index=True
     )
     label = db.Column(db.String(120), nullable=False)
+    label_bn = db.Column(db.String(120))
     value = db.Column(db.String(500), nullable=False)
+    value_bn = db.Column(db.String(500))
     sort_order = db.Column(db.Integer, nullable=False, default=0)
 
     product = db.relationship(
         "Product", backref=db.backref(
             "specs", cascade="all, delete-orphan", order_by="ProductSpec.sort_order"),
     )
+
+    @property
+    def localized_label(self):
+        return localized(self.label, self.label_bn)
+
+    @property
+    def localized_value(self):
+        return localized(self.value, self.value_bn)
 
     def __repr__(self):
         return f"<ProductSpec {self.id} {self.label}>"
