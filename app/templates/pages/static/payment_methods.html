@@ -1,0 +1,172 @@
+{% extends "pages/static/_layout.html" %}
+{% set page_subtitle = "Every way you can pay on SGT Cart — Cash on Delivery, mobile wallets, cards, reward points." %}
+
+{% block page_toc %}
+<li><a href="#overview">1. Overview &amp; currency</a></li>
+<li><a href="#cod">2. Cash on Delivery</a></li>
+<li><a href="#bkash-nagad">3. bKash &amp; Nagad mobile wallets</a></li>
+<li><a href="#card">4. Card payments (Visa, MasterCard, AMEX)</a></li>
+<li><a href="#points-wallet">5. Reward Points &amp; SGT Wallet</a></li>
+<li><a href="#security">6. Security &amp; failed payments</a></li>
+{% endblock %}
+
+{% block page_body %}
+
+<p class="lead small">
+	SGT Cart supports every major payment channel used in Bangladesh.
+	Choose the one that suits you at checkout — your selection is saved
+	per Order, not stored as a card on file, unless you explicitly opt in.
+	All transactions are denominated in <strong>Bangladeshi Taka (BDT, Tk)</strong>.
+</p>
+
+<h2 id="overview">1. Overview &amp; currency</h2>
+<table>
+	<tr><th>Method</th><th>Fee to customer</th><th>Best for</th></tr>
+	<tr><td>Cash on Delivery</td><td>Tk 20 service fee (waived above Tk 1,000)</td><td>First-time buyers, cash-preferring areas</td></tr>
+	<tr><td>bKash</td><td>None (SGT absorbs the gateway fee)</td><td>Fast prepaid orders, instant refunds</td></tr>
+	<tr><td>Nagad</td><td>None</td><td>Same as bKash</td></tr>
+	<tr><td>Visa / MasterCard / AMEX / Discover</td><td>None for the buyer</td><td>Higher-value orders, frequent shoppers</td></tr>
+	<tr><td>SGT Cart Wallet credit</td><td>None</td><td>Refunds, returning customers</td></tr>
+	<tr><td>Reward Points</td><td>None</td><td>Stack with another method</td></tr>
+</table>
+<p>
+	All prices on the Platform are <strong>VAT-inclusive</strong>. The number
+	you see at checkout is what you pay — no hidden top-ups.
+</p>
+
+<h2 id="cod">2. Cash on Delivery (COD)</h2>
+<p>
+	Pay in cash to the courier when the parcel arrives. Available in most
+	districts in Bangladesh, subject to:
+</p>
+<ul>
+	<li><strong>Maximum order value:</strong> Tk 25,000 per Order. Higher-value Orders require prepayment.</li>
+	<li><strong>Service fee:</strong> Tk 20 per Sub-Order, waived for Orders ≥ Tk 1,000.</li>
+	<li><strong>Address eligibility:</strong> Some remote areas may be excluded; the COD option is hidden at checkout when unavailable.</li>
+	<li><strong>First-time buyer review:</strong> For very new accounts, COD may be restricted on the first 1-2 Orders to reduce fraud risk.</li>
+</ul>
+<p>
+	The courier carries a printed invoice. You inspect the parcel for
+	obvious damage, pay the exact amount (or use the courier's change
+	float), and receive a receipt. <strong>Open the parcel only after payment</strong>
+	— the courier cannot accept the parcel back at the door.
+</p>
+<p>
+	If you find an issue after opening, follow the
+	<a href="/returns/">Returns</a> flow for refund or replacement.
+</p>
+
+<h2 id="bkash-nagad">3. bKash &amp; Nagad mobile wallets</h2>
+<p>The two biggest mobile-money providers in Bangladesh, both supported:</p>
+<ol>
+	<li>At checkout, select <strong>bKash</strong> or <strong>Nagad</strong>.</li>
+	<li>Click <em>Confirm &amp; pay</em>. You're redirected to the wallet's secure page.</li>
+	<li>Enter your mobile number and one-time PIN sent to your phone (we never see your wallet PIN).</li>
+	<li>On success you return to SGT Cart with the Order confirmation.</li>
+</ol>
+<p>
+	If you abandon the payment or it fails, the Order remains in
+	<strong>"Payment pending"</strong> state for 30 minutes — you can retry
+	from the Order page without losing your cart. After 30 minutes the
+	Order is cancelled and any reward points / coupon are restored.
+</p>
+<p>
+	Refunds to bKash / Nagad land in the <strong>same mobile-wallet
+	number</strong>. If your number has changed, contact
+	<a href="mailto:support@sgtcart.com">support@sgtcart.com</a> with proof
+	(KYC screenshot) to update before the refund is initiated.
+</p>
+
+<h2 id="card">4. Card payments (Visa, MasterCard, AMEX, Discover)</h2>
+<p>
+	Card payments are processed by <strong>SSLCommerz</strong>, a PCI-DSS-certified
+	gateway. SGT Cart <strong>never sees your full card number, CVV or 3D-Secure PIN</strong>.
+</p>
+<ul>
+	<li>Cards issued by any Bangladesh-licensed bank are accepted.</li>
+	<li>International-issued cards: accepted for most product categories. A small set (high-value electronics, gold, gift cards) may be restricted by SSLCommerz risk rules.</li>
+	<li><strong>Save card for next time:</strong> SSLCommerz can tokenise your card for one-tap subsequent payments. The token, not the number, is what's stored — and you can delete it from <a href="/profile-info/">Account → Payment Methods</a> any time.</li>
+	<li><strong>3D-Secure (OTP):</strong> Most banks now require an OTP from your phone before the charge completes. Have your phone ready.</li>
+</ul>
+<p>
+	Failed card payments do not place the Order. Card authorisations that
+	expire after a failed checkout are released by your bank within 5-7 days.
+</p>
+
+<h2 id="points-wallet">5. Reward Points &amp; SGT Wallet</h2>
+<p>
+	Both are SGT Cart-internal balances — no external transfer involved,
+	no fee.
+</p>
+<h3>Reward Points</h3>
+<ul>
+	<li>Earned when a Sub-Order is delivered, at the rate disclosed on the
+		<a href="/help/rewards/">Rewards</a> page.</li>
+	<li>Each point = Tk 1 at checkout. You can use up to your full balance
+		on any Order, subject to a cap of <strong>30% of the cart subtotal</strong>
+		so cash never goes to zero.</li>
+	<li>Points and cash can be combined in the same checkout.</li>
+	<li>Points have no cash-out value — they only redeem against Orders.</li>
+</ul>
+<h3>SGT Cart Wallet</h3>
+<ul>
+	<li>Credit balance created when you accept a refund as Wallet credit (instant) or when SGT Cart issues a goodwill / promotional credit.</li>
+	<li>Spends like cash — no 30% cap, no expiry.</li>
+	<li>Not withdrawable to bank / bKash. It's purely Platform credit.</li>
+</ul>
+
+<h2 id="security">6. Security &amp; failed payments</h2>
+<ul>
+	<li>The Platform is HTTPS-only (TLS 1.2+) on every page and every API call.</li>
+	<li>Card data goes directly from your browser to SSLCommerz over an iframe. SGT Cart's servers never receive it.</li>
+	<li>Mobile-wallet PINs are entered on the wallet's own page, not ours.</li>
+	<li>All payment events are logged with an idempotency key, so a refresh or duplicate-submit cannot double-charge you.</li>
+	<li>Any unusual activity (multiple failed cards, unrecognised device) may trigger a one-time email verification before checkout completes.</li>
+</ul>
+<p>
+	If you spot an unfamiliar charge from SGT Cart on your statement,
+	email <a href="mailto:support@sgtcart.com">support@sgtcart.com</a>
+	with the date, amount and last 4 digits of the card. We respond
+	within 24 hours, share the gateway reference, and refund any
+	unauthorised charge after investigation.
+</p>
+
+{% endblock %}
+
+{% block page_faq %}
+{% for q, a in [
+	("Can I split one order across two payment methods?",
+	 "Yes within limits: you can combine reward points + one cash method (COD or wallet or card) in a single checkout. You cannot mix two cash methods (e.g., half COD half card)."),
+	("Is there a fee for paying by card?",
+	 "No fee for the buyer. SGT Cart absorbs the SSLCommerz processing fee. For COD, a Tk 20 service fee applies on Orders below Tk 1,000 to cover the courier-cash-handling cost."),
+	("How do I save a card for next time?",
+	 "On the SSLCommerz page during checkout, tick 'Save this card'. You'll see your saved cards listed at next checkout; pick one and only the CVV+OTP is needed. Manage saved cards under Account → Payment Methods."),
+	("My bKash payment showed 'success' but the order says 'pending' — what now?",
+	 "Wait 2-5 minutes (sometimes the IPN callback is delayed). If still pending, contact support@sgtcart.com with your bKash transaction ID — we'll reconcile within 24 hours."),
+	("Why was COD blocked on my account?",
+	 "Either the Order exceeded Tk 25,000, the address is outside the COD service area, or the account is new (first 1-2 Orders may need prepayment). Choose a prepaid method to proceed.")
+] %}
+<div class="accordion-item">
+	<h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+	    data-bs-toggle="collapse" data-bs-target="#pmFaq{{ loop.index }}">{{ q }}</button></h3>
+	<div id="pmFaq{{ loop.index }}" class="accordion-collapse collapse"
+	     data-bs-parent="#docFaqAccordion">
+		<div class="accordion-body small">{{ a }}</div>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block page_related %}
+{% for href, title, desc in [
+	("/shipping/", "Shipping & Delivery", "Where we deliver and how much it costs."),
+	("/help/rewards/", "Reward Points", "How to earn and redeem points."),
+	("/refund-policy/", "Refund Policy", "How money comes back to each payment method."),
+	("/security/", "Security Practices", "How we keep card and wallet data safe.")
+] %}
+<div class="col-md-6"><a href="{{ href }}" class="d-block border rounded p-2 text-dark text-decoration-none">
+	<div class="ft-medium small">{{ title }}</div>
+	<div class="text-muted small">{{ desc }}</div>
+</a></div>
+{% endfor %}
+{% endblock %}

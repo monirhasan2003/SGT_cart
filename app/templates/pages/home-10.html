@@ -1,0 +1,202 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar3.html' %}
+			
+<!-- Hero Banner  Start  -->
+<div class="home-slider hide-navigation margin-bottom-0">
+
+	<!-- Components/Home/home-10/slide8.html -->
+    {% include 'Components/Home/home-10/slide8.html' %}
+
+</div>
+<!-- Hero Banner  End -->
+
+<!-- Category Style 1 -->
+<section class="p-0">
+	<div class="container-fluid">
+		<div class="row g-0">
+			
+			<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+				<!-- row -->
+				<div class="row no-gutters">
+
+					<!-- Components/Home/home-10/style.html -->
+    				{% include 'Components/Home/home-10/style.html' %}
+
+				</div>
+				
+			</div>
+			
+			<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+				<div class="single_cats">
+					<a href="#" class="cards card-overflow card-scale lg_height">
+						<div class="bg-image" style="background:url({{ url_for('static', filename='assets/img/c-1.png') }})no-repeat;"></div>
+						<div class="ct_body">
+							<div class="ct_body_caption left">	
+								<h2 class="m-0 ft-bold lh-1 fs-md text-upper">Sofa Sets</h2>
+								<span>610 Items</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			
+			<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+				<!-- row -->
+				<div class="row no-gutters">
+
+					<!-- Components/Home/home-10/style2.html -->
+    				{% include 'Components/Home/home-10/style2.html' %}
+
+				</div>
+				<!-- /row -->
+				
+			</div>
+			
+		</div>
+	</div>
+</section>
+<!-- Category Style 1 -->
+
+<!-- Product List -->
+<section class="middle">
+	<div class="container">
+	
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Trendy Products</h2>
+					<h3 class="ft-bold pt-3">Our Trending Products</h3>
+				</div>
+			</div>
+		</div>
+		
+		<!-- row -->
+		<div class="row align-items-center">
+
+			<!-- Components/Home/home-10/trendy.html -->
+    		{% include 'Components/Home/home-10/trendy.html' %}
+			
+		</div>
+		<!-- row -->
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="position-relative text-center">
+					<a href="/shop-style-1/" class="btn stretched-links borders">Explore More<i class="lni lni-arrow-right ms-2"></i></a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Product List -->
+
+<!-- Deals of The Day -->
+<section class="bg-cover" style="background:url({{ url_for('static', filename='assets/img/bg-2.jpg') }}) no-repeat;" data-overlay="1">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-xl-8 col-lg-9 col-md-12 col-sm-12">
+				
+				<div class="deals_wrap text-center">
+					<h4 class="ft-medium text-light">Get up to -40% Off</h4>
+					<h2 class="ft-bold text-light">Only Summer Collections</h2>
+					<p class="text-light">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+					<div class="mt-5">
+						<a href="#" class="btn btn-white stretched-links">Start Shopping <i class="lni lni-arrow-right"></i></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Deals of The Day -->
+
+<!-- Blog Start -->
+<section class="space min">
+	<div class="container">
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Latest News</h2>
+					<h3 class="ft-bold pt-3">New Updates</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			
+			<!-- Components/Home/index/blog.html -->
+            {% include 'Components/Home/index/blog.html' %}
+			
+		</div>
+		
+	</div>
+</section>
+<!-- Blog Start -->
+
+<!-- Instagram Start -->
+<section class="p-0">
+	<div class="container-fluid p-0 overflow-hidden">
+		
+		<div class="row no-gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Instagram Gallery</h2>
+					<span class="fs-lg ft-bold theme-cl pt-3">@mahak_71</span>
+					<h3 class="ft-bold lh-1">From Instagram</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row no-gutters">
+			<div class="insta-slider">
+			
+				<!-- Components/Home/home-10/insta2.html -->
+    			{% include 'Components/Home/home-10/insta2.html' %}
+				
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Instagram Start -->
+
+<!-- Customer Features -->
+<section class="px-0 py-3 br-top">
+	<div class="container">
+		<div class="row">
+			
+			<!-- Components/blog-detail/features.html -->
+            {% include 'Components/blog-detail/features.html' %}
+			
+		</div>
+	</div>
+</section>
+<!-- Customer Features -->
+
+<!-- Components/Home/index/quickview.html -->
+{% include 'Components/Home/index/quickview.html' %}
+
+<!-- Components/Home/index/log.html -->
+{% include 'Components/Home/index/log.html' %}
+
+<!-- Components/Home/index/search.html -->
+{% include 'Components/Home/index/search.html' %}
+
+<!-- Components/Home/index/wishlist.html -->
+{% include 'Components/Home/index/wishlist.html' %}
+
+<!-- Components/Home/index/cart.html -->
+{% include 'Components/Home/index/cart.html' %}
+
+<!-- Components/Home/index/popup-overlay.html -->
+{% include 'Components/Home/index/popup-overlay.html' %}
+
+{% include 'Base/footer3.html' %} 
+
+{% endblock %}

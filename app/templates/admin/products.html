@@ -1,0 +1,77 @@
+{% extends "admin/base.html" %}
+{% block title %}Products{% endblock %}
+{% block heading %}Products{% endblock %}
+{% block content %}
+
+<div class="panel p-3 mb-3">
+    <form method="get" class="row g-2 align-items-end">
+        <div class="col-md-3">
+            <label class="form-label small text-secondary mb-1">Status</label>
+            <select name="status" class="form-select form-select-sm">
+                <option value="">All statuses</option>
+                <option value="pending" {{ 'selected' if status == 'pending' }}>Pending review</option>
+                <option value="published" {{ 'selected' if status == 'published' }}>Published</option>
+                <option value="rejected" {{ 'selected' if status == 'rejected' }}>Rejected</option>
+                <option value="draft" {{ 'selected' if status == 'draft' }}>Draft</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-sm btn-primary">Filter</button>
+            <a href="{{ url_for('admin.products') }}" class="btn btn-sm btn-outline-secondary">Reset</a>
+            {% if pending_count %}
+                <a href="{{ url_for('admin.products', status='pending') }}"
+                   class="btn btn-sm btn-warning">{{ pending_count }} awaiting review</a>
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+<div class="panel p-3">
+    <table class="table table-sm align-middle mb-0">
+        <thead>
+            <tr><th>Product</th><th>Vendor</th><th>Category</th><th>Price</th><th>Status</th><th class="text-end">Actions</th></tr>
+        </thead>
+        <tbody>
+        {% for p in products %}
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        {% if p.primary_image %}
+                            <img src="{{ url_for('static', filename=p.primary_image) }}"
+                                 width="40" height="40" class="rounded border me-2" style="object-fit:cover;" alt="">
+                        {% endif %}
+                        <span class="fw-semibold">{{ p.title_en }}</span>
+                    </div>
+                </td>
+                <td class="text-secondary">{{ p.vendor.shop_name_en if p.vendor else '—' }}</td>
+                <td class="text-secondary">{{ p.category.name_en if p.category else '—' }}</td>
+                <td>${{ p.current_price }}</td>
+                <td>
+                    {% if p.status == 'published' %}<span class="badge bg-success">Published</span>
+                    {% elif p.status == 'pending' %}<span class="badge bg-warning text-dark">Pending</span>
+                    {% elif p.status == 'rejected' %}<span class="badge bg-danger">Rejected</span>
+                    {% else %}<span class="badge bg-secondary">Draft</span>{% endif %}
+                </td>
+                <td class="text-end text-nowrap">
+                    {% if p.status != 'published' %}
+                        <form method="post" action="{{ url_for('admin.approve_product', product_id=p.id) }}" class="d-inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button class="btn btn-sm btn-success">Publish</button>
+                        </form>
+                    {% endif %}
+                    {% if p.status != 'rejected' %}
+                        <form method="post" action="{{ url_for('admin.reject_product', product_id=p.id) }}" class="d-inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button class="btn btn-sm btn-outline-danger">Reject</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="6" class="text-secondary">No products found.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

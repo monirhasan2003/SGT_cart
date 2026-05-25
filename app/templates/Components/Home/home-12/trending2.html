@@ -1,0 +1,12 @@
+{% for item in trendings2 %}
+    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+        <div class="bg-white rounded px-3 py-4 mb-3">
+            <div class="woo_cat_thumb mb-2 d-flex align-items-center justify-content-center">
+                <a href="javascript:void(0);"><img src="{{ item.img }}" class="img-fluid mx-auto" width="70" alt="" /></a>
+            </div>
+            <div class="woo_cat_caption text-center">
+                <h4 class="m-0 fs-sm ft-medium"><a href="javascript:void(0);">{{ item.title }}</a></h4>
+            </div>
+        </div>
+    </div>
+{% endfor %}

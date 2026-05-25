@@ -1,0 +1,96 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Refer &amp; Earn</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<h4 class="ft-bold mb-1">Refer &amp; Earn</h4>
+		<p class="text-muted">
+			Share your code — earn {{ 50 }} points when a friend signs up and places
+			their first order, plus a commission on every sale through your share links.
+		</p>
+
+		<div class="row g-3 mb-3">
+			<div class="col-lg-6">
+				<div class="border rounded p-3 h-100">
+					<div class="text-muted small">Your referral code</div>
+					<div class="fs-3 ft-bold theme-cl">{{ stats.code }}</div>
+					<div class="text-muted small mb-2">Share this link:</div>
+					<input class="form-control" readonly onclick="this.select()"
+					       value="{{ request.host_url }}?ref={{ stats.code }}">
+					<div class="form-text">
+						Friends signing up with your code, or buying through your shared
+						product links, earn you points.
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="border rounded p-3 h-100">
+					<h6 class="ft-bold mb-3">Your earnings</h6>
+					<div class="d-flex justify-content-between mb-2">
+						<span class="text-muted">Friends referred</span>
+						<span class="ft-medium">{{ stats.referral_count }}</span>
+					</div>
+					<div class="d-flex justify-content-between mb-2">
+						<span class="text-muted">Referral rewards paid</span>
+						<span class="ft-medium">{{ stats.referrals_rewarded }}</span>
+					</div>
+					<div class="d-flex justify-content-between mb-2">
+						<span class="text-muted">Affiliate sales</span>
+						<span class="ft-medium">{{ stats.affiliate_sales }}</span>
+					</div>
+					<hr>
+					<div class="d-flex justify-content-between">
+						<span class="ft-bold">Points earned</span>
+						<span class="ft-bold theme-cl">
+							{{ stats.referral_points + stats.affiliate_points }}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<h6 class="ft-bold mb-2">People you referred</h6>
+		{% if referrals %}
+		<div class="border rounded">
+			{% for r in referrals %}
+			<div class="d-flex justify-content-between p-3 border-bottom">
+				<div>
+					<span class="ft-medium">{{ r.referee.name if r.referee }}</span>
+					<div class="text-muted small">
+						Joined {{ r.created_at.strftime('%d %b %Y') if r.created_at }}</div>
+				</div>
+				{% if r.is_rewarded %}
+				<span class="badge bg-success align-self-center">+{{ r.reward_points }} pts</span>
+				{% else %}
+				<span class="badge bg-warning text-dark align-self-center">
+					Pending first order</span>
+				{% endif %}
+			</div>
+			{% endfor %}
+		</div>
+		{% else %}
+		<div class="border rounded p-3 text-center text-muted small">
+			No referrals yet — share your code to start earning.
+		</div>
+		{% endif %}
+
+	</div>
+</section>
+
+{% endblock %}

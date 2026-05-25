@@ -1,0 +1,82 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ 'Edit' if banner else 'New' }} Banner{% endblock %}
+{% block heading %}{{ 'Edit' if banner else 'New' }} Homepage Banner{% endblock %}
+{% block content %}
+
+<form method="post" enctype="multipart/form-data"
+      class="border rounded bg-white p-4" style="max-width:780px">
+	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+	<div class="row g-3">
+		<div class="col-md-4">
+			<label class="form-label ft-medium">Banner kind</label>
+			<select name="kind" class="form-select">
+				<option value="hero" {{ 'selected' if (form.get('kind') or (banner and banner.kind)) == 'hero' }}>
+					Hero (top carousel)</option>
+				<option value="strip" {{ 'selected' if (form.get('kind') or (banner and banner.kind)) == 'strip' }}>
+					Strip (wide promo ribbon)</option>
+			</select>
+		</div>
+		<div class="col-md-4">
+			<label class="form-label ft-medium">Sort order</label>
+			<input type="number" name="sort_order" class="form-control"
+			       value="{{ form.get('sort_order') or (banner.sort_order if banner else 0) }}">
+		</div>
+		<div class="col-md-4 d-flex align-items-end">
+			<label class="d-inline-flex align-items-center">
+				<input type="checkbox" name="is_active" class="form-check-input me-2"
+				       {{ 'checked' if form.get('is_active') or (banner and banner.is_active) or not banner }}>
+				<span class="ft-medium">Active</span>
+			</label>
+		</div>
+
+		<div class="col-12">
+			<label class="form-label ft-medium">
+				Banner image
+				{% if banner %}<span class="text-muted small">— leave empty to keep the existing image</span>{% endif %}
+			</label>
+			<input type="file" name="image" class="form-control" accept="image/*"
+			       {{ 'required' if not banner }}>
+			{% if banner and banner.image_path %}
+			<div class="mt-2">
+				<img src="{{ url_for('static', filename=banner.image_path) }}"
+				     style="max-height:140px" class="rounded border" alt="current banner">
+			</div>
+			{% endif %}
+			<div class="form-text">
+				Hero ~1200&times;420, strip ~1200&times;180. PNG or JPG, under 16 MB.
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<label class="form-label ft-medium">Headline <span class="text-muted small">(overlay)</span></label>
+			<input type="text" name="headline" class="form-control" maxlength="160"
+			       value="{{ form.get('headline') or (banner.headline or '' if banner else '') }}">
+		</div>
+		<div class="col-md-6">
+			<label class="form-label ft-medium">Sub-headline</label>
+			<input type="text" name="subheadline" class="form-control" maxlength="300"
+			       value="{{ form.get('subheadline') or (banner.subheadline or '' if banner else '') }}">
+		</div>
+
+		<div class="col-md-4">
+			<label class="form-label ft-medium">Button text <span class="text-muted small">(optional)</span></label>
+			<input type="text" name="button_text" class="form-control" maxlength="60"
+			       value="{{ form.get('button_text') or (banner.button_text or '' if banner else '') }}"
+			       placeholder="e.g. Shop now">
+		</div>
+		<div class="col-md-8">
+			<label class="form-label ft-medium">Button URL</label>
+			<input type="text" name="button_url" class="form-control"
+			       value="{{ form.get('button_url') or (banner.button_url or '' if banner else '') }}"
+			       placeholder="/shop/?category=fashion">
+		</div>
+	</div>
+
+	<div class="mt-4">
+		<button class="btn btn-primary">Save banner</button>
+		<a href="{{ url_for('admin.banners') }}" class="btn btn-link">Cancel</a>
+	</div>
+</form>
+
+{% endblock %}

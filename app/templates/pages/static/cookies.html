@@ -1,0 +1,219 @@
+{% extends "pages/static/_layout.html" %}
+{% set page_subtitle = "What cookies and similar storage technologies SGT Cart uses, and how to control them." %}
+
+{% block page_toc %}
+<li><a href="#what">1. What is a cookie?</a></li>
+<li><a href="#why">2. Why we use them</a></li>
+<li><a href="#categories">3. Categories &amp; full list</a></li>
+<li><a href="#consent">4. Your consent</a></li>
+<li><a href="#control">5. How to control cookies</a></li>
+<li><a href="#changes">6. Changes &amp; contact</a></li>
+{% endblock %}
+
+{% block page_body %}
+
+<p class="lead small">
+	When you visit SGT Cart (sgtcart.com) or use one of our mobile apps,
+	we and our partners store small pieces of data on your device — called
+	cookies, local storage and similar technologies — to keep the site
+	working and to learn how it can be improved. This Cookie Policy lists
+	what we set, why, and how you can switch optional cookies on or off.
+</p>
+
+<h2 id="what">1. What is a cookie?</h2>
+<p>
+	A <strong>cookie</strong> is a tiny text file that a website asks your
+	browser to save and send back on subsequent visits. It typically
+	contains a session identifier, a preference setting or a consent flag —
+	never your password, never your card number.
+</p>
+<p>
+	The Platform also uses related technologies that behave similarly:
+</p>
+<ul>
+	<li><strong>Local Storage / Session Storage</strong> — key-value pairs your browser keeps for our pages (e.g., your <code>sgt_voice_lang</code>, <code>sgt_wishlist</code>, <code>sgt_cookie_consent</code>).</li>
+	<li><strong>IndexedDB</strong> — used by the chat module for offline-message buffering.</li>
+	<li><strong>Service Worker cache</strong> — when the mobile app is installed as a PWA, certain static files are kept locally so the app loads faster.</li>
+</ul>
+<p>Throughout this page, "cookie" refers to all of these collectively.</p>
+
+<h2 id="why">2. Why we use them</h2>
+<ul>
+	<li><strong>Keep you signed in</strong> — without a session cookie you would have to log in on every page.</li>
+	<li><strong>Remember your cart</strong> — items survive a browser restart.</li>
+	<li><strong>Remember preferences</strong> — language (EN / BN), wishlist items, cookie consent choice, voice-search language, viewed-product history.</li>
+	<li><strong>Protect against attacks</strong> — anti-CSRF token, rate-limit fingerprint, fraud-detection signals.</li>
+	<li><strong>Measure performance</strong> — aggregate, first-party-only analytics: how many people view a product, where pages slow down, which features are used.</li>
+	<li><strong>Personalise</strong> — "Recently viewed", "Customers Also Viewed", recommendations on the home page.</li>
+</ul>
+<p>
+	<strong>We do not run third-party advertising cookies on SGT Cart.</strong>
+	We do not allow ad networks (Google Ads, Facebook Pixel, TikTok Pixel)
+	to track you across other websites. This is a deliberate choice — if it
+	ever changes, this page will be updated and a fresh consent banner
+	will be shown.
+</p>
+
+<h2 id="categories">3. Categories &amp; full list</h2>
+
+<h3>3.1 Strictly necessary (always on)</h3>
+<p>
+	These cookies are essential for the Platform to function. Without them
+	you cannot log in, place an order, or use the cart. They cannot be
+	turned off via consent — but you can block them in your browser
+	settings, at the cost of breaking the site.
+</p>
+<table>
+	<tr><th>Name</th><th>Purpose</th><th>Lifetime</th></tr>
+	<tr><td><code>session</code></td><td>Flask session identifier — holds your login state.</td><td>Browser session</td></tr>
+	<tr><td><code>csrf_token</code></td><td>Anti-CSRF token to protect forms from cross-site request forgery.</td><td>Browser session</td></tr>
+	<tr><td><code>remember_token</code></td><td>"Remember me" persistent login. Set only if you tick the box.</td><td>30 days</td></tr>
+	<tr><td><code>sgt_cookie_consent</code> <em>(localStorage)</em></td><td>Records whether you chose "Accept all" or "Necessary only".</td><td>1 year</td></tr>
+</table>
+
+<h3>3.2 Preferences (always on; non-tracking)</h3>
+<p>These cookies remember choices you made for a better experience. They are not used for analytics or marketing.</p>
+<table>
+	<tr><th>Name</th><th>Purpose</th><th>Lifetime</th></tr>
+	<tr><td><code>locale</code></td><td>Your language choice (en / bn).</td><td>6 months</td></tr>
+	<tr><td><code>sgt_voice_lang</code> <em>(localStorage)</em></td><td>Voice-search recognition language (en-US / bn-BD).</td><td>Until cleared</td></tr>
+	<tr><td><code>sgt_wishlist</code> <em>(localStorage)</em></td><td>Product IDs you've added to your wishlist (until DB wishlist ships).</td><td>Until cleared</td></tr>
+	<tr><td><code>sgt_doc_lang</code> <em>(localStorage)</em></td><td>Bilingual toggle preference on legal pages (EN / BN).</td><td>Until cleared</td></tr>
+	<tr><td><code>sid</code></td><td>Anonymous viewer ID for the "X viewing now" badge.</td><td>Browser session</td></tr>
+</table>
+
+<h3>3.3 Analytics (set only after "Accept all")</h3>
+<p>
+	First-party analytics help us understand which pages are popular,
+	which load slowly, and where users drop out — so we can fix what's
+	broken. Aggregated, not tied to your identity.
+</p>
+<table>
+	<tr><th>Name</th><th>Purpose</th><th>Lifetime</th></tr>
+	<tr><td><code>sgt_a</code></td><td>Anonymous analytics visitor identifier (random, not linked to your account).</td><td>2 years</td></tr>
+	<tr><td><code>sgt_sess</code></td><td>Per-session bucket for "this visit" measurement.</td><td>30 minutes</td></tr>
+</table>
+<p>
+	Analytics cookies are <strong>off by default</strong>. They are set only
+	if you tap "Accept all" on the consent banner. We do not currently use
+	Google Analytics, Mixpanel, Adobe Analytics or any other third-party
+	analytics vendor — only first-party counters.
+</p>
+
+<h3>3.4 Marketing (none today)</h3>
+<p>
+	We do not currently set any marketing cookies. If this ever changes,
+	this section will list each cookie and we will trigger a fresh consent
+	banner before activation.
+</p>
+
+<h2 id="consent">4. Your consent</h2>
+<p>
+	The first time you visit SGT Cart from a new device or after clearing
+	browser storage, you see a banner at the bottom of the page asking:
+</p>
+<blockquote class="small">
+	"SGT Cart uses essential cookies to keep you signed in and your cart
+	working. We'd also like to set optional analytics cookies to help us
+	improve the site."
+</blockquote>
+<p>You have two choices:</p>
+<ul>
+	<li><strong>"Accept all"</strong> — necessary + preferences + analytics. Stored as <code>sgt_cookie_consent = "all"</code>.</li>
+	<li><strong>"Necessary only"</strong> — only the cookies the site cannot work without. Stored as <code>sgt_cookie_consent = "necessary"</code>.</li>
+</ul>
+<p>
+	The banner does not re-appear on subsequent pages. To change your
+	choice later, see §5.
+</p>
+
+<h2 id="control">5. How to control cookies</h2>
+
+<h3>5.1 On SGT Cart</h3>
+<p>To revisit your cookie-consent choice on this device:</p>
+<ol>
+	<li>Open your browser's developer tools (F12).</li>
+	<li>Go to <strong>Application → Local Storage → https://sgtcart.com</strong>.</li>
+	<li>Delete the key <code>sgt_cookie_consent</code>.</li>
+	<li>Reload the page — the banner will re-appear.</li>
+</ol>
+<p>
+	A friendlier user-facing toggle ("Cookie preferences" link in the
+	footer with a dialog) will land in a later release. Until then, the
+	above is the supported method.
+</p>
+
+<h3>5.2 In your browser</h3>
+<p>All major browsers let you block, view or delete cookies entirely:</p>
+<ul>
+	<li><strong>Chrome:</strong> Settings → Privacy &amp; security → Cookies and other site data.</li>
+	<li><strong>Firefox:</strong> Settings → Privacy &amp; Security → Cookies and Site Data.</li>
+	<li><strong>Safari:</strong> Preferences → Privacy.</li>
+	<li><strong>Edge:</strong> Settings → Cookies and site permissions.</li>
+	<li><strong>Mobile:</strong> Settings of the respective browser app.</li>
+</ul>
+<p>
+	If you block all cookies — including strictly necessary ones — most of
+	SGT Cart's features (login, cart, checkout, chat) will stop working.
+	We don't recommend this for normal use.
+</p>
+
+<h3>5.3 "Do Not Track" signals</h3>
+<p>
+	Modern browsers can send a "Do Not Track" header. Because there is no
+	consensus standard, we currently treat DNT signals as advisory rather
+	than as a blanket opt-out. We do not load any tracking cookies
+	regardless of the DNT header — so the practical outcome is the same
+	as if we honoured it.
+</p>
+
+<h2 id="changes">6. Changes &amp; contact</h2>
+<p>
+	When we add a new cookie or category, we update this page and — if
+	the change is material — show a fresh consent banner. The
+	"Last reviewed" date at the bottom of this page always reflects the
+	current state.
+</p>
+<p>
+	For questions about cookies, write to
+	<a href="mailto:privacy@sgtcart.com">privacy@sgtcart.com</a>.
+</p>
+
+{% endblock %}
+
+{% block page_faq %}
+{% for q, a in [
+	("Are you really not using Google Analytics?",
+	 "Correct — at launch we use only first-party counters (sgt_a, sgt_sess). If we ever add Google Analytics or similar, this Cookie Policy will be updated and a fresh consent prompt will be shown."),
+	("What happens if I click 'Necessary only'?",
+	 "Analytics cookies are skipped. Strictly-necessary and preference cookies still work, so login, cart, and language choice continue to function normally."),
+	("Why do I need to consent to preferences cookies?",
+	 "You don't. Preferences cookies (language, wishlist) are always set so the basic site works — they don't track you across sessions or share data with anyone."),
+	("Does the Cookie Policy apply to the mobile app?",
+	 "Yes — the SGT Cart mobile apps use equivalent local-storage and shared-preferences mechanisms that this Cookie Policy describes. The principles are the same."),
+	("Can I be tracked by sellers via cookies?",
+	 "No. Sellers do not run their own scripts on SGT Cart pages. They see your name, address and mobile only for fulfilling an Order, not via cookies.")
+] %}
+<div class="accordion-item">
+	<h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+	    data-bs-toggle="collapse" data-bs-target="#cFaq{{ loop.index }}">{{ q }}</button></h3>
+	<div id="cFaq{{ loop.index }}" class="accordion-collapse collapse"
+	     data-bs-parent="#docFaqAccordion">
+		<div class="accordion-body small">{{ a }}</div>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block page_related %}
+{% for href, title, desc in [
+	("/privacy/", "Privacy Policy", "What personal data we collect and how we use it."),
+	("/terms/", "Customer Terms", "The main contract for using SGT Cart."),
+	("/security/", "Security Practices", "How we keep your data and session safe.")
+] %}
+<div class="col-md-6"><a href="{{ href }}" class="d-block border rounded p-2 text-dark text-decoration-none">
+	<div class="ft-medium small">{{ title }}</div>
+	<div class="text-muted small">{{ desc }}</div>
+</a></div>
+{% endfor %}
+{% endblock %}

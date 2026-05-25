@@ -1,0 +1,175 @@
+{% extends "pages/static/_layout.html" %}
+{% set page_subtitle = "From signup to your first sale on SGT Cart — a step-by-step walkthrough for new sellers." %}
+
+{% block page_toc %}
+<li><a href="#eligibility">1. Who can sell on SGT Cart</a></li>
+<li><a href="#documents">2. Documents you'll need</a></li>
+<li><a href="#step1-account">3. Step 1 — Create your account</a></li>
+<li><a href="#step2-kyc">4. Step 2 — Submit KYC for verification</a></li>
+<li><a href="#step3-store">5. Step 3 — Build your store profile</a></li>
+<li><a href="#step4-products">6. Step 4 — List your first products</a></li>
+<li><a href="#step5-payout">7. Step 5 — Set up payouts &amp; tax</a></li>
+{% endblock %}
+
+{% block page_body %}
+
+<p class="lead small">
+	Opening a shop on SGT Cart takes about <strong>30 minutes</strong> for
+	form-filling, plus 1-2 business days for admin verification. This
+	guide takes you from zero to live store and your first sale.
+</p>
+<p class="small">
+	Read the <a href="/seller-terms/">Seller Agreement</a> and
+	<a href="/sell/listing-guidelines/">Listing Guidelines</a> before you
+	start — they define the rules you accept by listing.
+</p>
+
+<h2 id="eligibility">1. Who can sell on SGT Cart</h2>
+<table>
+	<tr><th>You qualify if you are…</th><th>Required</th></tr>
+	<tr><td>An individual sole trader resident in Bangladesh</td><td>Aged 18+, valid NID, Trade Licence, TIN.</td></tr>
+	<tr><td>A registered company / partnership / proprietorship in Bangladesh</td><td>RJSC certificate, Trade Licence, TIN, BIN (VAT) if applicable, authorised representative's NID.</td></tr>
+	<tr><td>A non-resident Bangladeshi (NRB) with a registered local entity</td><td>Same as company, plus operating address inside Bangladesh.</td></tr>
+</table>
+<p>
+	Foreign-resident sellers will be onboarded under a separate cross-border
+	addendum in a later phase. Until then, every Seller must have a verifiable
+	Bangladesh business identity.
+</p>
+
+<h2 id="documents">2. Documents you'll need</h2>
+<p>Gather these before you start — having them ready cuts the onboarding time in half:</p>
+<ul>
+	<li><strong>NID</strong> — front + back, clear scan or photo (JPG/PNG, &lt; 5 MB each).</li>
+	<li><strong>Trade Licence</strong> — clear scan (PDF/JPG).</li>
+	<li><strong>TIN certificate</strong> — issued by the National Board of Revenue.</li>
+	<li><strong>BIN / VAT registration</strong> — if your annual turnover is above the NBR threshold (currently Tk 80 lakh for VAT-eligible categories).</li>
+	<li><strong>Bank statement first page</strong> OR <strong>bKash Personal Retail / Nagad Merchant account screenshot</strong> — proves payout-account ownership.</li>
+	<li><strong>Shop logo</strong> (PNG, transparent background, ≥ 256×256 px).</li>
+	<li><strong>Shop banner</strong> (JPG, 1920×600 px recommended).</li>
+	<li><strong>Storefront photo</strong> if you have a physical shop — helps customer trust.</li>
+</ul>
+
+<h2 id="step1-account">3. Step 1 — Create your account</h2>
+<ol>
+	<li>Visit <a href="/signup/?role=seller">/signup/?role=seller</a>.</li>
+	<li>Enter your business email, mobile number, and choose a password.</li>
+	<li>Verify the email with the one-time code sent to your inbox.</li>
+	<li>You're logged into the <strong>Seller Center</strong> at <a href="/seller/">/seller/</a> in "<em>Pending Verification</em>" state. You can start uploading documents and drafting Listings while you wait.</li>
+</ol>
+
+<h2 id="step2-kyc">4. Step 2 — Submit KYC for verification</h2>
+<ol>
+	<li>From <a href="/seller/">/seller/</a>, tap <strong>Shop Verification (KYC)</strong>.</li>
+	<li>Choose your business type (individual / company / partnership).</li>
+	<li>Upload your NID front + back; enter your NID number exactly as printed.</li>
+	<li>Upload Trade Licence; enter the licence number.</li>
+	<li>Upload TIN certificate; enter the TIN.</li>
+	<li>Enter your full shop address (line, area, city, district, postal code).</li>
+	<li>Submit.</li>
+</ol>
+<p>
+	An SGT Cart admin reviews your submission within <strong>1-2 business days</strong>.
+	You'll receive an email when the decision is made. Common reasons for
+	rejection: blurry document scans, NID name does not match Trade
+	Licence name, expired Trade Licence. Fix and resubmit any time.
+</p>
+
+<h2 id="step3-store">5. Step 3 — Build your store profile</h2>
+<p>
+	While KYC is under review, set up the storefront — it goes live the
+	moment KYC is approved.
+</p>
+<ul>
+	<li><strong>Shop name (English + Bangla)</strong> — bilingual is strongly recommended; storefront ranks better in mixed-language search.</li>
+	<li><strong>Shop slug</strong> — used in the URL <code>/store/your-slug/</code>. Choose a short, memorable form. Lowercase letters and hyphens only.</li>
+	<li><strong>Description</strong> — a 2-3 paragraph introduction. What you sell, since when, where, what makes you different.</li>
+	<li><strong>Logo</strong> — square, transparent PNG looks best.</li>
+	<li><strong>Banner</strong> — wide cover image for your store page.</li>
+	<li><strong>Phone &amp; address</strong> — visible to admin only; never displayed to customers.</li>
+</ul>
+<p>
+	Sneak preview your storefront at <code>/store/your-slug/</code>. Anyone
+	with the link can see it once KYC is approved.
+</p>
+
+<h2 id="step4-products">6. Step 4 — List your first products</h2>
+<ol>
+	<li>From the Seller Center, tap <strong>My Products → Create</strong>.</li>
+	<li>Fill in the title (EN + BN), category, base price, stock, SKU, description.</li>
+	<li>Upload 1-8 product images. The first one becomes the cover.</li>
+	<li>Add variants if applicable — colour, size, each with its own price and stock.</li>
+	<li>Add specifications (key/value rows like "Material — Cotton 100%"; up to 20 rows).</li>
+	<li>Set bulk-pricing tiers if you offer volume discounts.</li>
+	<li>Tap <strong>Submit for review</strong>. An admin reviews — typically same day — and the product goes live.</li>
+</ol>
+<p>
+	Read the <a href="/sell/listing-guidelines/">Product Listing Guidelines</a>
+	before submitting. Common rejection reasons include: copied descriptions,
+	watermarks on images, contact info in images or text, prohibited items,
+	missing variants/specs that the category requires.
+</p>
+<p>
+	<strong>Tip:</strong> List at least 5 products before you market your store. A
+	store with one product looks abandoned and discourages customer trust.
+</p>
+
+<h2 id="step5-payout">7. Step 5 — Set up payouts &amp; tax</h2>
+<ol>
+	<li>From the Seller Center, open <strong>Payout Settings</strong>.</li>
+	<li>Choose your primary payout method:
+		<ul>
+			<li><strong>Bank account</strong> — name, account number, branch.</li>
+			<li><strong>bKash</strong> — personal or agent number.</li>
+			<li><strong>Nagad</strong> — merchant or personal number.</li>
+		</ul>
+	</li>
+	<li>Confirm your TIN; this is used by SGT Cart to deposit VAT withholding to NBR (where applicable).</li>
+	<li>Read and accept the <a href="/seller-terms/">Seller Agreement</a>.</li>
+</ol>
+<p>
+	Earnings begin flowing the moment your first Sub-Order is delivered. See
+	the <a href="/sell/fees/">Fees &amp; Commission</a> page for the
+	commission breakdown and the <a href="/sell/payouts/">Payouts page</a>
+	(coming soon) for the weekly settlement cycle.
+</p>
+
+{% endblock %}
+
+{% block page_faq %}
+{% for q, a in [
+	("How quickly can my shop go live?",
+	 "Often the same day. If your KYC documents are clear and complete, admin review takes 1-2 business days. Listings are reviewed individually, typically same day. Bring the documents and you can be live within 24 hours."),
+	("Do I need a physical shop?",
+	 "No. Home-based sellers, importers, dropshippers and craftspeople all qualify. The 'storefront photo' is optional — only useful if you have a physical address customers might recognise."),
+	("Can I sell across multiple categories?",
+	 "Yes. There is no category restriction. Many of our top sellers operate in 3-5 categories. Each Listing picks its own category at creation time."),
+	("Can I edit a Listing after it's published?",
+	 "Yes for most fields (price, stock, description, images). Some changes (title rewrites, category change) re-trigger admin review to ensure the Listing stays compliant."),
+	("What if my KYC is rejected?",
+	 "You'll see the specific reason in the email — usually a document quality issue. Fix and re-upload. There's no limit on re-submissions and no penalty for trying again.")
+] %}
+<div class="accordion-item">
+	<h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+	    data-bs-toggle="collapse" data-bs-target="#soFaq{{ loop.index }}">{{ q }}</button></h3>
+	<div id="soFaq{{ loop.index }}" class="accordion-collapse collapse"
+	     data-bs-parent="#docFaqAccordion">
+		<div class="accordion-body small">{{ a }}</div>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block page_related %}
+{% for href, title, desc in [
+	("/seller-terms/", "Seller Agreement", "The contract that governs your shop."),
+	("/sell/fees/", "Fees & Commission", "What SGT Cart charges per delivered sale."),
+	("/sell/listing-guidelines/", "Listing Guidelines", "How to write Listings that get approved."),
+	("/sell/prohibited-items/", "Prohibited Items", "What you must never list.")
+] %}
+<div class="col-md-6"><a href="{{ href }}" class="d-block border rounded p-2 text-dark text-decoration-none">
+	<div class="ft-medium small">{{ title }}</div>
+	<div class="text-muted small">{{ desc }}</div>
+</a></div>
+{% endfor %}
+{% endblock %}

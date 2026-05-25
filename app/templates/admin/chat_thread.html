@@ -1,0 +1,105 @@
+{% extends "admin/base.html" %}
+{% block title %}Support Conversation{% endblock %}
+{% block heading %}Support Conversation{% endblock %}
+{% block content %}
+
+<div class="mb-2">
+	<a href="{{ url_for('chat.admin_inbox') }}" class="small text-decoration-none">&larr; All support messages</a>
+</div>
+
+<div class="border rounded bg-white">
+
+	<div class="p-3 border-bottom bg-light">
+		<span class="badge bg-info text-dark text-capitalize">{{ thread.topic or 'other' }}</span>
+		<strong class="ms-1">{{ thread.subject }}</strong>
+		<span class="text-muted small ms-2">
+			with {{ thread.customer.name if thread.customer }}
+			{% if thread.order %}· order {{ thread.order.order_number }}{% endif %}
+		</span>
+	</div>
+
+	<div id="messages" class="p-3" style="height:55vh; overflow-y:auto">
+		{% for m in thread.messages %}
+		{% set mine = m.sender_id == current_user.id %}
+		<div class="d-flex mb-2 {{ 'justify-content-end' if mine else 'justify-content-start' }}"
+		     data-msg-id="{{ m.id }}">
+			<div class="p-2 px-3 rounded {{ 'bg-primary text-white' if mine else 'bg-light border' }}"
+			     style="max-width:75%">
+				<div class="small fw-semibold mb-1">
+					{{ m.sender.name }} <span class="opacity-75">· {{ m.sender_role }}</span>
+				</div>
+				<div style="white-space:pre-wrap">{{ m.body }}</div>
+				{% if m.is_flagged %}
+				<div class="small fst-italic mt-1 opacity-75">a phone number was removed</div>
+				{% endif %}
+				<div class="small text-end opacity-75 mt-1">
+					{{ m.created_at.strftime('%d %b, %H:%M') if m.created_at }}
+				</div>
+			</div>
+		</div>
+		{% else %}
+		<p class="text-muted text-center my-4" id="empty-hint">No messages yet.</p>
+		{% endfor %}
+	</div>
+
+	<form method="post" action="{{ url_for('chat.admin_send', thread_id=thread.id) }}"
+	      class="p-3 border-top">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+		<div class="input-group">
+			<input name="body" class="form-control" placeholder="Reply to the customer…"
+			       autocomplete="off" required maxlength="2000">
+			<button class="btn btn-primary px-4">Send</button>
+		</div>
+	</form>
+
+</div>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script>
+(function () {
+	var me = {{ current_user.id }};
+	var threadId = {{ thread.id }};
+	var box = document.getElementById("messages");
+	box.scrollTop = box.scrollHeight;
+
+	function esc(s) {
+		var d = document.createElement("div");
+		d.textContent = s == null ? "" : s;
+		return d.innerHTML;
+	}
+
+	function addMessage(m) {
+		if (document.querySelector('[data-msg-id="' + m.id + '"]')) return;
+		var hint = document.getElementById("empty-hint");
+		if (hint) hint.remove();
+
+		var mine = m.sender_id === me;
+		var wrap = document.createElement("div");
+		wrap.className = "d-flex mb-2 " + (mine ? "justify-content-end" : "justify-content-start");
+		wrap.setAttribute("data-msg-id", m.id);
+		wrap.innerHTML =
+			'<div class="p-2 px-3 rounded ' + (mine ? "bg-primary text-white" : "bg-light border") + '" style="max-width:75%">' +
+			'<div class="small fw-semibold mb-1">' + esc(m.sender_name) +
+			' <span class="opacity-75">· ' + esc(m.sender_role) + '</span></div>' +
+			'<div style="white-space:pre-wrap">' + esc(m.body) + '</div>' +
+			(m.is_flagged ? '<div class="small fst-italic mt-1 opacity-75">a phone number was removed</div>' : '') +
+			'</div>';
+		box.appendChild(wrap);
+		box.scrollTop = box.scrollHeight;
+	}
+
+	try {
+		var socket = io();
+		socket.on("connect", function () {
+			socket.emit("join_thread", { thread_id: threadId });
+		});
+		socket.on("chat_message", function (m) {
+			if (m.thread_id === threadId) addMessage(m);
+		});
+	} catch (e) {
+		console.warn("Live chat unavailable:", e);
+	}
+})();
+</script>
+
+{% endblock %}

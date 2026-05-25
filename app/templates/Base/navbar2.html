@@ -1,0 +1,401 @@
+<div class="py-2 bg-dark">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-md-6 col-sm-12 hide-ipad">
+                <p class="medium text-light m-0 p-0">
+                    Welcome to SGT Cart —
+                    <a href="{{ url_for('storefront.flash_sales') }}" class="text-light text-underline">browse today's flash deals</a>.
+                </p>
+            </div>
+
+            <!-- Right Menu -->
+            <div class="col-md-6 col-sm-12">
+
+                <div class="currency-selector float-right">
+                    <span class="iso_code medium text-light">৳ BDT</span>
+                </div>
+
+                <!-- Language toggle -->
+                <div class="language-selector-wrapper dropdown js-dropdown float-right me-3">
+                    <a class="popup-title" href="javascript:void(0)" data-bs-toggle="dropdown" title="Language">
+                        <span class="iso_code medium text-light">
+                            {{ 'বাংলা' if current_locale == 'bn' else 'English' }}
+                        </span>
+                        <i class="fa fa-angle-down medium text-light"></i>
+                    </a>
+                    <ul class="dropdown-menu popup-content link">
+                        <li {{ 'class=current' if current_locale == 'en' }}>
+                            <a href="?lang=en" class="dropdown-item medium text-medium">English</a></li>
+                        <li {{ 'class=current' if current_locale == 'bn' }}>
+                            <a href="?lang=bn" class="dropdown-item medium text-medium">বাংলা</a></li>
+                    </ul>
+                </div>
+
+                <div class="float-right me-3">
+                    <a href="/wishlist/" class="text-light medium">Wishlist</a>
+                </div>
+
+                <div class="float-right me-3">
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('account.dashboard') }}" class="text-light medium">
+                        My Account</a>
+                    {% else %}
+                    <a href="/login/" class="text-light medium">Login / Signup</a>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Inline search band (Daraz-style — visible on every page) -->
+<div class="py-3 border-bottom bg-white">
+    <div class="container">
+        <form action="/shop/" method="get" class="d-flex align-items-center"
+              onsubmit="return sgtHeaderSearch();">
+            <input id="headerSearch" name="q" type="search"
+                   list="headerSuggest" autocomplete="off"
+                   class="form-control form-control-lg me-2"
+                   placeholder="Search products, brands, categories…">
+            <datalist id="headerSuggest"></datalist>
+            <div class="btn-group me-2">
+                <button type="button" id="headerMic" class="btn btn-lg header-mic-btn"
+                        title="Search by voice — speak your query">
+                    <i class="bi bi-mic-fill"></i></button>
+                <button type="button" id="headerMicLang"
+                        class="btn btn-lg header-mic-lang-btn"
+                        title="Toggle recognition language">
+                    <span id="headerMicLangLabel">EN</span></button>
+            </div>
+            <a href="{{ url_for('storefront.search_by_image') }}"
+               class="btn btn-lg me-2 header-cam-btn" title="Search by image — upload a photo">
+                <i class="bi bi-camera-fill"></i></a>
+            <button type="submit" class="btn btn-dark btn-lg px-4">
+                <i class="bi bi-search"></i></button>
+        </form>
+        <div id="headerMicStatus" class="small mt-1 d-none"
+             style="position:absolute;background:#fff;border:1px solid #e2e8f0;
+                    border-radius:6px;padding:6px 10px;box-shadow:0 4px 12px rgba(0,0,0,.08);
+                    z-index:1050;"></div>
+    </div>
+</div>
+<style>
+    /* Voice + image search buttons — distinct colours so each action
+       is instantly recognisable in the search bar. */
+    .header-mic-btn {
+        background: #dbeafe; color: #1d4ed8;
+        border: 1px solid #93c5fd; transition: all .15s;
+    }
+    .header-mic-btn:hover, .header-mic-btn.active {
+        background: #1d4ed8; color: #fff; border-color: #1d4ed8;
+    }
+    .header-mic-btn.active {
+        animation: micPulse 1.2s infinite;
+    }
+    @keyframes micPulse {
+        0%   { box-shadow: 0 0 0 0 rgba(29, 78, 216, .55); }
+        70%  { box-shadow: 0 0 0 12px rgba(29, 78, 216, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(29, 78, 216, 0); }
+    }
+    .header-mic-lang-btn {
+        background: #e0e7ff; color: #1d4ed8;
+        border: 1px solid #93c5fd; font-weight: 700; font-size: 13px;
+        padding-left: 8px; padding-right: 8px;
+    }
+    .header-cam-btn {
+        background: #fef3c7; color: #b45309;
+        border: 1px solid #fcd34d; transition: all .15s;
+    }
+    .header-cam-btn:hover {
+        background: #b45309; color: #fff; border-color: #b45309;
+    }
+</style>
+<script>
+    (function () {
+        var box = document.getElementById("headerSearch");
+        var list = document.getElementById("headerSuggest");
+        if (!box || !list) return;
+        var timer = null;
+        box.addEventListener("input", function () {
+            var q = box.value.trim();
+            clearTimeout(timer);
+            if (q.length < 2) { list.innerHTML = ""; return; }
+            timer = setTimeout(function () {
+                fetch("/search/suggest?q=" + encodeURIComponent(q))
+                    .then(function (r) { return r.json(); })
+                    .then(function (d) {
+                        list.innerHTML = "";
+                        (d.suggestions || []).forEach(function (s) {
+                            var o = document.createElement("option");
+                            o.value = s.title; list.appendChild(o);
+                        });
+                    }).catch(function () {});
+            }, 200);
+        });
+        // Voice search via browser Web Speech API.
+        var mic = document.getElementById("headerMic");
+        var micLang = document.getElementById("headerMicLang");
+        var micLangLabel = document.getElementById("headerMicLangLabel");
+        var status = document.getElementById("headerMicStatus");
+        var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        function showStatus(text, kind) {
+            if (!status) return;
+            status.textContent = text;
+            status.classList.remove("d-none");
+            status.style.color = kind === "error" ? "#b91c1c"
+                              : kind === "live"  ? "#1d4ed8" : "#0f172a";
+            if (status._t) clearTimeout(status._t);
+            if (kind !== "live") {
+                status._t = setTimeout(function () {
+                    status.classList.add("d-none");
+                }, 3000);
+            }
+        }
+
+        if (!SR) {
+            // Voice search not supported by this browser (Firefox, older browsers).
+            mic.disabled = true;
+            mic.title = "Voice search needs Chrome, Edge or Safari";
+            mic.style.opacity = .5;
+            micLang.style.display = "none";
+            mic.addEventListener("click", function () {
+                showStatus("Voice search needs Chrome, Edge or Safari.", "error");
+            });
+        } else {
+            // Toggle EN <-> BN recognition language.
+            var lang = localStorage.getItem("sgt_voice_lang") || "en-US";
+            function applyLang() {
+                micLangLabel.textContent = lang === "bn-BD" ? "বাং" : "EN";
+                micLang.title = lang === "bn-BD"
+                    ? "Bangla recognition (tap to switch to English)"
+                    : "English recognition (tap to switch to Bangla)";
+            }
+            applyLang();
+            micLang.addEventListener("click", function () {
+                lang = lang === "bn-BD" ? "en-US" : "bn-BD";
+                localStorage.setItem("sgt_voice_lang", lang);
+                applyLang();
+                showStatus("Voice language: " + (lang === "bn-BD" ? "বাংলা" : "English"), "ok");
+            });
+
+            var rec = new SR();
+            rec.interimResults = false;
+            rec.maxAlternatives = 1;
+            var listening = false;
+
+            mic.addEventListener("click", function () {
+                if (listening) { try { rec.stop(); } catch (e) {} return; }
+                rec.lang = lang;
+                try {
+                    rec.start();
+                    listening = true;
+                    mic.classList.add("active");
+                    showStatus("Listening… speak your search.", "live");
+                } catch (e) {
+                    showStatus("Could not start voice — " + (e.message || e), "error");
+                }
+            });
+            rec.onresult = function (e) {
+                var transcript = e.results[0][0].transcript;
+                box.value = transcript;
+                showStatus("Heard: " + transcript, "ok");
+                sgtHeaderSearch();
+            };
+            rec.onend = function () {
+                listening = false;
+                mic.classList.remove("active");
+            };
+            rec.onerror = function (e) {
+                listening = false;
+                mic.classList.remove("active");
+                // Specific messages for the common cases.
+                var msg = ({
+                    "not-allowed":        "Microphone permission denied — allow it in the browser address bar.",
+                    "service-not-allowed":"Voice search blocked by the browser.",
+                    "no-speech":          "Didn't hear anything — tap the mic and try again.",
+                    "audio-capture":      "No microphone found.",
+                    "network":            "Voice recognition needs internet."
+                })[e.error] || ("Voice error: " + e.error);
+                showStatus(msg, "error");
+            };
+        }
+    })();
+    function sgtHeaderSearch() {
+        var q = (document.getElementById("headerSearch").value || "").trim();
+        window.location.href = "/shop/" + (q ? "?q=" + encodeURIComponent(q) : "");
+        return false;
+    }
+</script>
+
+<!-- Start Navigation -->
+<div class="header header-light dark-text">
+    <div class="container">
+        <nav id="navigation" class="navigation navigation-landscape">
+            <div class="nav-header">
+                <a class="nav-brand" href="/" style="text-decoration:none;">
+                    <span class="brand-mark">
+                        <span class="brand-mark-icon">SGT</span><span class="brand-mark-name">Cart</span>
+                    </span>
+                </a>
+                <div class="nav-toggle"></div>
+                <div class="mobile_nav">
+                    <ul class="d-flex">
+                        <li>
+                            <a href="javascript:void(0);" onclick="openSearch()">
+                                <i class="lni lni-search-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/login/">
+                                <i class="lni lni-user"></i>
+                            </a>
+                        </li>
+                        {% if current_user.is_authenticated %}
+                        <li>
+                            <a href="{{ url_for('notification.inbox') }}" title="Notifications">
+                                <i class="lni lni-alarm"></i>
+                                <span class="cart-count dn-counter theme-bg js-notif-count{% if not nav_unread_notifications %} d-none{% endif %}">
+                                    {{ nav_unread_notifications or 0 }}
+                                </span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="javascript:void(0);" onclick="openWishlist()">
+                                <i class="lni lni-heart"></i>
+                                <span class="wishlist-count dn-counter">
+                                    {{ wishlist|length }}
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="openCart()">
+                                <i class="lni lni-shopping-basket"></i>
+                                <span class="cart-count dn-counter theme-bg">
+                                    {{ cart|length }}
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-menus-wrapper" style="transition-property: none;">
+                <ul class="nav-menu">
+
+                    <li><a href="/" class="sub-menu-item">Home</a></li>
+
+                    <li><a href="/shop/" class="sub-menu-item">Shop</a></li>
+
+                    {% if nav_categories %}
+                    <li class="relative parent-parent-menu-item">
+                        <a href="javascript:void(0);" class="home-link">Categories</a>
+                        <ul class="nav-dropdown nav-submenu">
+                            {% for cat in nav_categories %}
+                            <li><a href="{{ url_for('storefront.shop', category=cat.slug) }}"
+                                   class="sub-menu-item">{{ cat.localized_name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% endif %}
+
+                    <li><a href="{{ url_for('storefront.flash_sales') }}" class="sub-menu-item">
+                        <i class="lni lni-bolt me-1"></i>Flash Sales</a></li>
+
+                    <li><a href="/sell/" class="sub-menu-item">Sell on SGT</a></li>
+
+                    <li class="relative parent-parent-menu-item">
+                        <a href="javascript:void(0);" class="home-link">Help</a>
+                        <ul class="nav-dropdown nav-submenu">
+                            <li><a href="/about/" class="sub-menu-item">About Us</a></li>
+                            <li><a href="/contact/" class="sub-menu-item">Contact</a></li>
+                            <li><a href="/faq/" class="sub-menu-item">FAQs</a></li>
+                            <li><a href="/shipping/" class="sub-menu-item">Shipping Info</a></li>
+                            <li><a href="/returns/" class="sub-menu-item">Return Policy</a></li>
+                            <li><a href="/terms/" class="sub-menu-item">Terms &amp; Conditions</a></li>
+                            <li><a href="/privacy/" class="sub-menu-item">Privacy Policy</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                
+                <ul class="nav-menu nav-menu-social align-to-right">
+                    <li>
+                        <a href="javascript:void(0);" onclick="openSearch()">
+                            <i class="lni lni-search-alt"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/login/">
+                            <i class="lni lni-user"></i>
+                        </a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li>
+                        <a href="{{ url_for('notification.inbox') }}" title="Notifications">
+                            <i class="lni lni-alarm"></i>
+                            <span class="cart-count dn-counter theme-bg js-notif-count{% if not nav_unread_notifications %} d-none{% endif %}">
+                                {{ nav_unread_notifications or 0 }}
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <a href="javascript:void(0);" onclick="openWishlist()">
+                            <i class="lni lni-heart"></i>
+                            <span class="wishlist-count dn-counter">
+                                {{ wishlist|length }}
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" onclick="openCart()">
+                            <i class="lni lni-shopping-basket"></i>
+                            <span class="cart-count dn-counter theme-bg">
+                                {{ cart|length }}
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- End Navigation -->
+<div class="clearfix"></div>
+
+<script>
+    const currentPath = window.location.pathname.replace(/\/$/, '');
+
+    const subMenuItems = document.querySelectorAll('.sub-menu-item');
+    subMenuItems.forEach((item) => {
+        const itemPath = new URL(item.href).pathname.replace(/\/$/, '');
+
+        if (itemPath === currentPath) {
+            item.classList.add('active');
+
+            // Highlight all parent menus recursively
+            let parentMenu = item.closest('.parent-menu-item');
+            while (parentMenu && !parentMenu.classList.contains('processed')) {
+                const parentLink = parentMenu.querySelector('a');
+                if (parentLink) {
+                    parentLink.classList.add('active');
+                }
+                parentMenu.classList.add('processed');
+                parentMenu = parentMenu.closest('.parent-parent-menu-item');
+            }
+
+            // Highlight the top-level parent menu
+            const topLevelMenu = item.closest('.parent-parent-menu-item');
+            if (topLevelMenu) {
+                const topLevelLink = topLevelMenu.querySelector('.home-link');
+                if (topLevelLink) {
+                    topLevelLink.classList.add('active');
+                }
+            }
+        }
+    });
+</script>

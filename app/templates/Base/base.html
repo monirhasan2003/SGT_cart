@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zxx">
+	<head>
+		<meta charset="utf-8" />
+        <title>SGT Cart</title>
+		<meta name="author" content="Shreethemes" />
+		<meta content="Fashion eCommerce Template" name="description" />
+        <meta content="Fashion,eCommerce" name="keywords" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="website" content="https://shreethemes.in" />
+        <meta name="email" content="support@shreethemes.in" />
+        <meta name="version" content="1.0.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		
+        <link rel="icon" href="{{ url_for('static', filename='assets/img/favicon.ico') }}" type="image/gif" sizes="18x18">
+		 
+        <!-- Custom CSS -->
+        <link href="{{ url_for('static', filename='assets/css/styles.css') }}" rel="stylesheet">
+
+        <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+		
+    </head>
+	
+    <body>
+	
+       {% include 'Base/impersonation_banner.html' %}
+       {% include 'Base/account_strip.html' %}
+
+       <div class="preloader"></div>
+		
+        <div id="main-wrapper">
+
+            <main>
+				{% block hero_content %}
+					{{ hero_content}}
+				{% endblock %}
+			</main>
+
+			<a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+
+        </div>
+
+		<!-- All Jquery -->
+		<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/popper.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/ion.rangeSlider.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/slick.js') }}"></script>
+		<script src="https://unpkg.com/wicg-inert@3.1.1/dist/inert.min.js"></script>
+		<script src="{{ url_for('static', filename='assets/js/slider-bg.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/lightbox.js') }}"></script> 
+		<script src="{{ url_for('static', filename='assets/js/smoothproducts.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/snackbar.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/jQuery.style.switcher.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/popup.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/contact.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+		<!-- This page plugins -->
+
+		<script>
+			function openWishlist() {
+				document.getElementById("Wishlist").style.display = "block";
+			}
+			function closeWishlist() {
+				document.getElementById("Wishlist").style.display = "none";
+			}
+		</script>
+		
+		<script>
+			function openCart() {
+				document.getElementById("Cart").style.display = "block";
+			}
+			function closeCart() {
+				document.getElementById("Cart").style.display = "none";
+			}
+		</script>
+
+		<script>
+			function openSearch() {
+				document.getElementById("Search").style.display = "block";
+			}
+			function closeSearch() {
+				document.getElementById("Search").style.display = "none";
+			}
+		</script>
+
+		<script>
+			(function () {
+				const second = 1000,
+					minute = second * 60,
+					hour = minute * 60,
+					day = hour * 24;
+
+				let birthday = "Oct 30, 2025 00:00:00",
+					countDown = new Date(birthday).getTime();
+
+				const daysEl = document.getElementById("days");
+				const hoursEl = document.getElementById("hours");
+				const minutesEl = document.getElementById("minutes");
+				const secondsEl = document.getElementById("seconds");
+
+				if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+				const x = setInterval(function() {
+					let now = new Date().getTime(),
+						distance = countDown - now;
+
+					daysEl.innerText = Math.floor(distance / day);
+					hoursEl.innerText = Math.floor((distance % day) / hour);
+					minutesEl.innerText = Math.floor((distance % hour) / minute);
+					secondsEl.innerText = Math.floor((distance % minute) / second);
+
+					if (distance < 0) {
+						let headline = document.getElementById("headline"),
+							countdown = document.getElementById("countdown"),
+							content = document.getElementById("content");
+
+						if (headline) headline.innerText = "It's my birthday!";
+						if (countdown) countdown.style.display = "none";
+						if (content) content.style.display = "block";
+
+						clearInterval(x);
+					}
+				}, 1000);
+			})();
+		</script>
+
+		{% if current_user.is_authenticated %}
+		<!-- Live in-app notifications (Phase 8) -->
+		<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+		<script>
+			(function () {
+				try {
+					var socket = io();
+					socket.on("notification", function (n) {
+						document.querySelectorAll(".js-notif-count").forEach(function (el) {
+							var next = (parseInt(el.textContent, 10) || 0) + 1;
+							el.textContent = next;
+							el.classList.remove("d-none");
+						});
+					});
+				} catch (e) {
+					console.warn("Live notifications unavailable:", e);
+				}
+			})();
+		</script>
+		{% endif %}
+
+	</body>
+</html>

@@ -1,0 +1,211 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar3.html' %}
+			
+<!-- Hero Banner Start  -->
+<div class="home-slider margin-bottom-0">
+
+	<!-- Components/Home/home-9/slide7.html -->
+    {% include 'Components/Home/home-9/slide7.html' %}
+
+</div>
+<!-- Hero Banner  End -->
+
+<!-- Category Style -->
+<section class="middle">
+	<div class="container">
+		<div class="row g-0">
+
+			<!-- Components/Home/home-9/category7.html -->
+    		{% include 'Components/Home/home-9/category7.html' %}
+			
+		</div>
+	</div>
+</section>
+<!-- Category Style -->
+
+<!-- Products Lists -->
+<section class="space min pt-0">
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				
+				<ul class="nav nav-tabs b-0 d-flex align-items-center justify-content-center simple_tab_links mb-4" id="myTab" role="tablist">
+						
+					<!-- Components/Home/home-2/nav.html -->
+    				{% include 'Components/Home/home-2/nav.html' %}
+
+				</ul>
+				
+				<div class="tab-content" id="myTabContent">
+					
+					<!-- All Content -->
+					<div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-2/product2.html -->
+    							{% include 'Components/Home/home-2/product2.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-pane fade show active" id="mens" role="tabpanel" aria-labelledby="mens-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-2/product3.html -->
+    							{% include 'Components/Home/home-2/product3.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<!-- Women Content -->
+					<div class="tab-pane fade" id="women" role="tabpanel" aria-labelledby="women-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-2/product4.html -->
+    							{% include 'Components/Home/home-2/product4.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-pane fade" id="kids" role="tabpanel" aria-labelledby="kids-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-2/product5.html -->
+    							{% include 'Components/Home/home-2/product5.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Products List -->
+
+<!-- Deals of The Day -->
+<section class="bg-cover" style="background:url({{ url_for('static', filename='assets/img/bg.jpg') }}) no-repeat;">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12">
+				
+				<div class="deals_wrap text-center">
+					<h4 class="ft-medium">Get up to -40% Off</h4>
+					<h2 class="ft-bold">Only Summer Collections</h2>
+					<div id="countdown" class="mt-5">
+						<ul>
+							<li><span id="days"></span>days</li>
+							<li><span id="hours"></span>Hours</li>
+							<li><span id="minutes"></span>Minutes</li>
+							<li><span id="seconds"></span>Seconds</li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Deals of The Day -->
+
+<!-- Customer Review -->
+<section>
+	<div class="container">
+	
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Testimonials</h2>
+					<h3 class="ft-bold pt-3">Client Reviews</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-9 col-lg-10 col-md-12 col-sm-12">
+				<div class="reviews-slide px-3">
+					
+					<!-- Components/Home/index/review.html -->
+            		{% include 'Components/Home/index/review.html' %}
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Customer Review -->
+
+<!-- Instagram Start -->
+<section class="p-0">
+	<div class="container-fluid p-0 overflow-hidden">
+		
+		<div class="row no-gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<span class="fs-md ft-bold theme-cl">@mahak_71</span>
+					<h3 class="ft-bold lh-1">From Instagram</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row no-gutters">
+			<div class="insta-slider"> 
+			
+				<!-- Components/Home/index/insta.html -->
+            	{% include 'Components/Home/index/insta.html' %}
+				
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Instagram Start -->
+
+<!-- Customer Features -->
+<section class="px-0 py-3 br-top">
+	<div class="container">
+		<div class="row">
+			
+			<!-- Components/blog-detail/features.html -->
+            {% include 'Components/blog-detail/features.html' %}
+			
+		</div>
+	</div>
+</section>
+<!-- Customer Features -->
+
+<!-- Components/Home/index/quickview.html -->
+{% include 'Components/Home/index/quickview.html' %}
+
+<!-- Components/Home/index/log.html -->
+{% include 'Components/Home/index/log.html' %}
+
+<!-- Components/Home/index/search.html -->
+{% include 'Components/Home/index/search.html' %}
+
+<!-- Components/Home/index/wishlist.html -->
+{% include 'Components/Home/index/wishlist.html' %}
+
+<!-- Components/Home/index/cart.html -->
+{% include 'Components/Home/index/cart.html' %}
+
+<!-- Components/Home/index/popup-overlay.html -->
+{% include 'Components/Home/index/popup-overlay.html' %}
+
+{% include 'Base/footer3.html' %} 
+
+{% endblock %}

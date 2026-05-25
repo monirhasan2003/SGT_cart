@@ -1,0 +1,217 @@
+<!-- Start Navigation -->
+<div class="header header-light dark-text">
+    <div class="container">
+        <nav id="navigation" class="navigation navigation-landscape">
+            <div class="nav-header">
+                <a class="nav-brand" href="/">
+                    <img src="{{ url_for('static', filename='assets/img/logo.png') }}" class="logo" alt="" />
+                </a>
+                <div class="nav-toggle"></div>
+                <div class="mobile_nav">
+                    <ul class="d-flex">
+                        <li>
+                            <a href="javascript:void(0);" onclick="openSearch()">
+                                <i class="lni lni-search-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/login/">
+                                <i class="lni lni-user"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="openWishlist()">
+                                <i class="lni lni-heart"></i>
+                                <span class="wishlist-count dn-counter">
+                                    {{ wishlist|length }}
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" onclick="openCart()">
+                                <i class="lni lni-shopping-basket"></i>
+                                <span class="cart-count dn-counter theme-bg">
+                                    {{ cart|length }}
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-menus-wrapper" style="transition-property: none;">
+                <ul class="nav-menu">
+                
+                    <li class="relative parent-parent-menu-item">
+                        <a href="javascript:void(0);" class="home-link">Home</a>
+                        <ul class="nav-dropdown nav-submenu">
+                            <li><a href="/" class="sub-menu-item">Home 1</a></li>
+                            <li><a href="/home-2/" class="sub-menu-item">Home 2</a></li>
+                            <li><a href="/home-3/" class="sub-menu-item">Home 3</a></li>
+                            <li><a href="/home-4/" class="sub-menu-item">Home 4</a></li>
+                            <li><a href="/home-5/" class="sub-menu-item">Home 5</a></li>
+                            <li><a href="/home-6/" class="sub-menu-item">Home 6</a></li>
+                            <li><a href="/home-7/" class="sub-menu-item">Home 7</a></li>
+                            <li><a href="/home-8/" class="sub-menu-item">Home 8</a></li>
+                            <li><a href="/home-9/" class="sub-menu-item">Home 9</a></li>
+                            <li><a href="/home-10/" class="sub-menu-item">Home 10</a></li>
+                            <li><a href="/home-11/" class="sub-menu-item">Home 11</a></li>
+                            <li><a href="/home-12/" class="sub-menu-item">Home 12</a></li>
+                            <li><a href="/home-13/" class="sub-menu-item">Home 13</a></li>
+                            <li><a href="/home-14/" class="sub-menu-item">Home 14</a></li>
+                            <li><a href="/home-15/" class="sub-menu-item">Home 15</a></li>
+                            <li><a href="/home-16/" class="sub-menu-item">Home 16</a></li>
+                            <li><a href="/home-17/" class="sub-menu-item">Home 17</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="relative parent-parent-menu-item">
+                        <a href="/shop/" class="home-link">Shop</a>
+                        <ul class="nav-dropdown nav-submenu">
+                            <li class="relative parent-menu-item"><a href="javascript:void(0);">Account Dashboard</a>
+                                <ul class="nav-dropdown nav-submenu">
+                                    <li><a href="/my-orders/" class="sub-menu-item">My Order</a></li>
+                                    <li><a href="/wishlist/" class="sub-menu-item">Wishlist</a></li>
+                                    <li><a href="/profile-info/" class="sub-menu-item">Profile Info</a></li>
+                                    <li><a href="/addresses/" class="sub-menu-item">Addresses</a></li>
+                                    <li><a href="/payment-method/" class="sub-menu-item">Payment Method</a></li>
+                                </ul>
+                            </li>
+                            <li class="relative parent-menu-item"><a href="javascript:void(0);">Shop</a>
+                                <ul class="nav-dropdown nav-submenu">
+                                    <li><a href="/shop-style-1/" class="sub-menu-item">Shop Style 01</a></li>
+                                    <li><a href="/shop-style-2/" class="sub-menu-item">Shop Style 02</a></li>
+                                    <li><a href="/shop-style-3/" class="sub-menu-item">Shop Style 03</a></li>
+                                    <li><a href="/shop-style-4/" class="sub-menu-item">Shop Style 04</a></li>
+                                    <li><a href="/shop-style-5/" class="sub-menu-item">Shop Style 05</a></li>
+                                    <li><a href="/shop-list-view/" class="sub-menu-item">Shop List Style</a></li>
+                                </ul>
+                            </li>
+                            <li class="relative parent-menu-item"><a href="javascript:void(0);">Shop Detail</a>
+                                <ul class="nav-dropdown nav-submenu">
+                                    <li><a href="/shop-single-v1/" class="sub-menu-item">Product Detail v01</a></li>
+                                    <li><a href="/shop-single-v2/" class="sub-menu-item">Product Detail v02</a></li>
+                                    <li><a href="/shop-single-v3/" class="sub-menu-item">Product Detail v03</a></li>
+                                    <li><a href="/shop-single-v4/" class="sub-menu-item">Product Detail v04</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/shoping-cart/" class="sub-menu-item">Shopping Cart</a></li>
+                            <li><a href="/checkout/" class="sub-menu-item">Checkout</a></li>
+                            <li><a href="/complete-order/" class="sub-menu-item">Order Complete</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="relative parent-parent-menu-item">
+                        <a href="javascript:void(0);" class="home-link">Blog</a>
+                        <ul class="nav-dropdown nav-submenu">
+                            <li><a href="/blog/" class="sub-menu-item">Blog</a></li>
+                            <li><a href="/blog-detail/" class="sub-menu-item">Blog Detail</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="relative parent-parent-menu-item">
+                        <a href="javascript:void(0);" class="home-link">Pages</a>
+                        <ul class="nav-dropdown nav-submenu">
+                            <li><a href="/about-us/" class="sub-menu-item">About Us</a></li>
+                            <li><a href="/contact/" class="sub-menu-item">Contact</a></li>
+                            <li class="relative parent-menu-item"><a href="javascript:void(0);">Email Template</a>
+                                <ul class="nav-dropdown nav-submenu">
+                                    <li><a href="/email-confirmation/" class="sub-menu-item">Confirmation</a></li>
+                                    <li><a href="/email-cart/" class="sub-menu-item">Cart</a></li>
+                                    <li><a href="/email-offers/" class="sub-menu-item">Offers</a></li>
+                                    <li><a href="/email-order-success/" class="sub-menu-item">Order Success</a></li>
+                                    <li><a href="/email-gift-voucher/" class="sub-menu-item">Gift Voucher</a></li>
+                                    <li><a href="/email-reset-password/" class="sub-menu-item">Reset Password</a></li>
+                                    <li><a href="/email-item-review/" class="sub-menu-item">Item Review</a></li>
+                                </ul>
+                            </li>
+                            <li class="relative parent-menu-item"><a href="javascript:void(0);">Special</a>
+                                <ul class="nav-dropdown nav-submenu">
+                                    <li><a href="/comingsoon/" class="sub-menu-item">Comingsoon</a></li>
+                                    <li><a href="/maintenance/" class="sub-menu-item">Maintenance</a></li>
+                                    <li><a href="/404/" class="sub-menu-item">404 Page</a></li>
+                                </ul>
+                            </li>
+                            <li class="relative parent-menu-item"><a href="javascript:void(0);">Auth</a>
+                                <ul class="nav-dropdown nav-submenu">
+                                    <li><a href="/login/" class="sub-menu-item">Login</a></li>
+                                    <li><a href="/signup/" class="sub-menu-item">Signup</a></li>
+                                    <li><a href="/forgot-password/" class="sub-menu-item">Password Reset</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/privacy/" class="sub-menu-item">Privacy Policy</a></li>
+                            <li><a href="/faq/" class="sub-menu-item">FAQs</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="/docs/" class="sub-menu-item">Docs</a></li>
+                    
+                </ul>
+                
+                <ul class="nav-menu nav-menu-social align-to-right">
+                    <li>
+                        <a href="javascript:void(0);" onclick="openSearch()">
+                            <i class="lni lni-search-alt"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/login/">
+                            <i class="lni lni-user"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" onclick="openWishlist()">
+                            <i class="lni lni-heart"></i>
+                            <span class="wishlist-count dn-counter">
+                                {{ wishlist|length }}
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" onclick="openCart()">
+                            <i class="lni lni-shopping-basket"></i>
+                            <span class="cart-count dn-counter theme-bg">
+                                {{ cart|length }}
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- End Navigation -->
+
+<div class="clearfix"></div>
+
+<script>
+    const currentPath = window.location.pathname.replace(/\/$/, '');
+
+    const subMenuItems = document.querySelectorAll('.sub-menu-item');
+    subMenuItems.forEach((item) => {
+        const itemPath = new URL(item.href).pathname.replace(/\/$/, '');
+
+        if (itemPath === currentPath) {
+            item.classList.add('active');
+
+            // Highlight all parent menus recursively
+            let parentMenu = item.closest('.parent-menu-item');
+            while (parentMenu && !parentMenu.classList.contains('processed')) {
+                const parentLink = parentMenu.querySelector('a');
+                if (parentLink) {
+                    parentLink.classList.add('active');
+                }
+                parentMenu.classList.add('processed');
+                parentMenu = parentMenu.closest('.parent-parent-menu-item');
+            }
+
+            // Highlight the top-level parent menu
+            const topLevelMenu = item.closest('.parent-parent-menu-item');
+            if (topLevelMenu) {
+                const topLevelLink = topLevelMenu.querySelector('.home-link');
+                if (topLevelLink) {
+                    topLevelLink.classList.add('active');
+                }
+            }
+        }
+    });
+</script>

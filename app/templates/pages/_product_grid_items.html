@@ -1,0 +1,4 @@
+{# Partial used by the Shop "Load More" AJAX endpoint — just the product cards,
+   no wrapping row, no layout. #}
+{% from 'pages/_product_card.html' import product_card %}
+{% for p in products %}{{ product_card(p) }}{% endfor %}

@@ -1,0 +1,116 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/seller/">Seller Dashboard</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Store Promotion</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<div>
+				<h4 class="ft-bold mb-0">Store Promotion Banner</h4>
+				<span class="text-muted small">
+					Shown at the top of your public store page
+					(<a href="{{ url_for('storefront.store', slug=profile.slug) }}"
+					    target="_blank">{{ profile.slug }}</a>).
+				</span>
+			</div>
+		</div>
+
+		<div class="row g-4">
+			<div class="col-lg-7">
+				<div class="border rounded p-3">
+					<form method="post" enctype="multipart/form-data">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+						<label class="form-label small text-secondary mb-1">
+							Tagline / message (240 chars)
+						</label>
+						<input type="text" name="promo_banner_text" maxlength="240"
+						       class="form-control mb-3"
+						       value="{{ profile.promo_banner_text or '' }}"
+						       placeholder="e.g. Eid Mega Sale — up to 40% off on selected items!">
+
+						<label class="form-label small text-secondary mb-1">
+							Banner image (optional, jpg/png)
+						</label>
+						{% if profile.promo_banner_image %}
+						<div class="mb-2">
+							<img src="{{ url_for('static', filename=profile.promo_banner_image) }}"
+							     class="img-fluid border rounded" style="max-height:140px;" alt="">
+						</div>
+						{% endif %}
+						<input type="file" name="promo_banner_image" accept="image/*"
+						       class="form-control mb-3">
+
+						<label class="form-label small text-secondary mb-1">
+							Auto-hide after (optional)
+						</label>
+						<input type="date" name="promo_until"
+						       class="form-control mb-3"
+						       value="{{ profile.promo_until.strftime('%Y-%m-%d') if profile.promo_until }}">
+
+						<div class="d-flex gap-2">
+							<button class="btn btn-primary">Save promotion</button>
+							{% if profile.promo_banner_text or profile.promo_banner_image %}
+							<button class="btn btn-outline-danger" name="action" value="clear"
+							        onclick="return confirm('Clear the store promotion?');">
+								Clear promotion
+							</button>
+							{% endif %}
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="col-lg-5">
+				<div class="border rounded p-3">
+					<h6 class="ft-bold mb-2">Preview</h6>
+					{% if profile.has_active_promo %}
+					<div class="rounded overflow-hidden border">
+						{% if profile.promo_banner_image %}
+						<img src="{{ url_for('static', filename=profile.promo_banner_image) }}"
+						     class="w-100" style="max-height:160px;object-fit:cover;" alt="">
+						{% endif %}
+						{% if profile.promo_banner_text %}
+						<div class="p-3 bg-warning bg-opacity-25 small">
+							<i class="lni lni-megaphone me-1"></i>
+							{{ profile.promo_banner_text }}
+						</div>
+						{% endif %}
+					</div>
+					<p class="small text-muted mt-2 mb-0">
+						{% if profile.promo_until %}
+							Active until {{ profile.promo_until.strftime('%d %b %Y') }}.
+						{% else %}
+							No expiry — runs until you clear it.
+						{% endif %}
+					</p>
+					{% else %}
+					<p class="text-muted small mb-0">
+						No active promotion. Add a tagline or banner to start.
+					</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+{% endblock %}

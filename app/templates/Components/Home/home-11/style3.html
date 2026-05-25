@@ -1,0 +1,15 @@
+{% for item in styles3 %}
+    <div class="{{ item.style }}">
+        <div class="single_cats">
+            <a href="#" class="cards card-overflow card-scale md_height">
+                <div class="bg-image" style="background:url({{ item.img }})no-repeat;"></div>
+                <div class="ct_body">
+                    <div class="ct_body_caption left">	
+                        <h2 class="m-0 ft-bold lh-1 fs-md text-upper">{{ item.title }}</h2>
+                        <span>{{ item.item }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endfor %}

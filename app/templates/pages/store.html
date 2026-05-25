@@ -1,0 +1,167 @@
+{% extends "Base/base.html" %}
+{% from 'pages/_product_card.html' import product_card %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<!-- Store cover -->
+<div style="position:relative; height:220px; background:#0f172a;
+            {% if vendor.banner %}background-image:url('{{ url_for('static', filename=vendor.banner) }}');
+            background-size:cover; background-position:center;{% else %}
+            background:linear-gradient(120deg,#0f172a,#334155);{% endif %}">
+	<div style="position:absolute; inset:0; background:rgba(15,23,42,0.45);"></div>
+</div>
+
+<!-- Store header — logo overlaps the cover edge, title sits well below it -->
+<div class="container">
+	<div class="d-flex align-items-end pb-5 pt-2"
+	     style="margin-top:-35px; position:relative; z-index:2;">
+		<div class="bg-white border rounded shadow-sm p-1 flex-shrink-0"
+		     style="width:110px; height:110px;">
+			{% if vendor.logo %}
+				<img src="{{ url_for('static', filename=vendor.logo) }}" alt="{{ vendor.shop_name_en }}"
+				     class="rounded" style="width:100%; height:100%; object-fit:cover;">
+			{% else %}
+				<div class="d-flex align-items-center justify-content-center gray rounded"
+				     style="width:100%;height:100%;"><i class="lni lni-shop fs-1 text-muted"></i></div>
+			{% endif %}
+		</div>
+		<div class="ps-3" style="padding-bottom: 4px;">
+			<h2 class="ft-bold mb-1">{{ vendor.shop_name_en }}</h2>
+			<div class="text-muted small">
+				<i class="lni lni-package me-1"></i>{{ product_count }} product(s)
+				{% if vendor.rating_count %}
+					· <span class="text-warning">{{ '%.1f'|format(vendor.rating_avg|float) }}★</span>
+					<span>({{ vendor.rating_count }})</span>
+				{% endif %}
+				{% if vendor.address %}
+					· <i class="lni lni-map-marker me-1"></i>{{ vendor.city or vendor.address }}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% if vendor.description_en %}
+		<p class="text-muted small mb-3">{{ vendor.description_en }}</p>
+	{% endif %}
+
+	{# Seller-managed store promotion banner (Phase 15 Chunk C). #}
+	{% if vendor.has_active_promo %}
+	<div class="mt-3 border rounded overflow-hidden" style="background:#fff8e1;">
+		{% if vendor.promo_banner_image %}
+		<img src="{{ url_for('static', filename=vendor.promo_banner_image) }}"
+		     class="w-100" style="max-height:180px;object-fit:cover;" alt="">
+		{% endif %}
+		{% if vendor.promo_banner_text %}
+		<div class="px-3 py-2 d-flex align-items-center">
+			<i class="lni lni-megaphone me-2 text-warning fs-4"></i>
+			<span class="ft-medium">{{ vendor.promo_banner_text }}</span>
+		</div>
+		{% endif %}
+	</div>
+	{% endif %}
+</div>
+
+<section class="middle pt-4">
+	<div class="container">
+		<div class="row">
+
+			<!-- In-store filters -->
+			<div class="col-lg-3 col-md-4 mb-4">
+				<form method="get" action="{{ url_for('storefront.store', slug=vendor.slug) }}" class="border rounded p-3 mb-3">
+					<h6 class="ft-bold mb-2">Search this store</h6>
+					<div class="input-group">
+						<input type="text" name="q" class="form-control" placeholder="Search products" value="{{ q }}">
+						<button class="btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
+					</div>
+				</form>
+
+				<div class="border rounded p-3 mb-3">
+					<h6 class="ft-bold mb-2">Categories</h6>
+					<ul class="list-unstyled mb-0">
+						<li class="mb-1">
+							<a href="{{ url_for('storefront.store', slug=vendor.slug) }}"
+							   class="{{ 'ft-bold theme-cl' if not active_category else 'text-dark' }}">All Products</a>
+						</li>
+						{% for cat in store_categories %}
+							<li class="mb-1">
+								<a href="{{ url_for('storefront.store', slug=vendor.slug, category=cat.slug) }}"
+								   class="{{ 'ft-bold theme-cl' if active_category and active_category.id == cat.id else 'text-dark' }}">
+									{{ cat.localized_name }}</a>
+							</li>
+						{% else %}
+							<li class="text-muted small">No categories yet.</li>
+						{% endfor %}
+					</ul>
+				</div>
+
+				<form method="get" action="{{ url_for('storefront.store', slug=vendor.slug) }}" class="border rounded p-3">
+					<h6 class="ft-bold mb-2">Price Range</h6>
+					{% if active_category %}<input type="hidden" name="category" value="{{ active_category.slug }}">{% endif %}
+					{% if q %}<input type="hidden" name="q" value="{{ q }}">{% endif %}
+					<div class="row g-2">
+						<div class="col-6"><input type="number" name="min" class="form-control" placeholder="Min"
+						       value="{{ min_price if min_price is not none else '' }}"></div>
+						<div class="col-6"><input type="number" name="max" class="form-control" placeholder="Max"
+						       value="{{ max_price if max_price is not none else '' }}"></div>
+					</div>
+					<button class="btn btn-dark btn-sm w-100 mt-2" type="submit">Apply</button>
+				</form>
+			</div>
+
+			<!-- Products -->
+			<div class="col-lg-9 col-md-8">
+				<div class="d-flex justify-content-between align-items-center mb-3">
+					<h5 class="ft-bold mb-0">
+						{{ active_category.localized_name if active_category else 'All Products' }}
+					</h5>
+					<span class="text-muted">{{ pagination.total }} found</span>
+				</div>
+				<div class="row g-2">
+					{% for p in products %}
+						{{ product_card(p) }}
+					{% else %}
+						<div class="col-12">
+							<div class="border rounded p-5 text-center text-muted">No products found in this store.</div>
+						</div>
+					{% endfor %}
+				</div>
+
+				{% if pagination.pages > 1 %}
+					<nav class="mt-4">
+						<ul class="pagination justify-content-center">
+							{% set args = {'category': request.args.get('category',''), 'q': q,
+							                'min': request.args.get('min',''), 'max': request.args.get('max','')} %}
+							<li class="page-item {{ 'disabled' if not pagination.has_prev }}">
+								<a class="page-link" href="{{ url_for('storefront.store', slug=vendor.slug, page=pagination.prev_num, **args) }}">Prev</a>
+							</li>
+							{% for pg in pagination.iter_pages() %}
+								{% if pg %}
+									<li class="page-item {{ 'active' if pg == pagination.page }}">
+										<a class="page-link" href="{{ url_for('storefront.store', slug=vendor.slug, page=pg, **args) }}">{{ pg }}</a>
+									</li>
+								{% else %}
+									<li class="page-item disabled"><span class="page-link">…</span></li>
+								{% endif %}
+							{% endfor %}
+							<li class="page-item {{ 'disabled' if not pagination.has_next }}">
+								<a class="page-link" href="{{ url_for('storefront.store', slug=vendor.slug, page=pagination.next_num, **args) }}">Next</a>
+							</li>
+						</ul>
+					</nav>
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+</section>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

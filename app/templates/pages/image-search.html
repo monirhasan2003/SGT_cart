@@ -1,0 +1,83 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Search by Image</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<div class="row justify-content-center mb-3">
+			<div class="col-lg-6">
+				<div class="border rounded p-3 text-center">
+					<div class="d-flex justify-content-center align-items-center gap-2 mb-2">
+						<i class="lni lni-camera fs-3 theme-cl"></i>
+						<h5 class="ft-bold mb-0">Search by Image</h5>
+					</div>
+					<p class="text-muted small mb-2">
+						Upload a photo — we'll find products that look like it.
+					</p>
+					<form method="post" enctype="multipart/form-data">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+						<div class="d-flex justify-content-center gap-2">
+							<input type="file" name="image" accept="image/*"
+							       class="form-control form-control-sm" style="max-width:280px" required>
+							<button class="btn btn-sm btn-primary px-3">Find similar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		{% if matches is not none %}
+			{% if matches %}
+			<h6 class="ft-bold mb-2">Visually similar products ({{ matches|length }})</h6>
+			<div class="row g-2">
+				{% for product, score in matches %}
+				<div class="col-lg-2 col-md-3 col-6">
+					<div class="border rounded position-relative">
+						<span class="badge bg-info text-dark position-absolute"
+						      style="top:6px;left:6px;font-size:10px;">{{ '%.0f'|format(score * 100) }}%</span>
+						<a href="{{ url_for('storefront.product_detail', slug=product.slug) }}"
+						   class="d-block text-center p-2">
+							{% if product.primary_image %}
+							<img src="{{ url_for('static', filename=product.primary_image) }}"
+							     class="img-fluid" style="height:100px;object-fit:contain;" alt="">
+							{% else %}
+							<span class="d-flex align-items-center justify-content-center bg-light"
+							      style="height:100px;"><i class="lni lni-image fs-3 text-muted"></i></span>
+							{% endif %}
+						</a>
+						<div class="p-2 pt-0">
+							<a href="{{ url_for('storefront.product_detail', slug=product.slug) }}"
+							   class="text-dark small d-block text-truncate">{{ product.localized_title }}</a>
+							<span class="ft-bold theme-cl small">৳{{ product.current_price }}</span>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			{% else %}
+			<div class="border rounded p-3 text-center text-muted small">
+				No similar products found — try a different image.
+			</div>
+			{% endif %}
+		{% endif %}
+
+	</div>
+</section>
+
+{% endblock %}

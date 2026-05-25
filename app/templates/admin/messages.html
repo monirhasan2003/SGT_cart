@@ -1,0 +1,46 @@
+{% extends "admin/base.html" %}
+{% block title %}Support Messages{% endblock %}
+{% block heading %}Support Messages{% endblock %}
+{% block content %}
+
+<p class="text-muted">Customer &harr; platform conversations — purchase, delivery,
+refund and other issues. Seller product chats are kept separate.</p>
+
+{% if threads %}
+<div class="border rounded bg-white">
+	<table class="table align-middle mb-0">
+		<thead class="table-light">
+			<tr>
+				<th>Topic</th><th>Customer</th><th>Subject</th>
+				<th>Last activity</th><th>Unread</th><th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for t in threads %}
+			<tr>
+				<td><span class="badge bg-info text-dark text-capitalize">{{ t.topic or 'other' }}</span></td>
+				<td>{{ t.customer.name if t.customer }}</td>
+				<td>{{ t.subject }}</td>
+				<td class="small text-muted">
+					{{ t.last_message_at.strftime('%d %b %Y, %H:%M') if t.last_message_at }}
+				</td>
+				<td>
+					{% set unread = t.unread_count(current_user.id) %}
+					{% if unread %}<span class="badge bg-danger rounded-pill">{{ unread }}</span>{% endif %}
+				</td>
+				<td class="text-end">
+					<a href="{{ url_for('chat.admin_thread', thread_id=t.id) }}"
+					   class="btn btn-sm btn-primary">Open</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% else %}
+<div class="border rounded bg-white p-5 text-center text-muted">
+	No support conversations yet.
+</div>
+{% endif %}
+
+{% endblock %}

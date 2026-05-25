@@ -1,0 +1,74 @@
+{# Shared coupon form fields — included inside a <form> by the admin and
+   seller coupon forms. Expects `form` (a dict / request.form) and `coupon`. #}
+<div class="row g-3">
+	<div class="col-md-6">
+		<label class="form-label ft-medium">Coupon code</label>
+		<input type="text" name="code" class="form-control text-uppercase"
+		       value="{{ form.get('code') or '' }}" required maxlength="40"
+		       placeholder="e.g. SAVE100">
+	</div>
+	<div class="col-md-6">
+		<label class="form-label ft-medium">Description</label>
+		<input type="text" name="description" class="form-control" maxlength="200"
+		       value="{{ form.get('description') or '' }}">
+	</div>
+
+	<div class="col-md-4">
+		<label class="form-label ft-medium">Discount type</label>
+		<select name="discount_type" class="form-select">
+			<option value="percent" {{ 'selected' if form.get('discount_type') == 'percent' }}>
+				Percentage (%)</option>
+			<option value="fixed" {{ 'selected' if form.get('discount_type') == 'fixed' }}>
+				Fixed amount (৳)</option>
+		</select>
+	</div>
+	<div class="col-md-4">
+		<label class="form-label ft-medium">Discount value</label>
+		<input type="number" step="0.01" min="0" name="discount_value" class="form-control"
+		       value="{{ form.get('discount_value') or '' }}" required>
+	</div>
+	<div class="col-md-4">
+		<label class="form-label ft-medium">Max discount (৳)
+			<span class="text-muted small">cap, optional</span></label>
+		<input type="number" step="0.01" min="0" name="max_discount" class="form-control"
+		       value="{{ form.get('max_discount') or '' }}">
+	</div>
+
+	<div class="col-md-4">
+		<label class="form-label ft-medium">Min order amount (৳)</label>
+		<input type="number" step="0.01" min="0" name="min_order_amount" class="form-control"
+		       value="{{ form.get('min_order_amount') or 0 }}">
+	</div>
+	<div class="col-md-4">
+		<label class="form-label ft-medium">Total uses
+			<span class="text-muted small">optional</span></label>
+		<input type="number" min="1" name="usage_limit" class="form-control"
+		       value="{{ form.get('usage_limit') or '' }}">
+	</div>
+	<div class="col-md-4">
+		<label class="form-label ft-medium">Uses per customer</label>
+		<input type="number" min="1" name="per_user_limit" class="form-control"
+		       value="{{ form.get('per_user_limit') or 1 }}">
+	</div>
+
+	<div class="col-md-6">
+		<label class="form-label ft-medium">Starts on
+			<span class="text-muted small">optional</span></label>
+		<input type="date" name="starts_at" class="form-control"
+		       value="{{ form.get('starts_at') or '' }}">
+	</div>
+	<div class="col-md-6">
+		<label class="form-label ft-medium">Ends on
+			<span class="text-muted small">optional</span></label>
+		<input type="date" name="ends_at" class="form-control"
+		       value="{{ form.get('ends_at') or '' }}">
+	</div>
+
+	<div class="col-12">
+		<label class="d-inline-flex align-items-center">
+			<input type="checkbox" name="is_active" class="form-check-input me-2"
+			       {{ 'checked' if form.get('is_active') or not coupon }}>
+			<span class="ft-medium">Active</span>
+		</label>
+	</div>
+</div>

@@ -1,0 +1,5 @@
+{% for item in avatars %}
+    <div class="{{ item.class }}">
+        <img src="{{ url_for('static', filename='assets/img/team-1.jpg') }}" alt="..." class="img-fluid circle">
+    </div>
+{% endfor %}

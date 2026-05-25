@@ -1,0 +1,62 @@
+{% extends "admin/base.html" %}
+{% block title %}Vendors{% endblock %}
+{% block heading %}Vendors{% endblock %}
+{% block content %}
+
+<div class="panel p-3 mb-3">
+    <form method="get" class="row g-2 align-items-end">
+        <div class="col-md-3">
+            <label class="form-label small text-secondary mb-1">Status</label>
+            <select name="status" class="form-select form-select-sm">
+                <option value="">All statuses</option>
+                <option value="pending" {{ 'selected' if status == 'pending' }}>Pending</option>
+                <option value="approved" {{ 'selected' if status == 'approved' }}>Approved</option>
+                <option value="suspended" {{ 'selected' if status == 'suspended' }}>Suspended</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-sm btn-primary">Filter</button>
+            <a href="{{ url_for('admin.vendors') }}" class="btn btn-sm btn-outline-secondary">Reset</a>
+        </div>
+    </form>
+</div>
+
+<div class="panel p-3">
+    <table class="table table-sm align-middle mb-0">
+        <thead><tr><th>#</th><th>Shop</th><th>Owner</th><th>Commission</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+        {% for v in vendors %}
+            <tr>
+                <td>{{ v.id }}</td>
+                <td class="fw-semibold">{{ v.shop_name_en }}</td>
+                <td class="text-secondary">{{ v.user.email }}</td>
+                <td>{{ v.commission_rate }}%</td>
+                <td>
+                    {% if v.status == 'approved' %}<span class="badge bg-success">Approved</span>
+                    {% elif v.status == 'pending' %}<span class="badge bg-warning text-dark">Pending</span>
+                    {% else %}<span class="badge bg-danger">Suspended</span>{% endif %}
+                </td>
+                <td class="text-nowrap">
+                    <a href="{{ url_for('admin.vendor_detail', vendor_id=v.id) }}" class="btn btn-sm btn-outline-primary">View</a>
+                    {% if v.status != 'approved' %}
+                        <form method="post" action="{{ url_for('admin.approve_vendor', vendor_id=v.id) }}" class="d-inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button class="btn btn-sm btn-success">Approve</button>
+                        </form>
+                    {% endif %}
+                    {% if v.status != 'suspended' %}
+                        <form method="post" action="{{ url_for('admin.suspend_vendor', vendor_id=v.id) }}" class="d-inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button class="btn btn-sm btn-outline-danger">Suspend</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="6" class="text-secondary">No vendors found.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

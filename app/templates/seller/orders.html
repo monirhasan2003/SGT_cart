@@ -1,0 +1,71 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/seller/">Seller Dashboard</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Orders</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<h4 class="ft-bold mb-3">Orders <span class="text-muted fs-6">({{ suborders|length }})</span></h4>
+
+		<div class="border rounded">
+			<table class="table align-middle mb-0">
+				<thead class="gray">
+					<tr><th>Order</th><th>Date</th><th>Customer</th><th>Items</th>
+					    <th>Subtotal</th><th>Your Earning</th><th>Status</th><th></th></tr>
+				</thead>
+				<tbody>
+				{% for sub in suborders %}
+					<tr>
+						<td class="ft-medium">{{ sub.order.order_number }}</td>
+						<td class="text-muted">{{ sub.order.created_at.strftime('%d %b %Y') if sub.order.created_at }}</td>
+						<td>{{ sub.order.customer.name if sub.order.customer }}</td>
+						<td>{{ sub.items|length }}</td>
+						<td>৳{{ "%.2f"|format(sub.subtotal|float) }}</td>
+						<td class="ft-medium text-success">৳{{ "%.2f"|format(sub.vendor_earning|float) }}</td>
+						<td>
+							{% if sub.status == 'delivered' %}<span class="badge bg-success">Delivered</span>
+							{% elif sub.status == 'shipped' %}<span class="badge bg-info text-dark">Shipped</span>
+							{% elif sub.status == 'processing' %}<span class="badge bg-primary">Processing</span>
+							{% elif sub.status == 'cancelled' %}<span class="badge bg-danger">Cancelled</span>
+							{% else %}<span class="badge bg-warning text-dark">Pending</span>{% endif %}
+						</td>
+						<td><a href="{{ url_for('seller.order_detail', sub_order_id=sub.id) }}"
+						       class="btn btn-sm btn-outline-dark">Manage</a></td>
+					</tr>
+				{% else %}
+					<tr><td colspan="8" class="text-muted text-center py-4">No orders yet.</td></tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<a href="/seller/" class="btn btn-outline-secondary mt-3">&larr; Back to Dashboard</a>
+
+	</div>
+</section>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

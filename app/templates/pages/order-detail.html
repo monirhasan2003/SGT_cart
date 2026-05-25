@@ -1,0 +1,184 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/my-orders/">My Orders</a></li>
+				<li class="breadcrumb-item active" aria-current="page">{{ order.order_number }}</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<div class="row justify-content-center">
+			<div class="col-lg-9">
+
+				<div class="border rounded p-4 mb-4 text-center">
+					<i class="lni lni-checkmark-circle fs-1 text-success"></i>
+					<h3 class="ft-bold mt-2 mb-1">Order {{ order.order_number }}</h3>
+					<p class="text-muted mb-0">
+						Placed on {{ order.created_at.strftime('%d %b %Y, %I:%M %p') if order.created_at }}
+					</p>
+				</div>
+
+				<div class="row g-3 mb-4">
+					<div class="col-md-6">
+						<div class="border rounded p-3 h-100">
+							<h6 class="ft-bold">Shipping Address</h6>
+							<p class="mb-0 text-muted">
+								{{ order.ship_name }} — {{ order.ship_phone }}<br>
+								{{ order.ship_address_line }},
+								{% if order.ship_area %}{{ order.ship_area }}, {% endif %}{{ order.ship_city }}
+								{% if order.ship_postal_code %} - {{ order.ship_postal_code }}{% endif %}
+							</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="border rounded p-3 h-100">
+							<h6 class="ft-bold">Payment</h6>
+							<p class="mb-0 text-muted">
+								Method: {{ 'Cash on Delivery' if order.payment_method == 'cod' else order.payment_method }}<br>
+								Status:
+								{% if order.payment_status == 'paid' %}<span class="badge bg-success">Paid</span>
+								{% elif order.payment_status == 'failed' %}<span class="badge bg-danger">Failed</span>
+								{% else %}<span class="badge bg-warning text-dark">Pending</span>{% endif %}
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Per-vendor sub-orders -->
+				{% set badges = {'delivered':'bg-success', 'shipped':'bg-info text-dark',
+				                 'processing':'bg-primary', 'cancelled':'bg-danger',
+				                 'pending':'bg-warning text-dark'} %}
+				{% for sub in order.suborders %}
+					<div class="border rounded mb-3" data-suborder="{{ sub.id }}">
+						<div class="d-flex justify-content-between align-items-center gray px-3 py-2">
+							<span class="ft-medium"><i class="lni lni-shop me-1"></i>
+								{{ sub.vendor.shop_name_en if sub.vendor }}</span>
+							<span class="js-sub-status">
+								<span class="badge {{ badges.get(sub.status, 'bg-secondary') }} text-capitalize">
+									{{ sub.status }}</span>
+							</span>
+						</div>
+						<table class="table mb-0">
+							<tbody>
+							{% for item in sub.items %}
+								<tr>
+									<td>
+										{{ item.title }}
+										{% if item.variant_label %}<small class="text-muted">({{ item.variant_label }})</small>{% endif %}
+										{% if sub.status == 'delivered' and item.product %}
+										<a href="{{ url_for('review.write', slug=item.product.slug) }}"
+										   class="d-block small text-primary">★ Write a review</a>
+										{% endif %}
+									</td>
+									<td class="text-muted">৳{{ "%.2f"|format(item.unit_price|float) }} &times; {{ item.quantity }}</td>
+									<td class="text-end ft-medium">৳{{ "%.2f"|format(item.line_total|float) }}</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+							<tfoot>
+								<tr><td colspan="2" class="text-end text-muted">Items subtotal</td>
+									<td class="text-end ft-medium">৳{{ "%.2f"|format(sub.subtotal|float) }}</td></tr>
+							</tfoot>
+						</table>
+						<!-- Live tracking timeline -->
+						<div class="px-3 py-2 border-top">
+							<div class="small ft-medium mb-2"><i class="lni lni-map-marker me-1"></i>Tracking</div>
+							<ul class="list-unstyled mb-0 js-sub-timeline">
+								{% for e in sub.events %}
+								<li class="d-flex gap-2 mb-1 small">
+									<span class="text-success">&#9679;</span>
+									<span class="text-capitalize ft-medium">{{ e.status }}</span>
+									{% if e.note %}<span class="text-muted">— {{ e.note }}</span>{% endif %}
+									<span class="text-muted ms-auto">
+										{{ e.created_at.strftime('%d %b, %H:%M') if e.created_at }}</span>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				{% endfor %}
+
+				<!-- Totals -->
+				<div class="border rounded p-3" style="max-width:340px;margin-left:auto;">
+					<div class="d-flex justify-content-between mb-1">
+						<span>Subtotal</span><span>৳{{ "%.2f"|format(order.subtotal|float) }}</span>
+					</div>
+					<div class="d-flex justify-content-between mb-1">
+						<span>Shipping</span><span>৳{{ "%.2f"|format(order.shipping_fee|float) }}</span>
+					</div>
+					<hr class="my-2">
+					<div class="d-flex justify-content-between">
+						<span class="ft-bold">Total</span>
+						<span class="ft-bold theme-cl">৳{{ "%.2f"|format(order.total_amount|float) }}</span>
+					</div>
+				</div>
+
+				<div class="text-center mt-4">
+					<a href="{{ url_for('storefront.shop') }}" class="btn btn-outline-dark">Continue Shopping</a>
+					<a href="/my-orders/" class="btn btn-dark">My Orders</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script>
+(function () {
+	var ORDER = "{{ order.order_number }}";
+	var STATUS = {
+		pending:    { label: "Pending",    cls: "bg-warning text-dark" },
+		processing: { label: "Processing", cls: "bg-primary" },
+		shipped:    { label: "Shipped",    cls: "bg-info text-dark" },
+		delivered:  { label: "Delivered",  cls: "bg-success" },
+		cancelled:  { label: "Cancelled",  cls: "bg-danger" }
+	};
+	try {
+		var socket = io();
+		socket.on("order_update", function (u) {
+			if (u.order_number !== ORDER) return;
+			var card = document.querySelector('[data-suborder="' + u.sub_order_id + '"]');
+			if (!card) return;
+			var s = STATUS[u.status] || { label: u.status, cls: "bg-secondary" };
+			card.querySelector(".js-sub-status").innerHTML =
+				'<span class="badge ' + s.cls + '">' + s.label + "</span>";
+			var tl = card.querySelector(".js-sub-timeline");
+			if (tl) {
+				var li = document.createElement("li");
+				li.className = "d-flex gap-2 mb-1 small";
+				li.innerHTML = '<span class="text-success">&#9679;</span>' +
+					'<span class="text-capitalize ft-medium">' + s.label + "</span>" +
+					'<span class="text-muted ms-auto">just now</span>';
+				tl.appendChild(li);
+			}
+		});
+	} catch (e) {
+		console.warn("Live order tracking unavailable:", e);
+	}
+})();
+</script>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

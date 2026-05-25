@@ -1,0 +1,226 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar.html' %}
+			
+<!-- Hero Banner  Start  -->
+<div class="home-slider hide-navigation margin-bottom-0">
+
+	<!-- Components/Home/home-12/slide10.html -->
+    {% include 'Components/Home/home-12/slide10.html' %}
+
+</div>
+<!-- Hero Banner  End -->
+
+<!-- Products Lists -->
+<section class="space min">
+	<div class="container">
+	
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Popular Products</h2>
+					<h3 class="ft-bold pt-3">Most Popular Products</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				
+				<ul class="nav nav-tabs b-0 d-flex align-items-center justify-content-center simple_tab_links mb-4" id="myTab" role="tablist">
+					
+					<!-- Components/Home/home-12/nav2.html -->
+    				{% include 'Components/Home/home-12/nav2.html' %}
+
+				</ul>
+				
+				<div class="tab-content" id="myTabContent">
+					
+					<!-- All Content -->
+					<div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-12/products6.html -->
+    							{% include 'Components/Home/home-12/products6.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-pane fade" id="mens" role="tabpanel" aria-labelledby="mens-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-12/products7.html -->
+    							{% include 'Components/Home/home-12/products7.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<!-- Women Content -->
+					<div class="tab-pane fade" id="women" role="tabpanel" aria-labelledby="women-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-12/products8.html -->
+    							{% include 'Components/Home/home-12/products8.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-pane fade" id="kids" role="tabpanel" aria-labelledby="kids-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-12/products9.html -->
+    							{% include 'Components/Home/home-12/products9.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Products List -->
+
+<!-- Choose Category Start -->
+<section class="gray middle">
+	<div class="container">
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Recent Products</h2>
+					<h3 class="ft-bold pt-3">Trending Products</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row rows-products">
+				
+			<!-- Components/Home/home-12/trending2.html -->
+    		{% include 'Components/Home/home-12/trending2.html' %}
+			
+			<!-- Single Item -->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-4 text-center">
+				<button type="button" class="btn bg-success text-light">Explore More categories</button>
+			</div>
+
+		</div>
+		
+	</div>
+</section>
+<div class="clearfix"></div>
+<!-- Choose Category End -->
+
+<!-- Good Deals Start -->
+<section class="space">
+	<div class="container">
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Good Deals</h2>
+					<h3 class="ft-bold pt-3">Deals of The Day</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="slide_items">
+
+					<!-- Components/Home/home-12/deals2.html -->
+    				{% include 'Components/Home/home-12/deals2.html' %}
+					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Good Deals Start -->
+
+<!-- Tag Wrap Start -->
+<section class="bg-cover" style="background:url({{ url_for('static', filename='assets/img/middle-banner.jpg') }}) no-repeat;">
+	<div class="ht-60"></div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-8 col-md-10 col-sm-12">
+				<div class="tags_explore text-center">
+					<h2 class="mb-0 text-white ft-bold">Best Deal of The Month</h2>
+					<p class="text-light fs-lg mb-4">Explore Your Offers with Odex</p><p>
+					<a href="#" class="btn btn-lg bg-white px-5 text-dark ft-medium">Explore Your Order</a>
+				</p></div>
+			</div>
+		</div>
+	</div>
+	<div class="ht-60"></div>
+</section>
+<!-- Tag Wrap Start -->
+
+<!-- Blog Start -->
+<section class="space min">
+	<div class="container">
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Latest News</h2>
+					<h3 class="ft-bold pt-3">New Updates</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			
+			<!-- Components/Home/index/blog.html -->
+            {% include 'Components/Home/index/blog.html' %}
+			
+		</div>
+		
+	</div>
+</section>
+<!-- Blog Start -->
+
+<!-- Customer Features -->
+<section class="px-0 py-3 br-top">
+	<div class="container">
+		<div class="row">
+			
+			<!-- Components/Home/home-12/features3.html -->
+    		{% include 'Components/Home/home-12/features3.html' %}
+			
+		</div>
+	</div>
+</section>
+<!-- Customer Features -->
+
+<!-- Components/Home/index/quickview.html -->
+{% include 'Components/Home/index/quickview.html' %}
+
+<!-- Components/Home/index/log.html -->
+{% include 'Components/Home/index/log.html' %}
+
+<!-- Components/Home/index/search.html -->
+{% include 'Components/Home/index/search.html' %}
+
+<!-- Components/Home/index/wishlist.html -->
+{% include 'Components/Home/index/wishlist.html' %}
+
+<!-- Components/Home/index/cart.html -->
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer4.html' %} 
+
+{% endblock %}

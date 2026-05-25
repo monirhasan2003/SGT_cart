@@ -1,0 +1,186 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<!-- Top Breadcrubms -->
+<div class="gray py-3">
+	<div class="container">
+		<div class="row">
+			<div class="colxl-12 col-lg-12 col-md-12">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Seller Dashboard</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Top Breadcrubms -->
+
+<section class="middle">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-xl-9 col-lg-10 col-md-12">
+
+				{% include 'Base/flash_messages.html' %}
+
+				<div class="border rounded p-3 mb-3 text-center">
+					<h4 class="ft-bold mb-1">{{ profile.shop_name_en if profile else 'Your Shop' }}</h4>
+					<p class="text-muted small mb-2">Seller Dashboard</p>
+
+					{% if profile and profile.status == 'approved' %}
+						<div class="alert alert-success mb-0">
+							<i class="lni lni-checkmark-circle me-1"></i>
+							Your shop is <strong>approved</strong>. Product management opens in the next phase.
+						</div>
+					{% elif profile and profile.status == 'suspended' %}
+						<div class="alert alert-danger mb-0">
+							<i class="lni lni-warning me-1"></i>
+							Your shop is currently <strong>suspended</strong>. Please contact support.
+						</div>
+					{% elif profile and profile.is_verification_submitted %}
+						<div class="alert alert-info mb-0">
+							<i class="lni lni-timer me-1"></i>
+							Verification submitted on
+							{{ profile.verification_submitted_at.strftime('%d %b %Y') }} —
+							<strong>awaiting admin review</strong>.
+							<a href="{{ url_for('seller.verification') }}" class="ms-1">Edit details</a>
+						</div>
+					{% else %}
+						<div class="alert alert-warning mb-0">
+							<i class="lni lni-warning me-1"></i>
+							Your shop is not verified yet. Please
+							<strong>submit your verification documents</strong> so an admin can review
+							and approve your shop.
+						</div>
+					{% endif %}
+				</div>
+
+				<div class="row g-2">
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('seller.verification') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-files fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">Shop Verification (KYC)
+								{% if profile and profile.is_verification_submitted %}
+									<span class="badge bg-success ms-1">Submitted</span>
+								{% else %}
+									<span class="badge bg-warning text-dark ms-1">Required</span>
+								{% endif %}
+							</h6>
+							<span class="text-muted small">Trade license, NID, shop address</span>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('seller.shop') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-store fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">Shop Profile</h6>
+							<span class="text-muted small">Store name, logo, banner &amp; description</span>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('seller.payout') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-wallet fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">Payout Settings</h6>
+							<span class="text-muted small">Bank account, bKash / Nagad number</span>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('seller.products') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-package fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">My Products</h6>
+							<span class="text-muted small">Add &amp; manage your product listings</span>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('seller.orders') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-package fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">Orders</h6>
+							<span class="text-muted small">View &amp; fulfil customer orders</span>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('seller.earnings') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-stats-up fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">Earnings &amp; Payouts</h6>
+							<span class="text-muted small">Wallet balance, sales stats, withdraw</span>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('chat.inbox') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-comments fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">Messages</h6>
+							<span class="text-muted small">Reply to customer product questions</span>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('seller.reviews') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-star fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">Reviews</h6>
+							<span class="text-muted small">Customer ratings on your products</span>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('seller.coupons') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-tag fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">Coupons</h6>
+							<span class="text-muted small">Discount codes for your store</span>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('seller.analytics') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-bar-chart fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">Analytics</h6>
+							<span class="text-muted small">Sales, top products, forecast</span>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('seller.flash_sales') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-bolt fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">Flash Sales</h6>
+							<span class="text-muted small">Time-boxed discounts on your own products</span>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<a href="{{ url_for('seller.store_promo') }}" class="d-block border rounded p-3 text-dark">
+							<i class="lni lni-flag fs-3 theme-cl"></i>
+							<h6 class="ft-medium mt-1 mb-0 small">Store Promotion</h6>
+							<span class="text-muted small">Marketing banner shown on your store page</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="row g-3 mt-1">
+					<div class="col-md-4 col-sm-6">
+						<div class="border rounded p-3">
+							<small class="text-muted d-block">Status</small>
+							<span class="ft-medium text-capitalize">{{ profile.status if profile else '—' }}</span>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="border rounded p-3">
+							<small class="text-muted d-block">Commission Rate</small>
+							<span class="ft-medium">{{ profile.commission_rate if profile else '—' }}%</span>
+						</div>
+					</div>
+				</div>
+
+				<a href="/profile-info/" class="btn btn-outline-secondary mt-4">Account Settings</a>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/seller/products/">My Products</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Add Product</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-xl-9 col-lg-10">
+
+				{% include 'Base/flash_messages.html' %}
+
+				<form method="post" action="{{ url_for('seller.product_create') }}"
+				      enctype="multipart/form-data" class="border rounded p-4">
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+					<h4 class="ft-bold mb-3">Add New Product</h4>
+
+					<div class="row g-3">
+						<div class="col-md-6">
+							<label class="mb-2">Product Title (English) *</label>
+							<input type="text" name="title_en" class="form-control"
+							       value="{{ form.get('title_en', '') }}" required>
+						</div>
+						<div class="col-md-6">
+							<label class="mb-2">Product Title (Bengali)</label>
+							<input type="text" name="title_bn" class="form-control"
+							       value="{{ form.get('title_bn', '') }}">
+						</div>
+
+						<div class="col-md-6">
+							<label class="mb-2">Category *</label>
+							<select name="category_id" class="form-control" required>
+								<option value="">— Select category —</option>
+								{% for cid, label in categories %}
+									<option value="{{ cid }}" {{ 'selected' if form.get('category_id')|string == cid|string }}>{{ label }}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="col-md-3">
+							<label class="mb-2">Base Price *</label>
+							<input type="number" step="0.01" name="base_price" class="form-control"
+							       value="{{ form.get('base_price', '') }}" required>
+						</div>
+						<div class="col-md-3">
+							<label class="mb-2">Discount Price</label>
+							<input type="number" step="0.01" name="discount_price" class="form-control"
+							       value="{{ form.get('discount_price', '') }}">
+						</div>
+
+						<div class="col-md-6">
+							<label class="mb-2">Stock Quantity</label>
+							<input type="number" name="stock" class="form-control"
+							       value="{{ form.get('stock', '0') }}">
+						</div>
+						<div class="col-md-6">
+							<label class="mb-2">SKU</label>
+							<input type="text" name="sku" class="form-control"
+							       value="{{ form.get('sku', '') }}">
+						</div>
+
+						<div class="col-12">
+							<label class="mb-2">Description (English)</label>
+							<textarea name="description_en" class="form-control" rows="3">{{ form.get('description_en', '') }}</textarea>
+						</div>
+						<div class="col-12">
+							<label class="mb-2">Description (Bengali)</label>
+							<textarea name="description_bn" class="form-control" rows="3">{{ form.get('description_bn', '') }}</textarea>
+						</div>
+
+						<div class="col-12">
+							<label class="mb-2">Product Images <span class="text-slate-400">(JPG/PNG — first image is the cover)</span></label>
+							<input type="file" name="images" class="form-control" accept=".jpg,.jpeg,.png" multiple>
+						</div>
+
+						<div class="col-12">
+							<button type="submit" class="btn btn-dark">Create Product</button>
+							<a href="/seller/products/" class="btn btn-outline-secondary">Cancel</a>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

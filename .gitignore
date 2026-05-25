@@ -1,0 +1,33 @@
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Environment secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+instance/
+
+# Flask-Migrate (keep migrations/ — only ignore caches)
+# migrations/  -> commit this folder
+
+# Uploads (product images uploaded by sellers)
+app/static/uploads/
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

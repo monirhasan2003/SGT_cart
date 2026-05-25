@@ -1,0 +1,49 @@
+{% extends "admin/base.html" %}
+{% block title %}Abandoned Carts{% endblock %}
+{% block heading %}Abandoned Carts{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+	<p class="text-muted mb-0">
+		Carts left idle — customers are emailed a one-time reminder.
+	</p>
+	<form method="post" action="{{ url_for('admin.abandoned_carts_scan') }}">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+		<button class="btn btn-primary btn-sm">Run scan now</button>
+	</form>
+</div>
+
+{% if carts %}
+<div class="border rounded bg-white">
+	<table class="table align-middle mb-0">
+		<thead class="table-light">
+			<tr><th>Customer</th><th>Items</th><th>Cart value</th>
+			    <th>Detected</th><th>Reminder</th><th>Status</th></tr>
+		</thead>
+		<tbody>
+			{% for c in carts %}
+			<tr>
+				<td>{{ c.user.name if c.user }}<div class="small text-muted">
+					{{ c.user.email if c.user }}</div></td>
+				<td>{{ c.item_count }}</td>
+				<td>৳{{ c.cart_value }}</td>
+				<td class="small text-muted">
+					{{ c.detected_at.strftime('%d %b %Y, %H:%M') if c.detected_at }}</td>
+				<td class="small text-muted">
+					{{ c.reminder_sent_at.strftime('%d %b, %H:%M') if c.reminder_sent_at else '—' }}</td>
+				<td>
+					{% if c.is_recovered %}<span class="badge bg-success">Recovered</span>
+					{% else %}<span class="badge bg-warning text-dark">Abandoned</span>{% endif %}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% else %}
+<div class="border rounded bg-white p-5 text-center text-muted">
+	No abandoned carts recorded — run a scan to detect idle carts.
+</div>
+{% endif %}
+
+{% endblock %}

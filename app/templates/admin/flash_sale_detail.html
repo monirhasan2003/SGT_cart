@@ -1,0 +1,95 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ sale.title }}{% endblock %}
+{% block heading %}Flash Sale — {{ sale.title }}{% endblock %}
+{% block content %}
+
+<div class="mb-3">
+	<a href="{{ url_for('admin.flash_sales') }}" class="small text-decoration-none">&larr; All flash sales</a>
+</div>
+
+<div class="border rounded bg-white p-3 mb-4 d-flex justify-content-between align-items-center">
+	<div>
+		{% if sale.is_active %}
+		<span class="badge bg-success">Live</span>
+		{% else %}
+		<span class="badge bg-secondary">Draft</span>
+		{% endif %}
+		<span class="text-muted small ms-2">
+			{{ sale.starts_at.strftime('%d %b %Y') if sale.starts_at else 'no start' }}
+			→ {{ sale.ends_at.strftime('%d %b %Y') if sale.ends_at else 'no end' }}
+		</span>
+	</div>
+	<div class="d-flex gap-2">
+		{% if sale.is_active %}
+		<form method="post" action="{{ url_for('admin.flash_sale_deactivate', sale_id=sale.id) }}">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+			<button class="btn btn-sm btn-warning">End sale</button>
+		</form>
+		{% else %}
+		<form method="post" action="{{ url_for('admin.flash_sale_activate', sale_id=sale.id) }}">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+			<button class="btn btn-sm btn-success" {{ 'disabled' if not sale.items }}>
+				Activate</button>
+		</form>
+		{% endif %}
+		<form method="post" action="{{ url_for('admin.flash_sale_delete', sale_id=sale.id) }}"
+		      onsubmit="return confirm('Delete this flash sale?');">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+			<button class="btn btn-sm btn-outline-danger">Delete</button>
+		</form>
+	</div>
+</div>
+
+<div class="row g-4">
+	<div class="col-lg-7">
+		<h6 class="fw-semibold mb-2">Products in this sale ({{ sale.items|length }})</h6>
+		{% if sale.items %}
+		<div class="border rounded bg-white">
+			<table class="table align-middle mb-0">
+				<thead class="table-light">
+					<tr><th>Product</th><th>Flash price</th><th></th></tr>
+				</thead>
+				<tbody>
+					{% for it in sale.items %}
+					<tr>
+						<td>{{ it.product.title_en if it.product }}</td>
+						<td class="ft-medium">৳{{ it.flash_price }}</td>
+						<td class="text-end">
+							<form method="post"
+							      action="{{ url_for('admin.flash_sale_remove_item', item_id=it.id) }}">
+								<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+								<button class="btn btn-sm btn-outline-danger">Remove</button>
+							</form>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		{% else %}
+		<div class="border rounded bg-white p-4 text-center text-muted">No products yet.</div>
+		{% endif %}
+	</div>
+
+	<div class="col-lg-5">
+		<div class="border rounded bg-white p-4">
+			<h6 class="fw-semibold mb-3">Add a product</h6>
+			<form method="post" action="{{ url_for('admin.flash_sale_add_item', sale_id=sale.id) }}">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+				<label class="form-label small">Product</label>
+				<select name="product_id" class="form-select mb-2" required>
+					<option value="">— choose —</option>
+					{% for p in products %}
+					<option value="{{ p.id }}">{{ p.title_en }} (৳{{ p.base_price }})</option>
+					{% endfor %}
+				</select>
+				<label class="form-label small">Flash price (৳)</label>
+				<input type="number" step="0.01" min="0" name="flash_price"
+				       class="form-control mb-3" required>
+				<button class="btn btn-primary w-100">Add to sale</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

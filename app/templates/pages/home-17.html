@@ -1,0 +1,267 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar6.html' %}
+			
+<!-- Category & Slider -->
+<section class="p-0">
+	<div class="container">
+		<div class="row">
+		
+			<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+				<div class="killore-new-block-link border mb-3 mt-3">
+					<div class="px-3 py-3 ft-medium fs-md text-dark gray">Top Categories</div>
+					
+					<div class="killore--block-link-content">
+						<ul>
+							<li><a href="javascript:void(0);"><i class="fas fa-tshirt"></i>Fashion</a></li>
+							<li><a href="javascript:void(0);"><i class="fas fa-tv"></i>Electronics</a></li>
+							<li><a href="javascript:void(0);"><i class="fas fa-gift"></i>Gifts & Cards</a></li>
+							<li><a href="javascript:void(0);"><i class="fas fa-leaf"></i>Home Decoration</a></li>
+							<li><a href="javascript:void(0);"><i class="fas fa-headphones-alt"></i>Headphones</a></li>
+							<li><a href="javascript:void(0);"><i class="fas fa-football-ball"></i>Sports Items</a></li>
+							<li class="px-2 my-2"><a href="javascript:void(0);" class="btn theme-bg rounded text-light">Get -60% Off</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+				<div class="home-slider auto-slider mb-3 mt-3">
+
+					<!-- Components/Home/home-17/slide14.html -->
+    				{% include 'Components/Home/home-17/slide14.html' %}
+
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>
+<!-- Category & Slider -->
+
+<!-- All Category  -->
+<section class="middle">
+	<div class="container">
+	
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Popular Categories</h2>
+					<h3 class="ft-bold pt-3">Trending Categories</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row align-items-center justify-content-center">
+				
+			<!-- Components/Home/home-3/categories2.html -->
+    		{% include 'Components/Home/home-3/categories2.html' %}
+
+		</div>
+		
+	</div>
+</section>
+<!-- All Category  -->
+
+<!-- Products Lists -->
+<section class="space min pt-0">
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				
+				<ul class="nav nav-tabs b-0 d-flex align-items-center justify-content-center simple_tab_links mb-4" id="myTab" role="tablist">
+						
+					<!-- Components/Home/home-2/nav.html -->
+    				{% include 'Components/Home/home-2/nav.html' %}
+
+				</ul>
+				
+				<div class="tab-content" id="myTabContent">
+					
+					<!-- All Content -->
+					<div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-3/products.html -->
+    							{% include 'Components/Home/home-3/products.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-pane fade show active" id="mens" role="tabpanel" aria-labelledby="mens-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-3/products2.html -->
+    							{% include 'Components/Home/home-3/products2.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<!-- Women Content -->
+					<div class="tab-pane fade" id="women" role="tabpanel" aria-labelledby="women-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-3/products3.html -->
+    							{% include 'Components/Home/home-3/products3.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-pane fade" id="kids" role="tabpanel" aria-labelledby="kids-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-3/products4.html -->
+    							{% include 'Components/Home/home-3/products4.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Products List -->
+
+<!-- Product List -->
+<section class="middle gray">
+	<div class="container">
+	
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Trendy Products</h2>
+					<h3 class="ft-bold pt-3">Our Trending Products</h3>
+				</div>
+			</div>
+		</div>
+		
+		<!-- row -->
+		<div class="row align-items-center rows-products">
+		
+			<!-- Components/Home/home-3/trending.html -->
+    		{% include 'Components/Home/home-3/trending.html' %}
+			
+		</div>
+		<!-- row -->
+		
+	</div>
+</section>
+<!-- Products List -->
+
+<!-- Tag Wrap Start -->
+<section class="bg-cover" style="background:url({{ url_for('static', filename='assets/img/bg-3.jpg') }}) no-repeat;">
+	<div class="ht-60"></div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-8 col-md-10 col-sm-12">
+				<div class="tags_explore text-center">
+					<h2 class="mb-0 text-white ft-bold">Big Sale Up To 70% Off</h2>
+					<p class="text-light fs-lg mb-4">Exclussive Offers For Limited Time</p><p>
+					<a href="#" class="btn btn-lg bg-white px-5 text-dark ft-medium">Explore Your Order</a>
+				</p></div>
+			</div>
+		</div>
+	</div>
+	<div class="ht-60"></div>
+</section>
+<!-- Tag Wrap Start -->
+
+<!-- Blog Start -->
+<section class="space min">
+	<div class="container">
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Latest News</h2>
+					<h3 class="ft-bold pt-3">New Updates</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			
+			<!-- Components/Home/index/blog.html -->
+            {% include 'Components/Home/index/blog.html' %}
+			
+		</div>
+		
+	</div>
+</section>
+<!-- Blog Start -->
+
+<!-- Instagram Start -->
+<section class="p-0">
+	<div class="container-fluid p-0 overflow-hidden">
+		
+		<div class="row no-gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Instagram Gallery</h2>
+					<span class="fs-lg ft-bold theme-cl pt-3">@mahak_71</span>
+					<h3 class="ft-bold lh-1">From Instagram</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row no-gutters">
+			<div class="insta-slider"> 
+			
+				<!-- Components/Home/index/insta.html -->
+            	{% include 'Components/Home/index/insta.html' %}
+				
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Instagram Start -->
+
+<!-- Customer Features -->
+<section class="px-0 py-3 br-top">
+	<div class="container">
+		<div class="row">
+			
+			<!-- Components/Home/index/features2.html -->
+            {% include 'Components/Home/index/features2.html' %}
+			
+		</div>
+	</div>
+</section>
+<!-- Customer Features -->
+
+<!-- Components/Home/index/quickview.html -->
+{% include 'Components/Home/index/quickview.html' %}
+
+<!-- Components/Home/index/log.html -->
+{% include 'Components/Home/index/log.html' %}
+
+<!-- Components/Home/index/search.html -->
+{% include 'Components/Home/index/search.html' %}
+
+<!-- Components/Home/index/wishlist.html -->
+{% include 'Components/Home/index/wishlist.html' %}
+
+<!-- Components/Home/index/cart.html -->
+{% include 'Components/Home/index/cart.html' %}
+
+<!-- Components/Home/index/popup-overlay.html -->
+{% include 'Components/Home/index/popup-overlay.html' %}
+
+{% include 'Base/footer.html' %} 
+
+{% endblock %}

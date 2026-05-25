@@ -1,0 +1,215 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="{{ url_for('chat.inbox') }}">Messages</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Conversation</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<div class="border rounded">
+
+			<div class="p-3 border-bottom gray d-flex justify-content-between align-items-center">
+				<div>
+					{% if thread.kind == 'support' %}
+					<span class="badge bg-info text-dark">SGT Support</span>
+					{% else %}
+					<span class="badge bg-primary">Seller chat</span>
+					{% endif %}
+					<strong class="ms-1">{{ thread.subject or 'Conversation' }}</strong>
+				</div>
+				<a href="{{ url_for('chat.inbox') }}" class="small text-decoration-none">&larr; All messages</a>
+			</div>
+
+			<div id="messages" class="p-3" style="height:60vh; overflow-y:auto">
+				{% for m in thread.messages %}
+				{% set mine = m.sender_id == current_user.id %}
+				<div class="d-flex mb-2 {{ 'justify-content-end' if mine else 'justify-content-start' }}"
+				     data-msg-id="{{ m.id }}">
+					<div class="p-2 px-3 rounded {{ 'bg-primary text-white' if mine else 'gray' }}"
+					     style="max-width:75%">
+						<div class="small fw-semibold mb-1">
+							{{ m.sender.name }}
+							<span class="opacity-75">· {{ m.sender_role }}</span>
+						</div>
+						<div style="white-space:pre-wrap">{{ m.body }}</div>
+						{% if m.audio_path %}
+						<audio controls preload="metadata" class="mt-1" style="max-width:240px;">
+							<source src="{{ url_for('static', filename=m.audio_path) }}">
+							Your browser does not support audio playback.
+						</audio>
+						{% endif %}
+						{% if m.is_flagged %}
+						<div class="small fst-italic mt-1 opacity-75">
+							<i class="fa fa-warning"></i> a phone number was removed
+						</div>
+						{% endif %}
+						<div class="small text-end opacity-75 mt-1">
+							{{ m.created_at.strftime('%d %b, %H:%M') if m.created_at }}
+						</div>
+					</div>
+				</div>
+				{% else %}
+				<p class="text-muted text-center my-4" id="empty-hint">
+					No messages yet — say hello below.
+				</p>
+				{% endfor %}
+			</div>
+
+			<form method="post" action="{{ url_for('chat.send', thread_id=thread.id) }}"
+			      class="p-3 border-top">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+				<div class="input-group">
+					<input name="body" class="form-control" placeholder="Type a message…"
+					       autocomplete="off" required maxlength="2000">
+					<button class="btn btn-primary px-4">Send</button>
+				</div>
+				<div class="form-text">
+					<i class="fa fa-lock"></i>
+					Phone numbers are removed automatically — keep all contact and
+					payment on SGT Cart.
+				</div>
+			</form>
+
+			{# Voice message recorder (Phase 15 D-7 C5) #}
+			<form method="post" id="audioForm" enctype="multipart/form-data"
+			      action="{{ url_for('chat.send_audio', thread_id=thread.id) }}"
+			      class="px-3 pb-3">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+				<input type="file" name="audio" id="audioFile" class="d-none"
+				       accept="audio/*">
+				<div class="d-flex gap-2 align-items-center flex-wrap">
+					<button type="button" class="btn btn-outline-secondary btn-sm"
+					        id="audioRecordBtn">
+						<i class="fa fa-microphone"></i> Record voice
+					</button>
+					<button type="button" class="btn btn-danger btn-sm d-none"
+					        id="audioStopBtn">
+						<i class="fa fa-stop"></i> Stop
+					</button>
+					<audio id="audioPreview" controls class="d-none" style="max-width:240px;"></audio>
+					<button type="submit" class="btn btn-primary btn-sm d-none"
+					        id="audioSendBtn">Send voice</button>
+					<span class="small text-muted ms-auto">
+						Hold-and-record up to 5 MB. mp3/ogg/webm supported.
+					</span>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</section>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script>
+(function () {
+	var me = {{ current_user.id }};
+	var threadId = {{ thread.id }};
+	var box = document.getElementById("messages");
+	box.scrollTop = box.scrollHeight;
+
+	function esc(s) {
+		var d = document.createElement("div");
+		d.textContent = s == null ? "" : s;
+		return d.innerHTML;
+	}
+
+	function addMessage(m) {
+		if (document.querySelector('[data-msg-id="' + m.id + '"]')) return;
+		var hint = document.getElementById("empty-hint");
+		if (hint) hint.remove();
+
+		var mine = m.sender_id === me;
+		var wrap = document.createElement("div");
+		wrap.className = "d-flex mb-2 " + (mine ? "justify-content-end" : "justify-content-start");
+		wrap.setAttribute("data-msg-id", m.id);
+		wrap.innerHTML =
+			'<div class="p-2 px-3 rounded ' + (mine ? "bg-primary text-white" : "gray") + '" style="max-width:75%">' +
+			'<div class="small fw-semibold mb-1">' + esc(m.sender_name) +
+			' <span class="opacity-75">· ' + esc(m.sender_role) + '</span></div>' +
+			'<div style="white-space:pre-wrap">' + esc(m.body) + '</div>' +
+			(m.audio_path
+				? '<audio controls preload="metadata" class="mt-1" style="max-width:240px;">' +
+					'<source src="/static/' + esc(m.audio_path) + '"></audio>'
+				: '') +
+			(m.is_flagged ? '<div class="small fst-italic mt-1 opacity-75">a phone number was removed</div>' : '') +
+			'</div>';
+		box.appendChild(wrap);
+		box.scrollTop = box.scrollHeight;
+	}
+
+	// ----- Voice-message recorder (D-7 C5) -----
+	(function setupAudioRecorder() {
+		var recordBtn = document.getElementById("audioRecordBtn");
+		var stopBtn = document.getElementById("audioStopBtn");
+		var preview = document.getElementById("audioPreview");
+		var sendBtn = document.getElementById("audioSendBtn");
+		var fileInput = document.getElementById("audioFile");
+		if (!recordBtn || !navigator.mediaDevices || !window.MediaRecorder) return;
+
+		var recorder = null;
+		var chunks = [];
+
+		recordBtn.addEventListener("click", async function () {
+			try {
+				var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+				chunks = [];
+				recorder = new MediaRecorder(stream);
+				recorder.ondataavailable = function (e) {
+					if (e.data && e.data.size > 0) chunks.push(e.data);
+				};
+				recorder.onstop = function () {
+					stream.getTracks().forEach(function (t) { t.stop(); });
+					var blob = new Blob(chunks, { type: recorder.mimeType || "audio/webm" });
+					var url = URL.createObjectURL(blob);
+					preview.src = url;
+					preview.classList.remove("d-none");
+					sendBtn.classList.remove("d-none");
+					// Wrap the blob into a File so the multipart upload keeps a name.
+					var dt = new DataTransfer();
+					dt.items.add(new File([blob], "voice.webm", { type: blob.type }));
+					fileInput.files = dt.files;
+				};
+				recorder.start();
+				recordBtn.classList.add("d-none");
+				stopBtn.classList.remove("d-none");
+			} catch (err) {
+				console.warn("Recording unavailable:", err);
+			}
+		});
+		stopBtn.addEventListener("click", function () {
+			if (recorder && recorder.state !== "inactive") recorder.stop();
+			stopBtn.classList.add("d-none");
+			recordBtn.classList.remove("d-none");
+		});
+	})();
+
+	try {
+		var socket = io();
+		socket.on("connect", function () {
+			socket.emit("join_thread", { thread_id: threadId });
+		});
+		socket.on("chat_message", function (m) {
+			if (m.thread_id === threadId) addMessage(m);
+		});
+	} catch (e) {
+		console.warn("Live chat unavailable:", e);
+	}
+})();
+</script>
+
+{% endblock %}

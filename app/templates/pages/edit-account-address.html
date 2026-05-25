@@ -1,0 +1,111 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/addresses/">Addresses</a></li>
+				<li class="breadcrumb-item active" aria-current="page">
+					{{ 'Edit Address' if address else 'New Address' }}
+				</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-xl-8 col-lg-9 col-md-12">
+
+				{% include 'Base/flash_messages.html' %}
+
+				<form method="post" class="border rounded p-4"
+				      action="{{ url_for('account.address_edit', address_id=address.id) if address else url_for('account.address_create') }}">
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+					<h4 class="ft-bold mb-3">{{ 'Edit Address' if address else 'Add New Address' }}</h4>
+
+					{% set a = address %}
+					<div class="row g-3">
+						<div class="col-md-6">
+							<label class="mb-2">Label <span class="text-slate-400">(Home / Office)</span></label>
+							<input type="text" name="label" class="form-control"
+							       value="{{ form.get('label') or (a.label if a else '') }}">
+						</div>
+						<div class="col-md-6">
+							<label class="mb-2">Full Name *</label>
+							<input type="text" name="full_name" class="form-control"
+							       value="{{ form.get('full_name') or (a.full_name if a else '') }}" required>
+						</div>
+						<div class="col-md-6">
+							<label class="mb-2">Phone Number *</label>
+							<input type="text" name="phone" class="form-control"
+							       value="{{ form.get('phone') or (a.phone if a else '') }}" required>
+						</div>
+						<div class="col-md-6">
+							<label class="mb-2">Postal Code</label>
+							<input type="text" name="postal_code" class="form-control"
+							       value="{{ form.get('postal_code') or (a.postal_code if a else '') }}">
+						</div>
+						<div class="col-12">
+							<label class="mb-2">Address *</label>
+							<input type="text" name="address_line" class="form-control" placeholder="House, road, etc."
+							       value="{{ form.get('address_line') or (a.address_line if a else '') }}" required>
+						</div>
+						<div class="col-md-4">
+							<label class="mb-2">Area</label>
+							<input type="text" name="area" class="form-control"
+							       value="{{ form.get('area') or (a.area if a else '') }}">
+						</div>
+						<div class="col-md-4">
+							<label class="mb-2">City *</label>
+							<input type="text" name="city" class="form-control"
+							       value="{{ form.get('city') or (a.city if a else '') }}" required>
+						</div>
+						<div class="col-md-4">
+							<label class="mb-2">District</label>
+							<input type="text" name="district" class="form-control"
+							       value="{{ form.get('district') or (a.district if a else '') }}">
+						</div>
+						<div class="col-12">
+							<div class="form-check">
+								<input type="checkbox" name="is_default" id="is_default" class="form-check-input"
+									{{ 'checked' if (form.get('is_default') if form else (a.is_default if a else False)) }}>
+								<label for="is_default" class="form-check-label">Set as default delivery address</label>
+							</div>
+							<div class="form-check mt-2">
+								<input type="checkbox" name="prayer_time_delivery" id="prayer_time_delivery"
+								       class="form-check-input"
+									{{ 'checked' if (form.get('prayer_time_delivery') if form else (a.prayer_time_delivery if a else False)) }}>
+								<label for="prayer_time_delivery" class="form-check-label">
+									Avoid delivery during Jumma / Maghrib
+									<span class="text-muted small" lang="bn">— জুম্মা / মাগরিবের সময় ডেলিভারি না করার অনুরোধ</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-12">
+							<button type="submit" class="btn btn-dark">{{ 'Update' if address else 'Save' }} Address</button>
+							<a href="/addresses/" class="btn btn-outline-secondary">Cancel</a>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

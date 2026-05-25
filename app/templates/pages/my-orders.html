@@ -1,0 +1,100 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/dashboard/">Dashboard</a></li>
+				<li class="breadcrumb-item active" aria-current="page">My Orders</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+		<div class="row align-items-start justify-content-between">
+
+			<div class="col-12 col-md-12 col-lg-4 col-xl-4 text-center miliods">
+				<div class="d-block border rounded mfliud-bot">
+					<div class="dashboard_author px-2 py-5">
+						<div class="dash_auth_thumb circle p-1 border d-inline-flex mx-auto mb-2">
+							<img src="{{ url_for('static', filename='assets/img/team-1.jpg') }}" class="img-fluid circle" width="100" alt="" />
+						</div>
+						<div class="dash_caption">
+							<h4 class="fs-md ft-medium mb-0 lh-1">{{ current_user.name }}</h4>
+							<span class="text-muted smalls">{{ current_user.email }}</span>
+						</div>
+					</div>
+					<div class="dashboard_author">
+						<h4 class="px-3 py-2 mb-0 lh-2 gray fs-sm ft-medium text-muted text-uppercase text-left">Dashboard Navigation</h4>
+						<ul class="dahs_navbar">
+							<li><a href="/dashboard/"><i class="lni lni-dashboard me-2"></i>Dashboard</a></li>
+							<li><a href="/my-orders/" class="active"><i class="lni lni-shopping-basket me-2"></i>My Order</a></li>
+							<li><a href="/wishlist/"><i class="lni lni-heart me-2"></i>Wishlist</a></li>
+							<li><a href="/profile-info/"><i class="lni lni-user me-2"></i>Profile Info</a></li>
+							<li><a href="/addresses/"><i class="lni lni-map-marker me-2"></i>Addresses</a></li>
+							<li><a href="/payment-method/"><i class="lni lni-mastercard me-2"></i>Payment Method</a></li>
+							<li><a href="/logout/"><i class="lni lni-power-switch me-2"></i>Log Out</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-12 col-lg-8 col-xl-8">
+
+				{% include 'Base/flash_messages.html' %}
+
+				<h4 class="ft-bold mb-3">My Orders</h4>
+
+				<div class="border rounded">
+					<table class="table align-middle mb-0">
+						<thead class="gray">
+							<tr><th>Order</th><th>Date</th><th>Items</th><th>Total</th><th>Payment</th><th></th></tr>
+						</thead>
+						<tbody>
+						{% for order in orders %}
+							<tr>
+								<td class="ft-medium">{{ order.order_number }}</td>
+								<td class="text-muted">{{ order.created_at.strftime('%d %b %Y') if order.created_at }}</td>
+								<td>{{ order.item_count }}</td>
+								<td class="ft-medium">৳{{ "%.2f"|format(order.total_amount|float) }}</td>
+								<td>
+									{% if order.payment_status == 'paid' %}<span class="badge bg-success">Paid</span>
+									{% elif order.payment_status == 'failed' %}<span class="badge bg-danger">Failed</span>
+									{% else %}<span class="badge bg-warning text-dark">Pending</span>{% endif %}
+								</td>
+								<td>
+									<a href="{{ url_for('account.order_detail', order_number=order.order_number) }}"
+									   class="btn btn-sm btn-outline-dark">View</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr><td colspan="6" class="text-muted text-center py-4">
+								You have no orders yet.
+								<a href="{{ url_for('storefront.shop') }}">Start shopping</a>.
+							</td></tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+# systemd service for the SGT E-commerce gunicorn process.
+#
+# Install:
+#     sudo cp deploy/sgt-ecommerce.service /etc/systemd/system/
+#     sudo systemctl daemon-reload
+#     sudo systemctl enable --now sgt-ecommerce
+#
+# Adjust User, paths and EnvironmentFile to match the deploy host.
+
+[Unit]
+Description=SGT E-commerce — gunicorn + Flask-SocketIO
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/sgt/SGT_Ecommerce
+EnvironmentFile=/opt/sgt/SGT_Ecommerce/.env
+ExecStart=/opt/sgt/SGT_Ecommerce/venv/bin/gunicorn -c gunicorn.conf.py wsgi:app
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+# Hardening — adjust if a feature trips on a denied call.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

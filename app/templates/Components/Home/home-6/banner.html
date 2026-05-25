@@ -1,0 +1,18 @@
+{% for item in banners %}
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <div class="single_cats">
+            <a href="#" class="cards card-overflow card-scale mid_height">
+                <div class="bg-image" style="background:url({{ item.img }})no-repeat;" data-overlay="4"></div>
+                <div class="ct_body">
+                    <div class="ct_body_caption center text-center">	
+                        <h6 class="mb-1 text-light">{{ item.title }}</h6>
+                        <h1 class="m-0 ft-bold lh-1 text-light {{ item.class }} text-upper">{{ item.name }}</h1>
+                    </div>
+                    <div class="ct_footer center">
+                        <span class="btn btn-white stretched-links fs-md">{{ item.btn }} <i class="ti-arrow-circle-right"></i></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endfor %}

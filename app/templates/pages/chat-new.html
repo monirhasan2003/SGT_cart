@@ -1,0 +1,105 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="{{ url_for('chat.inbox') }}">Messages</a></li>
+				<li class="breadcrumb-item active" aria-current="page">New conversation</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<h4 class="ft-bold mb-1">How can we help?</h4>
+		<p class="text-muted">Choose what your message is about so it reaches the right place.</p>
+
+		<div class="row g-3">
+
+			<!-- SGT Support: purchase / delivery / refund / other -->
+			<div class="col-lg-6">
+				<div class="border rounded p-3 h-100">
+					<h6 class="ft-bold"><i class="fa fa-life-ring me-1 text-info"></i> SGT Support</h6>
+					<p class="text-muted small">
+						Purchase, payment, delivery, refund — or any other issue with the
+						platform. Handled by the SGT Cart team.
+					</p>
+					<form method="post" action="{{ url_for('chat.start_support') }}">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+						<label class="form-label small ft-medium">What is it about?</label>
+						<div class="d-flex flex-wrap gap-2 mb-3">
+							{% for tp in topics %}
+							<label class="border rounded px-3 py-2 small mb-0" style="cursor:pointer">
+								<input type="radio" name="topic" value="{{ tp }}"
+								       class="me-1" {{ 'checked' if loop.first }}>
+								{{ topic_labels[tp] }}
+							</label>
+							{% endfor %}
+						</div>
+
+						<label class="form-label small ft-medium">Related order (optional)</label>
+						<select name="order_number" class="form-select form-select-sm mb-3">
+							<option value="">— none —</option>
+							{% for o in orders %}
+							<option value="{{ o.order_number }}">
+								{{ o.order_number }} — {{ o.created_at.strftime('%d %b %Y') }}
+							</option>
+							{% endfor %}
+						</select>
+
+						<button class="btn btn-primary btn-sm">Start support chat</button>
+					</form>
+				</div>
+			</div>
+
+			<!-- Ask a seller: product questions -->
+			<div class="col-lg-6">
+				<div class="border rounded p-3 h-100">
+					<h6 class="ft-bold"><i class="fa fa-comments me-1 text-primary"></i> Ask a Seller</h6>
+					<p class="text-muted small">
+						Questions about a product, its stock, sizes or a specific store.
+						Goes straight to that seller.
+					</p>
+
+					{% if vendors %}
+					<label class="form-label small ft-medium">Sellers you've ordered from</label>
+					<div class="d-flex flex-column gap-2">
+						{% for v in vendors %}
+						<form method="post" action="{{ url_for('chat.start_vendor') }}"
+						      class="d-flex justify-content-between align-items-center border rounded p-2 mb-0">
+							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+							<input type="hidden" name="vendor_id" value="{{ v.id }}">
+							<span class="small ft-medium">{{ v.shop_name_en }}</span>
+							<button class="btn btn-outline-primary btn-sm">Message</button>
+						</form>
+						{% endfor %}
+					</div>
+					{% else %}
+					<p class="small text-muted">
+						You haven't ordered from any seller yet. Open a product and tap
+						<strong>Ask Seller</strong> to chat about it.
+					</p>
+					{% endif %}
+
+					<a href="{{ url_for('storefront.shop') }}" class="btn btn-link btn-sm px-0 mt-2">
+						Browse products &rarr;
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+{% endblock %}

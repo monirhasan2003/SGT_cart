@@ -1,0 +1,169 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/seller/">Seller Dashboard</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Analytics</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<h4 class="ft-bold mb-0">Sales Analytics
+				<small class="text-muted fs-6">last {{ days }} days</small></h4>
+			<form method="get" class="d-flex align-items-center gap-2">
+				<select name="days" class="form-select form-select-sm"
+				        onchange="this.form.submit()" style="width:auto">
+					{% for d in [7, 30, 90, 180, 365] %}
+					<option value="{{ d }}" {{ 'selected' if d == days }}>last {{ d }} days</option>
+					{% endfor %}
+				</select>
+			</form>
+		</div>
+
+		<!-- Summary cards -->
+		<div class="row g-3 mb-4">
+			<div class="col-md-3 col-6">
+				<div class="border rounded p-3 h-100">
+					<div class="text-muted small">Revenue</div>
+					<div class="ft-bold fs-4 theme-cl">৳{{ '%.2f'|format(metrics.total_revenue) }}</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-6">
+				<div class="border rounded p-3 h-100">
+					<div class="text-muted small">Net earnings (after commission)</div>
+					<div class="ft-bold fs-4">৳{{ '%.2f'|format(metrics.net_earnings) }}</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-6">
+				<div class="border rounded p-3 h-100">
+					<div class="text-muted small">Orders</div>
+					<div class="ft-bold fs-4">{{ metrics.total_orders }}</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-6">
+				<div class="border rounded p-3 h-100">
+					<div class="text-muted small">Avg. order value</div>
+					<div class="ft-bold fs-4">৳{{ '%.2f'|format(metrics.avg_order_value) }}</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Daily revenue chart -->
+		<div class="border rounded p-3 mb-4">
+			<div class="d-flex justify-content-between align-items-center mb-2">
+				<h6 class="ft-bold mb-0">Revenue per day</h6>
+				<span class="small text-muted">
+					Next 7 days (forecast):
+					<strong>৳{{ '%.2f'|format(metrics.forecast_7d_revenue) }}</strong>
+				</span>
+			</div>
+			<canvas id="dailyChart" height="80"></canvas>
+		</div>
+
+		<!-- Top products + categories -->
+		<div class="row g-3 mb-4">
+			<div class="col-lg-7">
+				<div class="border rounded p-3 h-100">
+					<h6 class="ft-bold mb-3">Top products</h6>
+					{% if metrics.top_products %}
+					<table class="table table-sm align-middle mb-0">
+						<thead><tr><th>Product</th><th class="text-end">Units</th>
+						           <th class="text-end">Revenue</th></tr></thead>
+						<tbody>
+							{% for p in metrics.top_products %}
+							<tr>
+								<td class="ft-medium">{{ p.title }}</td>
+								<td class="text-end">{{ p.qty }}</td>
+								<td class="text-end">৳{{ '%.2f'|format(p.revenue) }}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					{% else %}
+					<p class="text-muted small mb-0">No sales in this period yet.</p>
+					{% endif %}
+				</div>
+			</div>
+			<div class="col-lg-5">
+				<div class="border rounded p-3 h-100">
+					<h6 class="ft-bold mb-3">Top categories</h6>
+					{% if metrics.top_categories %}
+					<table class="table table-sm align-middle mb-0">
+						<thead><tr><th>Category</th><th class="text-end">Revenue</th></tr></thead>
+						<tbody>
+							{% for c in metrics.top_categories %}
+							<tr><td>{{ c.category }}</td>
+							    <td class="text-end">৳{{ '%.2f'|format(c.revenue) }}</td></tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					{% else %}
+					<p class="text-muted small mb-0">No sales yet.</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+		<!-- Recent reviews -->
+		{% if metrics.recent_reviews %}
+		<div class="border rounded p-3 mb-4">
+			<h6 class="ft-bold mb-3">Recent reviews</h6>
+			{% for r in metrics.recent_reviews %}
+			<div class="d-flex justify-content-between border-bottom py-2">
+				<div>
+					<span class="text-warning">{{ '★' * r.rating }}<span class="text-muted">{{ '☆' * (5 - r.rating) }}</span></span>
+					<span class="ft-medium ms-1">{{ r.product.title_en }}</span>
+					{% if r.comment %}<div class="text-muted small">{{ r.comment }}</div>{% endif %}
+				</div>
+				<span class="text-muted small">
+					{{ r.created_at.strftime('%d %b') if r.created_at }}</span>
+			</div>
+			{% endfor %}
+		</div>
+		{% endif %}
+
+	</div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+	(function () {
+		var ctx = document.getElementById("dailyChart");
+		if (!ctx) return;
+		var data = {{ metrics.daily_series | tojson }};
+		new Chart(ctx, {
+			type: "line",
+			data: {
+				labels: data.map(function (d) { return d.date.slice(5); }),
+				datasets: [{
+					label: "Revenue (৳)",
+					data: data.map(function (d) { return d.revenue; }),
+					borderColor: "#0f172a",
+					backgroundColor: "rgba(15, 23, 42, 0.08)",
+					fill: true, tension: 0.3, borderWidth: 2,
+				}],
+			},
+			options: {
+				responsive: true, maintainAspectRatio: false,
+				plugins: { legend: { display: false } },
+				scales: { y: { beginAtZero: true } },
+			},
+		});
+	})();
+</script>
+
+{% endblock %}

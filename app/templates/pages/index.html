@@ -1,0 +1,303 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+{# Shared compact product card — reused by Shop, flash sales, recommendations. #}
+{% from 'pages/_product_card.html' import product_card %}
+
+{# ── Hero carousel — admin-managed slides ─────────────────────── #}
+{% if hero_banners %}
+<style>
+	/* Responsive caption sizing — small screens get tight typography so
+	   the headline + button stays inside the slide instead of overflowing
+	   onto the next slide's image. */
+	.hero-caption {
+		left: 5%; right: 5%; bottom: auto;
+		top: 50%; transform: translateY(-50%);
+		max-width: 90%;
+	}
+	.hero-caption-heading {
+		font-size: 1.25rem; line-height: 1.2;
+		margin-bottom: .3rem;
+		text-shadow: 0 2px 6px rgba(0,0,0,.45);
+	}
+	.hero-caption-sub {
+		font-size: .85rem; margin-bottom: .5rem;
+		text-shadow: 0 1px 4px rgba(0,0,0,.45);
+	}
+	.hero-caption-btn { padding: .35rem 1rem; font-size: .85rem; }
+	@media (min-width: 576px) {
+		.hero-caption { left: 6%; right: auto; max-width: 65%; }
+		.hero-caption-heading { font-size: 1.75rem; margin-bottom: .5rem; }
+		.hero-caption-sub { font-size: 1rem; margin-bottom: 1rem; }
+		.hero-caption-btn { padding: .5rem 1.25rem; font-size: 1rem; }
+	}
+	@media (min-width: 992px) {
+		.hero-caption { max-width: 60%; }
+		.hero-caption-heading { font-size: 2.5rem; }
+		.hero-caption-sub { font-size: 1.1rem; }
+		.hero-caption-btn { padding: .6rem 1.5rem; font-size: 1.05rem; }
+	}
+</style>
+<section class="py-3">
+	<div class="container">
+		<div id="heroCarousel" class="carousel slide rounded overflow-hidden" data-bs-ride="carousel">
+			{% if hero_banners|length > 1 %}
+			<div class="carousel-indicators">
+				{% for b in hero_banners %}
+				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ loop.index0 }}"
+				        class="{{ 'active' if loop.first }}" aria-label="Slide {{ loop.index }}"></button>
+				{% endfor %}
+			</div>
+			{% endif %}
+			<div class="carousel-inner">
+				{% for b in hero_banners %}
+				<div class="carousel-item {{ 'active' if loop.first }}">
+					<a href="{{ b.button_url or '#' }}" class="d-block position-relative">
+						<img src="{{ url_for('static', filename=b.image_path) }}"
+						     class="d-block w-100" alt="{{ b.headline or '' }}"
+						     style="max-height:440px;object-fit:cover;">
+						{% if b.headline or b.subheadline or b.button_text %}
+						<div class="carousel-caption text-start hero-caption">
+							{% if b.headline %}
+							<h2 class="ft-bold text-white hero-caption-heading">{{ b.headline }}</h2>
+							{% endif %}
+							{% if b.subheadline %}
+							<p class="text-white hero-caption-sub d-none d-sm-block">{{ b.subheadline }}</p>
+							{% endif %}
+							{% if b.button_text and b.button_url %}
+							<span class="btn btn-light hero-caption-btn">{{ b.button_text }}</span>
+							{% endif %}
+						</div>
+						{% endif %}
+					</a>
+				</div>
+				{% endfor %}
+			</div>
+			{% if hero_banners|length > 1 %}
+			<button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon"></span></button>
+			<button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+				<span class="carousel-control-next-icon"></span></button>
+			{% endif %}
+		</div>
+	</div>
+</section>
+{% endif %}
+
+{# ── Admin-managed strip banner ───────────────────────────────── #}
+{% if strip_banners %}
+{% set sb = strip_banners[0] %}
+<section class="pb-3">
+	<div class="container">
+		<a href="{{ sb.button_url or '#' }}" class="d-block rounded overflow-hidden position-relative border">
+			<img src="{{ url_for('static', filename=sb.image_path) }}"
+			     class="d-block w-100" style="max-height:200px;object-fit:cover;" alt="">
+			{% if sb.headline or sb.button_text %}
+			<div class="position-absolute top-50 start-0 translate-middle-y ms-4 text-white">
+				{% if sb.headline %}<h4 class="ft-bold mb-1">{{ sb.headline }}</h4>{% endif %}
+				{% if sb.subheadline %}<div class="small">{{ sb.subheadline }}</div>{% endif %}
+				{% if sb.button_text %}
+				<span class="btn btn-warning btn-sm mt-2">{{ sb.button_text }}</span>
+				{% endif %}
+			</div>
+			{% endif %}
+		</a>
+	</div>
+</section>
+{% endif %}
+
+{# ── Trust strip ──────────────────────────────────────────────── #}
+<section class="py-3 border-top border-bottom">
+	<div class="container">
+		<div class="row text-center g-3">
+			<div class="col-md-3 col-6">
+				<i class="lni lni-delivery fs-3 theme-cl"></i>
+				<div class="small ft-medium mt-1">Cash on Delivery</div>
+			</div>
+			<div class="col-md-3 col-6">
+				<i class="lni lni-shield fs-3 theme-cl"></i>
+				<div class="small ft-medium mt-1">Verified sellers</div>
+			</div>
+			<div class="col-md-3 col-6">
+				<i class="lni lni-reload fs-3 theme-cl"></i>
+				<div class="small ft-medium mt-1">7-day return</div>
+			</div>
+			<div class="col-md-3 col-6">
+				<i class="lni lni-lock fs-3 theme-cl"></i>
+				<div class="small ft-medium mt-1">Secure payment</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{# ── Categories (বিভাগসমূহ) — compact, Daraz-style icon tiles ─── #}
+{% if homepage_categories %}
+<section class="middle pb-0">
+	<div class="container">
+		<h4 class="ft-bold mb-3">Categories</h4>
+		<div class="row g-2">
+			{% for cat in homepage_categories %}
+			{% set ic = category_icon(cat.slug) %}
+			<div class="col-3 col-sm-3 col-md-2 col-lg-cat">
+				<a href="{{ url_for('storefront.shop', category=cat.slug) }}"
+				   class="d-block text-center text-dark text-decoration-none py-2 px-1 rounded category-tile"
+				   title="{{ cat.localized_name }}">
+					{% if cat.image %}
+					<img src="{{ url_for('static', filename=cat.image) }}"
+					     class="mb-1 rounded-circle" style="width:48px;height:48px;object-fit:cover;" alt="">
+					{% else %}
+					<span class="d-inline-flex align-items-center justify-content-center rounded-circle mb-1"
+					      style="width:48px;height:48px;background:{{ ic.bg }};color:{{ ic.fg }};">
+						<i class="bi {{ ic.icon }}" style="font-size:22px;"></i>
+					</span>
+					{% endif %}
+					<div class="text-truncate" style="font-size:12px;line-height:1.2;">
+						{{ cat.localized_name }}
+					</div>
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+<style>
+	.category-tile, .store-tile { transition: background-color .15s; }
+	.category-tile:hover, .store-tile:hover { background-color: #f8fafc; }
+	/* 8 tiles per row on lg+ (Bootstrap has no native col-1.5). */
+	@media (min-width: 992px) {
+		.col-lg-cat { flex: 0 0 auto; width: 12.5%; }
+	}
+</style>
+{% endif %}
+
+{# ── Flash Sale strip ─────────────────────────────────────────── #}
+{% if flash_sales and flash_sales[0].items %}
+{% set fs = flash_sales[0] %}
+<section class="middle">
+	<div class="container">
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<h4 class="ft-bold mb-0">
+				<i class="lni lni-bolt text-danger"></i> {{ fs.title }}
+				{% if fs.ends_at %}
+				<span class="small text-muted ms-2">ends {{ fs.ends_at.strftime('%d %b %Y') }}</span>
+				{% endif %}
+			</h4>
+			<a href="{{ url_for('storefront.flash_sales') }}" class="small">View all flash deals →</a>
+		</div>
+		<div class="row g-2">
+			{% for it in fs.items[:8] %}
+				{% if it.product and it.product.is_published %}
+					{{ product_card(it.product) }}
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
+
+{# ── Best sellers ─────────────────────────────────────────────── #}
+{% if bests %}
+<section class="middle pt-0">
+	<div class="container">
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<h4 class="ft-bold mb-0">🔥 Best Sellers</h4>
+			<a href="{{ url_for('storefront.shop') }}" class="small">Browse shop →</a>
+		</div>
+		<div class="row g-2">
+			{% for p in bests %}{{ product_card(p) }}{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
+
+{# ── New arrivals ─────────────────────────────────────────────── #}
+{% if new_arrivals %}
+<section class="middle pt-0">
+	<div class="container">
+		<h4 class="ft-bold mb-3">🆕 New Arrivals</h4>
+		<div class="row g-2">
+			{% for p in new_arrivals %}{{ product_card(p) }}{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
+
+{# ── Top rated ────────────────────────────────────────────────── #}
+{% if top_rated %}
+<section class="middle pt-0">
+	<div class="container">
+		<h4 class="ft-bold mb-3">⭐ Top Rated</h4>
+		<div class="row g-2">
+			{% for p in top_rated %}{{ product_card(p) }}{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
+
+{# ── Just for you / for guests: random varied mix ─────────────── #}
+{% if for_you_products %}
+<section class="middle pt-0">
+	<div class="container">
+		<h4 class="ft-bold mb-3">
+			{% if current_user.is_authenticated %}🎯 Recommended for you
+			{% else %}🎯 Just for you{% endif %}
+		</h4>
+		<div class="row g-2">
+			{% for p in for_you_products %}{{ product_card(p) }}{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
+
+{# ── Featured stores ──────────────────────────────────────────── #}
+{% if featured_stores %}
+<section class="middle pt-0 pb-4">
+	<div class="container">
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<h4 class="ft-bold mb-0">🏪 Featured Stores</h4>
+			<a href="/sell/" class="small">Sell on SGT →</a>
+		</div>
+		<div class="row g-2">
+			{% for vp in featured_stores %}
+			<div class="col-4 col-sm-3 col-md-2 col-lg-cat">
+				<a href="{{ url_for('storefront.store', slug=vp.slug) }}"
+				   class="d-block text-center text-dark text-decoration-none py-2 px-1 rounded store-tile"
+				   title="{{ vp.shop_name_en }}">
+					{% if vp.logo %}
+					<img src="{{ url_for('static', filename=vp.logo) }}"
+					     class="mb-1 rounded-circle border" style="width:48px;height:48px;object-fit:cover;" alt="">
+					{% else %}
+					<span class="d-inline-flex align-items-center justify-content-center rounded-circle mb-1"
+					      style="width:48px;height:48px;background:#fff7ed;color:#ea580c;">
+						<i class="bi bi-shop" style="font-size:22px;"></i>
+					</span>
+					{% endif %}
+					<div class="text-truncate" style="font-size:12px;line-height:1.2;">
+						{{ vp.shop_name_en }}
+					</div>
+					{% if vp.rating_count %}
+					<div class="text-warning" style="font-size:11px;line-height:1.2;">
+						{{ '%.1f'|format(vp.rating_avg|float) }}★
+						<span class="text-muted">({{ vp.rating_count }})</span>
+					</div>
+					{% endif %}
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

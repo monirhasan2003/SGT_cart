@@ -1,0 +1,1422 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+{# Phase 15 D-10 — active flash-sale strip + inline countdown #}
+{% if active_flash_sale %}
+<div class="py-2" id="pdp-flash-strip"
+     style="background:linear-gradient(90deg,#ff6b6b,#feca57);color:#fff;">
+	<div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+		<div class="ft-bold">
+			<i class="lni lni-bolt me-1"></i>Flash Sale: {{ active_flash_sale.title }}
+		</div>
+		{% if active_flash_sale.ends_at %}
+		<div class="small ft-medium" id="pdpFlashCountdown"
+		     data-ends-at="{{ active_flash_sale.ends_at.isoformat() }}">
+			Ends soon
+		</div>
+		{% endif %}
+	</div>
+</div>
+{% endif %}
+
+{# Phase 15 D-9 B5 — festival / Eid pricing strip with countdown timer #}
+{% if campaign %}
+<div class="py-2" id="pdp-campaign-strip"
+     style="background:linear-gradient(90deg,#ffeaa7,#fab1a0);">
+	<div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+		<div class="ft-bold">
+			<i class="lni lni-gift me-1"></i>{{ campaign.label_en }}
+			{% if campaign.label_bn %}
+			<span class="text-muted" lang="bn">— {{ campaign.label_bn }}</span>
+			{% endif %}
+		</div>
+		<div class="small ft-medium" id="pdpCampaignCountdown"
+		     data-ends-at="{{ campaign.ends_iso }}">
+			Ends soon
+		</div>
+	</div>
+</div>
+{% endif %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="{{ url_for('storefront.shop') }}">Shop</a></li>
+				{% if product.category %}
+					<li class="breadcrumb-item">
+						<a href="{{ url_for('storefront.shop', category=product.category.slug) }}">
+							{{ product.category.localized_name }}</a>
+					</li>
+				{% endif %}
+				<li class="breadcrumb-item active" aria-current="page">{{ product.localized_title }}</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+		<div class="row g-4">
+
+			<!-- ===================== GALLERY ===================== -->
+			<div class="col-lg-5 col-md-6">
+				<div class="border rounded p-3 text-center position-relative" id="pdp-gallery">
+					{% if product.stock <= 0 %}
+						<span class="badge bg-danger position-absolute" style="top:10px;left:10px;">Out of Stock</span>
+					{% elif product.stock <= 5 %}
+						<span class="badge bg-warning text-dark position-absolute" style="top:10px;left:10px;">Only {{ product.stock }} left</span>
+					{% endif %}
+					{% if product.primary_image %}
+						<a id="zoomLink" href="{{ url_for('static', filename=product.primary_image) }}" target="_blank">
+							<img id="mainImage" src="{{ url_for('static', filename=product.primary_image) }}"
+								 data-zoom="{{ url_for('static', filename=product.primary_image) }}"
+								 class="img-fluid pdp-main-image"
+								 style="height:360px;object-fit:contain;cursor:zoom-in;"
+								 alt="{{ product.localized_title }}">
+						</a>
+					{% else %}
+						<span id="mainImage" class="d-flex align-items-center justify-content-center bg-light"
+						      style="height:360px;"><i class="lni lni-image fs-1 text-muted"></i></span>
+					{% endif %}
+					<!-- Lens shown while hovering the main image -->
+					<div id="zoomLens" class="pdp-zoom-lens" style="display:none;"></div>
+				</div>
+				<!-- Zoom preview pane (shown on hover, desktop only) -->
+				<div id="zoomResult" class="pdp-zoom-result d-none d-lg-block" style="display:none;"></div>
+				{% if product.images|length > 1 %}
+					<div class="d-flex gap-2 mt-2 flex-wrap" id="pdp-thumbs">
+						{% for img in product.images %}
+							<img src="{{ url_for('static', filename=img.image_path) }}"
+								 onclick="pdpSwitchImage(this.src)"
+								 class="border rounded pdp-thumb" style="height:64px;width:64px;object-fit:cover;cursor:pointer;" alt="">
+						{% endfor %}
+					</div>
+				{% endif %}
+			</div>
+
+			<!-- ===================== INFO ===================== -->
+			<div class="col-lg-4 col-md-6">
+				<!-- Title + Share/Wishlist icons -->
+				<div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+					<h3 class="ft-bold mb-0 flex-grow-1">{{ product.localized_title }}</h3>
+					<div class="d-flex gap-2 flex-shrink-0">
+						<button type="button" class="btn btn-sm btn-outline-secondary" id="pdpShareBtn" title="Share">
+							<i class="lni lni-share-alt"></i>
+						</button>
+						<button type="button" class="btn btn-sm btn-outline-danger" id="pdpWishlistBtn"
+								data-product-id="{{ product.id }}" title="Save to wishlist">
+							<i class="lni lni-heart"></i>
+						</button>
+					</div>
+				</div>
+
+				<!-- Rating summary near title -->
+				<div class="mb-2">
+					{% if product.rating_count %}
+						<span class="text-warning">{{ '%.1f'|format(product.rating_avg|float) }} ★</span>
+						<span class="text-muted small">({{ product.rating_count }} review{{ '' if product.rating_count == 1 else 's' }})</span>
+					{% else %}
+						<span class="text-muted small">No reviews yet</span>
+					{% endif %}
+					{# Q&A answered counter — links to the Q&A anchor below #}
+					<span class="text-muted small ms-2">·
+						<a href="#qa" class="text-decoration-none text-dark">
+							<i class="lni lni-question-circle"></i>
+							{{ qa_answered_count }} Answered Question{{ '' if qa_answered_count == 1 else 's' }}
+						</a>
+					</span>
+					{% if product.brand %}
+					<span class="text-muted small ms-2">Brand:
+						<a href="{{ url_for('storefront.shop', brand=product.brand.slug) }}" class="text-dark ft-medium">{{ product.brand.name }}</a>
+					</span>
+					{% endif %}
+				</div>
+
+				<!-- Price block + inline trust stickers -->
+				<div class="mb-2">
+					{% if product.discount_price %}
+						<span class="fs-3 ft-bold theme-cl">৳{{ product.current_price }}</span>
+						<del class="text-muted ms-2">৳{{ product.base_price }}</del>
+					{% else %}
+						<span class="fs-3 ft-bold theme-cl">৳{{ product.current_price }}</span>
+					{% endif %}
+				</div>
+				<div class="d-flex gap-1 flex-wrap mb-3">
+					<span class="badge bg-success-subtle text-success border border-success-subtle">
+						<i class="lni lni-money-protection me-1"></i>Cash on Delivery
+					</span>
+					{% if product.current_price >= free_shipping_threshold %}
+						<span class="badge bg-info-subtle text-primary border border-info-subtle">
+							<i class="lni lni-delivery me-1"></i>Free Shipping
+						</span>
+					{% endif %}
+					{% if product.is_sponsored_active %}
+						<span class="badge bg-warning text-dark"><i class="lni lni-star me-1"></i>Sponsored</span>
+					{% endif %}
+				</div>
+
+				<!-- Stock + SKU -->
+				<p class="mb-2">
+					{% if product.stock > 0 %}
+						<span class="badge bg-success">In Stock</span>
+						<span class="text-muted small">{{ product.stock }} available</span>
+					{% else %}
+						<span class="badge bg-danger">Out of Stock</span>
+					{% endif %}
+					{% if product.sku %}<span class="text-muted small ms-2">SKU: {{ product.sku }}</span>{% endif %}
+				</p>
+
+				<!-- Urgency signals (D-6) -->
+				<div class="d-flex gap-3 flex-wrap mb-3 small pdp-urgency" id="urgency">
+					{% if product.stock > 0 and product.stock <= 5 %}
+					<span class="text-danger ft-medium">
+						<i class="lni lni-warning me-1"></i>Only {{ product.stock }} left in stock!
+					</span>
+					{% endif %}
+					{% if sold_24h > 0 %}
+					<span class="text-warning ft-medium">
+						<i class="lni lni-bolt me-1"></i>{{ sold_24h }} sold in last 24h
+					</span>
+					{% endif %}
+					{% if viewing_now > 1 %}
+					<span class="text-info ft-medium">
+						<i class="lni lni-eye me-1"></i>{{ viewing_now }} viewing now
+					</span>
+					{% endif %}
+				</div>
+
+				{# Back-in-stock subscribe form — only when out of stock #}
+				{% if product.stock <= 0 %}
+				<div class="border rounded p-3 mb-3 pdp-notify-stock bg-light">
+					<h6 class="ft-bold mb-2">
+						<i class="lni lni-alarm me-1"></i>Notify me when back in stock
+					</h6>
+					<form method="post"
+						  action="{{ url_for('storefront.product_notify_stock', slug=product.slug) }}"
+						  class="d-flex gap-2">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+						<input type="email" name="email" class="form-control form-control-sm"
+							   placeholder="Your email"
+							   value="{{ current_user.email if current_user.is_authenticated else '' }}"
+							   required>
+						<button class="btn btn-sm btn-dark">Notify me</button>
+					</form>
+					{% if stock_subscriber_count > 0 %}
+					<div class="small text-muted mt-1">
+						{{ stock_subscriber_count }} other{{ '' if stock_subscriber_count == 1 else 's' }} waiting for this product.
+					</div>
+					{% endif %}
+				</div>
+				{% endif %}
+
+				{% set colors = [] %}
+				{% set sizes = [] %}
+				{% if product.variants %}
+					{% for v in product.variants %}
+						{% if v.color and v.color not in colors %}{% set _ = colors.append(v.color) %}{% endif %}
+						{% if v.size and v.size not in sizes %}{% set _ = sizes.append(v.size) %}{% endif %}
+					{% endfor %}
+				{% endif %}
+
+				<!-- Color / variant swatches -->
+				{% if colors %}
+					<div class="mb-3" id="pdp-color-swatches">
+						<span class="ft-medium d-block small mb-1">Color:
+							<span class="text-muted" id="pdpSelectedColor">{{ colors[0] }}</span>
+						</span>
+						<div class="d-flex gap-2 flex-wrap">
+							{% for c in colors %}
+							<button type="button"
+									class="btn btn-sm pdp-swatch {{ 'btn-dark' if loop.first else 'btn-outline-dark' }}"
+									data-swatch-kind="color" data-value="{{ c }}">{{ c }}</button>
+							{% endfor %}
+						</div>
+					</div>
+				{% endif %}
+
+				{% if sizes %}
+					<div class="mb-3" id="pdp-size-swatches">
+						<span class="ft-medium d-block small mb-1">Size:
+							<span class="text-muted" id="pdpSelectedSize">{{ sizes[0] }}</span>
+						</span>
+						<div class="d-flex gap-2 flex-wrap">
+							{% for s in sizes %}
+							<button type="button"
+									class="btn btn-sm pdp-swatch {{ 'btn-dark' if loop.first else 'btn-outline-dark' }}"
+									data-swatch-kind="size" data-value="{{ s }}">{{ s }}</button>
+							{% endfor %}
+						</div>
+					</div>
+				{% endif %}
+
+				<!-- Add to cart / Buy now form with quantity ± selector -->
+				<form method="post" action="{{ url_for('cart.add') }}" class="mb-4" id="pdp-cart-form">
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+					<input type="hidden" name="product_id" value="{{ product.id }}">
+					<input type="hidden" name="variant_id" id="pdpVariantId" value="">
+					<input type="hidden" name="buy_now" id="pdpBuyNow" value="">
+
+					<div class="d-flex gap-2 align-items-center flex-wrap mb-2">
+						<div class="input-group" style="max-width:140px;">
+							<button class="btn btn-outline-secondary" type="button" id="pdpQtyMinus">&minus;</button>
+							<input type="text" name="quantity" id="pdpQty" value="1" inputmode="numeric"
+								   class="form-control text-center" style="max-width:60px;">
+							<button class="btn btn-outline-secondary" type="button" id="pdpQtyPlus">+</button>
+						</div>
+						<button type="submit" class="btn btn-dark btn-md px-4 flex-grow-1"
+								{{ 'disabled' if (product.stock <= 0 and not product.variants) }}>
+							<i class="lni lni-cart me-1"></i>Add to Cart
+						</button>
+					</div>
+					<button type="submit" class="btn btn-warning btn-md w-100 ft-bold" id="pdpBuyNowBtn"
+							{{ 'disabled' if (product.stock <= 0 and not product.variants) }}>
+						<i class="lni lni-bolt me-1"></i>Buy Now
+					</button>
+				</form>
+
+				{% if product.localized_description %}
+					<h6 class="ft-bold">Description</h6>
+					<p class="text-muted" style="white-space:pre-line;">{{ product.localized_description }}</p>
+				{% endif %}
+			</div>
+
+			<!-- ===================== RIGHT SIDEBAR ===================== -->
+			<div class="col-lg-3 col-md-12">
+				<!-- Delivery card -->
+				<div class="panel border rounded p-3 mb-3">
+					<h6 class="ft-bold mb-3"><i class="lni lni-delivery me-1"></i>Delivery</h6>
+
+					{# Same-city seller badge (D-9 B2) — surfaces above the ETA when applicable #}
+					{% if same_city_seller %}
+					<div class="alert alert-success small py-1 px-2 mb-2 d-flex align-items-center">
+						<i class="lni lni-bolt me-1"></i>
+						<div>
+							<strong>Same-city seller — faster delivery</strong>
+							<div class="text-muted" lang="bn">একই শহরের সেলার — দ্রুত পাবেন</div>
+						</div>
+					</div>
+					{% endif %}
+
+					<div class="d-flex justify-content-between mb-2 small">
+						<span class="text-muted">Deliver to</span>
+						<span class="ft-medium">
+							{% if current_user.is_authenticated and current_user.addresses %}
+								{{ current_user.addresses[0].city }}
+							{% else %}
+								<a href="{{ url_for('account.address_create') if current_user.is_authenticated else url_for('auth.login') }}"
+								   class="text-primary text-decoration-none">Set location</a>
+							{% endif %}
+						</span>
+					</div>
+					<div class="d-flex justify-content-between mb-2 small">
+						<span class="text-muted">
+							Estimated
+							{% if eta_district %}<span class="text-secondary">({{ eta_district }})</span>{% endif %}
+						</span>
+						<span class="ft-medium">
+							{{ eta_start.strftime('%d %b') }} – {{ eta_end.strftime('%d %b') }}
+							<span class="text-muted small">({{ eta_min_days }}-{{ eta_max_days }} days)</span>
+						</span>
+					</div>
+					<div class="d-flex justify-content-between mb-2 small">
+						<span class="text-muted">Shipping fee</span>
+						<span class="ft-medium">৳{{ shipping_fee }}</span>
+					</div>
+					<div class="d-flex justify-content-between mb-2 small">
+						<span class="text-muted">Cash on Delivery</span>
+						<span class="ft-medium text-success">Available</span>
+					</div>
+					{% if product.current_price < free_shipping_threshold %}
+					<div class="alert alert-warning small py-1 px-2 mb-2 mt-2 mb-0">
+						Add ৳{{ (free_shipping_threshold - product.current_price)|round(0, 'ceil') }} more
+						to unlock <strong>Free Shipping</strong>.
+					</div>
+					{% endif %}
+
+					<hr class="my-2">
+
+					<div class="d-flex justify-content-between mb-2 small">
+						<span class="text-muted">Return policy</span>
+						<span class="ft-medium">
+							{% if return_policy_days > 0 %}{{ return_policy_days }}-day return{% else %}Non-returnable{% endif %}
+						</span>
+					</div>
+					<div class="d-flex justify-content-between mb-2 small">
+						<span class="text-muted">Warranty</span>
+						<span class="ft-medium">{{ warranty_text }}</span>
+					</div>
+
+					{# Prayer-time preference indicator (D-9 B4) #}
+					{% if prayer_time_pref %}
+					<div class="small text-success">
+						<i class="lni lni-checkmark-circle me-1"></i>
+						Avoiding Jumma / Maghrib delivery
+					</div>
+					{% endif %}
+
+					{# Hijri + Gregorian today (D-9 B6) #}
+					<div class="small text-muted text-center mt-2 pt-2 border-top pdp-hijri">
+						<i class="lni lni-calendar me-1"></i>{{ hijri_label }}
+					</div>
+				</div>
+
+				<!-- Sold By panel -->
+				{% if product.vendor %}
+				<div class="panel border rounded p-3 mb-3">
+					<h6 class="ft-bold mb-3"><i class="lni lni-shop me-1"></i>Sold By</h6>
+
+					<div class="d-flex align-items-center gap-2 mb-2">
+						{% if product.vendor.logo %}
+							<img src="{{ url_for('static', filename=product.vendor.logo) }}"
+								 alt="{{ product.vendor.shop_name_en }}"
+								 class="rounded border" style="width:48px;height:48px;object-fit:cover;">
+						{% else %}
+							<span class="d-flex align-items-center justify-content-center bg-light border rounded"
+								  style="width:48px;height:48px;"><i class="lni lni-shop"></i></span>
+						{% endif %}
+						<div class="flex-grow-1 min-width-0">
+							<a href="{{ url_for('storefront.store', slug=product.vendor.slug) }}"
+							   class="text-dark ft-medium text-decoration-none d-block text-truncate">
+								{{ product.vendor.shop_name_en }}
+							</a>
+							<div class="small d-flex gap-1 flex-wrap mt-1 pdp-seller-badges">
+								{% if product.vendor.is_mall_tier %}
+								<span class="badge bg-warning text-dark"><i class="lni lni-crown me-1"></i>Mall</span>
+								{% endif %}
+								{# Verified by SGT — strict: approved + both KYC docs uploaded #}
+								{% if trust.is_verified_seller %}
+								<span class="badge bg-success" title="KYC verified by SGT">
+									<i class="lni lni-checkmark-circle me-1"></i>Verified by SGT
+								</span>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+
+					<div class="d-flex justify-content-between small mb-1">
+						<span class="text-muted">Seller rating</span>
+						<span class="ft-medium">
+							{% if product.vendor.rating_count %}
+								{{ '%.1f'|format(product.vendor.rating_avg|float) }} ★
+								<span class="text-muted">({{ product.vendor.rating_count }})</span>
+							{% else %}
+								<span class="text-muted">No ratings yet</span>
+							{% endif %}
+						</span>
+					</div>
+					{% if product.vendor.avg_delivery_days and product.vendor.avg_delivery_days > 0 %}
+					<div class="d-flex justify-content-between small mb-1">
+						<span class="text-muted">Avg delivery</span>
+						<span class="ft-medium">{{ product.vendor.avg_delivery_days }} day(s)</span>
+					</div>
+					{% endif %}
+					{% if product.vendor.cancel_rate and product.vendor.cancel_rate > 0 %}
+					<div class="d-flex justify-content-between small mb-2">
+						<span class="text-muted">Cancel rate</span>
+						<span class="ft-medium {{ 'text-danger' if product.vendor.cancel_rate > 0.1 else '' }}">
+							{{ (product.vendor.cancel_rate * 100)|round(1) }}%
+						</span>
+					</div>
+					{% endif %}
+
+					{# Presence indicator (Phase 15 D-7 C3) #}
+					<div class="small mt-2 pdp-seller-presence">
+						{% if seller_is_online %}
+						<span class="text-success">
+							<span class="d-inline-block rounded-circle bg-success"
+								  style="width:8px;height:8px;"></span>
+							Online now
+						</span>
+						{% elif seller_last_seen %}
+						<span class="text-secondary">
+							<i class="lni lni-time"></i>
+							Last seen {{ seller_last_seen.strftime('%d %b, %H:%M') }}
+						</span>
+						{% else %}
+						<span class="text-secondary">
+							<i class="lni lni-time"></i> Offline
+						</span>
+						{% endif %}
+						{% if trust.avg_reply_minutes is not none %}
+						<span class="text-muted">
+							·
+							{% if trust.avg_reply_minutes < 60 %}
+								Typically replies in ~{{ trust.avg_reply_minutes|round(0)|int }} min
+							{% else %}
+								Typically replies in ~{{ (trust.avg_reply_minutes / 60.0)|round(1) }} hr
+							{% endif %}
+						</span>
+						{% endif %}
+					</div>
+
+					<div class="d-grid gap-2 mt-2">
+						<a href="{{ url_for('storefront.store', slug=product.vendor.slug) }}"
+						   class="btn btn-sm btn-outline-dark">
+							<i class="lni lni-shop me-1"></i>Visit Store
+						</a>
+						{% if current_user.is_authenticated and not current_user.is_admin and not (current_user.is_seller and current_user.vendor_profile and current_user.vendor_profile.id == product.vendor.id) %}
+						<form method="post" action="{{ url_for('chat.start_vendor') }}" class="m-0">
+							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+							<input type="hidden" name="vendor_id" value="{{ product.vendor.id }}">
+							<input type="hidden" name="product_id" value="{{ product.id }}">
+							<button class="btn btn-sm btn-primary w-100">
+								<i class="lni lni-bubble me-1"></i>Chat Now
+							</button>
+						</form>
+						{% elif not current_user.is_authenticated %}
+						<a href="{{ url_for('auth.login') }}" class="btn btn-sm btn-primary">
+							<i class="lni lni-bubble me-1"></i>Chat Now
+						</a>
+						{% endif %}
+					</div>
+
+					{# Quick-question one-tap buttons (Phase 15 D-7 C4) #}
+					{% if current_user.is_authenticated and not current_user.is_admin and not (current_user.is_seller and current_user.vendor_profile and current_user.vendor_profile.id == product.vendor.id) %}
+					<div class="mt-2 pdp-quick-questions">
+						<div class="text-muted small mb-1">Quick questions:</div>
+						<div class="d-flex flex-wrap gap-1">
+						{% for q in quick_questions %}
+							<form method="post" action="{{ url_for('chat.quick_question') }}"
+								  class="m-0">
+								<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+								<input type="hidden" name="vendor_id" value="{{ product.vendor.id }}">
+								<input type="hidden" name="product_id" value="{{ product.id }}">
+								<input type="hidden" name="question_key" value="{{ q.key }}">
+								<button class="btn btn-outline-secondary btn-sm py-0 px-2"
+										title="{{ q.body }}">
+									{{ q.label_en }}
+									<span class="text-muted" lang="bn">/ {{ q.label_bn }}</span>
+								</button>
+							</form>
+						{% endfor %}
+						</div>
+					</div>
+					{% endif %}
+				</div>
+
+				{# Bilingual verification badges — Phase 15 D-4 T5 #}
+				{% if trust.has_trade_license_verified or trust.has_nid_verified %}
+				<div class="panel border rounded p-3 mb-3 pdp-kyc-badges">
+					<h6 class="ft-bold mb-2 small text-secondary">
+						<i class="lni lni-shield me-1"></i>Verification
+					</h6>
+					{% if trust.has_trade_license_verified %}
+					<div class="d-flex align-items-center gap-2 mb-2 small">
+						<i class="lni lni-checkmark-circle text-success"></i>
+						<div>
+							<div class="ft-medium">Trade License Verified</div>
+							<div class="text-muted" lang="bn">ব্যবসায়িক লাইসেন্স যাচাইকৃত</div>
+						</div>
+					</div>
+					{% endif %}
+					{% if trust.has_nid_verified %}
+					<div class="d-flex align-items-center gap-2 small">
+						<i class="lni lni-checkmark-circle text-success"></i>
+						<div>
+							<div class="ft-medium">NID Verified</div>
+							<div class="text-muted" lang="bn">জাতীয় পরিচয়পত্র যাচাইকৃত</div>
+						</div>
+					</div>
+					{% endif %}
+				</div>
+				{% endif %}
+
+				{# Why buy from this seller? — Phase 15 D-4 D4 #}
+				{% if trust.positive_rate is not none or trust.avg_delivery_days or trust.avg_reply_minutes is not none %}
+				<div class="panel border rounded p-3 mb-3 pdp-why-buy">
+					<h6 class="ft-bold mb-2">
+						<i class="lni lni-thumbs-up me-1"></i>Why buy from this seller?
+					</h6>
+					<ul class="list-unstyled small mb-0">
+						{% if trust.positive_rate is not none %}
+						<li class="mb-2 d-flex gap-2">
+							<i class="lni lni-star-filled text-warning"></i>
+							<div>
+								<span class="ft-medium">{{ trust.positive_rate }}% positive</span>
+								<span class="text-muted">across {{ trust.review_count }} review{{ '' if trust.review_count == 1 else 's' }}</span>
+							</div>
+						</li>
+						{% endif %}
+						{% if trust.avg_delivery_days %}
+						<li class="mb-2 d-flex gap-2">
+							<i class="lni lni-delivery text-primary"></i>
+							<div>
+								<span class="ft-medium">
+									{{ trust.avg_delivery_days|round(1) }}-day delivery
+								</span>
+								<span class="text-muted">on average</span>
+							</div>
+						</li>
+						{% endif %}
+						{% if trust.avg_reply_minutes is not none %}
+						<li class="mb-2 d-flex gap-2">
+							<i class="lni lni-comments-reply text-info"></i>
+							<div>
+								<span class="ft-medium">
+								{% if trust.avg_reply_minutes < 60 %}
+									Replies in ~{{ trust.avg_reply_minutes|round(0)|int }} min
+								{% else %}
+									Replies in ~{{ (trust.avg_reply_minutes / 60.0)|round(1) }} hr
+								{% endif %}
+								</span>
+								<span class="text-muted">typical chat reply</span>
+							</div>
+						</li>
+						{% endif %}
+						{% if trust.cancel_rate_pct is not none %}
+						<li class="d-flex gap-2">
+							<i class="lni lni-checkmark text-success"></i>
+							<div>
+								<span class="ft-medium">{{ (100 - trust.cancel_rate_pct)|round(1) }}% order success</span>
+								<span class="text-muted">— {{ trust.cancel_rate_pct }}% cancellations</span>
+							</div>
+						</li>
+						{% endif %}
+					</ul>
+				</div>
+				{% endif %}
+
+				{# App download QR (Phase 15 D-10) — only when admin configured the URL #}
+				{% if app_qr_url %}
+				<div class="panel border rounded p-3 mb-3 pdp-app-qr text-center">
+					<h6 class="ft-bold mb-2">
+						<i class="lni lni-mobile me-1"></i>Get the SGT app
+					</h6>
+					<img src="{{ app_qr_url }}" alt="App download QR"
+					     class="img-fluid mb-2" style="max-width:140px;">
+					<div class="small text-muted">
+						Scan to download
+						<div><a href="{{ app_download_url }}" class="text-decoration-none">{{ app_download_url }}</a></div>
+					</div>
+				</div>
+				{% endif %}
+				{% endif %}
+			</div>
+		</div>
+
+		<!-- ===================== SPECIFICATIONS ===================== -->
+		{% if product.specs %}
+			<div class="mt-5" id="pdp-specs">
+				<h5 class="ft-bold mb-3"><i class="lni lni-list me-1"></i>Specifications</h5>
+				<div class="border rounded">
+					<table class="table table-sm mb-0 pdp-specs-table">
+						<tbody>
+						{% for s in product.specs %}
+							<tr class="pdp-spec-row {{ 'pdp-spec-extra d-none' if loop.index0 >= 6 }}">
+								<th class="text-secondary ps-3" style="width:240px;">{{ s.label }}</th>
+								<td>{{ s.value }}</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+					{% if product.specs|length > 6 %}
+						<div class="text-center border-top p-2">
+							<button type="button" class="btn btn-sm btn-link text-decoration-none ft-medium"
+									id="pdpSpecsToggle" data-state="collapsed">
+								View More ({{ product.specs|length - 6 }} more) <i class="lni lni-chevron-down ms-1"></i>
+							</button>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		{% endif %}
+
+		<!-- ===================== FREQUENTLY BOUGHT TOGETHER (D-8 D1) ===================== -->
+		{% if fbt_products %}
+		<div class="mt-5" id="fbt">
+			<h5 class="ft-bold mb-3">
+				<i class="lni lni-package me-1"></i>Frequently Bought Together
+			</h5>
+			<div class="row g-3 pdp-fbt">
+				<div class="col-lg-3 col-md-4 col-6">
+					<div class="border rounded h-100 border-primary border-2">
+						<div class="d-block text-center p-2">
+							{% if product.primary_image %}
+								<img src="{{ url_for('static', filename=product.primary_image) }}"
+									 class="img-fluid" style="height:120px;object-fit:contain;" alt="">
+							{% else %}
+								<span class="d-flex align-items-center justify-content-center bg-light"
+									  style="height:120px;"><i class="lni lni-image fs-3 text-muted"></i></span>
+							{% endif %}
+						</div>
+						<div class="p-2 pt-0">
+							<span class="badge bg-primary mb-1">This product</span>
+							<div class="small text-truncate">{{ product.localized_title }}</div>
+							<span class="ft-bold theme-cl">৳{{ product.current_price }}</span>
+						</div>
+					</div>
+				</div>
+				{% for p in fbt_products %}
+				<div class="col-lg-3 col-md-4 col-6">
+					<div class="border rounded h-100">
+						<a href="{{ url_for('storefront.product_detail', slug=p.slug) }}"
+						   class="d-block text-center p-2">
+							{% if p.primary_image %}
+								<img src="{{ url_for('static', filename=p.primary_image) }}"
+									 class="img-fluid" style="height:120px;object-fit:contain;" alt="">
+							{% else %}
+								<span class="d-flex align-items-center justify-content-center bg-light"
+									  style="height:120px;"><i class="lni lni-image fs-3 text-muted"></i></span>
+							{% endif %}
+						</a>
+						<div class="p-2 pt-0">
+							<a href="{{ url_for('storefront.product_detail', slug=p.slug) }}"
+							   class="text-dark small d-block text-truncate">{{ p.localized_title }}</a>
+							<span class="ft-bold theme-cl">৳{{ p.current_price }}</span>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
+
+		<!-- ===================== MONEY & LOYALTY (D-5) ===================== -->
+		<div class="mt-5" id="money">
+			<h5 class="ft-bold mb-3"><i class="lni lni-coin me-1"></i>Save more on this product</h5>
+			<div class="row g-2 pdp-money">
+
+				{# M1: Earn X reward points preview #}
+				{% if earn_points_preview > 0 %}
+				<div class="col-lg-4 col-md-6">
+					<div class="border rounded p-2 pdp-earn-points">
+						<div class="d-flex align-items-center gap-2 mb-1">
+							<i class="lni lni-gift text-warning fs-5"></i>
+							<h6 class="ft-bold mb-0 small">Earn {{ earn_points_preview }} point{{ '' if earn_points_preview == 1 else 's' }}</h6>
+						</div>
+						<p class="small text-muted mb-0">
+							Earned when delivered. 1 point = ৳1 at checkout.
+						</p>
+					</div>
+				</div>
+				{% endif %}
+
+				{# M3: Pay with points hint #}
+				{% if current_user.is_authenticated and user_points_balance > 0 %}
+				<div class="col-lg-4 col-md-6">
+					<div class="border rounded p-2 pdp-pay-points">
+						<div class="d-flex align-items-center gap-2 mb-1">
+							<i class="lni lni-wallet text-success fs-5"></i>
+							<h6 class="ft-bold mb-0 small">You have {{ user_points_balance }} points</h6>
+						</div>
+						<p class="small text-muted mb-1">
+							Worth ৳{{ user_points_value }}. Tick <em>"Use my points"</em> at checkout.
+						</p>
+						<a href="{{ url_for('account.rewards') }}"
+						   class="small text-decoration-none">View ledger →</a>
+					</div>
+				</div>
+				{% endif %}
+
+				{# M6: Affiliate link generator #}
+				{% if affiliate_link %}
+				<div class="col-lg-4 col-md-6">
+					<div class="border rounded p-2 pdp-affiliate">
+						<div class="d-flex align-items-center gap-2 mb-1">
+							<i class="lni lni-share text-primary fs-5"></i>
+							<h6 class="ft-bold mb-0 small">Earn by sharing</h6>
+						</div>
+						<div class="input-group input-group-sm">
+							<input type="text" class="form-control form-control-sm" id="pdpAffiliateLink"
+								   value="{{ affiliate_link }}" readonly>
+							<button type="button" class="btn btn-outline-dark btn-sm"
+									id="pdpAffiliateCopyBtn">Copy</button>
+						</div>
+					</div>
+				</div>
+				{% endif %}
+
+				{# M2: Apply coupon inline #}
+				<div class="col-md-6">
+					<div class="border rounded p-2 pdp-coupon">
+						<div class="d-flex align-items-center gap-2 mb-1">
+							<i class="lni lni-ticket-alt text-info fs-5"></i>
+							<h6 class="ft-bold mb-0 small">Have a coupon?</h6>
+						</div>
+						{% if coupon_preview %}
+						<div class="alert alert-success small py-1 px-2 mb-1">
+							<strong>{{ coupon_preview.code }}</strong> would save
+							<strong>৳{{ coupon_preview.discount }}</strong> at checkout.
+						</div>
+						<form method="post"
+							  action="{{ url_for('storefront.product_apply_coupon', slug=product.slug) }}"
+							  class="m-0">
+							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+							<input type="hidden" name="action" value="clear">
+							<button class="btn btn-sm btn-outline-secondary py-0">Clear</button>
+						</form>
+						{% else %}
+						<form method="post"
+							  action="{{ url_for('storefront.product_apply_coupon', slug=product.slug) }}"
+							  class="d-flex gap-1">
+							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+							<input type="text" name="coupon_code" class="form-control form-control-sm"
+								   placeholder="Enter code" required maxlength="40">
+							<button class="btn btn-sm btn-dark">Check</button>
+						</form>
+						{% endif %}
+					</div>
+				</div>
+
+				{# M4: Bulk pricing tiers #}
+				{% if bulk_tiers %}
+				<div class="col-md-6">
+					<div class="border rounded p-2 pdp-bulk-tiers">
+						<div class="d-flex align-items-center gap-2 mb-1">
+							<i class="lni lni-package text-success fs-5"></i>
+							<h6 class="ft-bold mb-0 small">Bulk Pricing</h6>
+						</div>
+						<table class="table table-sm mb-0 small">
+							<thead>
+								<tr><th>Buy</th><th>Unit</th><th class="text-success">Save</th></tr>
+							</thead>
+							<tbody>
+								{% for t in bulk_tiers %}
+								<tr>
+									<td>{{ t.min_quantity }}+</td>
+									<td>৳{{ t.unit_price }}</td>
+									<td class="text-success">{{ t.discount_pct }}%</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+
+		<!-- ===================== Q&A ===================== -->
+		<div class="mt-5" id="qa">
+			<div class="d-flex justify-content-between align-items-center mb-3">
+				<h5 class="ft-bold mb-0">
+					<i class="lni lni-question-circle me-1"></i>Questions &amp; Answers
+					<span class="text-muted fs-6 ms-2">
+						{{ qa_answered_count }} Answered · {{ qa_questions|length }} Asked
+					</span>
+				</h5>
+			</div>
+
+			{# Ask form #}
+			{% if current_user.is_authenticated %}
+			<form method="post" action="{{ url_for('storefront.qa_ask', slug=product.slug) }}"
+				  class="border rounded p-3 mb-3 bg-light">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+				<div class="d-flex gap-2 align-items-start">
+					<textarea name="body" class="form-control" rows="2" required
+							  maxlength="500"
+							  placeholder="Ask a public question about this product…"></textarea>
+					<button class="btn btn-dark ft-medium px-4">Ask</button>
+				</div>
+				<small class="text-muted">Please don't share phone numbers — they'll be removed.</small>
+			</form>
+			{% else %}
+			<div class="border rounded p-3 mb-3 bg-light text-center">
+				<a href="{{ url_for('auth.login') }}" class="text-primary ft-medium">Log in</a>
+				to ask a question.
+			</div>
+			{% endif %}
+
+			{# List of questions #}
+			{% if qa_questions %}
+			<div class="border rounded">
+				{% for q in qa_questions %}
+				<div class="p-3 border-bottom pdp-qa-question">
+					<div class="d-flex justify-content-between">
+						<span class="ft-medium">
+							<i class="lni lni-question-circle text-primary me-1"></i>{{ q.body }}
+						</span>
+						<span class="text-muted small">{{ q.created_at.strftime('%d %b %Y') if q.created_at }}</span>
+					</div>
+					<div class="text-muted small mb-2">
+						Asked by {{ q.asker.name if q.asker else 'Customer' }}
+					</div>
+
+					{# Answers — sorted by helpful_count desc (D-8 C6) #}
+					{% if q.answers %}
+						{% for a in q.answers|sort(attribute='helpful_count', reverse=true) %}
+						<div class="ms-3 mt-2 ps-3 border-start pdp-qa-answer">
+							<div class="d-flex justify-content-between">
+								<span class="ft-medium small">
+									<i class="lni lni-checkmark text-success me-1"></i>{{ a.body }}
+								</span>
+								<span class="text-muted small">{{ a.created_at.strftime('%d %b %Y') if a.created_at }}</span>
+							</div>
+							<div class="d-flex justify-content-between align-items-center mt-1">
+								<div class="text-muted small">
+									{{ a.responder.name if a.responder else 'User' }}
+									{% if a.is_seller_answer %}
+									<span class="badge bg-warning text-dark ms-1">Seller</span>
+									{% endif %}
+								</div>
+								{# Helpful-vote toggle (login required, hidden for own answer) #}
+								{% if current_user.is_authenticated and a.responder_id != current_user.id %}
+								<form method="post"
+									  action="{{ url_for('storefront.qa_answer_helpful', slug=product.slug, answer_id=a.id) }}"
+									  class="m-0">
+									<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+									{% set voted = a.id in voted_answers %}
+									<button class="btn btn-sm py-0 px-2 pdp-helpful-btn
+												   {{ 'btn-primary' if voted else 'btn-outline-secondary' }}"
+											title="{{ 'Remove helpful vote' if voted else 'Mark as helpful' }}">
+										<i class="lni lni-thumbs-up me-1"></i>Helpful
+										{% if a.helpful_count %}
+										<span class="ms-1">({{ a.helpful_count }})</span>
+										{% endif %}
+									</button>
+								</form>
+								{% elif a.helpful_count %}
+								<span class="text-muted small">
+									<i class="lni lni-thumbs-up"></i> {{ a.helpful_count }}
+								</span>
+								{% endif %}
+							</div>
+						</div>
+						{% endfor %}
+					{% else %}
+						<div class="text-muted small ms-3 mt-1">No answers yet.</div>
+					{% endif %}
+
+					{# Answer form (login required) #}
+					{% if current_user.is_authenticated %}
+					<form method="post"
+						  action="{{ url_for('storefront.qa_answer', slug=product.slug, question_id=q.id) }}"
+						  class="ms-3 mt-2">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+						<div class="d-flex gap-2">
+							<input type="text" name="body" class="form-control form-control-sm" required
+								   maxlength="1000" placeholder="Write an answer…">
+							<button class="btn btn-sm btn-outline-dark">Reply</button>
+						</div>
+					</form>
+					{% endif %}
+				</div>
+				{% endfor %}
+			</div>
+			{% else %}
+			<p class="text-muted">No questions yet — be the first to ask.</p>
+			{% endif %}
+		</div>
+
+		<!-- ===================== MORE FROM BRAND ===================== -->
+		{% if brand_more %}
+			<div class="mt-5" id="pdp-brand-more">
+				<div class="d-flex justify-content-between align-items-center mb-3">
+					<h5 class="ft-bold mb-0">More from {{ product.brand.name }}</h5>
+					<a href="{{ url_for('storefront.shop', brand=product.brand.slug) }}"
+					   class="btn btn-sm btn-outline-dark">See all</a>
+				</div>
+				<div class="row g-3">
+					{% for p in brand_more %}
+					<div class="col-lg-2 col-md-3 col-6">
+						<div class="border rounded h-100">
+							<a href="{{ url_for('storefront.product_detail', slug=p.slug) }}" class="d-block text-center p-2">
+								{% if p.primary_image %}
+									<img src="{{ url_for('static', filename=p.primary_image) }}"
+										 class="img-fluid" style="height:120px;object-fit:contain;" alt="">
+								{% else %}
+									<span class="d-flex align-items-center justify-content-center bg-light"
+										  style="height:120px;"><i class="lni lni-image fs-3 text-muted"></i></span>
+								{% endif %}
+							</a>
+							<div class="p-2 pt-0">
+								<a href="{{ url_for('storefront.product_detail', slug=p.slug) }}"
+								   class="text-dark small d-block text-truncate">{{ p.localized_title }}</a>
+								<span class="ft-bold theme-cl">৳{{ p.current_price }}</span>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+
+		<!-- ===================== RATINGS & REVIEWS ===================== -->
+		<div class="mt-5" id="reviews">
+			<div class="d-flex justify-content-between align-items-center mb-3">
+				<h5 class="ft-bold mb-0">
+					Ratings &amp; Reviews
+					{% if product.rating_count %}
+					<span class="text-warning ms-2">{{ '%.1f'|format(product.rating_avg|float) }} ★</span>
+					<span class="text-muted fs-6">({{ product.rating_count }})</span>
+					{% else %}
+					<span class="text-muted fs-6 ms-2">No reviews yet</span>
+					{% endif %}
+				</h5>
+				{% if user_can_review %}
+				<a href="{{ url_for('review.write', slug=product.slug) }}" class="btn btn-sm btn-primary">
+					{{ 'Edit your review' if user_review else 'Write a review (with photos)' }}
+				</a>
+				{% elif current_user.is_authenticated and not current_user.is_admin %}
+				<span class="text-muted small" title="Only customers with a delivered order can review this product">
+					<i class="lni lni-lock-alt me-1"></i>Buy + receive delivery to review
+				</span>
+				{% else %}
+				<span class="text-muted small">
+					<i class="lni lni-lock-alt me-1"></i>Verified buyers can post photo reviews
+				</span>
+				{% endif %}
+			</div>
+
+			{% if product.rating_count %}
+			<!-- Distribution bars + filter chips -->
+			<div class="row g-3 mb-3 pdp-review-dist">
+				<div class="col-md-5">
+					<div class="border rounded p-3 h-100">
+						<div class="text-center mb-2">
+							<div class="display-6 ft-bold text-warning">
+								{{ '%.1f'|format(product.rating_avg|float) }} ★
+							</div>
+							<div class="text-muted small">{{ product.rating_count }} review{{ '' if product.rating_count == 1 else 's' }}</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div class="border rounded p-3 h-100">
+						{% for star in [5, 4, 3, 2, 1] %}
+						{% set n = review_dist[star] %}
+						{% set pct = ((n * 100) / product.rating_count)|round(0) if product.rating_count else 0 %}
+						<a href="?rstar={{ star }}&rsort={{ review_sort }}#reviews"
+						   class="d-flex align-items-center gap-2 mb-1 text-decoration-none text-dark pdp-dist-row"
+						   data-star="{{ star }}">
+							<span class="small text-warning" style="width:42px;">{{ star }} ★</span>
+							<div class="progress flex-grow-1" style="height:10px;">
+								<div class="progress-bar bg-warning" role="progressbar"
+									 style="width:{{ pct }}%;" aria-valuenow="{{ pct }}"
+									 aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<span class="small text-muted" style="width:40px;text-align:right;">{{ n }}</span>
+						</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+
+			<!-- AI Pros & Cons summary (D-8 D3) -->
+			{% if ai_pros or ai_cons %}
+			<div class="row g-3 mb-3 pdp-ai-summary">
+				<div class="col-md-6">
+					<div class="border rounded p-3 h-100 bg-success-subtle">
+						<h6 class="ft-bold mb-2 text-success">
+							<i class="lni lni-thumbs-up me-1"></i>What buyers like
+						</h6>
+						{% if ai_pros %}
+						<ul class="small mb-0 ps-3">
+							{% for p in ai_pros %}<li>{{ p }}</li>{% endfor %}
+						</ul>
+						{% else %}
+						<p class="small text-muted mb-0">Not enough positive feedback yet.</p>
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="border rounded p-3 h-100 bg-danger-subtle">
+						<h6 class="ft-bold mb-2 text-danger">
+							<i class="lni lni-thumbs-down me-1"></i>What to watch for
+						</h6>
+						{% if ai_cons %}
+						<ul class="small mb-0 ps-3">
+							{% for c in ai_cons %}<li>{{ c }}</li>{% endfor %}
+						</ul>
+						{% else %}
+						<p class="small text-muted mb-0">No notable complaints yet.</p>
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-12">
+					<p class="small text-muted mb-0">
+						<i class="lni lni-sparkles me-1"></i>Auto-summarised from recent customer reviews.
+					</p>
+				</div>
+			</div>
+			{% endif %}
+
+			<!-- Customer photo gallery -->
+			{% if review_gallery %}
+			<div class="border rounded p-3 mb-3 pdp-review-photos">
+				<div class="d-flex justify-content-between align-items-center mb-2">
+					<h6 class="ft-bold mb-0">Customer Photos</h6>
+					<span class="text-muted small">{{ review_gallery|length }} photo{{ '' if review_gallery|length == 1 else 's' }}</span>
+				</div>
+				<div class="d-flex gap-2 flex-wrap">
+					{% for img in review_gallery %}
+					<a href="{{ url_for('static', filename=img.image_path) }}" target="_blank">
+						<img src="{{ url_for('static', filename=img.image_path) }}"
+							 class="rounded border" style="height:72px;width:72px;object-fit:cover;" alt="customer photo">
+					</a>
+					{% endfor %}
+				</div>
+			</div>
+			{% endif %}
+
+			<!-- Sort + filter toolbar -->
+			<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2 pdp-review-toolbar">
+				<div class="d-flex gap-1 flex-wrap">
+					<a href="?rsort={{ review_sort }}#reviews"
+					   class="btn btn-sm {{ 'btn-dark' if review_star is none else 'btn-outline-dark' }}">
+						All stars
+					</a>
+					{% for star in [5, 4, 3, 2, 1] %}
+					<a href="?rstar={{ star }}&rsort={{ review_sort }}#reviews"
+					   class="btn btn-sm {{ 'btn-dark' if review_star == star else 'btn-outline-dark' }}">
+						{{ star }} ★ ({{ review_dist[star] }})
+					</a>
+					{% endfor %}
+				</div>
+				<div class="d-flex gap-1 flex-wrap">
+					{% for s in review_sorts %}
+					<a href="?rsort={{ s }}{% if review_star %}&rstar={{ review_star }}{% endif %}#reviews"
+					   class="btn btn-sm {{ 'btn-primary' if review_sort == s else 'btn-outline-secondary' }}">
+						{{ review_sort_labels[s] }}
+					</a>
+					{% endfor %}
+				</div>
+			</div>
+			{% endif %}
+
+			{# Review list — paginated #}
+			{% if review_pagination.items %}
+			<div class="border rounded">
+				{% for r in review_pagination.items %}
+				<div class="p-3 border-bottom">
+					<div class="d-flex justify-content-between">
+						<span class="ft-medium">
+							{{ r.user.name if r.user else 'Customer' }}
+							{% if r.is_verified %}<span class="badge bg-success ms-1">Verified Purchase</span>{% endif %}
+						</span>
+						<span class="text-muted small">{{ r.created_at.strftime('%d %b %Y') if r.created_at }}</span>
+					</div>
+					<div class="text-warning">{{ '★' * r.rating }}<span class="text-muted">{{ '☆' * (5 - r.rating) }}</span></div>
+					{% if r.title %}<div class="ft-medium">{{ r.title }}</div>{% endif %}
+					{% if r.comment %}<div class="text-muted" style="white-space:pre-line;">{{ r.comment }}</div>{% endif %}
+					{% if r.images %}
+					<div class="d-flex gap-2 mt-2 flex-wrap">
+						{% for img in r.images %}
+						<a href="{{ url_for('static', filename=img.image_path) }}" target="_blank">
+							<img src="{{ url_for('static', filename=img.image_path) }}"
+							     class="rounded border" style="height:64px;width:64px;object-fit:cover;" alt="">
+						</a>
+						{% endfor %}
+					</div>
+					{% endif %}
+				</div>
+				{% endfor %}
+			</div>
+
+			{# Pagination #}
+			{% if review_pagination.pages > 1 %}
+			<nav class="mt-3" aria-label="Review pages">
+				<ul class="pagination pagination-sm pdp-review-pagination">
+					{% if review_pagination.has_prev %}
+					<li class="page-item">
+						<a class="page-link" href="?rpage={{ review_pagination.prev_num }}&rsort={{ review_sort }}{% if review_star %}&rstar={{ review_star }}{% endif %}#reviews">&laquo;</a>
+					</li>
+					{% endif %}
+					{% for p in review_pagination.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+						{% if p %}
+						<li class="page-item {{ 'active' if p == review_pagination.page }}">
+							<a class="page-link" href="?rpage={{ p }}&rsort={{ review_sort }}{% if review_star %}&rstar={{ review_star }}{% endif %}#reviews">{{ p }}</a>
+						</li>
+						{% else %}
+						<li class="page-item disabled"><span class="page-link">…</span></li>
+						{% endif %}
+					{% endfor %}
+					{% if review_pagination.has_next %}
+					<li class="page-item">
+						<a class="page-link" href="?rpage={{ review_pagination.next_num }}&rsort={{ review_sort }}{% if review_star %}&rstar={{ review_star }}{% endif %}#reviews">&raquo;</a>
+					</li>
+					{% endif %}
+				</ul>
+			</nav>
+			{% endif %}
+
+			{% elif not product.rating_count %}
+			<p class="text-muted">Be the first to review this product.</p>
+			{% else %}
+			<p class="text-muted">No reviews match this filter.
+				<a href="?rsort={{ review_sort }}#reviews" class="text-decoration-none">Clear filter</a>
+			</p>
+			{% endif %}
+		</div>
+
+		{% macro product_card(p) %}
+		<div class="col-lg-2 col-md-3 col-6">
+			<div class="border rounded pdp-rec-card">
+				<a href="{{ url_for('storefront.product_detail', slug=p.slug) }}"
+				   class="d-block text-center p-2">
+					{% if p.primary_image %}
+						<img src="{{ url_for('static', filename=p.primary_image) }}"
+						     class="img-fluid" style="height:100px;object-fit:contain;" alt="">
+					{% else %}
+						<span class="d-flex align-items-center justify-content-center bg-light"
+						      style="height:100px;"><i class="lni lni-image fs-3 text-muted"></i></span>
+					{% endif %}
+				</a>
+				<div class="p-2 pt-0">
+					<a href="{{ url_for('storefront.product_detail', slug=p.slug) }}"
+					   class="text-dark small d-block text-truncate">{{ p.localized_title }}</a>
+					<span class="ft-bold theme-cl small">৳{{ p.current_price }}</span>
+					{% if p.rating_count %}
+					<span class="small text-warning ms-1">{{ '%.1f'|format(p.rating_avg|float) }}★</span>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		{% endmacro %}
+
+		<!-- Similar products (content-based) -->
+		{% if related %}
+			<div class="mt-5">
+				<h5 class="ft-bold mb-3">Similar Products</h5>
+				<div class="row g-2">
+					{% for p in related %}{{ product_card(p) }}{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+
+		<!-- Customers also viewed (collaborative) -->
+		{% if also_viewed %}
+			<div class="mt-5">
+				<h5 class="ft-bold mb-3">Customers Also Viewed</h5>
+				<div class="row g-2">
+					{% for p in also_viewed %}{{ product_card(p) }}{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+
+	</div>
+</section>
+
+<!-- D-1 styles + JS: variant swatch, qty ±, share, wishlist, image zoom -->
+<style>
+	.pdp-swatch.btn-dark { color:#fff; }
+	.pdp-zoom-lens {
+		position: absolute; border: 2px solid #ffc107; background: rgba(255,193,7,.15);
+		width: 140px; height: 140px; pointer-events: none; z-index: 5;
+	}
+	.pdp-zoom-result {
+		position: absolute; border: 1px solid #e2e8f0; background-color: #fff;
+		background-repeat: no-repeat; width: 360px; height: 360px; z-index: 6;
+		left: calc(100% + 10px); top: 0;
+	}
+	#pdp-gallery { position: relative; }
+</style>
+<script>
+(function(){
+	// ----- Variant selection: keep selectedColor + selectedSize, resolve variant_id -----
+	const variantData = [
+		{% for v in product.variants %}
+		{ id: {{ v.id }}, color: {{ (v.color or '')|tojson }}, size: {{ (v.size or '')|tojson }} },
+		{% endfor %}
+	];
+	let selectedColor = {{ (colors[0] if colors else '')|tojson }};
+	let selectedSize = {{ (sizes[0] if sizes else '')|tojson }};
+	const variantInput = document.getElementById('pdpVariantId');
+
+	function resolveVariant() {
+		if (!variantData.length) { if (variantInput) variantInput.value = ''; return; }
+		const match = variantData.find(v =>
+			(!selectedColor || v.color === selectedColor) &&
+			(!selectedSize  || v.size  === selectedSize));
+		if (variantInput) variantInput.value = match ? match.id : '';
+	}
+	resolveVariant();
+
+	document.querySelectorAll('.pdp-swatch').forEach(btn => {
+		btn.addEventListener('click', () => {
+			const kind = btn.dataset.swatchKind;
+			const value = btn.dataset.value;
+			if (kind === 'color') {
+				selectedColor = value;
+				const label = document.getElementById('pdpSelectedColor');
+				if (label) label.textContent = value;
+			} else {
+				selectedSize = value;
+				const label = document.getElementById('pdpSelectedSize');
+				if (label) label.textContent = value;
+			}
+			// Visual selection state — only siblings of the same kind.
+			document.querySelectorAll('.pdp-swatch[data-swatch-kind="'+kind+'"]').forEach(b => {
+				b.classList.remove('btn-dark');
+				b.classList.add('btn-outline-dark');
+			});
+			btn.classList.remove('btn-outline-dark');
+			btn.classList.add('btn-dark');
+			resolveVariant();
+		});
+	});
+
+	// ----- Quantity ± -----
+	const qty = document.getElementById('pdpQty');
+	const qtyMinus = document.getElementById('pdpQtyMinus');
+	const qtyPlus = document.getElementById('pdpQtyPlus');
+	function clampQty() {
+		let n = parseInt(qty.value, 10);
+		if (isNaN(n) || n < 1) n = 1;
+		qty.value = n;
+		return n;
+	}
+	if (qtyMinus) qtyMinus.addEventListener('click', () => { qty.value = Math.max(1, clampQty() - 1); });
+	if (qtyPlus)  qtyPlus.addEventListener('click', () => { qty.value = clampQty() + 1; });
+	if (qty) qty.addEventListener('blur', clampQty);
+
+	// ----- Buy Now flag -----
+	const buyNowField = document.getElementById('pdpBuyNow');
+	const buyNowBtn = document.getElementById('pdpBuyNowBtn');
+	if (buyNowBtn && buyNowField) {
+		buyNowBtn.addEventListener('click', () => { buyNowField.value = '1'; });
+	}
+	document.querySelectorAll('#pdp-cart-form button[type=submit]').forEach(b => {
+		if (b.id !== 'pdpBuyNowBtn') {
+			b.addEventListener('click', () => { if (buyNowField) buyNowField.value = ''; });
+		}
+	});
+
+	// ----- Share -----
+	const shareBtn = document.getElementById('pdpShareBtn');
+	if (shareBtn) {
+		shareBtn.addEventListener('click', async () => {
+			const url = window.location.href;
+			const title = {{ product.localized_title|tojson }};
+			if (navigator.share) {
+				try { await navigator.share({ title: title, url: url }); } catch(_) {}
+			} else if (navigator.clipboard) {
+				try {
+					await navigator.clipboard.writeText(url);
+					shareBtn.innerHTML = '<i class="lni lni-checkmark"></i>';
+					setTimeout(() => shareBtn.innerHTML = '<i class="lni lni-share-alt"></i>', 1500);
+				} catch(_) {}
+			}
+		});
+	}
+
+	// ----- Wishlist (localStorage until DB wishlist ships) -----
+	const wishBtn = document.getElementById('pdpWishlistBtn');
+	if (wishBtn) {
+		const pid = wishBtn.dataset.productId;
+		const readList = () => {
+			try { return JSON.parse(localStorage.getItem('sgt_wishlist') || '[]'); }
+			catch(_) { return []; }
+		};
+		const setIcon = (active) => {
+			wishBtn.innerHTML = active
+				? '<i class="lni lni-heart-filled"></i>'
+				: '<i class="lni lni-heart"></i>';
+			wishBtn.classList.toggle('btn-danger', active);
+			wishBtn.classList.toggle('btn-outline-danger', !active);
+		};
+		setIcon(readList().includes(pid));
+		wishBtn.addEventListener('click', () => {
+			let list = readList();
+			if (list.includes(pid)) list = list.filter(x => x !== pid);
+			else list.push(pid);
+			localStorage.setItem('sgt_wishlist', JSON.stringify(list));
+			setIcon(list.includes(pid));
+		});
+	}
+
+	// ----- Image swap (thumbnails) -----
+	window.pdpSwitchImage = function(src) {
+		const main = document.getElementById('mainImage');
+		const link = document.getElementById('zoomLink');
+		if (main) { main.src = src; main.dataset.zoom = src; }
+		if (link) link.href = src;
+	};
+
+	// ----- Generic countdown attached to a node (D-9 + D-10) -----
+	function pdpCountdown(node) {
+		if (!node || !node.dataset.endsAt) return;
+		const endsAt = new Date(node.dataset.endsAt).getTime();
+		function pad(n) { return String(n).padStart(2, '0'); }
+		function tick() {
+			const ms = endsAt - Date.now();
+			if (ms <= 0) { node.textContent = 'Ended'; return; }
+			const days = Math.floor(ms / 86400000);
+			const hours = Math.floor((ms % 86400000) / 3600000);
+			const mins = Math.floor((ms % 3600000) / 60000);
+			const secs = Math.floor((ms % 60000) / 1000);
+			node.textContent = `Ends in ${days}d ${pad(hours)}h ${pad(mins)}m ${pad(secs)}s`;
+			setTimeout(tick, 1000);
+		}
+		tick();
+	}
+	pdpCountdown(document.getElementById('pdpCampaignCountdown'));
+	pdpCountdown(document.getElementById('pdpFlashCountdown'));
+
+	// ----- Affiliate link copy (D-5 M6) -----
+	const affBtn = document.getElementById('pdpAffiliateCopyBtn');
+	const affInput = document.getElementById('pdpAffiliateLink');
+	if (affBtn && affInput) {
+		affBtn.addEventListener('click', async () => {
+			affInput.select();
+			affInput.setSelectionRange(0, 99999);
+			try {
+				if (navigator.clipboard) {
+					await navigator.clipboard.writeText(affInput.value);
+				} else {
+					document.execCommand('copy');
+				}
+				const original = affBtn.textContent;
+				affBtn.textContent = 'Copied!';
+				setTimeout(() => affBtn.textContent = original, 1500);
+			} catch (_) {}
+		});
+	}
+
+	// ----- Specs "View More" toggle -----
+	const specsToggle = document.getElementById('pdpSpecsToggle');
+	if (specsToggle) {
+		specsToggle.addEventListener('click', () => {
+			const expanded = specsToggle.dataset.state === 'expanded';
+			document.querySelectorAll('.pdp-spec-extra').forEach(r => {
+				r.classList.toggle('d-none', expanded);
+			});
+			specsToggle.dataset.state = expanded ? 'collapsed' : 'expanded';
+			specsToggle.innerHTML = expanded
+				? 'View More <i class="lni lni-chevron-down ms-1"></i>'
+				: 'View Less <i class="lni lni-chevron-up ms-1"></i>';
+		});
+	}
+
+	// ----- Image zoom magnifier (desktop hover) -----
+	const main = document.getElementById('mainImage');
+	const lens = document.getElementById('zoomLens');
+	const result = document.getElementById('zoomResult');
+	if (main && lens && result && main.tagName === 'IMG') {
+		const showZoom = () => { lens.style.display = 'block'; result.style.display = 'block'; };
+		const hideZoom = () => { lens.style.display = 'none';  result.style.display = 'none';  };
+		main.addEventListener('mouseenter', showZoom);
+		main.addEventListener('mouseleave', hideZoom);
+		main.addEventListener('mousemove', (e) => {
+			const rect = main.getBoundingClientRect();
+			let x = e.clientX - rect.left, y = e.clientY - rect.top;
+			const lensW = lens.offsetWidth, lensH = lens.offsetHeight;
+			let lensX = x - lensW / 2, lensY = y - lensH / 2;
+			lensX = Math.max(0, Math.min(lensX, rect.width  - lensW));
+			lensY = Math.max(0, Math.min(lensY, rect.height - lensH));
+			lens.style.left = lensX + 'px';
+			lens.style.top  = lensY + 'px';
+			const cx = result.offsetWidth  / lensW;
+			const cy = result.offsetHeight / lensH;
+			result.style.backgroundImage = "url('" + (main.dataset.zoom || main.src) + "')";
+			result.style.backgroundSize = (rect.width * cx) + 'px ' + (rect.height * cy) + 'px';
+			result.style.backgroundPosition = '-' + (lensX * cx) + 'px -' + (lensY * cy) + 'px';
+		});
+	}
+})();
+</script>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

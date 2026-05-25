@@ -1,0 +1,5 @@
+{% for item in navs %}
+    <li class="nav-item" role="presentation">
+        <a class="nav-link {{ item.class }}" href="{{ item.link }}" id="{{ item.id }}" data-bs-toggle="tab" role="tab" aria-controls="{{ item.controls }}" aria-selected="{{ item.selected }}">{{ item.title }}</a>
+    </li>
+{% endfor %}

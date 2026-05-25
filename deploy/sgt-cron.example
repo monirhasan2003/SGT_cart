@@ -1,0 +1,20 @@
+# crontab entries for SGT Cart maintenance jobs.
+# Install with: crontab -u www-data deploy/sgt-cron.example
+#
+# Adjust the path to your venv / project root.
+
+PROJECT=/opt/sgt/SGT_Ecommerce
+PYTHON=$PROJECT/venv/bin/python
+FLASK="$PYTHON -m flask --app run"
+
+# Auto-approve payouts that have been pending past the grace period.
+0 */2 * * * cd $PROJECT && $FLASK process-payouts >> /var/log/sgt/payouts.log 2>&1
+
+# Detect carts left idle and email a one-time reminder.
+0 * * * *   cd $PROJECT && $FLASK scan-abandoned-carts >> /var/log/sgt/abandoned.log 2>&1
+
+# Recompute vendor delivery + cancel signals (drives search ranking).
+15 3 * * * cd $PROJECT && $FLASK recompute-vendor-stats >> /var/log/sgt/vendor-stats.log 2>&1
+
+# (Optional) refresh CLIP image embeddings nightly so new product images are searchable.
+30 2 * * * cd $PROJECT && $FLASK embed-products >> /var/log/sgt/embed.log 2>&1

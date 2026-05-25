@@ -1,0 +1,355 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar.html' %}
+			
+<!-- Product Detail -->
+<section class="middle">
+	<div class="container">
+		<div class="row align-items-center">
+		
+			<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+				<div class="row">
+
+					<!-- Components/Product/shop-single-v3/image3.html -->
+    		        {% include 'Components/Product/shop-single-v3/image3.html' %}
+
+				</div>
+			</div>
+			
+			<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+					<div class="brd_crumbs mb-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="/">Home</a></li>
+								<li class="breadcrumb-item"><a href="#">Library</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Data</li>
+							</ol>
+						</nav>
+					</div>
+					
+					<div class="prt_01 mb-1 d-flex align-items-center justify-content-between">
+						<div class="flex-1"><span class="text-muted ft-medium">Up to 50% Off</span></div>
+						<div class=""><span class="bg-danger text-light rounded py-1 px-2">Up to 50% Off</span></div>
+					</div>
+					<div class="prt_02 mb-3">
+						<h2 class="ft-bold mb-1">Women Striped Shirt Dress</h2>
+						<div class="text-left">
+							<div class="star-rating align-items-center d-flex justify-content-left mb-1 p-0">
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star"></i>
+								<span class="small">(412 Reviews)</span>
+							</div>
+							<div class="elis_rty"><span class="ft-medium text-muted line-through fs-md me-2">$199</span><span class="ft-bold theme-cl fs-lg me-2">$110</span><span class="ft-regular text-light bg-success py-1 px-2 fs-sm">In Stock</span></div>
+						</div>
+					</div>
+					
+					<div class="prt_03 mb-4">
+						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa.</p>
+					</div>
+					
+					<div class="short_products_info_body mb-4">
+					
+						<!-- Single Option -->
+						<div class="single_search_boxed">
+							<div class="widget-boxed-header">
+								<h4><a href="#productinfo" data-bs-toggle="collapse" aria-expanded="false" role="button"><i class="ti-info me-2ti-info"></i>Product Info</a></h4>
+							</div>
+							<div class="widget-boxed-body collapse show" id="productinfo" data-parent="#productinfo">
+								<div class="side-list no-border">
+									<!-- Single Filter Card -->
+									<div class="single_filter_card">
+										<div class="card-body pt-0">
+											<h6 class="font-size-sm mb-2">Composition</h6>
+											<ul class="lists-2 min-space">
+												<li>Elastic rib: Cotton 95%, Elastane 5%</li>
+												<li>Lining: Cotton 100%</li>
+												<li>Cotton 80%, Polyester 20%</li>
+											</ul>
+											<h6 class="font-size-sm mb-2">Design. No.</h6>
+											<ul class="lists-2 min-space mb-0">
+												<li>183260098</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Single Option -->
+						<div class="single_search_boxed">
+							<div class="widget-boxed-header">
+								<h4><a href="#choosecolor" data-bs-toggle="collapse" class="collapsed" aria-expanded="false" role="button"><i class="ti-paint-bucket me-2"></i>Choose Color's</a></h4>
+							</div>
+							<div class="widget-boxed-body collapse" id="choosecolor"  data-parent="#choosecolor">
+								<div class="card-body pt-0 side-list no-border">
+									<!-- Color -->
+									<div class="text-left">
+
+										<!-- Components/Product/shop-single-v2/color.html -->
+    		        					{% include 'Components/Product/shop-single-v2/color.html' %}
+
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Single Option -->
+						<div class="single_search_boxed">
+							<div class="widget-boxed-header">
+								<h4><a href="#choosesize" data-bs-toggle="collapse" class="collapsed" aria-expanded="false" role="button"><i class="ti-view-list me-2"></i>Select Sizes</a></h4>
+							</div>
+							<div class="widget-boxed-body collapse" id="choosesize" data-parent="#choosesize">
+								<div class="card-body pt-0 side-list no-border">
+									<!-- Choose Size -->
+									<div class="text-left pb-0 pt-2">
+										
+										<!-- Components/Product/shop-single-v2/sizes.html -->
+    		        					{% include 'Components/Product/shop-single-v2/sizes.html' %}
+
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+					
+					<div class="prt_05 mb-4">
+						<div class="form-row row g-3 mb-7">
+							<div class="col-12 col-md-6 col-lg-3">
+								<!-- Quantity -->
+								<select class="mb-2 custom-select">
+									<option value="1" selected="">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
+							<div class="col-12 col-md-12 col-lg-6">
+								<!-- Submit -->
+								<button type="submit" class="btn btn-block custom-height bg-dark mb-2 w-100">
+									<i class="lni lni-shopping-basket me-2"></i>Add to Cart 
+								</button>
+							</div>
+							<div class="col-12 col-md-6 col-lg-3">
+								<!-- Wishlist -->
+								<button class="btn custom-height btn-default btn-block mb-2 text-dark w-100" data-bs-toggle="button">
+									<i class="lni lni-heart me-2"></i>Wishlist
+								</button>
+							</div>
+						</div>
+					</div>
+					
+					<div class="prt_06">
+						<p class="mb-0 d-flex align-items-center">
+							<span class="me-4">Share:</span>
+							<a class="d-inline-flex align-items-center justify-content-center p-3 gray circle fs-sm text-muted me-2" href="#!">
+							<i class="fab fa-twitter position-absolute"></i>
+							</a>
+							<a class="d-inline-flex align-items-center justify-content-center p-3 gray circle fs-sm text-muted me-2" href="#!">
+							<i class="fab fa-facebook-f position-absolute"></i>
+							</a>
+							<a class="d-inline-flex align-items-center justify-content-center p-3 gray circle fs-sm text-muted" href="#!">
+							<i class="fab fa-pinterest-p position-absolute"></i>
+							</a>
+						</p>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Product Detail End -->
+
+<!-- Product Description -->
+<section class="middle">
+	<div class="container">
+		<div class="row align-items-center justify-content-center">
+			<div class="col-xl-11 col-lg-12 col-md-12 col-sm-12">
+				<ul class="nav nav-tabs b-0 d-flex align-items-center justify-content-center simple_tab_links mb-4" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<a class="nav-link active" id="description-tab" href="#description-tab" data-bs-toggle="tab" data-bs-target="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" href="#information-tab" id="information-tab" data-bs-toggle="tab" role="tab" data-bs-target="#information" aria-controls="information" aria-selected="false">Additional information</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" href="#reviews-tab" id="reviews-tab" data-bs-toggle="tab" role="tab" data-bs-target="#reviews" aria-controls="reviews" aria-selected="false">Reviews</a>
+					</li>
+				</ul>
+				
+				<div class="tab-content" id="myTabContent">
+					
+					<!-- Description Content -->
+					<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+						<div class="description_info">
+							<p class="p-0 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+							<p class="p-0">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+						</div>
+					</div>
+					
+					<!-- Additional Content -->
+					<div class="tab-pane fade" id="information" role="tabpanel" aria-labelledby="information-tab">
+						<div class="additionals">
+							<table class="table">
+								<tbody>
+										
+									<!-- Components/Product/shop-single-v1/information.html -->
+    		                        {% include 'Components/Product/shop-single-v1/information.html' %}
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+					
+					<!-- Reviews Content -->
+					<div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+						<div class="reviews_info">
+							
+							<!-- Components/Product/shop-single-v1/reviews.html -->
+    		                {% include 'Components/Product/shop-single-v1/reviews.html' %}
+							
+						</div>
+						
+						<div class="reviews_rate">
+							<form class="row g-3">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									<h4>Submit Rating</h4>
+								</div>
+								
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									<div class="revie_stars d-flex align-items-center justify-content-between px-2 py-2 gray rounded">
+										<div class="srt_013">
+											<div class="submit-rating">
+												<input id="star-5" type="radio" name="rating" value="star-5" />
+												<label for="star-5" title="5 stars">
+												<i class="active fa fa-star" aria-hidden="true"></i>
+												</label>
+												<input id="star-4" type="radio" name="rating" value="star-4" />
+												<label for="star-4" title="4 stars">
+												<i class="active fa fa-star" aria-hidden="true"></i>
+												</label>
+												<input id="star-3" type="radio" name="rating" value="star-3" />
+												<label for="star-3" title="3 stars">
+												<i class="active fa fa-star" aria-hidden="true"></i>
+												</label>
+												<input id="star-2" type="radio" name="rating" value="star-2" />
+												<label for="star-2" title="2 stars">
+												<i class="active fa fa-star" aria-hidden="true"></i>
+												</label>
+												<input id="star-1" type="radio" name="rating" value="star-1" />
+												<label for="star-1" title="1 star">
+												<i class="active fa fa-star" aria-hidden="true"></i>
+												</label>
+											</div>
+										</div>
+										
+										<div class="srt_014">
+											<h6 class="mb-0">4 Star</h6>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+									<div class="form-group">
+										<label class="medium text-dark ft-medium mb-2">Full Name</label>
+										<input type="text" class="form-control rounded-2" />
+									</div>
+								</div>
+								
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+									<div class="form-group">
+										<label class="medium text-dark ft-medium mb-2">Email Address</label>
+										<input type="email" class="form-control rounded-2" />
+									</div>
+								</div>
+								
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									<div class="form-group">
+										<label class="medium text-dark ft-medium mb-2">Description</label>
+										<textarea class="form-control rounded-2"></textarea>
+									</div>
+								</div>
+								
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									<div class="form-group m-0">
+										<a class="btn btn-white stretched-links hover-black rounded-2">Submit Review <i class="lni lni-arrow-right"></i></a>
+									</div>
+								</div>
+								
+							</form>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Product Description End -->
+
+<!-- Similar Products Start -->
+<section class="middle pt-0">
+	<div class="container">
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Similar Products</h2>
+					<h3 class="ft-bold pt-3">Matching Products</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="slide_items">
+					
+					<!-- Components/Home/home-5/deals.html -->
+    				{% include 'Components/Home/home-5/deals.html' %}
+					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Similar Products Start -->
+
+<!-- Customer Features -->
+<section class="px-0 py-3 br-top">
+	<div class="container">
+		<div class="row">
+			
+			<!-- Components/Home/index/features2.html -->
+            {% include 'Components/Home/index/features2.html' %}
+			
+		</div>
+	</div>
+</section>
+<!-- Customer Features -->
+
+<!-- Components/Home/index/quickview.html -->
+{% include 'Components/Home/index/quickview.html' %}
+
+<!-- Components/Home/index/log.html -->
+{% include 'Components/Home/index/log.html' %}
+
+<!-- Components/Home/index/search.html -->
+{% include 'Components/Home/index/search.html' %}
+
+<!-- Components/Home/index/wishlist.html -->
+{% include 'Components/Home/index/wishlist.html' %}
+
+<!-- Components/Home/index/cart.html -->
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %} 
+
+{% endblock %}

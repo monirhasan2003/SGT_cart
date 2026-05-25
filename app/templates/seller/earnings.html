@@ -1,0 +1,136 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/seller/">Seller Dashboard</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Earnings</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<h4 class="ft-bold mb-3">Earnings &amp; Payouts</h4>
+
+		<!-- Wallet -->
+		<div class="row g-3 mb-4">
+			<div class="col-md-4">
+				<div class="border rounded p-4 text-center">
+					<div class="text-muted small">Available Balance</div>
+					<div class="fs-3 ft-bold text-success">৳{{ "%.2f"|format(wallet.available_balance|float) }}</div>
+					<div class="text-muted small">Ready to withdraw</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="border rounded p-4 text-center">
+					<div class="text-muted small">Pending Balance</div>
+					<div class="fs-3 ft-bold text-warning">৳{{ "%.2f"|format(wallet.pending_balance|float) }}</div>
+					<div class="text-muted small">From orders not yet delivered</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="border rounded p-4 text-center">
+					<div class="text-muted small">Total Earned</div>
+					<div class="fs-3 ft-bold theme-cl">৳{{ "%.2f"|format(wallet.total_earned|float) }}</div>
+					<div class="text-muted small">Lifetime (delivered)</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Stats -->
+		<div class="row g-3 mb-4">
+			<div class="col-md-4"><div class="border rounded p-3">
+				<span class="text-muted small d-block">Orders Received</span>
+				<span class="ft-bold fs-5">{{ stats.orders }}</span></div></div>
+			<div class="col-md-4"><div class="border rounded p-3">
+				<span class="text-muted small d-block">Total Sales</span>
+				<span class="ft-bold fs-5">৳{{ "%.2f"|format(stats.total_sales|float) }}</span></div></div>
+			<div class="col-md-4"><div class="border rounded p-3">
+				<span class="text-muted small d-block">Commission Paid</span>
+				<span class="ft-bold fs-5 text-danger">৳{{ "%.2f"|format(stats.total_commission|float) }}</span></div></div>
+		</div>
+
+		<div class="row g-4">
+			<!-- Request payout -->
+			<div class="col-lg-5">
+				<div class="border rounded p-4">
+					<h5 class="ft-bold mb-3">Request a Payout</h5>
+					<form method="post" action="{{ url_for('seller.earnings') }}">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+						<div class="mb-3">
+							<label class="mb-2">Amount (৳)</label>
+							<input type="number" step="0.01" name="amount" class="form-control"
+							       max="{{ wallet.available_balance }}" placeholder="Max ৳{{ wallet.available_balance }}">
+						</div>
+						<div class="mb-3">
+							<label class="mb-2">Payout Method</label>
+							<div>
+								<label class="d-block"><input type="radio" name="method" value="bkash">
+									bKash {{ '— ' + profile.bkash_number if profile.bkash_number else '(not set)' }}</label>
+								<label class="d-block"><input type="radio" name="method" value="nagad">
+									Nagad {{ '— ' + profile.nagad_number if profile.nagad_number else '(not set)' }}</label>
+								<label class="d-block"><input type="radio" name="method" value="bank">
+									Bank {{ '— ' + profile.bank_account_number if profile.bank_account_number else '(not set)' }}</label>
+							</div>
+							<small class="text-muted">Configure methods in
+								<a href="{{ url_for('seller.payout') }}">Payout Settings</a>.</small>
+						</div>
+						<button type="submit" class="btn btn-dark w-100"
+						        {{ 'disabled' if (wallet.available_balance|float) <= 0 }}>Request Payout</button>
+					</form>
+				</div>
+			</div>
+
+			<!-- Payout history -->
+			<div class="col-lg-7">
+				<div class="border rounded">
+					<div class="px-3 py-2 gray ft-medium">Payout History</div>
+					<table class="table mb-0">
+						<thead><tr><th>Date</th><th>Amount</th><th>Method</th><th>Status</th></tr></thead>
+						<tbody>
+						{% for p in payout_requests %}
+							<tr>
+								<td class="text-muted">{{ p.requested_at.strftime('%d %b %Y') if p.requested_at }}</td>
+								<td class="ft-medium">৳{{ "%.2f"|format(p.amount|float) }}</td>
+								<td class="text-capitalize">{{ p.method }}</td>
+								<td>
+									{% if p.status == 'approved' %}<span class="badge bg-success">Approved</span>
+									{% elif p.status == 'rejected' %}<span class="badge bg-danger">Rejected</span>
+									{% else %}<span class="badge bg-warning text-dark">Requested</span>{% endif %}
+									{% if p.admin_note %}<small class="d-block text-muted">{{ p.admin_note }}</small>{% endif %}
+								</td>
+							</tr>
+						{% else %}
+							<tr><td colspan="4" class="text-muted text-center py-3">No payout requests yet.</td></tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<a href="/seller/" class="btn btn-outline-secondary mt-4">&larr; Back to Dashboard</a>
+
+	</div>
+</section>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

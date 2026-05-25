@@ -1,0 +1,46 @@
+{% extends "pages/static/_layout.html" %}
+{% block page_body %}
+
+<div class="accordion" id="faqAccordion">
+
+	{% set faqs = [
+		('How do I place an order?',
+		 'Add items to your cart, go to Checkout, choose a delivery address and payment method (Cash on Delivery or online via SSLCommerz), and place your order. You will receive a confirmation in your account and via email.'),
+		('What payment methods are accepted?',
+		 'Cash on Delivery is available everywhere. Online payment (card, bKash, Nagad) goes through SSLCommerz — your card details never touch our servers.'),
+		('How long does delivery take?',
+		 'Most orders inside Dhaka are delivered within 24-48 hours. Outside Dhaka usually takes 2-5 business days, depending on the seller and the courier.'),
+		('Can I cancel or return an order?',
+		 'Yes — see our Return Policy. You can usually cancel before the seller marks the order as shipped, and request a return within 7 days of delivery for most items.'),
+		('How do I become a seller?',
+		 'Click "Sell on SGT" in the top menu (or go to /sell/) and register with the Seller tab on the signup page. Upload your trade licence and NID for verification; an admin will approve your shop within 1-2 business days.'),
+		('Do I have to give my phone number to sellers?',
+		 'No. Use the in-platform chat for any product questions. Sharing phone numbers in chat is automatically blocked to keep your information safe.'),
+		('How are reward points earned and used?',
+		 'You earn 1 reward point for every Tk 100 of a delivered order. Each point is worth Tk 1 at checkout, and you can apply them with a single click on the checkout page.')
+	] %}
+
+	{% for q, a in faqs %}
+	<div class="accordion-item">
+		<h2 class="accordion-header" id="h{{ loop.index }}">
+			<button class="accordion-button {{ 'collapsed' if not loop.first }}"
+			        type="button" data-bs-toggle="collapse"
+			        data-bs-target="#c{{ loop.index }}">
+				{{ q }}
+			</button>
+		</h2>
+		<div id="c{{ loop.index }}" class="accordion-collapse collapse {{ 'show' if loop.first }}"
+		     data-bs-parent="#faqAccordion">
+			<div class="accordion-body text-muted">{{ a }}</div>
+		</div>
+	</div>
+	{% endfor %}
+
+</div>
+
+<p class="mt-4">
+	Can't find what you're looking for?
+	<a href="/contact/">Contact us</a> and we'll get back to you.
+</p>
+
+{% endblock %}

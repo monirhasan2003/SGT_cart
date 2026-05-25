@@ -1,0 +1,6 @@
+{% for item in sizes %}
+    <div class="form-check form-option size-option form-check-inline mb-2">
+        <input class="form-check-input" type="radio" name="size" id="{{ item.id }}" {{ item.check }}>
+        <label class="form-option-label" for="{{ item.id }}">{{ item.id }}</label>
+    </div>
+{% endfor %}

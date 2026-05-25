@@ -1,0 +1,180 @@
+{% extends "pages/static/_layout.html" %}
+{% set page_subtitle = "How SGT Cart delivers, in how many days, at what cost — district by district." %}
+
+{% block page_toc %}
+<li><a href="#coverage">1. Where we deliver</a></li>
+<li><a href="#eta">2. Estimated delivery times</a></li>
+<li><a href="#fees">3. Shipping fees</a></li>
+<li><a href="#partners">4. Delivery partners</a></li>
+<li><a href="#tracking">5. Tracking your parcel</a></li>
+<li><a href="#failed">6. Failed delivery &amp; reattempts</a></li>
+<li><a href="#international">7. International shipping</a></li>
+{% endblock %}
+
+{% block page_body %}
+
+<p class="lead small">
+	SGT Cart delivers across all 64 districts of Bangladesh through a
+	multi-courier network. This page lists where we deliver, how long it
+	takes, how shipping is priced, and what happens when something goes
+	wrong on the road.
+</p>
+
+<h2 id="coverage">1. Where we deliver</h2>
+<p>
+	<strong>Bangladesh — all 64 districts.</strong> Same-city delivery available in
+	Dhaka, Chittagong, Sylhet, Rajshahi, Khulna, Barishal, Mymensingh and
+	Rangpur metros. Upazila and Union-level addresses are served via
+	regional hubs.
+</p>
+<p>
+	Some addresses are flagged "<em>Out of service area</em>" at checkout —
+	typically remote hill tracts, char lands and unmapped Union-level
+	addresses. If you see this message, please add a nearby pickup point
+	(post office, bazaar shop) in the address book.
+</p>
+
+<h2 id="eta">2. Estimated delivery times</h2>
+<p>
+	The exact ETA shown on the product page is computed at the moment of
+	display, using:
+</p>
+<ul>
+	<li>Your saved primary address (district) — anonymous users see Dhaka by default until they set a location.</li>
+	<li>The Seller's historical <strong>average delivery time</strong>.</li>
+	<li>The product's category (electronics often need warehouse inspection; clothing ships faster).</li>
+	<li>Public holidays and known weather disruptions (Eid, monsoon, transport strikes).</li>
+</ul>
+<table>
+	<tr><th>Destination</th><th>Typical ETA</th></tr>
+	<tr><td>Dhaka (same city)</td><td>1-2 days</td></tr>
+	<tr><td>Chittagong, Sylhet, Khulna metros</td><td>2-3 days</td></tr>
+	<tr><td>Other district HQs</td><td>3-5 days</td></tr>
+	<tr><td>Upazila / Union addresses</td><td>4-7 days</td></tr>
+	<tr><td>Hill tracts &amp; remote islands</td><td>5-10 days</td></tr>
+</table>
+<p>
+	The product page shows a date range like <em>"Delivery: 26 May - 1 Jun"</em>.
+	If you do not receive the item within <strong>5 grace days after the
+	upper bound</strong>, you may file a Buyer Protection claim.
+</p>
+
+<h2 id="fees">3. Shipping fees</h2>
+<p>
+	Shipping is charged <strong>per Seller</strong> — if your Order has items
+	from three different Sellers, you'll see three line items. Fees are
+	configurable per-vendor; the platform default is Tk 60 per Sub-Order.
+</p>
+<ul>
+	<li><strong>Free shipping threshold</strong> — Sub-Order subtotal above
+		Tk 1,000 (default; admin-tunable) qualifies for free shipping from
+		that Seller.</li>
+	<li><strong>Heavy / bulky items</strong> — Sellers may set a higher
+		shipping rate for products above 5 kg or with awkward dimensions.
+		The rate is shown on the product page.</li>
+	<li><strong>Same-city seller</strong> — products from a Seller in your
+		buyer city often have lower or zero shipping if the Seller offers it.</li>
+</ul>
+<p>
+	The exact fees for your address appear on the cart and checkout pages
+	before payment. There are <strong>no hidden surcharges</strong> on
+	delivery — what you see at checkout is what you pay.
+</p>
+
+<h2 id="partners">4. Delivery partners</h2>
+<p>
+	We don't operate our own fleet. Sellers choose from approved couriers:
+</p>
+<ul>
+	<li><strong>Pathao Courier</strong> — strongest in Dhaka and Chittagong metros, including same-day on selected categories.</li>
+	<li><strong>RedX</strong> — broad nationwide reach including upazila level.</li>
+	<li><strong>Sundarban Courier Service</strong> — strong rural penetration.</li>
+	<li><strong>Steadfast</strong> — competitive multi-district rate.</li>
+	<li><strong>SA Paribahan</strong> — for bulky / heavy shipments.</li>
+	<li><strong>Seller-managed local delivery</strong> — for same-city orders, some Sellers deliver via their own riders.</li>
+</ul>
+<p>
+	The courier name and tracking link appear on the Sub-Order page once
+	the Seller marks it Shipped.
+</p>
+
+<h2 id="tracking">5. Tracking your parcel</h2>
+<ol>
+	<li>Open <a href="/my-orders/">My Orders</a>.</li>
+	<li>Tap the Sub-Order to expand it.</li>
+	<li>Find the <strong>"Track parcel"</strong> link with the courier name and tracking ID.</li>
+	<li>Click through to the courier's portal for the latest scan event, or stay on SGT Cart to see the integrated status timeline.</li>
+</ol>
+<p>
+	You'll also receive in-app and email notifications at each status
+	change — placed → processing → shipped → out for delivery → delivered.
+	Push-notification preferences live in <a href="/profile-info/">Account</a>.
+</p>
+
+<h2 id="failed">6. Failed delivery &amp; reattempts</h2>
+<p>If the courier can't deliver on the first attempt:</p>
+<ul>
+	<li>They call the mobile number on file. Keep it available.</li>
+	<li>You can ask for a same-day re-attempt at a different time, or schedule the next available day.</li>
+	<li>Up to <strong>2 reattempts</strong> are made.</li>
+	<li>After the 2nd failure, the parcel is returned to the Seller. The Sub-Order is cancelled and refunded per the <a href="/refund-policy/">Refund Policy</a>.</li>
+</ul>
+<p>
+	For COD Orders, repeated failed reattempts may incur a Tk 100 wasted-delivery
+	fee deducted from any future refund or wallet credit — only if the
+	failure was clearly the buyer's fault (e.g., refused without reason,
+	unreachable on every call).
+</p>
+
+<h2 id="international">7. International shipping</h2>
+<p>
+	At launch, SGT Cart ships <strong>within Bangladesh only</strong>.
+</p>
+<p>
+	International shipping will open in a later phase, with a separate
+	cross-border addendum to these terms covering customs duties, import
+	declarations, restricted-item lists, and currency conversion. We'll
+	publish a dedicated <em>International Shipping</em> page when that
+	phase ships. Until then, international users may register and browse
+	but Orders cannot be placed for delivery outside Bangladesh.
+</p>
+
+{% endblock %}
+
+{% block page_faq %}
+{% for q, a in [
+	("Can I change my delivery address after placing an order?",
+	 "Only before the Sub-Order is marked Shipped. Open the Order and tap 'Change address'. After shipping, the parcel is already with the courier and the address can't be updated — but you can usually still redirect at the courier's portal if their service supports it."),
+	("My delivery is late — what's my recourse?",
+	 "If you're past the upper ETA + 5 grace days, file a Buyer Protection claim. Earlier than that, the right step is to ping the Seller in chat or call the courier with the tracking ID."),
+	("Do you deliver on Friday / Saturday?",
+	 "Most couriers operate Saturday-Thursday with Friday off. SGT Demo Store and a few Sellers explicitly offer Friday delivery within Dhaka — look for the 'Friday delivery' badge on the product page."),
+	("Why are shipping fees higher in remote districts?",
+	 "Couriers charge by weight × distance × hub-handling. Remote districts add an extra hop through a regional hub, which adds to the rate. Free-shipping thresholds still apply — buy enough from one Seller and ship for Tk 0."),
+	("Will the courier hand over the parcel to a neighbour?",
+	 "Standard practice is to deliver to you or someone at the address. If you authorise it via the courier's app, they can hand over to a neighbour or building security — but SGT Cart's risk-of-loss transfer point is the address, not a specific person, so we recommend only authorising trusted parties.")
+] %}
+<div class="accordion-item">
+	<h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+	    data-bs-toggle="collapse" data-bs-target="#shFaq{{ loop.index }}">{{ q }}</button></h3>
+	<div id="shFaq{{ loop.index }}" class="accordion-collapse collapse"
+	     data-bs-parent="#docFaqAccordion">
+		<div class="accordion-body small">{{ a }}</div>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block page_related %}
+{% for href, title, desc in [
+	("/help/payment-methods/", "Payment Methods", "How to pay — COD, wallet, card."),
+	("/help/order-tracking/", "Tracking Your Order", "Where to find the live courier status."),
+	("/returns/", "Returns", "Sending an item back after delivery."),
+	("/help/buyer-protection/", "Buyer Protection", "Late or never-delivered orders.")
+] %}
+<div class="col-md-6"><a href="{{ href }}" class="d-block border rounded p-2 text-dark text-decoration-none">
+	<div class="ft-medium small">{{ title }}</div>
+	<div class="text-muted small">{{ desc }}</div>
+</a></div>
+{% endfor %}
+{% endblock %}

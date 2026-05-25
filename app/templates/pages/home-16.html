@@ -1,0 +1,124 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar7.html' %}
+			
+<!-- Hero Banner  Start  -->
+<div class="home-slider margin-bottom-0">
+
+	<!-- Components/Home/home-16/slide13.html -->
+    {% include 'Components/Home/home-16/slide13.html' %}
+
+</div>
+<!-- Hero Banner  End -->
+
+<!-- Product List -->
+<section class="middle">
+	<div class="container">
+	
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Trendy Products</h2>
+					<h3 class="ft-bold pt-3">Our Trending Products</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row align-items-center rows-products">
+
+			<!-- Components/Home/home-16/products11.html -->
+    		{% include 'Components/Home/home-16/products11.html' %}
+			
+		</div>
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="position-relative text-center">
+					<a href="/shop-style-1/" class="btn stretched-links borders">Explore More<i class="lni lni-arrow-right ms-2"></i></a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Product List -->
+
+<!-- Tag Wrap Start -->
+<section class="bg-cover" style="background:url({{ url_for('static', filename='assets/img/bg-3.jpg') }}) no-repeat;">
+	<div class="ht-60"></div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-8 col-md-10 col-sm-12">
+				<div class="tags_explore text-center">
+					<h2 class="mb-0 text-white ft-bold">Big Sale Up To 70% Off</h2>
+					<p class="text-light fs-lg mb-4">Exclussive Offers For Limited Time</p><p>
+					<a href="#" class="btn btn-lg bg-white px-5 text-dark ft-medium">Explore Your Order</a>
+				</p></div>
+			</div>
+		</div>
+	</div>
+	<div class="ht-60"></div>
+</section>
+<!-- Tag Wrap Start -->
+
+<!-- Good Deals Start -->
+<section class="space">
+	<div class="container">
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Good Deals</h2>
+					<h3 class="ft-bold pt-3">Deals of The Day</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="slide_items">
+
+					<!-- Components/Home/home-16/deals3.html -->
+    				{% include 'Components/Home/home-16/deals3.html' %}
+					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Good Deals Start -->
+
+<!-- Customer Features -->
+<section class="px-0 py-3 br-top">
+	<div class="container">
+		<div class="row">
+			
+			<!-- Components/Home/index/features2.html -->
+            {% include 'Components/Home/index/features2.html' %}
+			
+		</div>
+	</div>
+</section>
+<!-- Customer Features -->
+
+<!-- Components/Home/index/quickview.html -->
+{% include 'Components/Home/index/quickview.html' %}
+
+<!-- Components/Home/index/log.html -->
+{% include 'Components/Home/index/log.html' %}
+
+<!-- Components/Home/index/search.html -->
+{% include 'Components/Home/index/search.html' %}
+
+<!-- Components/Home/index/wishlist.html -->
+{% include 'Components/Home/index/wishlist.html' %}
+
+<!-- Components/Home/index/cart.html -->
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %} 
+
+{% endblock %}

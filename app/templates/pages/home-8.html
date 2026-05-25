@@ -1,0 +1,148 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar3.html' %}
+			
+<!-- Hero Banner Start -->
+<div class="home-slider margin-bottom-0">
+
+	<!-- Components/Home/home-8/slide6.html -->
+    {% include 'Components/Home/home-8/slide6.html' %}
+
+</div>
+<!-- Hero Banner End -->
+
+<!-- Product List -->
+<section class="middle">
+	<div class="container">
+	
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Trendy Products</h2>
+					<h3 class="ft-bold pt-3">Our Trending Products</h3>
+				</div>
+			</div>
+		</div>
+		
+		<!-- row -->
+		<div class="row align-items-center rows-products">
+		
+			<!-- Components/Home/home-3/trending.html -->
+    		{% include 'Components/Home/home-3/trending.html' %}
+			
+		</div>
+		<!-- row -->
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="position-relative text-center">
+					<a href="/shop-style-1/" class="btn stretched-links borders">Explore More<i class="lni lni-arrow-right ms-2"></i></a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Product List -->
+
+<!-- Customer Review -->
+<section class="gray">
+	<div class="container">
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Testimonials</h2>
+					<h3 class="ft-bold pt-3">Client Reviews</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-9 col-lg-10 col-md-12 col-sm-12">
+				<div class="reviews-slide px-3">
+					
+					<!-- Components/Home/index/review.html -->
+            		{% include 'Components/Home/index/review.html' %}
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Customer Review -->
+
+<!-- Blog Start -->
+<section class="space min">
+	<div class="container">
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Latest News</h2>
+					<h3 class="ft-bold pt-3">New Updates</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			
+			<!-- Components/Home/index/blog.html -->
+            {% include 'Components/Home/index/blog.html' %}
+			
+		</div>
+		
+	</div>
+</section>
+<!-- Blog Start -->
+
+<!-- Instagram Start -->
+<section class="p-0">
+	<div class="container-fluid p-0 overflow-hidden">
+		
+		<div class="row no-gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Instagram Gallery</h2>
+					<span class="fs-lg ft-bold theme-cl pt-3">@mahak_71</span>
+					<h3 class="ft-bold lh-1">From Instagram</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row no-gutters">
+			<div class="insta-slider"> 
+			
+				<!-- Components/Home/index/insta.html -->
+            	{% include 'Components/Home/index/insta.html' %}
+				
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Instagram Start -->
+
+<!-- Components/Home/index/quickview.html -->
+{% include 'Components/Home/index/quickview.html' %}
+
+<!-- Components/Home/index/log.html -->
+{% include 'Components/Home/index/log.html' %}
+
+<!-- Components/Home/index/search.html -->
+{% include 'Components/Home/index/search.html' %}
+
+<!-- Components/Home/index/wishlist.html -->
+{% include 'Components/Home/index/wishlist.html' %}
+
+<!-- Components/Home/index/cart.html -->
+{% include 'Components/Home/index/cart.html' %}
+
+<!-- Components/Home/index/popup-overlay.html -->
+{% include 'Components/Home/index/popup-overlay.html' %}
+
+{% include 'Base/footer2.html' %} 
+
+{% endblock %}

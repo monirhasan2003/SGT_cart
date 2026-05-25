@@ -1,0 +1,168 @@
+{% extends "pages/static/_layout.html" %}
+{% set page_subtitle = "What makes a product Listing approvable on SGT Cart — and why common mistakes get rejected." %}
+
+{% block page_toc %}
+<li><a href="#title">1. Title rules</a></li>
+<li><a href="#description">2. Description quality</a></li>
+<li><a href="#images">3. Image standards</a></li>
+<li><a href="#bilingual">4. Bilingual encouragement</a></li>
+<li><a href="#pricing">5. Pricing &amp; MRP rules</a></li>
+<li><a href="#variants">6. Variants &amp; bulk tiers</a></li>
+<li><a href="#category">7. Category selection</a></li>
+<li><a href="#rejections">8. Common rejections &amp; how to fix them</a></li>
+{% endblock %}
+
+{% block page_body %}
+
+<p class="lead small">
+	A good Listing brings clicks, conversions and repeat customers. A bad
+	Listing gets rejected, wastes time, and hurts your search rank.
+	This page is the single source of truth for what passes admin review
+	on SGT Cart and what doesn't.
+</p>
+
+<h2 id="title">1. Title rules</h2>
+<ul>
+	<li><strong>Length</strong>: 30-90 characters. Too short looks lazy; too long gets truncated in lists.</li>
+	<li><strong>Structure</strong>: <em>Brand — Model — Key Spec — Variant</em>. Example: "Anker PowerCore 10000mAh Power Bank — Black".</li>
+	<li><strong>No keyword stuffing</strong>: Repeating the same word, listing every category, or comma-stuffing brand names will be rejected. "Mobile Phone Smart Phone Android Phone Cheap Phone" is rejection-bait.</li>
+	<li><strong>No brand misuse</strong>: Do not put a famous brand name in your title if the product is not made by that brand. "Apple-Style Earphones" is misleading. Generic descriptive titles ("Wireless Earphones") are fine.</li>
+	<li><strong>No emojis, ALL CAPS, exclamation marks</strong>: Looks unprofessional.</li>
+	<li><strong>No contact info</strong>: No phone numbers, WhatsApp, Telegram, email addresses, or off-platform URLs in the title.</li>
+	<li><strong>No promotional adjectives unless true</strong>: "Best", "Cheapest", "Number one" should reflect a verifiable claim (e.g., manufacturer's award) — otherwise drop them.</li>
+</ul>
+
+<h2 id="description">2. Description quality</h2>
+<p>
+	A complete description carries the sale. Aim for 150-500 words, organised so a buyer can scan in 10 seconds.
+</p>
+<ul>
+	<li><strong>Original text</strong> — write your own description. Copy-pasting from the manufacturer's site, a competitor's page, or another marketplace Listing is rejection-worthy and may also be a copyright violation.</li>
+	<li><strong>Lead with the use case</strong> — who is this for, what problem does it solve?</li>
+	<li><strong>List the specifications</strong> — use the structured Spec rows feature (key/value pairs) instead of pasting a wall of text. Specs are easier to scan and feed into our AI summary system.</li>
+	<li><strong>Mention what's in the box</strong> — main item + accessories + warranty card.</li>
+	<li><strong>Mention warranty / return terms</strong> — even though the storewide Refund Policy applies, calling it out adds confidence.</li>
+	<li><strong>Avoid markdown / HTML tags</strong> — the editor uses plain paragraphs and bullets; HTML pasted in will display literally.</li>
+	<li><strong>Anti-disintermediation</strong> — no phone numbers, no off-platform URLs, no "contact me on …". Our phone-guard auto-redacts; repeat violations count as a Seller strike.</li>
+</ul>
+
+<h2 id="images">3. Image standards</h2>
+<table>
+	<tr><th>Rule</th><th>Detail</th></tr>
+	<tr><td>Resolution</td><td>Minimum 1000×1000 px. Square aspect ratio (1:1) recommended.</td></tr>
+	<tr><td>Format</td><td>JPG or PNG. Avoid GIF (loops), WebP (compatibility), HEIC (Apple-only).</td></tr>
+	<tr><td>File size</td><td>Each image under 4 MB; we re-encode anyway for fast page load.</td></tr>
+	<tr><td>Background</td><td>White or near-white for the cover image (helps the gallery thumbnail look clean). Lifestyle / context shots are great for the 2nd-Nth images.</td></tr>
+	<tr><td>Number</td><td>1-8 images per Listing. Mandatory: cover, 1-2 angle shots. Optional: in-use, scale reference, accessories laid out.</td></tr>
+	<tr><td>Watermarks</td><td>Do not add your shop logo / phone / URL as a watermark — these get the Listing rejected.</td></tr>
+	<tr><td>Stolen images</td><td>Only use images you took yourself or have the right to use. Brand-supplied product shots from authorised resellers are fine.</td></tr>
+	<tr><td>Borrowed renders / 3D art</td><td>Don't use a stock render that doesn't show the actual unit you'll ship.</td></tr>
+</table>
+
+<h2 id="bilingual">4. Bilingual encouragement</h2>
+<p>
+	Bilingual Listings (Bangla + English titles and descriptions) rank
+	visibly higher in search because they match more of the queries
+	customers actually type. The Seller form has parallel fields
+	(<code>title_en</code> + <code>title_bn</code>); fill both.
+</p>
+<p>
+	Auto-translation tools (Google Translate, ChatGPT) are acceptable as a
+	starting point but proofread before publishing — automatic
+	translations often miss product-specific nuance.
+</p>
+
+<h2 id="pricing">5. Pricing &amp; MRP rules</h2>
+<ul>
+	<li><strong>Price in BDT, VAT-inclusive</strong>.</li>
+	<li><strong>No inflated "MRP"</strong> to fake a discount. If you use the
+		discount-price feature, the "MRP" must be a real prior selling
+		price you can substantiate (e.g., your store sold it for that
+		price in the last 90 days, or the manufacturer's printed price).
+		CRPA §43 specifically forbids deceptive pricing.</li>
+	<li><strong>Honour the listed price</strong> for the duration of the
+		Listing. Mid-cycle increases between order placement and shipment
+		are not allowed — cancel the Sub-Order if you cannot fulfil at the
+		listed price.</li>
+	<li><strong>No bait-and-switch</strong> — the price you advertise must
+		match the price at checkout for the same variant.</li>
+	<li><strong>No drop-shipping arbitrage with delivery beyond 21 days</strong>
+		without explicitly disclosing the long ETA on the product page.</li>
+</ul>
+
+<h2 id="variants">6. Variants &amp; bulk tiers</h2>
+<p>
+	Variants (size, colour) and bulk-pricing tiers are tools that improve
+	conversion when used honestly.
+</p>
+<ul>
+	<li>Each variant gets its own stock counter and (optionally) price. Keep them in sync with reality.</li>
+	<li>Do not list a variant as "available" if it's actually out of stock — buyer expectation is broken on order placement, and the cancellation hurts your performance.</li>
+	<li>Bulk-pricing tiers must be genuine. A "5+ pack 30% off" that pushes the per-unit price below your cost looks suspicious; admin may ask for invoice evidence.</li>
+	<li>Don't structure variants as "real product" vs "fake product" pricing tiers — that's bait-and-switch.</li>
+</ul>
+
+<h2 id="category">7. Category selection</h2>
+<p>
+	Choose the deepest accurate sub-category. A wrong category (e.g.,
+	listing a phone case under "Mobiles" instead of "Mobile Accessories")
+	hurts search relevance and may be re-categorised by admin.
+</p>
+<p>
+	If a category doesn't exist for your product, email
+	<a href="mailto:seller-support@sgtcart.com">seller-support@sgtcart.com</a>
+	— admin can add new categories within a few days.
+</p>
+
+<h2 id="rejections">8. Common rejections &amp; how to fix them</h2>
+<table>
+	<tr><th>Rejection reason</th><th>Fix</th></tr>
+	<tr><td>Description copied from another site</td><td>Rewrite in your own words. Tools like a thesaurus or AI rewrite are fine if you proofread.</td></tr>
+	<tr><td>Images have watermarks or contact info</td><td>Re-export the images without watermarks; remove phone numbers / logos.</td></tr>
+	<tr><td>Brand name misused (e.g., "Apple-style")</td><td>Replace with a generic descriptor; keep brand mention only if you are an authorised reseller.</td></tr>
+	<tr><td>Inflated MRP / fake discount</td><td>Set the real prior price as MRP or remove the strike-through; show the honest current price.</td></tr>
+	<tr><td>Required category attributes missing (e.g., size for clothing)</td><td>Add variants for each size; fill in mandatory specs.</td></tr>
+	<tr><td>Prohibited or restricted item</td><td>See the <a href="/sell/prohibited-items/">Prohibited Items</a> list; do not relist.</td></tr>
+	<tr><td>Counterfeit suspicion (price too low for the brand)</td><td>Supply proof of authentic sourcing (invoice from authorised distributor); admin reinstates.</td></tr>
+	<tr><td>Phone number / off-platform URL in the description</td><td>Remove. Our phone-guard would redact at runtime, but pre-publish removal is required to pass review.</td></tr>
+</table>
+
+{% endblock %}
+
+{% block page_faq %}
+{% for q, a in [
+	("How long does Listing review take?",
+	 "Typically same day, often within 2-4 hours during business hours. Complex categories (electronics with regulatory labelling, jewellery) may take up to 24 hours. You'll get an in-app notification on decision."),
+	("Can I edit a published Listing without triggering re-review?",
+	 "Yes — price, stock, discount-price changes go through immediately. Title rewrites, category changes, image swaps trigger a quick admin re-check to keep the catalogue tidy."),
+	("How do I get the 'Verified by SGT' badge on my Listings?",
+	 "Submit complete KYC (Trade Licence + NID, both uploaded and approved). The badge is awarded automatically to all approved sellers and appears on all their Listings."),
+	("Why are my products not showing up in search?",
+	 "Possible reasons: pending admin review, low seller rating, the Listing is in a less-searched category, or your competitors have stronger keywords. The /sell/promotion-guide/ explains how to improve organic visibility."),
+	("Can I sell a product I've used myself?",
+	 "Used / refurbished items must be explicitly marked 'Used' or 'Refurbished' in the title and category. Selling a used item as new is fraud and triggers immediate de-listing.")
+] %}
+<div class="accordion-item">
+	<h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+	    data-bs-toggle="collapse" data-bs-target="#lgFaq{{ loop.index }}">{{ q }}</button></h3>
+	<div id="lgFaq{{ loop.index }}" class="accordion-collapse collapse"
+	     data-bs-parent="#docFaqAccordion">
+		<div class="accordion-body small">{{ a }}</div>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block page_related %}
+{% for href, title, desc in [
+	("/sell/prohibited-items/", "Prohibited Items", "What you must never list."),
+	("/sell/onboarding/", "Onboarding Guide", "Get your shop live in 30 minutes."),
+	("/seller-terms/", "Seller Agreement", "The contract behind these rules."),
+	("/sell/code-of-conduct/", "Seller Code of Conduct", "How we expect sellers to behave.")
+] %}
+<div class="col-md-6"><a href="{{ href }}" class="d-block border rounded p-2 text-dark text-decoration-none">
+	<div class="ft-medium small">{{ title }}</div>
+	<div class="text-muted small">{{ desc }}</div>
+</a></div>
+{% endfor %}
+{% endblock %}

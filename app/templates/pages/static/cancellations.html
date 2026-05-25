@@ -1,0 +1,138 @@
+{% extends "pages/static/_layout.html" %}
+{% set page_subtitle = "How to cancel an SGT Cart order — by you, by the seller, or by SGT Cart — and what happens to your money." %}
+
+{% block page_toc %}
+<li><a href="#self">1. Cancel an order yourself</a></li>
+<li><a href="#seller">2. Seller-initiated cancellation</a></li>
+<li><a href="#platform">3. SGT Cart cancellations</a></li>
+<li><a href="#refund">4. What happens to your payment</a></li>
+<li><a href="#cant">5. When you can no longer cancel</a></li>
+{% endblock %}
+
+{% block page_body %}
+
+<p class="lead small">
+	Plans change. SGT Cart makes it easy to cancel an Order before it
+	ships — no questions asked, no fee. This page explains exactly when
+	you can cancel, who else can cancel, and where the money goes.
+</p>
+
+<h2 id="self">1. Cancel an order yourself</h2>
+<p>You can cancel a Sub-Order at any time before its status changes to <strong>Shipped</strong>:</p>
+<ol>
+	<li>Open <a href="/my-orders/">My Orders</a> and tap the Order.</li>
+	<li>Find the Sub-Order you want to cancel (one Order may have multiple, each from a different Seller).</li>
+	<li>Tap <strong>"Cancel"</strong> next to the Sub-Order.</li>
+	<li>Choose a reason (optional but useful for us). Common reasons:
+		<em>changed my mind</em>, <em>found cheaper elsewhere</em>,
+		<em>ordered by mistake</em>, <em>delivery taking too long</em>,
+		<em>wrong address</em>.</li>
+	<li>Confirm. The Sub-Order moves to <strong>Cancelled</strong> and the Seller is notified instantly.</li>
+</ol>
+<p>
+	Cancellation is <strong>instant</strong>. There is no waiting period
+	and no fee. Your reward points and any coupon used are returned to
+	your account immediately.
+</p>
+<blockquote class="small">
+	If your Order has multiple Sub-Orders and you only want to cancel one
+	of them, the rest continue normally — each Sub-Order is independent.
+</blockquote>
+
+<h2 id="seller">2. Seller-initiated cancellation</h2>
+<p>Sellers may cancel a Sub-Order in specific cases:</p>
+<ul>
+	<li><strong>Out of stock</strong> — the displayed stock was wrong; the Seller cannot fulfil.</li>
+	<li><strong>Unreachable address</strong> — phone unreachable + the location is outside the Seller's serviceable zone, after at least one attempt to contact you.</li>
+	<li><strong>Payment never cleared</strong> — for prepaid Orders that remained in "payment failed" state for more than 48 hours.</li>
+	<li><strong>Suspected fraud</strong> — flagged by our risk engine; Seller may decline and escalate to SGT review.</li>
+</ul>
+<p>
+	When a Seller cancels, you receive an in-app notification + email with
+	the reason. The Sub-Order is refunded in full per §4. If a Seller
+	cancels within 24 hours of order placement, no penalty applies; later
+	than that, our <a href="/seller-terms/#performance">performance tracker</a>
+	logs it against the Seller, and you receive a <strong>Tk 50 inconvenience credit</strong>
+	to your SGT Cart Wallet.
+</p>
+
+<h2 id="platform">3. SGT Cart cancellations</h2>
+<p>SGT Cart itself may cancel an Order or Sub-Order when:</p>
+<ul>
+	<li>The Listing turns out to violate our <a href="/sell/listing-guidelines/">Listing Guidelines</a> (counterfeit, prohibited item, mis-priced).</li>
+	<li>A Seller is suspended (e.g., counterfeit confirmed, anti-disintermediation 2-strike, or fraud investigation).</li>
+	<li>A clear pricing error is detected before the Sub-Order ships (e.g., Tk 50 for a Tk 50,000 product).</li>
+	<li>A government / court order requires it (rare).</li>
+	<li>The Order is on the Bangladesh customs prohibited list (will only occur once international becomes relevant).</li>
+</ul>
+<p>
+	Affected Orders are refunded in full per §4. You'll receive an email
+	with the specific reason and (if appropriate) a discount voucher for
+	your next Order.
+</p>
+
+<h2 id="refund">4. What happens to your payment</h2>
+<table>
+	<tr><th>How you paid</th><th>What happens on cancellation</th></tr>
+	<tr><td>Cash on Delivery (no cash collected yet)</td><td>Nothing to refund — the Sub-Order is just cancelled. The courier won't visit.</td></tr>
+	<tr><td>bKash / Nagad</td><td>Refunded to the same wallet within 2-3 business days.</td></tr>
+	<tr><td>Card via SSLCommerz</td><td>Authorisation reversed (often within minutes) or refunded to the card within 5-10 business days, depending on whether the bank had already captured the funds.</td></tr>
+	<tr><td>SGT Cart Wallet credit</td><td>Returned to Wallet instantly.</td></tr>
+	<tr><td>Reward Points used</td><td>Reverted to your Points balance instantly.</td></tr>
+	<tr><td>Coupon used</td><td>Coupon restored to your account on a self-cancel; not restored on a Seller- or SGT-initiated cancel involving fraud.</td></tr>
+</table>
+<p>See the <a href="/refund-policy/">Refund Policy</a> for the full timeline matrix.</p>
+
+<h2 id="cant">5. When you can no longer cancel</h2>
+<p>Once the Sub-Order status is <strong>Shipped</strong>, the "Cancel" button disappears. At that point:</p>
+<ul>
+	<li>If you refuse to accept delivery at the door, the parcel will be returned to the Seller — this counts as a return, see <a href="/returns/">Returns</a>.</li>
+	<li>If the parcel is already in transit and you no longer want it, you can request the courier to "Return to sender" (a service fee may apply if the cancellation was on you).</li>
+	<li>After delivery, the path is the <a href="/returns/">Returns</a> flow.</li>
+</ul>
+<p>
+	<strong>Custom-made or made-to-order items</strong> may have a
+	cancellation cutoff earlier than "Shipped" because the Seller starts
+	work immediately on order. The cutoff is shown on the Listing — once
+	passed, only the <a href="/dispute-resolution/">Dispute Resolution</a>
+	route is available.
+</p>
+
+{% endblock %}
+
+{% block page_faq %}
+{% for q, a in [
+	("Does it cost me anything to cancel?",
+	 "No. Cancellation before shipment is free for any reason. No restocking fee, no cancellation fee."),
+	("My order says 'Processing' — can I still cancel?",
+	 "Yes. 'Processing' means the Seller has accepted but hasn't shipped. The Cancel button is available."),
+	("Can I cancel just one item out of three?",
+	 "If the three items are from different Sellers (i.e., separate Sub-Orders), yes — each Sub-Order cancels independently. If they're from the same Seller in one Sub-Order, you cancel the whole Sub-Order; we don't yet support per-line-item cancellation within a single Sub-Order."),
+	("The seller cancelled my order — do I lose my coupon?",
+	 "No. When the Seller cancels (out-of-stock, etc.), your coupon is restored to your account. If you used reward points, those are also returned."),
+	("I missed the Cancel window — can SGT Cart force-cancel for me?",
+	 "Only in special cases (counterfeit, prohibited item, clear pricing error). For ordinary changes-of-mind after shipment, you'll need to refuse delivery or return per the Returns flow.")
+] %}
+<div class="accordion-item">
+	<h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+	    data-bs-toggle="collapse" data-bs-target="#cnFaq{{ loop.index }}">{{ q }}</button></h3>
+	<div id="cnFaq{{ loop.index }}" class="accordion-collapse collapse"
+	     data-bs-parent="#docFaqAccordion">
+		<div class="accordion-body small">{{ a }}</div>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block page_related %}
+{% for href, title, desc in [
+	("/refund-policy/", "Refund Policy", "Where the refund goes and how long it takes."),
+	("/returns/", "Returns", "If the item already shipped or arrived."),
+	("/help/buyer-protection/", "Buyer Protection", "When the seller won't cancel and won't deliver.")
+] %}
+<div class="col-md-6"><a href="{{ href }}" class="d-block border rounded p-2 text-dark text-decoration-none">
+	<div class="ft-medium small">{{ title }}</div>
+	<div class="text-muted small">{{ desc }}</div>
+</a></div>
+{% endfor %}
+{% endblock %}

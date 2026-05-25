@@ -1,0 +1,188 @@
+{% extends "admin/base.html" %}
+{% block title %}Vendor Detail{% endblock %}
+{% block heading %}Vendor Detail{% endblock %}
+{% block content %}
+
+<a href="{{ url_for('admin.vendors') }}" class="btn btn-sm btn-outline-secondary mb-3">&larr; Back to Vendors</a>
+
+<div class="row g-3">
+    <div class="col-lg-8">
+        <!-- Shop -->
+        <div class="panel p-4 mb-3">
+            <h5 class="mb-3">{{ vendor.shop_name_en }}
+                {% if vendor.status == 'approved' %}<span class="badge bg-success align-middle">Approved</span>
+                {% elif vendor.status == 'pending' %}<span class="badge bg-warning text-dark align-middle">Pending</span>
+                {% else %}<span class="badge bg-danger align-middle">Suspended</span>{% endif %}
+            </h5>
+            <table class="table table-sm mb-0">
+                <tr><th class="text-secondary" style="width:190px;">Shop (Bengali)</th><td>{{ vendor.shop_name_bn or '—' }}</td></tr>
+                <tr><th class="text-secondary">Slug</th><td>{{ vendor.slug }}</td></tr>
+                <tr><th class="text-secondary">Commission rate</th><td>{{ vendor.commission_rate }}%</td></tr>
+                <tr><th class="text-secondary">Phone</th><td>{{ vendor.phone or '—' }}</td></tr>
+                <tr><th class="text-secondary">Created</th><td>{{ vendor.created_at.strftime('%d %b %Y') if vendor.created_at }}</td></tr>
+                <tr><th class="text-secondary">Approved at</th><td>{{ vendor.approved_at.strftime('%d %b %Y') if vendor.approved_at else '—' }}</td></tr>
+            </table>
+        </div>
+
+        <!-- Verification / KYC -->
+        <div class="panel p-4 mb-3">
+            <h6 class="mb-3">Verification (KYC)
+                {% if vendor.is_verification_submitted %}
+                    <span class="badge bg-success">Submitted</span>
+                {% else %}
+                    <span class="badge bg-warning text-dark">Not submitted</span>
+                {% endif %}
+            </h6>
+            {% if vendor.is_verification_submitted %}
+                <table class="table table-sm mb-0">
+                    <tr><th class="text-secondary" style="width:190px;">Submitted on</th>
+                        <td>{{ vendor.verification_submitted_at.strftime('%d %b %Y %H:%M') }}</td></tr>
+                    <tr><th class="text-secondary">Business type</th><td>{{ vendor.business_type or '—' }}</td></tr>
+                    <tr><th class="text-secondary">Shop address</th><td>{{ vendor.address or '—' }}</td></tr>
+                    <tr><th class="text-secondary">City</th><td>{{ vendor.city or '—' }}</td></tr>
+                    <tr><th class="text-secondary">Trade license no.</th><td>{{ vendor.trade_license_no or '—' }}</td></tr>
+                    <tr><th class="text-secondary">Trade license document</th>
+                        <td>
+                            {% if vendor.trade_license_doc %}
+                                <a href="{{ url_for('static', filename=vendor.trade_license_doc) }}" target="_blank"
+                                   class="btn btn-sm btn-outline-primary">View Document</a>
+                            {% else %}—{% endif %}
+                        </td></tr>
+                    <tr><th class="text-secondary">NID number</th><td>{{ vendor.nid_number or '—' }}</td></tr>
+                    <tr><th class="text-secondary">NID document</th>
+                        <td>
+                            {% if vendor.nid_doc %}
+                                <a href="{{ url_for('static', filename=vendor.nid_doc) }}" target="_blank"
+                                   class="btn btn-sm btn-outline-primary">View Document</a>
+                            {% else %}—{% endif %}
+                        </td></tr>
+                </table>
+            {% else %}
+                <p class="text-secondary mb-0">
+                    The seller has not submitted verification documents yet.
+                    The shop cannot be approved until they do.
+                </p>
+            {% endif %}
+        </div>
+
+        <!-- Payout -->
+        <div class="panel p-4">
+            <h6 class="mb-3">Payout Details</h6>
+            <table class="table table-sm mb-0">
+                <tr><th class="text-secondary" style="width:190px;">bKash</th><td>{{ vendor.bkash_number or '—' }}</td></tr>
+                <tr><th class="text-secondary">Nagad</th><td>{{ vendor.nagad_number or '—' }}</td></tr>
+                <tr><th class="text-secondary">Bank account name</th><td>{{ vendor.bank_account_name or '—' }}</td></tr>
+                <tr><th class="text-secondary">Bank account number</th><td>{{ vendor.bank_account_number or '—' }}</td></tr>
+                <tr><th class="text-secondary">Bank name</th><td>{{ vendor.bank_name or '—' }}</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="panel p-4 mb-3">
+            <h6 class="mb-3">Owner</h6>
+            <div class="fw-semibold">{{ vendor.user.name }}</div>
+            <div class="text-secondary">{{ vendor.user.email }}</div>
+            <a href="{{ url_for('admin.user_detail', user_id=vendor.user.id) }}"
+               class="btn btn-sm btn-outline-primary mt-2">View User</a>
+        </div>
+
+        <div class="panel p-4">
+            <h6 class="mb-3">Actions</h6>
+            {% if vendor.status != 'approved' %}
+                {% if vendor.is_verification_submitted %}
+                    <form method="post" action="{{ url_for('admin.approve_vendor', vendor_id=vendor.id) }}" class="mb-2">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button class="btn btn-sm btn-success w-100">Approve Vendor</button>
+                    </form>
+                {% else %}
+                    <div class="alert alert-warning small py-2">
+                        Cannot approve — the seller has not submitted verification documents yet.
+                    </div>
+                {% endif %}
+            {% endif %}
+            {% if vendor.status != 'suspended' %}
+                <form method="post" action="{{ url_for('admin.suspend_vendor', vendor_id=vendor.id) }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button class="btn btn-sm btn-outline-danger w-100">Suspend Vendor</button>
+                </form>
+            {% else %}
+                <form method="post" action="{{ url_for('admin.unsuspend_vendor', vendor_id=vendor.id) }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button class="btn btn-sm btn-success w-100">Unsuspend Vendor</button>
+                </form>
+            {% endif %}
+        </div>
+
+        <div class="panel p-4 mt-3">
+            <h6 class="mb-2">
+                <i class="bi bi-shield-exclamation me-1"></i>Policy Violations
+            </h6>
+            <p class="small text-secondary mb-2">
+                Phone-share attempts caught by the anti-disintermediation guard.
+                Sellers are auto-suspended after 2.
+            </p>
+            <div class="d-flex align-items-center justify-content-between">
+                <span class="fs-4 fw-bold {{ 'text-danger' if violation_count >= 2 else ('text-warning' if violation_count else 'text-success') }}">
+                    {{ violation_count }}
+                </span>
+                <span class="text-secondary small">
+                    {% if last_violation %}
+                        last: {{ last_violation.strftime('%d %b %Y %H:%M') }}
+                    {% else %}
+                        no violations
+                    {% endif %}
+                </span>
+            </div>
+            <a href="{{ url_for('admin.policy_violations') }}"
+               class="btn btn-sm btn-outline-secondary w-100 mt-2">View All</a>
+        </div>
+
+        <div class="panel p-4 mt-3">
+            <h6 class="mb-1">Search Ranking</h6>
+            <p class="text-muted small mb-2">
+                Seller rating: <strong>{{ vendor.rating_avg }}</strong>
+                ({{ vendor.rating_count }} review(s)). The boost is added to the
+                rating when ordering search results — leave at 0 to stay neutral.
+            </p>
+            <form method="post" action="{{ url_for('admin.vendor_ranking', vendor_id=vendor.id) }}"
+                  class="d-flex gap-2 mb-3">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="number" step="0.5" min="-5" max="5" name="ranking_boost"
+                       class="form-control form-control-sm" value="{{ vendor.ranking_boost }}">
+                <button class="btn btn-sm btn-primary text-nowrap">Save boost</button>
+            </form>
+
+            <table class="table table-sm small mb-0">
+                <tbody>
+                    <tr>
+                        <th class="text-secondary">Avg delivery time</th>
+                        <td>
+                            {% if vendor.avg_delivery_days > 0 %}
+                            {{ vendor.avg_delivery_days }} day(s)
+                            <span class="text-muted">— bonus to ranking</span>
+                            {% else %}
+                            <span class="text-muted">no delivered orders yet</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-secondary">Cancel rate</th>
+                        <td>
+                            {{ (vendor.cancel_rate * 100)|round(1) }}%
+                            {% if vendor.cancel_rate > 0.1 %}
+                            <span class="text-danger">— penalty to ranking</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="small text-muted mb-0">
+                Stats refresh automatically on each delivery / cancellation;
+                run <code>flask recompute-vendor-stats</code> for a full rebuild.
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

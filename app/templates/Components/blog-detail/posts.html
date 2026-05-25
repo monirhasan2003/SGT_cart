@@ -1,0 +1,11 @@
+{% for item in posts %}
+    <li>
+        <span class="left">
+            <img src="{{ item.img }}" alt="" class="">
+        </span>
+        <span class="right">
+            <a class="feed-title" href="#">{{ item.title }}</a> 
+            <span class="post-date"><i class="ti-calendar"></i>{{ item.time }}</span>
+        </span>
+    </li>
+{% endfor %}

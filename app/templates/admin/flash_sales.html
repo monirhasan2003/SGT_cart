@@ -1,0 +1,79 @@
+{% extends "admin/base.html" %}
+{% block title %}Flash Sales{% endblock %}
+{% block heading %}Flash Sales{% endblock %}
+{% block content %}
+
+<div class="row g-4">
+	<div class="col-lg-7">
+		{% if sales %}
+		<div class="border rounded bg-white">
+			<table class="table align-middle mb-0">
+				<thead class="table-light">
+					<tr><th>Title</th><th>Owner</th><th>Window</th>
+					    <th>Products</th><th>Status</th><th></th></tr>
+				</thead>
+				<tbody>
+					{% for s in sales %}
+					<tr>
+						<td class="ft-medium">{{ s.title }}</td>
+						<td class="small">
+							{% if s.vendor %}
+								<a href="{{ url_for('admin.vendor_detail', vendor_id=s.vendor.id) }}"
+								   class="text-decoration-none">
+									<i class="bi bi-shop me-1"></i>{{ s.vendor.shop_name_en }}
+								</a>
+							{% else %}
+								<span class="badge bg-primary">Platform</span>
+							{% endif %}
+						</td>
+						<td class="small text-muted">
+							{{ s.starts_at.strftime('%d %b %y') if s.starts_at else '—' }}
+							→ {{ s.ends_at.strftime('%d %b %y') if s.ends_at else '—' }}
+						</td>
+						<td>{{ s.items|length }}</td>
+						<td>
+							{% if s.is_active %}<span class="badge bg-success">Live</span>
+							{% else %}<span class="badge bg-secondary">Draft</span>{% endif %}
+						</td>
+						<td class="text-end">
+							<a href="{{ url_for('admin.flash_sale_detail', sale_id=s.id) }}"
+							   class="btn btn-sm btn-primary">Manage</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		{% else %}
+		<div class="border rounded bg-white p-5 text-center text-muted">
+			No flash sales yet.
+		</div>
+		{% endif %}
+	</div>
+
+	<div class="col-lg-5">
+		<div class="border rounded bg-white p-4">
+			<h6 class="fw-semibold mb-3">New Flash Sale</h6>
+			<form method="post" action="{{ url_for('admin.flash_sale_create') }}">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+				<label class="form-label small">Title</label>
+				<input type="text" name="title" class="form-control mb-2" required>
+				<label class="form-label small">Description</label>
+				<textarea name="description" class="form-control mb-2" rows="2"></textarea>
+				<div class="row g-2 mb-3">
+					<div class="col-6">
+						<label class="form-label small">Starts</label>
+						<input type="date" name="starts_at" class="form-control">
+					</div>
+					<div class="col-6">
+						<label class="form-label small">Ends</label>
+						<input type="date" name="ends_at" class="form-control">
+					</div>
+				</div>
+				<button class="btn btn-primary w-100">Create</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

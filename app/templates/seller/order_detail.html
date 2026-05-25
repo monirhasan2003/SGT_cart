@@ -1,0 +1,112 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/seller/orders/">Orders</a></li>
+				<li class="breadcrumb-item active" aria-current="page">{{ sub.order.order_number }}</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<div class="row g-4">
+			<div class="col-lg-8">
+				<div class="border rounded p-3 mb-3">
+					<h5 class="ft-bold mb-2">Order {{ sub.order.order_number }}</h5>
+					<p class="text-muted mb-0">
+						Placed {{ sub.order.created_at.strftime('%d %b %Y, %I:%M %p') if sub.order.created_at }}
+						· Payment: {{ 'Cash on Delivery' if sub.order.payment_method == 'cod' else sub.order.payment_method }}
+					</p>
+				</div>
+
+				<div class="border rounded p-3 mb-3">
+					<h6 class="ft-bold">Deliver To</h6>
+					<p class="mb-0 text-muted">
+						{{ sub.order.ship_name }} — {{ sub.order.ship_phone }}<br>
+						{{ sub.order.ship_address_line }},
+						{% if sub.order.ship_area %}{{ sub.order.ship_area }}, {% endif %}{{ sub.order.ship_city }}
+						{% if sub.order.ship_postal_code %} - {{ sub.order.ship_postal_code }}{% endif %}
+					</p>
+				</div>
+
+				<div class="border rounded">
+					<table class="table mb-0">
+						<thead class="gray"><tr><th>Item</th><th>Price</th><th>Qty</th><th class="text-end">Total</th></tr></thead>
+						<tbody>
+						{% for item in sub.items %}
+							<tr>
+								<td>{{ item.title }}{% if item.variant_label %}
+									<small class="text-muted">({{ item.variant_label }})</small>{% endif %}</td>
+								<td>৳{{ "%.2f"|format(item.unit_price|float) }}</td>
+								<td>{{ item.quantity }}</td>
+								<td class="text-end ft-medium">৳{{ "%.2f"|format(item.line_total|float) }}</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="border rounded p-3 mb-3">
+					<h6 class="ft-bold mb-2">Earnings</h6>
+					<div class="d-flex justify-content-between mb-1">
+						<span>Items subtotal</span><span>৳{{ "%.2f"|format(sub.subtotal|float) }}</span>
+					</div>
+					<div class="d-flex justify-content-between mb-1 text-danger">
+						<span>Platform commission ({{ sub.commission_rate }}%)</span>
+						<span>− ৳{{ "%.2f"|format(sub.commission_amount|float) }}</span>
+					</div>
+					<hr class="my-2">
+					<div class="d-flex justify-content-between">
+						<span class="ft-bold">Your earning</span>
+						<span class="ft-bold text-success">৳{{ "%.2f"|format(sub.vendor_earning|float) }}</span>
+					</div>
+				</div>
+
+				<div class="border rounded p-3">
+					<h6 class="ft-bold mb-2">Update Status</h6>
+					<p class="mb-2">Current:
+						{% if sub.status == 'delivered' %}<span class="badge bg-success">Delivered</span>
+						{% elif sub.status == 'shipped' %}<span class="badge bg-info text-dark">Shipped</span>
+						{% elif sub.status == 'processing' %}<span class="badge bg-primary">Processing</span>
+						{% elif sub.status == 'cancelled' %}<span class="badge bg-danger">Cancelled</span>
+						{% else %}<span class="badge bg-warning text-dark">Pending</span>{% endif %}
+					</p>
+					<form method="post" action="{{ url_for('seller.order_status', sub_order_id=sub.id) }}">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+						<select name="status" class="form-control mb-2">
+							{% for s in statuses %}
+								<option value="{{ s }}" {{ 'selected' if s == sub.status }}>{{ s|capitalize }}</option>
+							{% endfor %}
+						</select>
+						<button type="submit" class="btn btn-dark w-100">Update</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

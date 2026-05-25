@@ -1,0 +1,6 @@
+{% for item in colors %}
+    <div class="form-check form-option form-check-inline mb-1">
+        <input class="form-check-input" type="radio" name="color8" id="{{ item.id }}">
+        <label class="form-option-label rounded-circle" for="{{ item.id }}"><span class="form-option-color rounded-circle {{ item.blc }}"></span></label>
+    </div>
+{% endfor %}

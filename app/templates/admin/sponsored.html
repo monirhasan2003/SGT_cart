@@ -1,0 +1,96 @@
+{% extends "admin/base.html" %}
+{% block title %}Sponsored Products{% endblock %}
+{% block heading %}Sponsored Products (Paid Promotion){% endblock %}
+{% block content %}
+
+<div class="panel p-3 mb-3">
+    <p class="text-muted small mb-2">
+        Sponsored products appear with a <span class="badge bg-warning text-dark">Sponsored</span>
+        badge and rank above the organic score in search and homepage grids
+        (but still under "Featured"). Leave the end date blank for an open-ended promo,
+        or set a date to auto-expire — expired promos are ignored without needing to unset them.
+    </p>
+    <form method="get" class="row g-2 align-items-end">
+        <div class="col-md-5">
+            <label class="form-label small text-secondary mb-1">Search product title</label>
+            <input type="text" name="q" value="{{ q }}" class="form-control form-control-sm"
+                   placeholder="e.g. shirt, lipstick, charger">
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-sm btn-primary">Search</button>
+            <a href="{{ url_for('admin.sponsored') }}" class="btn btn-sm btn-outline-secondary">Reset</a>
+        </div>
+        <div class="col-md-4 text-end text-muted small">
+            <strong>{{ active_count }}</strong> sponsored promo(s) currently active.
+        </div>
+    </form>
+</div>
+
+<div class="panel p-3">
+    <table class="table table-sm align-middle mb-0">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Vendor</th>
+                <th>Status</th>
+                <th>Ends</th>
+                <th style="width:330px;">Mark Sponsored / Update</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for p in products %}
+            {% set is_active = p.is_sponsored and (not p.sponsored_until or p.sponsored_until >= now) %}
+            {% set is_expired = p.is_sponsored and p.sponsored_until and p.sponsored_until < now %}
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        {% if p.primary_image %}
+                        <img src="{{ url_for('static', filename=p.primary_image) }}"
+                             width="40" height="40" class="rounded border me-2"
+                             style="object-fit:cover;" alt="">
+                        {% endif %}
+                        <div>
+                            <div class="fw-semibold">{{ p.title_en }}</div>
+                            <div class="text-secondary small">৳{{ p.current_price }}</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="text-secondary small">{{ p.vendor.shop_name_en if p.vendor else '—' }}</td>
+                <td>
+                    {% if is_active %}
+                        <span class="badge bg-warning text-dark">Sponsored</span>
+                    {% elif is_expired %}
+                        <span class="badge bg-secondary">Expired</span>
+                    {% else %}
+                        <span class="text-muted small">—</span>
+                    {% endif %}
+                </td>
+                <td class="small text-secondary">
+                    {{ p.sponsored_until.strftime('%d %b %Y') if p.sponsored_until else
+                       ('Open-ended' if p.is_sponsored else '—') }}
+                </td>
+                <td>
+                    <form method="post" action="{{ url_for('admin.sponsored_update', product_id=p.id) }}"
+                          class="d-flex gap-1 align-items-center">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <input type="date" name="sponsored_until" class="form-control form-control-sm"
+                               value="{{ p.sponsored_until.strftime('%Y-%m-%d') if p.sponsored_until }}"
+                               title="Optional end date — blank = open-ended">
+                        <button class="btn btn-sm btn-warning text-nowrap">
+                            {{ 'Update' if p.is_sponsored else 'Sponsor' }}
+                        </button>
+                        {% if p.is_sponsored %}
+                        <button class="btn btn-sm btn-outline-danger text-nowrap"
+                                name="action" value="disable">Stop</button>
+                        {% endif %}
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="5" class="text-secondary">No published products found.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

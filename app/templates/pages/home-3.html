@@ -1,0 +1,229 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+			
+<!-- Hero Banner Start  -->
+<div class="home-slider margin-bottom-0">
+
+	<!-- Components/Home/home-3/slide2.html -->
+    {% include 'Components/Home/home-3/slide2.html' %}
+
+</div>
+<!-- Hero Banner End -->
+
+<!-- All Category  -->
+<section class="middle">
+	<div class="container">
+	
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Popular Categories</h2>
+					<h3 class="ft-bold pt-3">Trending Categories</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row align-items-center justify-content-center">
+			
+			<!-- Components/Home/home-3/categories2.html -->
+    		{% include 'Components/Home/home-3/categories2.html' %}
+
+		</div>
+		
+	</div>
+</section>
+<!-- All Category  -->
+
+<!-- Products Lists -->
+<section class="space min pt-0">
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				
+				<ul class="nav nav-tabs b-0 d-flex align-items-center justify-content-center simple_tab_links mb-4" id="myTab" role="tablist">
+					
+					<!-- Components/Home/home-2/nav.html -->
+    				{% include 'Components/Home/home-2/nav.html' %}
+
+				</ul>
+				
+				<div class="tab-content" id="myTabContent">
+					
+					<!-- All Content -->
+					<div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-3/products.html -->
+    							{% include 'Components/Home/home-3/products.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-pane fade show active" id="mens" role="tabpanel" aria-labelledby="mens-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-3/products2.html -->
+    							{% include 'Components/Home/home-3/products2.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<!-- Women Content -->
+					<div class="tab-pane fade" id="women" role="tabpanel" aria-labelledby="women-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-3/products3.html -->
+    							{% include 'Components/Home/home-3/products3.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-pane fade" id="kids" role="tabpanel" aria-labelledby="kids-tab">
+						<div class="tab_product">
+							<div class="row rows-products">
+								
+								<!-- Components/Home/home-3/products4.html -->
+    							{% include 'Components/Home/home-3/products4.html' %}
+								
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Products List -->
+
+<!-- Product List -->
+<section class="middle gray">
+	<div class="container">
+	
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Trendy Products</h2>
+					<h3 class="ft-bold pt-3">Our Trending Products</h3>
+				</div>
+			</div>
+		</div>
+		
+		<!-- row -->
+		<div class="row align-items-center rows-products">
+		
+			<!-- Components/Home/home-3/trending.html -->
+    		{% include 'Components/Home/home-3/trending.html' %}
+			
+		</div>
+		<!-- row -->
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="position-relative text-center">
+					<a href="/shop-style-1/" class="btn stretched-links borders">Explore More<i class="lni lni-arrow-right ms-2"></i></a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Product List -->
+
+<!-- Blog Start -->
+<section class="space min">
+	<div class="container">
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Latest News</h2>
+					<h3 class="ft-bold pt-3">New Updates</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			
+			<!-- Components/Home/index/blog.html -->
+            {% include 'Components/Home/index/blog.html' %}
+			
+		</div>
+		
+	</div>
+</section>
+<!-- Blog Start -->
+
+<!-- Instagram Start -->
+<section class="p-0">
+	<div class="container-fluid p-0 overflow-hidden">
+		
+		<div class="row no-gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Instagram Gallery</h2>
+					<span class="fs-lg ft-bold theme-cl pt-3">@mahak_71</span>
+					<h3 class="ft-bold lh-1">From Instagram</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row no-gutters">
+			<div class="insta-slider"> 
+			
+				<!-- Components/Home/index/insta.html -->
+            	{% include 'Components/Home/index/insta.html' %}
+				
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Instagram Start -->
+
+<!-- Customer Features -->
+<section class="px-0 py-3 br-top">
+	<div class="container">
+		<div class="row">
+			
+			<!-- Components/Home/index/features2.html -->
+            {% include 'Components/Home/index/features2.html' %}
+			
+		</div>
+	</div>
+</section>
+<!-- Customer Features -->
+
+<!-- Components/Home/index/quickview.html -->
+{% include 'Components/Home/index/quickview.html' %}
+
+<!-- Components/Home/index/log.html -->
+{% include 'Components/Home/index/log.html' %}
+
+<!-- Components/Home/index/search.html -->
+{% include 'Components/Home/index/search.html' %}
+
+<!-- Components/Home/index/wishlist.html -->
+{% include 'Components/Home/index/wishlist.html' %}
+
+<!-- Components/Home/index/cart.html -->
+{% include 'Components/Home/index/cart.html' %}
+
+<!-- Components/Home/index/popup-overlay.html -->
+{% include 'Components/Home/index/popup-overlay.html' %}
+
+{% include 'Base/footer.html' %} 
+
+{% endblock %}

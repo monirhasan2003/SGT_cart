@@ -1,0 +1,5 @@
+{% for item in progressbars %}
+    <div class="{{ item.style }}">
+        <div class="progress-bar bg-{{ item.class }}" role="progressbar" style="width:{{ item.width }}" aria-valuenow="{{ item.valuenow }}" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+{% endfor %}

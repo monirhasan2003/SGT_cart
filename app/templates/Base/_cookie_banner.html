@@ -1,0 +1,55 @@
+{# Cookie consent banner — Phase 15 Wave-1 D4 gate.
+
+  Renders once per visitor. Two buttons:
+    "Accept all"    — sets localStorage["sgt_cookie_consent"] = "all"
+    "Necessary only"— sets localStorage["sgt_cookie_consent"] = "necessary"
+  Banner is hidden after either choice. Read by analytics scripts (when
+  added later) to decide whether to load.
+#}
+<div id="sgtCookieBanner"
+     style="position:fixed;left:0;right:0;bottom:0;z-index:1080;
+            background:#0f172a;color:#f8fafc;padding:14px 18px;
+            box-shadow:0 -4px 16px rgba(0,0,0,.3);display:none;">
+	<div class="container d-flex flex-wrap gap-2 align-items-center justify-content-between">
+		<div class="small" style="max-width:760px;">
+			<i class="lni lni-shield me-1"></i>
+			SGT Cart uses <strong>essential cookies</strong> to keep you signed
+			in and your cart working. We'd also like to set optional analytics
+			cookies to help us improve the site. Read our
+			<a href="/cookie-policy/" class="text-warning text-decoration-underline">
+				Cookie Policy</a>
+			and
+			<a href="/privacy/" class="text-warning text-decoration-underline">
+				Privacy Policy</a>.
+		</div>
+		<div class="d-flex gap-2 flex-shrink-0">
+			<button type="button" id="sgtCookieNecessary"
+			        class="btn btn-sm btn-outline-light">
+				Necessary only
+			</button>
+			<button type="button" id="sgtCookieAccept"
+			        class="btn btn-sm btn-warning ft-medium">
+				Accept all
+			</button>
+		</div>
+	</div>
+</div>
+<script>
+	(function () {
+		var KEY = 'sgt_cookie_consent';
+		var bar = document.getElementById('sgtCookieBanner');
+		if (!bar) return;
+		try {
+			if (localStorage.getItem(KEY)) return;     // already chose
+		} catch (_) { return; }                        // private mode: skip
+		bar.style.display = 'block';
+		function close(choice) {
+			try { localStorage.setItem(KEY, choice); } catch (_) {}
+			bar.style.display = 'none';
+		}
+		document.getElementById('sgtCookieAccept')
+			.addEventListener('click', function () { close('all'); });
+		document.getElementById('sgtCookieNecessary')
+			.addEventListener('click', function () { close('necessary'); });
+	})();
+</script>

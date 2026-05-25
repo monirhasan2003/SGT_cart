@@ -1,0 +1,8 @@
+{% if is_impersonating %}
+<div style="background:#b91c1c; color:#fff; padding:9px 16px; text-align:center; font-size:14px;">
+    <i class="ti-eye"></i>
+    You are viewing the platform as <strong>{{ current_user.name }}</strong> ({{ current_user.email }}).
+    <a href="{{ url_for('admin.stop_impersonating') }}"
+       style="color:#fff; text-decoration:underline; font-weight:600; margin-left:8px;">Return to Admin</a>
+</div>
+{% endif %}

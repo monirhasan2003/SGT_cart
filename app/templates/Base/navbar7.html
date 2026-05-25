@@ -1,0 +1,299 @@
+<div class="py-2 tri-border theme-bg">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-xl-7 col-lg-6 col-md-6 col-sm-12 hide-ipad">
+                <div class="top_second"><p class="medium text-light m-0 p-0"><i class="ti-truck me-1"></i>Get Free delivery from $2000 <a href="#" class="medium text-light text-underline">Shop Now</a></p></div>
+            </div>
+            
+            <!-- Right Menu -->
+            <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12">
+
+                <div class="currency-selector dropdown js-dropdown float-right">
+                    <a href="javascript:void(0);" data-bs-toggle="dropdown" class="popup-title"  title="Currency" aria-label="Currency dropdown">
+                        <span class="hidden-xl-down medium text-light">Currency:</span>
+                        <span class="iso_code medium text-light">$USD</span>
+                        <i class="fa fa-angle-down medium text-light"></i>
+                    </a>
+                    <ul class="popup-content dropdown-menu">  
+                        <li><a title="Euro" href="#" class="dropdown-item medium text-muted">EUR €</a></li>
+                        <li class="current"><a title="US Dollar" href="#" class="dropdown-item medium text-muted">USD $</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Choose Language -->
+            
+                <div class="language-selector-wrapper dropdown js-dropdown float-right me-3">
+                    <a class="popup-title" href="javascript:void(0)" data-bs-toggle="dropdown" title="Language" aria-label="Language dropdown">
+                        <span class="hidden-xl-down medium text-light">Language:</span>
+                        <span class="iso_code medium text-light">English</span>
+                        <i class="fa fa-angle-down medium text-light"></i>
+                    </a>
+                    <ul class="dropdown-menu popup-content link">
+                        <li class="current"><a href="javascript:void(0);" class="dropdown-item medium text-muted"><img src="{{ url_for('static', filename='assets/img/1.jpg') }}" alt="en" width="16" height="11" /><span>English</span></a></li>
+                        <li><a href="javascript:void(0);" class="dropdown-item medium text-muted"><img src="{{ url_for('static', filename='assets/img/2.jpg') }}" alt="fr" width="16" height="11" /><span>Français</span></a></li>
+                        <li><a href="javascript:void(0);" class="dropdown-item medium text-muted"><img src="{{ url_for('static', filename='assets/img/3.jpg') }}" alt="de" width="16" height="11" /><span>Deutsch</span></a></li>
+                        <li><a href="javascript:void(0);" class="dropdown-item medium text-muted"><img src="{{ url_for('static', filename='assets/img/4.jpg') }}" alt="it" width="16" height="11" /><span>Italiano</span></a></li>
+                        <li><a href="javascript:void(0);" class="dropdown-item medium text-muted"><img src="{{ url_for('static', filename='assets/img/5.jpg') }}" alt="es" width="16" height="11" /><span>Español</span></a></li>
+                        <li ><a href="javascript:void(0);" class="dropdown-item medium text-muted"><img src="{{ url_for('static', filename='assets/img/6.jpg') }}" alt="ar" width="16" height="11" /><span>اللغة العربية</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="currency-selector dropdown js-dropdown float-right me-3">
+                    <a href="/login/" class="text-light medium"><i class="lni lni-user me-1"></i>Sign In / Register</a>
+                </div>
+                
+                <div class="order-selector dropdown js-dropdown float-right me-3">
+                    <a href="javascript:void(0);" class="text-light medium"><i class="lni lni-map-marker me-1"></i>Order Tracking</a>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="headd-sty theme-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12">
+                <div class="headd-sty-wrap d-flex align-items-center justify-content-between py-3">
+                    <div class="headd-sty-left d-flex align-items-center">
+                        <div class="headd-sty-01">
+                            <a class="nav-brand py-0" href="#">
+                                <img src="{{ url_for('static', filename='assets/img/logo-light.png') }}" class="logo" alt="" />
+                            </a>
+                        </div>
+                        <div class="headd-sty-02 ms-3">
+                            <form class="bg-white rounded-md border-bold">
+                                <div class="input-group">
+                                    <input type="text" class="form-control custom-height b-0" placeholder="Search for products..." />
+                                    <div class="input-group-append">
+                                        <div class="input-group-text p-0 border-0"><button class="btn bg-white text-danger custom-height rounded px-3" type="button"><i class="fas fa-search"></i></button></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="headd-sty-last">
+                        <ul class="nav-menu nav-menu-social align-to-right align-items-center d-flex">
+                            <li>
+                                <div class="call d-flex align-items-center text-left">
+                                    <i class="lni lni-phone fs-xl text-light"></i>
+                                    <span class="text-light small ms-3">Call Us Now:<strong class="d-block text-light fs-md">0(800) 123-456</strong></span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="openWishlist()">
+                                    <i class="far fa-heart fs-lg text-light"></i>
+                                    <span class="wishlist-count dn-counter bg-dark">
+                                        {{ wishlist|length }}
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="openCart()">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <i class="fas fa-shopping-basket fs-lg text-light"></i>
+                                        <span class="cart-count dn-counter bg-dark">
+                                            {{ cart|length }}
+                                        </span>
+                                        <div class="text-left ms-1">
+                                            <div class="text-light small lh-1">Total</div>	
+                                            <div class="text-light cart-subtotal"><span class="fs-md ft-medium"><span class="prc-currency">$</span>0.00</span></div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>	
+                    </div>
+                    <div class="mobile_nav">
+                        <ul class="d-flex">
+                            <li>
+                                <a href="javascript:void(0);" onclick="openSearch()" class="text-light">
+                                    <i class="lni lni-search-alt"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/login/" class="text-light">
+                                    <i class="lni lni-user"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="openWishlist()" class="text-light">
+                                    <i class="lni lni-heart"></i>
+                                    <span class="wishlist-count dn-counter">
+                                        {{ wishlist|length }}
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="openCart()" class="text-light">
+                                    <i class="lni lni-shopping-basket"></i>
+                                    <span class="cart-count dn-counter">
+                                        {{ cart|length }}
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Start Navigation -->
+<div class="header header-dark head-style-2">
+    <div class="container">
+        <nav id="navigation" class="navigation navigation-landscape">
+            <div class="nav-header">
+                <div class="nav-toggle text-light" style="position:fixed; top: 35px; left: 10px;"></div>
+                <div class="nav-menus-wrapper">
+                    <ul class="nav-menu">
+                    
+                        <li class="relative parent-parent-menu-item">
+                            <a href="javascript:void(0);" class="home-link ps-0">Home</a>
+                            <ul class="nav-dropdown nav-submenu">
+                                <li><a href="/" class="sub-menu-item">Home 1</a></li>
+                                <li><a href="/home-2/" class="sub-menu-item">Home 2</a></li>
+                                <li><a href="/home-3/" class="sub-menu-item">Home 3</a></li>
+                                <li><a href="/home-4/" class="sub-menu-item">Home 4</a></li>
+                                <li><a href="/home-5/" class="sub-menu-item">Home 5</a></li>
+                                <li><a href="/home-6/" class="sub-menu-item">Home 6</a></li>
+                                <li><a href="/home-7/" class="sub-menu-item">Home 7</a></li>
+                                <li><a href="/home-8/" class="sub-menu-item">Home 8</a></li>
+                                <li><a href="/home-9/" class="sub-menu-item">Home 9</a></li>
+                                <li><a href="/home-10/" class="sub-menu-item">Home 10</a></li>
+                                <li><a href="/home-11/" class="sub-menu-item">Home 11</a></li>
+                                <li><a href="/home-12/" class="sub-menu-item">Home 12</a></li>
+                                <li><a href="/home-13/" class="sub-menu-item">Home 13</a></li>
+                                <li><a href="/home-14/" class="sub-menu-item">Home 14</a></li>
+                                <li><a href="/home-15/" class="sub-menu-item">Home 15</a></li>
+                                <li><a href="/home-16/" class="sub-menu-item">Home 16</a></li>
+                                <li><a href="/home-17/" class="sub-menu-item">Home 17</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li class="relative parent-parent-menu-item">
+                            <a href="/shop/" class="home-link">Shop</a>
+                            <ul class="nav-dropdown nav-submenu">
+                                <li class="relative parent-menu-item"><a href="javascript:void(0);">Account Dashboard</a>
+                                    <ul class="nav-dropdown nav-submenu">
+                                        <li><a href="/my-orders/" class="sub-menu-item">My Order</a></li>
+                                        <li><a href="/wishlist/" class="sub-menu-item">Wishlist</a></li>
+                                        <li><a href="/profile-info/" class="sub-menu-item">Profile Info</a></li>
+                                        <li><a href="/addresses/" class="sub-menu-item">Addresses</a></li>
+                                        <li><a href="/payment-method/" class="sub-menu-item">Payment Method</a></li>
+                                    </ul>
+                                </li>
+                                <li class="relative parent-menu-item"><a href="javascript:void(0);">Shop</a>
+                                    <ul class="nav-dropdown nav-submenu">
+                                        <li><a href="/shop-style-1/" class="sub-menu-item">Shop Style 01</a></li>
+                                        <li><a href="/shop-style-2/" class="sub-menu-item">Shop Style 02</a></li>
+                                        <li><a href="/shop-style-3/" class="sub-menu-item">Shop Style 03</a></li>
+                                        <li><a href="/shop-style-4/" class="sub-menu-item">Shop Style 04</a></li>
+                                        <li><a href="/shop-style-5/" class="sub-menu-item">Shop Style 05</a></li>
+                                        <li><a href="/shop-list-view/" class="sub-menu-item">Shop List Style</a></li>
+                                    </ul>
+                                </li>
+                                <li class="relative parent-menu-item"><a href="javascript:void(0);">Shop Detail</a>
+                                    <ul class="nav-dropdown nav-submenu">
+                                        <li><a href="/shop-single-v1/" class="sub-menu-item">Product Detail v01</a></li>
+                                        <li><a href="/shop-single-v2/" class="sub-menu-item">Product Detail v02</a></li>
+                                        <li><a href="/shop-single-v3/" class="sub-menu-item">Product Detail v03</a></li>
+                                        <li><a href="/shop-single-v4/" class="sub-menu-item">Product Detail v04</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/shoping-cart/" class="sub-menu-item">Shopping Cart</a></li>
+                                <li><a href="/checkout/" class="sub-menu-item">Checkout</a></li>
+                                <li><a href="/complete-order/" class="sub-menu-item">Order Complete</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li class="relative parent-parent-menu-item">
+                            <a href="javascript:void(0);" class="home-link">Blog</a>
+                            <ul class="nav-dropdown nav-submenu">
+                                <li><a href="/blog/" class="sub-menu-item">Blog</a></li>
+                                <li><a href="/blog-detail/" class="sub-menu-item">Blog Detail</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="relative parent-parent-menu-item">
+                            <a href="javascript:void(0);" class="home-link">Pages</a>
+                            <ul class="nav-dropdown nav-submenu">
+                                <li><a href="/about-us/" class="sub-menu-item">About Us</a></li>
+                                <li><a href="/contact/" class="sub-menu-item">Contact</a></li>
+                                <li class="relative parent-menu-item"><a href="javascript:void(0);">Email Template</a>
+                                    <ul class="nav-dropdown nav-submenu">
+                                        <li><a href="/email-confirmation/" class="sub-menu-item">Confirmation</a></li>
+                                        <li><a href="/email-cart/" class="sub-menu-item">Cart</a></li>
+                                        <li><a href="/email-offers/" class="sub-menu-item">Offers</a></li>
+                                        <li><a href="/email-order-success/" class="sub-menu-item">Order Success</a></li>
+                                        <li><a href="/email-gift-voucher/" class="sub-menu-item">Gift Voucher</a></li>
+                                        <li><a href="/email-reset-password/" class="sub-menu-item">Reset Password</a></li>
+                                        <li><a href="/email-item-review/" class="sub-menu-item">Item Review</a></li>
+                                    </ul>
+                                </li>
+                                <li class="relative parent-menu-item"><a href="javascript:void(0);">Special</a>
+                                    <ul class="nav-dropdown nav-submenu">
+                                        <li><a href="/comingsoon/" class="sub-menu-item">Comingsoon</a></li>
+                                        <li><a href="/maintenance/" class="sub-menu-item">Maintenance</a></li>
+                                        <li><a href="/404/" class="sub-menu-item">404 Page</a></li>
+                                    </ul>
+                                </li>
+                                <li class="relative parent-menu-item"><a href="javascript:void(0);">Auth</a>
+                                    <ul class="nav-dropdown nav-submenu">
+                                        <li><a href="/login/" class="sub-menu-item">Login</a></li>
+                                        <li><a href="/signup/" class="sub-menu-item">Signup</a></li>
+                                        <li><a href="/forgot-password/" class="sub-menu-item">Password Reset</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/privacy/" class="sub-menu-item">Privacy Policy</a></li>
+                                <li><a href="/faq/" class="sub-menu-item">FAQs</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="/docs/" class="sub-menu-item">Docs</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- End Navigation -->
+<div class="clearfix"></div>
+
+<script>
+    const currentPath = window.location.pathname.replace(/\/$/, '');
+
+    const subMenuItems = document.querySelectorAll('.sub-menu-item');
+    subMenuItems.forEach((item) => {
+        const itemPath = new URL(item.href).pathname.replace(/\/$/, '');
+
+        if (itemPath === currentPath) {
+            item.classList.add('active');
+
+            // Highlight all parent menus recursively
+            let parentMenu = item.closest('.parent-menu-item');
+            while (parentMenu && !parentMenu.classList.contains('processed')) {
+                const parentLink = parentMenu.querySelector('a');
+                if (parentLink) {
+                    parentLink.classList.add('active');
+                }
+                parentMenu.classList.add('processed');
+                parentMenu = parentMenu.closest('.parent-parent-menu-item');
+            }
+
+            // Highlight the top-level parent menu
+            const topLevelMenu = item.closest('.parent-parent-menu-item');
+            if (topLevelMenu) {
+                const topLevelLink = topLevelMenu.querySelector('.home-link');
+                if (topLevelLink) {
+                    topLevelLink.classList.add('active');
+                }
+            }
+        }
+    });
+</script>

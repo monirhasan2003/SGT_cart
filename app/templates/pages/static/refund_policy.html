@@ -1,0 +1,225 @@
+{% extends "pages/static/_layout.html" %}
+{% set page_subtitle = "Exact rules, timelines and amounts for every kind of refund on SGT Cart." %}
+
+{% block page_toc %}
+<li><a href="#scope">1. Scope &amp; legal basis</a></li>
+<li><a href="#when">2. When you qualify for a refund</a></li>
+<li><a href="#methods">3. Refund methods by payment type</a></li>
+<li><a href="#full-partial">4. Full vs. partial refund</a></li>
+<li><a href="#timelines">5. Timeline matrix</a></li>
+<li><a href="#shipping-fee">6. Treatment of shipping fees</a></li>
+<li><a href="#points-coupons">7. Reward points &amp; coupons</a></li>
+<li><a href="#escalation">8. Escalation when a refund is denied</a></li>
+<li><a href="#examples">9. Worked examples</a></li>
+{% endblock %}
+
+{% block page_body %}
+
+<p class="lead small">
+	This Refund Policy explains exactly when SGT Cart issues a refund, how
+	it's calculated, where the money goes, and how long it takes. It
+	supplements the <a href="/returns/">Returns</a> page (which deals
+	with the physical act of sending items back) and the
+	<a href="/help/buyer-protection/">Buyer Protection Program</a> (which
+	covers what happens if a Seller doesn't cooperate).
+</p>
+
+<h2 id="scope">1. Scope &amp; legal basis</h2>
+<p>
+	This policy applies to every Order placed on sgtcart.com or any SGT
+	Cart mobile app, paid in any supported method. It is shaped by:
+</p>
+<ul>
+	<li>The <strong>Consumer Rights Protection Act 2009</strong> (BD) — especially §38 (right against deceptive supply), §41 (against defective goods) and §44 (against false price-marking).</li>
+	<li>The <strong>Digital Commerce Operation Guidelines 2021</strong> (DCOG) — escrow / payment-handling expectations.</li>
+	<li>Our <a href="/terms/">Customer Terms</a> and the
+		<a href="/seller-terms/">Seller Agreement</a>.</li>
+</ul>
+
+<h2 id="when">2. When you qualify for a refund</h2>
+<table>
+	<tr><th>Scenario</th><th>Refund eligibility</th></tr>
+	<tr><td>You cancel before the Sub-Order is shipped</td><td>Full refund.</td></tr>
+	<tr><td>Seller cancels (out of stock, can't fulfil)</td><td>Full refund + Tk 50 inconvenience credit if cancelled after 24h.</td></tr>
+	<tr><td>Item not delivered within max ETA + 5 days</td><td>Full refund on request.</td></tr>
+	<tr><td>Item arrives damaged / wrong / counterfeit</td><td>Full refund OR free replacement.</td></tr>
+	<tr><td>Item materially different from Listing (size, colour, missing accessories)</td><td>Full refund OR partial refund (you keep it) OR replacement.</td></tr>
+	<tr><td>You change your mind (return within 7 days)</td><td>Refund of item price; you pay return shipping.</td></tr>
+	<tr><td>Failed prepaid payment, no Order placed</td><td>Authorisation reversed automatically within 5-7 days.</td></tr>
+	<tr><td>Reward points / coupon misapplied</td><td>Reverted to your account.</td></tr>
+</table>
+
+<h2 id="methods">3. Refund methods by payment type</h2>
+<table>
+	<tr><th>You paid by</th><th>Refund route</th><th>Notes</th></tr>
+	<tr><td>Cash on Delivery</td><td>bKash / Nagad of your choice</td><td>We never refund cash door-to-door; mobile-wallet is the safe + traceable channel.</td></tr>
+	<tr><td>bKash (mobile wallet)</td><td>Same bKash number</td><td>If your number changed, contact support to update.</td></tr>
+	<tr><td>Nagad (mobile wallet)</td><td>Same Nagad number</td><td>Same as bKash.</td></tr>
+	<tr><td>Visa / MasterCard / AMEX (via SSLCommerz)</td><td>Original card</td><td>Card-network rules mean we cannot redirect a card refund to another card.</td></tr>
+	<tr><td>SGT Cart Wallet (in-app credit)</td><td>Wallet</td><td>Instant. Refunds via Wallet can be requested for any payment type.</td></tr>
+	<tr><td>Reward Points used in the Order</td><td>Reverted to Points balance</td><td>Instant.</td></tr>
+</table>
+
+<h2 id="full-partial">4. Full vs. partial refund</h2>
+<p>
+	<strong>Full refund</strong> means you get back 100% of the amount you
+	paid for that item — including any VAT and the Sub-Order shipping fee
+	when the issue was the Seller's fault (damaged, wrong, counterfeit).
+</p>
+<p>
+	<strong>Partial refund</strong> is offered when:
+</p>
+<ul>
+	<li>The product is usable but materially less than promised (e.g., 1-month battery instead of 1-year) — typical settlement 20-50%.</li>
+	<li>You return an item with missing accessories (charger, manual, free gift) — the value of the missing items is deducted.</li>
+	<li>The product is returned in a condition the Seller can no longer resell — up to 30% restocking discount may be deducted, with photo evidence.</li>
+</ul>
+<p>
+	You always have the option to refuse a partial offer and escalate via
+	<a href="/dispute-resolution/">Dispute Resolution</a>.
+</p>
+
+<h2 id="timelines">5. Timeline matrix</h2>
+<table>
+	<tr><th>Step</th><th>Standard timeline</th></tr>
+	<tr><td>Approval of refund request</td><td>Instant for cancellation / Seller-cancel cases; up to 48 hours for return-based refunds.</td></tr>
+	<tr><td>Item pickup (if return required)</td><td>1-3 business days after approval.</td></tr>
+	<tr><td>Condition check by Seller / SGT QC</td><td>2-3 business days after Seller receives the item.</td></tr>
+	<tr><td>Refund initiation</td><td>Same day as condition-check approval.</td></tr>
+	<tr><td>Money lands — bKash / Nagad / Wallet</td><td>Instant to 24 hours after initiation.</td></tr>
+	<tr><td>Money lands — Visa / MasterCard / AMEX</td><td>5-10 business days after initiation (issuer-dependent).</td></tr>
+	<tr><td>Reward points reverted</td><td>Instant on initiation.</td></tr>
+</table>
+<p>
+	If a refund is "initiated" on our side but you don't see it in 10
+	business days for cards (3 days for wallets), contact
+	<a href="mailto:support@sgtcart.com">support@sgtcart.com</a> with the
+	Order number — we'll give you the bank reference so you can chase your
+	card issuer.
+</p>
+
+<h2 id="shipping-fee">6. Treatment of shipping fees</h2>
+<ul>
+	<li><strong>Seller's fault (damaged / wrong / counterfeit / not delivered):</strong>
+		Forward shipping is refunded with the item. Return shipping is free
+		(charged to the Seller).</li>
+	<li><strong>Buyer's choice (changed mind, didn't fit):</strong> Forward
+		shipping is <em>not</em> refunded. Buyer pays return shipping
+		(Tk 60-150 depending on weight and district).</li>
+	<li><strong>Multi-item Sub-Order returned partially:</strong> Forward
+		shipping is refunded proportionally to the value returned — except
+		if returning a single item leaves the cart below the free-shipping
+		threshold (we don't claw back the free-shipping benefit).</li>
+</ul>
+
+<h2 id="points-coupons">7. Reward points &amp; coupons</h2>
+<p>
+	If you used reward points to pay for an Order that is later refunded:
+</p>
+<ul>
+	<li>The points are reverted to your balance instantly.</li>
+	<li>The cash portion of the Order is refunded to your original payment method.</li>
+</ul>
+<p>
+	If a single-use coupon was used and the Order is refunded:
+</p>
+<ul>
+	<li>If the entire Order is cancelled before shipping, the coupon is restored to your account.</li>
+	<li>If the Order shipped and was later returned (full), the coupon is
+		<strong>not</strong> restored. This prevents abuse where customers
+		order, claim "changed mind", and farm the coupon repeatedly. You may
+		instead receive an equivalent value as Wallet credit if you prefer.</li>
+	<li>Bulk-pricing tier discounts apply at order time — if a return drops
+		the quantity below the tier threshold, the per-unit price for the
+		remaining items is recalculated, and the difference is debited from
+		the refund.</li>
+</ul>
+
+<h2 id="escalation">8. Escalation when a refund is denied</h2>
+<p>
+	If a Seller refuses your refund or offers an amount you consider unfair:
+</p>
+<ol>
+	<li>The case automatically enters <strong>SGT mediation</strong> after 48 hours of seller silence or upon your "I dispute this" tap. See <a href="/help/buyer-protection/">Buyer Protection</a> for the mediation procedure.</li>
+	<li>Mediator's decision is binding for fund disbursement.</li>
+	<li>If you remain unsatisfied, you may escalate via
+		<a href="/dispute-resolution/">Dispute Resolution</a> all the way
+		to CRPA §76 redressal or arbitration.</li>
+</ol>
+
+<h2 id="examples">9. Worked examples</h2>
+
+<h3>Example 1 — Damaged on arrival (Seller's fault)</h3>
+<p>
+	You order a glass jar set for Tk 850 + Tk 60 shipping = Tk 910 paid by
+	bKash. The jar arrives broken. You upload photos and request a full
+	refund.
+</p>
+<ul>
+	<li>Pickup arranged free of charge.</li>
+	<li>Seller confirms damage within 2 days.</li>
+	<li>You receive Tk 910 back on your bKash within 24 hours of confirmation.</li>
+	<li>You pay nothing.</li>
+</ul>
+
+<h3>Example 2 — Changed mind on a shirt (buyer's choice)</h3>
+<p>
+	You buy a Tk 1,200 shirt + Tk 80 shipping = Tk 1,280, paid by Visa.
+	The colour doesn't suit you. You request a return on day 5.
+</p>
+<ul>
+	<li>Pickup arranged. Return shipping Tk 90 charged at pickup (you pay the courier in cash).</li>
+	<li>Seller confirms condition.</li>
+	<li>You receive Tk 1,200 back on your card within 7-10 business days. Forward shipping (Tk 80) is not refunded.</li>
+</ul>
+
+<h3>Example 3 — Partial refund for missing accessory</h3>
+<p>
+	You buy a Bluetooth speaker for Tk 3,500 (no shipping — free-shipping
+	threshold reached). It arrives without the USB-C cable that the
+	Listing showed. You request a partial refund and keep the speaker.
+</p>
+<ul>
+	<li>Seller agrees to a Tk 350 partial refund (10% of value).</li>
+	<li>Refund routed to your SGT Cart Wallet instantly because you chose it.</li>
+</ul>
+
+{% endblock %}
+
+{% block page_faq %}
+{% for q, a in [
+	("Why does a card refund take 7-10 days but bKash is instant?",
+	 "Card refunds pass through three networks (us → SSLCommerz → card scheme → your issuing bank). Each step has its own clearing window. bKash and Nagad refunds are direct wallet-to-wallet within Bangladesh and complete much faster."),
+	("Can I split the refund — half to bKash, half to wallet?",
+	 "No, a single refund goes to one method. If you'd like Wallet credit but paid by COD, choose Wallet on the refund-method step — the original COD method is no longer available."),
+	("What if I never see the money even after 10 days?",
+	 "Email support@sgtcart.com with the Order number. We'll send you the gateway reference number and you can ask your card issuer to investigate. We are happy to coordinate."),
+	("Is VAT refunded too?",
+	 "Yes. The amount you actually paid was VAT-inclusive, and the amount refunded is also VAT-inclusive. You don't have to track it separately."),
+	("Does this policy override what a seller writes on their product page?",
+	 "Yes. Sellers cannot publish refund terms more restrictive than this Policy or the CRPA. If a seller's listing contradicts this Policy, this Policy wins.")
+] %}
+<div class="accordion-item">
+	<h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+	    data-bs-toggle="collapse" data-bs-target="#rpFaq{{ loop.index }}">{{ q }}</button></h3>
+	<div id="rpFaq{{ loop.index }}" class="accordion-collapse collapse"
+	     data-bs-parent="#docFaqAccordion">
+		<div class="accordion-body small">{{ a }}</div>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block page_related %}
+{% for href, title, desc in [
+	("/returns/", "Returns", "How to physically send items back."),
+	("/help/cancellations/", "Cancellations", "Cancel before shipment for an instant refund."),
+	("/help/buyer-protection/", "Buyer Protection", "60-day claim window with full coverage."),
+	("/dispute-resolution/", "Dispute Resolution", "Escalation ladder when a refund is denied.")
+] %}
+<div class="col-md-6"><a href="{{ href }}" class="d-block border rounded p-2 text-dark text-decoration-none">
+	<div class="ft-medium small">{{ title }}</div>
+	<div class="text-muted small">{{ desc }}</div>
+</a></div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ 'Edit' if coupon else 'New' }} Coupon{% endblock %}
+{% block heading %}{{ 'Edit' if coupon else 'New' }} Platform Coupon{% endblock %}
+{% block content %}
+
+<form method="post" class="border rounded bg-white p-4" style="max-width:780px">
+	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+	{% include '_coupon_fields.html' %}
+	<div class="mt-4">
+		<button class="btn btn-primary">Save coupon</button>
+		<a href="{{ url_for('admin.coupons') }}" class="btn btn-link">Cancel</a>
+	</div>
+</form>
+
+{% endblock %}

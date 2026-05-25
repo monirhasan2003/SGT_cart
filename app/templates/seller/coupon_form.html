@@ -1,0 +1,42 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/seller/">Seller Dashboard</a></li>
+				<li class="breadcrumb-item"><a href="{{ url_for('seller.coupons') }}">Coupons</a></li>
+				<li class="breadcrumb-item active" aria-current="page">
+					{{ 'Edit' if coupon else 'New' }}</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<div class="row justify-content-center">
+			<div class="col-lg-9">
+				<h4 class="ft-bold mb-3">{{ 'Edit Coupon' if coupon else 'New Coupon' }}</h4>
+				<form method="post" class="border rounded p-4">
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+					{% include '_coupon_fields.html' %}
+					<div class="mt-4">
+						<button class="btn btn-primary">Save coupon</button>
+						<a href="{{ url_for('seller.coupons') }}" class="btn btn-link">Cancel</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

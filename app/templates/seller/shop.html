@@ -1,0 +1,97 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/seller/">Seller Dashboard</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Shop Profile</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-xl-9 col-lg-10">
+
+				{% include 'Base/flash_messages.html' %}
+
+				<form method="post" action="{{ url_for('seller.shop') }}"
+				      enctype="multipart/form-data" class="border rounded p-4">
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+					<h4 class="ft-bold mb-1">Shop Profile</h4>
+					<p class="text-muted">This is how your store appears to customers. A good logo,
+						banner and description help your shop stand out.</p>
+
+					<div class="row g-3">
+						<div class="col-md-6">
+							<label class="mb-2">Shop Name (English) *</label>
+							<input type="text" name="shop_name_en" class="form-control"
+							       value="{{ profile.shop_name_en or '' }}" required>
+						</div>
+						<div class="col-md-6">
+							<label class="mb-2">Shop Name (Bengali)</label>
+							<input type="text" name="shop_name_bn" class="form-control"
+							       value="{{ profile.shop_name_bn or '' }}">
+						</div>
+
+						<div class="col-12">
+							<label class="mb-2">Store Description (English)</label>
+							<textarea name="description_en" class="form-control" rows="3"
+							          placeholder="Tell customers about your shop">{{ profile.description_en or '' }}</textarea>
+						</div>
+						<div class="col-12">
+							<label class="mb-2">Store Description (Bengali)</label>
+							<textarea name="description_bn" class="form-control" rows="3">{{ profile.description_bn or '' }}</textarea>
+						</div>
+
+						<div class="col-md-6">
+							<label class="mb-2">Store Logo <span class="text-slate-400">(square, JPG/PNG)</span></label>
+							<input type="file" name="logo" class="form-control" accept=".jpg,.jpeg,.png">
+							{% if profile.logo %}
+								<img src="{{ url_for('static', filename=profile.logo) }}" alt="logo"
+								     class="mt-2 rounded border" style="height:72px;width:72px;object-fit:cover;">
+							{% endif %}
+						</div>
+						<div class="col-md-6">
+							<label class="mb-2">Store Banner <span class="text-slate-400">(wide, JPG/PNG)</span></label>
+							<input type="file" name="banner" class="form-control" accept=".jpg,.jpeg,.png">
+							{% if profile.banner %}
+								<img src="{{ url_for('static', filename=profile.banner) }}" alt="banner"
+								     class="mt-2 rounded border" style="height:72px;width:100%;object-fit:cover;">
+							{% endif %}
+						</div>
+
+						<div class="col-12">
+							<button type="submit" class="btn btn-dark">Save Shop Profile</button>
+							{% if profile.is_approved %}
+								<a href="{{ url_for('storefront.store', slug=profile.slug) }}"
+								   class="btn btn-outline-dark" target="_blank">View My Store</a>
+							{% endif %}
+							<a href="/seller/" class="btn btn-outline-secondary">Back</a>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

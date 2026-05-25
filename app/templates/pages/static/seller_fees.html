@@ -1,0 +1,172 @@
+{% extends "pages/static/_layout.html" %}
+{% set page_subtitle = "Exactly what SGT Cart charges sellers — commission by category, payment-processing pass-through, VAT, optional services." %}
+
+{% block page_toc %}
+<li><a href="#commission">1. Platform commission</a></li>
+<li><a href="#payment">2. Payment-processing fees</a></li>
+<li><a href="#promotion">3. Optional promotional services</a></li>
+<li><a href="#refund">4. Refunded-order commission reversal</a></li>
+<li><a href="#vat">5. VAT collection &amp; deposit</a></li>
+<li><a href="#worked-example">6. Worked example — a Tk 1,000 sale</a></li>
+{% endblock %}
+
+{% block page_body %}
+
+<p class="lead small">
+	SGT Cart's pricing is simple: a flat platform commission per delivered
+	sale, no monthly subscription, no listing fee. Optional promotional
+	services are billed separately and only when you opt in. This page lists
+	every fee with the exact rate.
+</p>
+
+<h2 id="commission">1. Platform commission</h2>
+<p>
+	Commission is charged <strong>only on delivered Sub-Orders</strong>. Cancelled
+	or refunded Sub-Orders incur no commission. The rate depends on category:
+</p>
+<table>
+	<tr><th>Category</th><th>Commission rate</th></tr>
+	<tr><td>Default (most categories)</td><td>10.0%</td></tr>
+	<tr><td>Electronics &amp; mobiles</td><td>8.0%</td></tr>
+	<tr><td>Books &amp; stationery</td><td>5.0%</td></tr>
+	<tr><td>Fashion (clothing, shoes, accessories)</td><td>12.0%</td></tr>
+	<tr><td>Health &amp; beauty</td><td>12.0%</td></tr>
+	<tr><td>Home &amp; living</td><td>10.0%</td></tr>
+	<tr><td>Grocery (FMCG)</td><td>6.0%</td></tr>
+	<tr><td>Watches &amp; jewellery</td><td>8.0%</td></tr>
+	<tr><td>Toys &amp; baby</td><td>10.0%</td></tr>
+</table>
+<p>
+	Commission is calculated on the <strong>item subtotal</strong> (units × unit
+	price after any flash-sale discount and bulk tier), <strong>before VAT</strong>.
+	Admin may negotiate a custom rate with high-volume Sellers; the rate
+	for your shop is always visible in the Seller Center.
+</p>
+
+<h2 id="payment">2. Payment-processing fees</h2>
+<p>
+	Payment-network fees are <strong>passed through at cost</strong> — SGT Cart
+	doesn't mark them up:
+</p>
+<table>
+	<tr><th>Method</th><th>Fee (deducted from Seller's earning)</th></tr>
+	<tr><td>SSLCommerz card (Visa / MasterCard / AMEX)</td><td>2.5% of order amount</td></tr>
+	<tr><td>bKash</td><td>1.85% of order amount</td></tr>
+	<tr><td>Nagad</td><td>1.5% of order amount</td></tr>
+	<tr><td>Cash on Delivery</td><td>Tk 20 flat per Sub-Order (covers courier cash handling)</td></tr>
+	<tr><td>SGT Cart Wallet credit / Reward Points</td><td>0% — no external network involved</td></tr>
+</table>
+<p>
+	These are the rates SGT Cart pays our payment partners; they're shown
+	on every payout statement so you can reconcile.
+</p>
+
+<h2 id="promotion">3. Optional promotional services</h2>
+<p>
+	Pay only if and when you use them. All promotional fees are listed in
+	the Seller Center's <strong>Promotions</strong> tab; subject to admin
+	approval where space is limited.
+</p>
+<table>
+	<tr><th>Service</th><th>Rate</th><th>What it does</th></tr>
+	<tr><td>Sponsored search position</td><td>Tk 3-15 per click (CPC, your bid)</td><td>Surface your product above regular results for chosen keywords.</td></tr>
+	<tr><td>Homepage hero banner</td><td>Tk 5,000 / week (admin-curated)</td><td>Slot on the homepage carousel.</td></tr>
+	<tr><td>Homepage strip banner</td><td>Tk 2,500 / week</td><td>Smaller below-the-hero placement.</td></tr>
+	<tr><td>Flash-sale feature</td><td>Free for the Seller; flash-priced item gets a Tk 0 placement boost</td><td>Joining an SGT-curated flash sale.</td></tr>
+	<tr><td>Sponsored product badge</td><td>Free; admin-controlled</td><td>Editorial recommendation by SGT Cart.</td></tr>
+	<tr><td>Ranking boost (manual)</td><td>Not for sale</td><td>SGT Cart never sells higher organic ranking. Rank is rating + performance driven.</td></tr>
+</table>
+
+<h2 id="refund">4. Refunded-order commission reversal</h2>
+<p>
+	When a delivered Sub-Order is refunded later (return, dispute, Buyer
+	Protection), <strong>SGT Cart's commission is refunded too</strong> in
+	proportion to the refund. Specifically:
+</p>
+<ul>
+	<li>Full refund → 100% commission reversed.</li>
+	<li>Partial refund (e.g., 30%) → 30% of commission reversed.</li>
+	<li>The reversal appears as a negative commission line on your next payout statement.</li>
+</ul>
+<p>
+	Payment-processing fees are NOT reversed (the gateway charged us
+	regardless of refund) — they remain a cost of the original sale.
+</p>
+
+<h2 id="vat">5. VAT collection &amp; deposit</h2>
+<p>
+	Under NBR rules for online marketplaces, SGT Cart withholds VAT at
+	source on certain category sales (currently 5% for most categories)
+	and deposits it to NBR. You'll see:
+</p>
+<ul>
+	<li>The VAT amount deducted from your gross sale on each payout statement.</li>
+	<li>A monthly VAT certificate suitable for your own VAT return filing (Mushok 6.3).</li>
+	<li>An annual Form 108 / 108B equivalent for income-tax filing.</li>
+</ul>
+<p>
+	If your business is below the BIN/VAT threshold, you should mark this
+	in your Seller profile and SGT Cart will not withhold VAT — but you
+	remain responsible for any tax obligation that arises.
+</p>
+
+<h2 id="worked-example">6. Worked example — a Tk 1,000 sale</h2>
+<p>Customer pays Tk 1,000 (incl. VAT) for a fashion item, by bKash.</p>
+<table>
+	<tr><td>Gross order amount</td><td><strong>Tk 1,000.00</strong></td></tr>
+	<tr><td>Item subtotal (assuming 5% VAT-inclusive price)</td><td>Tk 952.38</td></tr>
+	<tr><td>VAT portion (5%)</td><td>Tk 47.62</td></tr>
+	<tr><td>Commission @ 12% on item subtotal</td><td>− Tk 114.29</td></tr>
+	<tr><td>bKash gateway fee @ 1.85% on Tk 1,000</td><td>− Tk 18.50</td></tr>
+	<tr><td>VAT withheld &amp; remitted to NBR</td><td>− Tk 47.62</td></tr>
+	<tr><td><strong>Net to your Wallet</strong></td><td><strong>Tk 819.59</strong></td></tr>
+</table>
+<p>
+	Same Order via COD instead of bKash would deduct Tk 20 flat instead
+	of Tk 18.50 — almost identical for this size. Card-paid Orders deduct
+	2.5% instead of 1.85%, which is Tk 6.50 more for a Tk 1,000 sale.
+</p>
+<p>
+	Your monthly payout statement breaks this down per Sub-Order so you
+	can reconcile with your accounting.
+</p>
+
+{% endblock %}
+
+{% block page_faq %}
+{% for q, a in [
+	("Is there a monthly subscription fee?",
+	 "No. SGT Cart has no monthly subscription, no listing fee, no enrollment fee. You pay only commission on delivered sales."),
+	("Can I negotiate a lower commission?",
+	 "High-volume sellers (Tk 5 lakh+ monthly GMV consistently) may negotiate a custom rate via seller-support@sgtcart.com. The rate is set per-shop and visible in your Seller Center."),
+	("Why is fashion commission higher than electronics?",
+	 "Fashion has higher return rates (~15-20%) and SGT Cart absorbs the cost of return handling, inspection, and re-shelving guidance. Electronics returns are much rarer (~3-5%), so the commission can be lower."),
+	("Does SGT Cart deposit my income tax for me?",
+	 "We do not withhold income tax — only VAT where the law requires. Income-tax filing remains your responsibility; we provide annual statements that make filing easier."),
+	("Do flash sales cost extra?",
+	 "No. You opt in to a flash sale, set the discounted price, and pay only the standard commission on the discounted price. Joining a sale is free and increases visibility.")
+] %}
+<div class="accordion-item">
+	<h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+	    data-bs-toggle="collapse" data-bs-target="#feFaq{{ loop.index }}">{{ q }}</button></h3>
+	<div id="feFaq{{ loop.index }}" class="accordion-collapse collapse"
+	     data-bs-parent="#docFaqAccordion">
+		<div class="accordion-body small">{{ a }}</div>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block page_related %}
+{% for href, title, desc in [
+	("/sell/onboarding/", "Onboarding Guide", "How to open your shop."),
+	("/seller-terms/", "Seller Agreement", "Full contractual terms."),
+	("/sell/payouts/", "Payouts", "When and how money lands in your account."),
+	("/sell/promotion-guide/", "Promotions & Advertising", "Detailed promotional options.")
+] %}
+<div class="col-md-6"><a href="{{ href }}" class="d-block border rounded p-2 text-dark text-decoration-none">
+	<div class="ft-medium small">{{ title }}</div>
+	<div class="text-muted small">{{ desc }}</div>
+</a></div>
+{% endfor %}
+{% endblock %}

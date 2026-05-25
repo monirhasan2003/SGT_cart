@@ -1,0 +1,87 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+			
+<!-- Top Breadcrubms -->
+<div class="gray py-3">
+	<div class="container">
+		<div class="row">
+			<div class="colxl-12 col-lg-12 col-md-12">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0);">Pages</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Blog Page</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Top Breadcrubms -->
+
+<!-- Blog Start -->
+<section class="middle">
+	<div class="container">
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="sec_title position-relative text-center">
+					<h2 class="off_title">Latest News</h2>
+					<h3 class="ft-bold pt-3">New Updates</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+
+			<!-- Components/Pages/blog2.html -->
+    		{% include 'Components/Pages/blog2.html' %}
+			
+		</div>
+		
+		<div class="row justify-content-center">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+				<div class="position-relative text-center">
+					<a href="javascript:void(0);" class="btn stretched-links borders">Load More Blogs<i class="lni lni-arrow-right ms-2"></i></a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>
+<!-- Blog Start -->
+
+<!-- Customer Features -->
+<section class="px-0 py-3 br-top">
+	<div class="container">
+		<div class="row">
+			
+			<!-- Components/blog-detail/features.html -->
+            {% include 'Components/blog-detail/features.html' %}
+			
+		</div>
+	</div>
+</section>
+<!-- Customer Features -->
+
+<!-- Components/Home/index/quickview.html -->
+{% include 'Components/Home/index/quickview.html' %}
+
+<!-- Components/Home/index/log.html -->
+{% include 'Components/Home/index/log.html' %}
+
+<!-- Components/Home/index/search.html -->
+{% include 'Components/Home/index/search.html' %}
+
+<!-- Components/Home/index/wishlist.html -->
+{% include 'Components/Home/index/wishlist.html' %}
+
+<!-- Components/Home/index/cart.html -->
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %} 
+
+{% endblock %}

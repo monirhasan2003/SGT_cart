@@ -1,0 +1,80 @@
+{% extends "admin/base.html" %}
+{% block title %}Payouts{% endblock %}
+{% block heading %}Payout Requests{% endblock %}
+{% block content %}
+
+<div class="panel p-3 mb-3">
+    <form method="get" class="row g-2 align-items-end">
+        <div class="col-md-3">
+            <label class="form-label small text-secondary mb-1">Status</label>
+            <select name="status" class="form-select form-select-sm">
+                <option value="">All</option>
+                <option value="requested" {{ 'selected' if status == 'requested' }}>Requested</option>
+                <option value="approved" {{ 'selected' if status == 'approved' }}>Approved</option>
+                <option value="rejected" {{ 'selected' if status == 'rejected' }}>Rejected</option>
+            </select>
+        </div>
+        <div class="col-md-5">
+            <button class="btn btn-sm btn-primary">Filter</button>
+            <a href="{{ url_for('admin.payouts') }}" class="btn btn-sm btn-outline-secondary">Reset</a>
+            {% if pending_count %}
+                <a href="{{ url_for('admin.payouts', status='requested') }}"
+                   class="btn btn-sm btn-warning">{{ pending_count }} awaiting</a>
+            {% endif %}
+        </div>
+    </form>
+
+    <form method="post" action="{{ url_for('admin.run_scheduled_payouts') }}" class="mt-2">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button class="btn btn-sm btn-outline-dark">
+            <i class="bi bi-clock-history me-1"></i>Run scheduled payouts now
+        </button>
+        <span class="small text-muted ms-2">
+            Auto-approves requests older than the configured grace period
+            (setting <code>auto_payout_min_hours</code>, default 24h).
+        </span>
+    </form>
+</div>
+
+<div class="panel p-3">
+    <table class="table table-sm align-middle mb-0">
+        <thead>
+            <tr><th>Date</th><th>Vendor</th><th>Amount</th><th>Method</th>
+                <th>Account</th><th>Status</th><th class="text-end">Actions</th></tr>
+        </thead>
+        <tbody>
+        {% for p in payouts %}
+            <tr>
+                <td class="text-secondary">{{ p.requested_at.strftime('%d %b %Y') if p.requested_at }}</td>
+                <td class="fw-semibold">{{ p.vendor.shop_name_en if p.vendor }}</td>
+                <td>৳{{ "%.2f"|format(p.amount|float) }}</td>
+                <td class="text-capitalize">{{ p.method }}</td>
+                <td class="text-secondary small">{{ p.account_detail }}</td>
+                <td>
+                    {% if p.status == 'approved' %}<span class="badge bg-success">Approved</span>
+                    {% elif p.status == 'rejected' %}<span class="badge bg-danger">Rejected</span>
+                    {% else %}<span class="badge bg-warning text-dark">Requested</span>{% endif %}
+                </td>
+                <td class="text-end text-nowrap">
+                    {% if p.status == 'requested' %}
+                        <form method="post" action="{{ url_for('admin.approve_payout', payout_id=p.id) }}" class="d-inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button class="btn btn-sm btn-success">Approve</button>
+                        </form>
+                        <form method="post" action="{{ url_for('admin.reject_payout', payout_id=p.id) }}" class="d-inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button class="btn btn-sm btn-outline-danger">Reject</button>
+                        </form>
+                    {% else %}
+                        <span class="text-secondary small">—</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="7" class="text-secondary">No payout requests.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

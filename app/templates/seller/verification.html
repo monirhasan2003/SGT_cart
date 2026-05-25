@@ -1,0 +1,118 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<!-- Top Breadcrubms -->
+<div class="gray py-3">
+	<div class="container">
+		<div class="row">
+			<div class="colxl-12 col-lg-12 col-md-12">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item"><a href="/seller/">Seller Dashboard</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Shop Verification</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Top Breadcrubms -->
+
+<section class="middle">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-xl-8 col-lg-9 col-md-12">
+
+				{% include 'Base/flash_messages.html' %}
+
+				<form method="post" action="{{ url_for('seller.verification') }}"
+				      enctype="multipart/form-data" class="border rounded p-4">
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+					<h4 class="ft-bold mb-1">Shop Verification</h4>
+					<p class="text-muted">Submit your business documents. An admin will review them
+						before approving your shop. All fields are required.</p>
+
+					<div class="row g-3">
+						<div class="col-md-6">
+							<label class="mb-2">Business Type *</label>
+							<select name="business_type" class="form-control" required>
+								<option value="">-- Select --</option>
+								{% set bt = form.get('business_type') or profile.business_type %}
+								<option value="Individual" {{ 'selected' if bt == 'Individual' }}>Individual</option>
+								<option value="Company" {{ 'selected' if bt == 'Company' }}>Company</option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<label class="mb-2">City *</label>
+							<input type="text" name="city" class="form-control" placeholder="City"
+								value="{{ form.get('city') or profile.city or '' }}" required>
+						</div>
+
+						<div class="col-12">
+							<label class="mb-2">Shop Address *</label>
+							<input type="text" name="address" class="form-control" placeholder="Full shop address"
+								value="{{ form.get('address') or profile.address or '' }}" required>
+						</div>
+
+						<div class="col-md-6">
+							<label class="mb-2">Trade License Number *</label>
+							<input type="text" name="trade_license_no" class="form-control" placeholder="Trade license no."
+								value="{{ form.get('trade_license_no') or profile.trade_license_no or '' }}" required>
+						</div>
+						<div class="col-md-6">
+							<label class="mb-2">Trade License Document * <span class="text-slate-400">(PDF/JPG/PNG)</span></label>
+							<input type="file" name="trade_license_doc" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+							{% if profile.trade_license_doc %}
+								<small class="text-success">Uploaded ✓
+									<a href="{{ url_for('static', filename=profile.trade_license_doc) }}" target="_blank">view</a>
+									— upload again to replace.</small>
+							{% endif %}
+						</div>
+
+						<div class="col-md-6">
+							<label class="mb-2">NID Number *</label>
+							<input type="text" name="nid_number" class="form-control" placeholder="National ID no."
+								value="{{ form.get('nid_number') or profile.nid_number or '' }}" required>
+						</div>
+						<div class="col-md-6">
+							<label class="mb-2">NID Document * <span class="text-slate-400">(PDF/JPG/PNG)</span></label>
+							<input type="file" name="nid_doc" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+							{% if profile.nid_doc %}
+								<small class="text-success">Uploaded ✓
+									<a href="{{ url_for('static', filename=profile.nid_doc) }}" target="_blank">view</a>
+									— upload again to replace.</small>
+							{% endif %}
+						</div>
+
+						<div class="col-12">
+							<label class="mb-2">Shop Description</label>
+							<textarea name="description_en" class="form-control" rows="3"
+								placeholder="Tell customers about your shop (optional)">{{ form.get('description_en') or profile.description_en or '' }}</textarea>
+						</div>
+
+						<div class="col-12">
+							<button type="submit" class="btn btn-dark">Submit for Review</button>
+							<a href="/seller/" class="btn btn-outline-secondary">Back to Dashboard</a>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}

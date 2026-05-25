@@ -1,0 +1,57 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Reward Points</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<div class="border rounded p-4 mb-4 text-center">
+			<div class="text-muted">Your reward points balance</div>
+			<div class="display-5 ft-bold theme-cl">{{ current_user.reward_points }}</div>
+			<div class="text-muted small">
+				Worth ৳{{ current_user.reward_points }} — redeem at checkout.
+				Earn 1 point per ৳100 on delivered orders.
+			</div>
+		</div>
+
+		<h6 class="ft-bold mb-2">Points history</h6>
+		{% if ledger %}
+		<div class="border rounded">
+			{% for e in ledger %}
+			<div class="d-flex justify-content-between p-3 border-bottom">
+				<div>
+					<span class="ft-medium">{{ e.reason or 'Adjustment' }}</span>
+					<div class="text-muted small">
+						{{ e.created_at.strftime('%d %b %Y, %H:%M') if e.created_at }}</div>
+				</div>
+				<span class="ft-bold {{ 'text-success' if e.points > 0 else 'text-danger' }}">
+					{{ '+' if e.points > 0 }}{{ e.points }}
+				</span>
+			</div>
+			{% endfor %}
+		</div>
+		{% else %}
+		<div class="border rounded p-5 text-center text-muted">
+			No points activity yet — points are credited when your orders are delivered.
+		</div>
+		{% endif %}
+
+	</div>
+</section>
+
+{% endblock %}

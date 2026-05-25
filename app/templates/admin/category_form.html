@@ -1,0 +1,68 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ 'Edit' if category else 'New' }} Category{% endblock %}
+{% block heading %}{{ 'Edit Category' if category else 'New Category' }}{% endblock %}
+{% block content %}
+
+<a href="{{ url_for('admin.categories') }}" class="btn btn-sm btn-outline-secondary mb-3">&larr; Back to Categories</a>
+
+<div class="panel p-4" style="max-width:660px;">
+    <form method="post" enctype="multipart/form-data"
+          action="{{ url_for('admin.category_edit', category_id=category.id) if category else url_for('admin.category_create') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label small">Name (English) *</label>
+                <input type="text" name="name_en" class="form-control"
+                       value="{{ form.get('name_en') or (category.name_en if category else '') }}" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label small">Name (Bengali)</label>
+                <input type="text" name="name_bn" class="form-control"
+                       value="{{ form.get('name_bn') or (category.name_bn if category else '') }}">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label small">Parent Category</label>
+                {% set sel_parent = form.get('parent_id') or (category.parent_id if category else '') %}
+                <select name="parent_id" class="form-select">
+                    <option value="">— None (top level) —</option>
+                    {% for p in parents %}
+                        <option value="{{ p.id }}" {{ 'selected' if sel_parent|string == p.id|string }}>
+                            {{ p.name_en }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label small">Sort Order</label>
+                <input type="number" name="sort_order" class="form-control"
+                       value="{{ form.get('sort_order') or (category.sort_order if category else 0) }}">
+            </div>
+
+            <div class="col-12">
+                <label class="form-label small">Category Image</label>
+                <input type="file" name="image" class="form-control" accept=".jpg,.jpeg,.png">
+                {% if category and category.image %}
+                    <img src="{{ url_for('static', filename=category.image) }}" alt=""
+                         class="mt-2 rounded border" style="height:64px;">
+                {% endif %}
+            </div>
+
+            <div class="col-12">
+                <div class="form-check">
+                    <input type="checkbox" name="is_active" id="is_active" class="form-check-input"
+                        {{ 'checked' if (form.get('is_active') if form else (category.is_active if category else True)) }}>
+                    <label for="is_active" class="form-check-label">Active (visible on the storefront)</label>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-dark">{{ 'Update' if category else 'Create' }} Category</button>
+                <a href="{{ url_for('admin.categories') }}" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

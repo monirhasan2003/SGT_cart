@@ -1,0 +1,219 @@
+{# Shared layout for legal / policy / help pages.
+
+  Variables expected from the route or page block:
+    page_title       — h1 + breadcrumb label (required)
+    page_subtitle    — short tagline shown under the title (optional)
+    page_section     — top-level category, shown above the title
+                       ("Legal", "Customer Help", "Seller Resources",
+                       "Trust & Safety", "Company") (optional)
+    page_version     — version tag like "v1.0" (optional)
+    page_reviewed_at — string like "24 May 2026" (optional; defaults below)
+    page_contact     — email like "policy@sgtcart.com" for the contact card
+                       (defaults to support@)
+
+  The page template provides:
+    {% block page_toc %}      — list of anchor links for the sticky ToC
+    {% block page_body %}     — main content sections
+    {% block page_faq %}      — FAQ accordion items (optional)
+    {% block page_related %}  — related-pages cross-link cards (optional)
+#}
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-2">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0 small">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				{% if page_section %}
+				<li class="breadcrumb-item text-secondary">{{ page_section }}</li>
+				{% endif %}
+				<li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<!-- Page header -->
+		<div class="row mb-3">
+			<div class="col-12">
+				{% if page_section %}
+				<div class="small text-muted ft-medium text-uppercase mb-1">
+					{{ page_section }}
+				</div>
+				{% endif %}
+				<h1 class="ft-bold mb-1" style="font-size:1.9rem;">{{ page_title }}</h1>
+				{% if page_subtitle %}
+				<p class="lead text-muted small mb-0">{{ page_subtitle }}</p>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="row g-4 pdp-doc-layout">
+			<!-- Sticky ToC (desktop) / accordion (mobile) -->
+			{% block page_toc_wrapper %}
+			{% if self.page_toc()|trim %}
+			<aside class="col-lg-3 d-none d-lg-block">
+				<div class="border rounded p-3 pdp-doc-toc sticky-top" style="top:80px;">
+					<div class="small ft-bold mb-2 text-uppercase text-muted">
+						On this page
+					</div>
+					<ul class="list-unstyled small mb-0">
+						{% block page_toc %}{% endblock %}
+					</ul>
+				</div>
+			</aside>
+			{% endif %}
+			{% endblock %}
+
+			<main class="{% if self.page_toc()|trim %}col-lg-9{% else %}col-12{% endif %}">
+
+				<!-- Mobile ToC accordion -->
+				{% if self.page_toc()|trim %}
+				<details class="border rounded p-2 mb-3 d-lg-none small">
+					<summary class="ft-bold">Table of contents</summary>
+					<ul class="list-unstyled mb-0 mt-2">
+						{% block page_toc_mobile %}{{ self.page_toc() }}{% endblock %}
+					</ul>
+				</details>
+				{% endif %}
+
+				<!-- Main body -->
+				<article class="pdp-doc-body">
+					{% block page_body %}{% endblock %}
+				</article>
+
+				<!-- FAQ -->
+				{% if self.page_faq()|trim %}
+				<section class="mt-5" id="faq">
+					<h2 class="ft-bold mb-3" style="font-size:1.4rem;">
+						Frequently asked questions
+					</h2>
+					<div class="accordion" id="docFaqAccordion">
+						{% block page_faq %}{% endblock %}
+					</div>
+				</section>
+				{% endif %}
+
+				<!-- Related pages -->
+				{% if self.page_related()|trim %}
+				<section class="mt-5">
+					<h2 class="ft-bold mb-3" style="font-size:1.4rem;">
+						Related pages
+					</h2>
+					<div class="row g-2">
+						{% block page_related %}{% endblock %}
+					</div>
+				</section>
+				{% endif %}
+
+				<!-- Contact card -->
+				<div class="border rounded p-3 mt-5 bg-light pdp-doc-contact">
+					<div class="d-flex align-items-center gap-2 mb-2">
+						<i class="lni lni-envelope fs-4 theme-cl"></i>
+						<h6 class="ft-bold mb-0">Still have questions?</h6>
+					</div>
+					<p class="small text-muted mb-2">
+						Reach the SGT Cart team — we usually reply within 1 business day.
+					</p>
+					<a href="mailto:{{ page_contact or 'support@sgtcart.com' }}"
+					   class="btn btn-sm btn-dark">
+						<i class="lni lni-envelope me-1"></i>{{ page_contact or 'support@sgtcart.com' }}
+					</a>
+					<a href="/contact/" class="btn btn-sm btn-outline-dark ms-1">All contact channels</a>
+				</div>
+
+				<!-- Version footer -->
+				<div class="border-top mt-4 pt-3 small text-muted pdp-doc-version">
+					<div class="d-flex flex-wrap gap-3 justify-content-between">
+						<div>
+							<strong>Version:</strong> {{ page_version or 'v1.0' }} ·
+							<strong>Last reviewed:</strong> {{ page_reviewed_at or '24 May 2026' }}
+						</div>
+						<div>
+							Drafted by SGT Cart team — informational, not legal advice.
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+</section>
+
+{# Site-wide footer (cookie banner is included inside) #}
+{% include 'Base/footer.html' %}
+
+<style>
+	.pdp-doc-toc a {
+		color: #475569; text-decoration: none;
+		padding: 3px 0; display: block; border-left: 2px solid transparent;
+		padding-left: 8px; margin-left: -8px;
+	}
+	.pdp-doc-toc a:hover, .pdp-doc-toc a.active {
+		color: #0f172a; border-left-color: #dc3545;
+	}
+	.pdp-doc-body h2 {
+		font-size: 1.3rem; font-weight: 700;
+		margin-top: 1.8rem; margin-bottom: .6rem;
+		scroll-margin-top: 90px;
+	}
+	.pdp-doc-body h3 {
+		font-size: 1.05rem; font-weight: 600;
+		margin-top: 1.2rem; margin-bottom: .4rem;
+	}
+	.pdp-doc-body p, .pdp-doc-body li { line-height: 1.7; }
+	.pdp-doc-body ul, .pdp-doc-body ol { padding-left: 1.4rem; }
+	.pdp-doc-body table {
+		font-size: .9rem; width: 100%;
+		margin: 1rem 0; border-collapse: collapse;
+	}
+	.pdp-doc-body table th, .pdp-doc-body table td {
+		border: 1px solid #e2e8f0; padding: 6px 10px; vertical-align: top;
+	}
+	.pdp-doc-body table th { background: #f8fafc; text-align: left; }
+	.pdp-doc-body blockquote {
+		border-left: 4px solid #dc3545; padding: 6px 14px;
+		background: #fef2f2; margin: 1rem 0; font-size: .92rem;
+	}
+
+	/* Print friendly — regulators / dispute evidence */
+	@media print {
+		.pdp-doc-toc, .pdp-doc-contact, .pdp-doc-related,
+		nav, footer, .breadcrumb { display: none !important; }
+		.pdp-doc-body { font-size: 12pt; }
+	}
+</style>
+
+<script>
+	// Highlight the active ToC entry as the reader scrolls.
+	(function () {
+		var links = document.querySelectorAll('.pdp-doc-toc a[href^="#"]');
+		if (!links.length) return;
+		var sections = Array.from(links).map(function (a) {
+			return document.querySelector(a.getAttribute('href'));
+		}).filter(Boolean);
+		function onScroll() {
+			var top = window.scrollY + 100;
+			var current = sections[0];
+			sections.forEach(function (s) {
+				if (s.offsetTop <= top) current = s;
+			});
+			links.forEach(function (a) { a.classList.remove('active'); });
+			var activeLink = document.querySelector(
+				'.pdp-doc-toc a[href="#' + current.id + '"]');
+			if (activeLink) activeLink.classList.add('active');
+		}
+		window.addEventListener('scroll', onScroll, { passive: true });
+		onScroll();
+	})();
+</script>
+
+{% endblock %}

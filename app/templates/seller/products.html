@@ -1,0 +1,98 @@
+{% extends "Base/base.html" %}
+
+{% block hero_content %}
+
+{% include 'Base/navbar2.html' %}
+
+<div class="gray py-3">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item"><a href="/seller/">Seller Dashboard</a></li>
+				<li class="breadcrumb-item active" aria-current="page">My Products</li>
+			</ol>
+		</nav>
+	</div>
+</div>
+
+<section class="middle">
+	<div class="container">
+
+		{% include 'Base/flash_messages.html' %}
+
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<h4 class="ft-bold mb-0">My Products <span class="text-muted fs-6">({{ products|length }})</span></h4>
+			<a href="{{ url_for('seller.product_create') }}" class="btn btn-dark">
+				<i class="lni lni-plus me-1"></i>Add New Product</a>
+		</div>
+
+		<div class="border rounded">
+			<table class="table align-middle mb-0">
+				<thead class="gray">
+					<tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th></th></tr>
+				</thead>
+				<tbody>
+				{% for p in products %}
+					<tr>
+						<td>
+							<div class="d-flex align-items-center">
+								{% if p.primary_image %}
+									<img src="{{ url_for('static', filename=p.primary_image) }}"
+									     width="48" height="48" class="rounded border me-2" style="object-fit:cover;" alt="">
+								{% else %}
+									<span class="rounded border me-2 d-inline-flex align-items-center justify-content-center"
+									      style="width:48px;height:48px;"><i class="lni lni-image text-muted"></i></span>
+								{% endif %}
+								<span class="ft-medium">{{ p.title_en }}</span>
+							</div>
+						</td>
+						<td>{{ p.category.name_en if p.category else '—' }}</td>
+						<td>
+							{% if p.discount_price %}
+								<span class="ft-medium">${{ p.discount_price }}</span>
+								<del class="text-muted small">${{ p.base_price }}</del>
+							{% else %}
+								<span class="ft-medium">${{ p.base_price }}</span>
+							{% endif %}
+						</td>
+						<td>{{ p.stock }}</td>
+						<td>
+							{% if p.status == 'published' %}<span class="badge bg-success">Published</span>
+							{% elif p.status == 'pending' %}<span class="badge bg-warning text-dark">Pending</span>
+							{% elif p.status == 'rejected' %}<span class="badge bg-danger">Rejected</span>
+							{% else %}<span class="badge bg-secondary">Draft</span>{% endif %}
+						</td>
+						<td class="text-nowrap">
+							<a href="{{ url_for('seller.product_edit', product_id=p.id) }}"
+							   class="btn btn-sm btn-outline-dark">Manage</a>
+							<form method="post" action="{{ url_for('seller.product_delete', product_id=p.id) }}"
+							      class="d-inline" onsubmit="return confirm('Delete this product?');">
+								<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+								<button class="btn btn-sm btn-outline-danger">Delete</button>
+							</form>
+						</td>
+					</tr>
+				{% else %}
+					<tr><td colspan="6" class="text-muted text-center py-4">
+						No products yet. Click <strong>Add New Product</strong> to list your first item.
+					</td></tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<a href="/seller/" class="btn btn-outline-secondary mt-3">&larr; Back to Dashboard</a>
+
+	</div>
+</section>
+
+{% include 'Components/Home/index/quickview.html' %}
+{% include 'Components/Home/index/log.html' %}
+{% include 'Components/Home/index/search.html' %}
+{% include 'Components/Home/index/wishlist.html' %}
+{% include 'Components/Home/index/cart.html' %}
+
+{% include 'Base/footer.html' %}
+
+{% endblock %}
