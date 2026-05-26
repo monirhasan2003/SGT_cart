@@ -1,5 +1,5 @@
 from flask import Blueprint, session, render_template, jsonify, request, redirect, url_for, flash
-from flask_login import current_user
+from flask_login import current_user, login_required
 from slugify import slugify
 from flask import render_template, session
 from app import csrf
@@ -165,6 +165,7 @@ def home_17():
 
 
 @main.route('/wishlist/')
+@login_required
 def wishlist():
     wishlist = session.get('wishlist', [])
     subtotal = sum(item['price'] * item['quantity'] for item in wishlist)

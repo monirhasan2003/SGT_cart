@@ -27,6 +27,13 @@ echo "[2/3] Updating per-locale .po files..."
 "$PYBABEL" update -i messages.pot -d app/translations
 
 echo "[3/3] Compiling .po -> .mo..."
+# `pybabel update` marks lookalike entries `fuzzy`, which `compile` then
+# silently skips. Strip those flags so every confirmed translation gets
+# into the .mo file. Re-add manually after running `update` if you want
+# to review fuzzy matches before publishing.
+for po in app/translations/*/LC_MESSAGES/messages.po; do
+    sed -i 's/^#, fuzzy$//; s/^#, fuzzy, /#, /' "$po"
+done
 "$PYBABEL" compile -d app/translations
 
 echo "Done. Open app/translations/bn/LC_MESSAGES/messages.po and fill in msgstr entries."
