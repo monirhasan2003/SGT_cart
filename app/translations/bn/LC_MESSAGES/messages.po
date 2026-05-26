@@ -1190,7 +1190,7 @@ msgstr "স্ট্যাটাস:"
 #: app/templates/pages/order-detail.html:84
 #: app/templates/pages/review-form.html:31
 msgid "Write a review"
-msgstr "একটি Review লিখুন"
+msgstr "একটি রিভিউ লিখুন"
 
 #: app/templates/pages/order-detail.html:93
 msgid "Items subtotal"
@@ -1276,7 +1276,7 @@ msgstr "%(n)s টি প্রশ্নের উত্তর"
 
 #: app/templates/pages/product.html:134
 msgid "Brand:"
-msgstr "Brand:"
+msgstr "ব্র্যান্ড:"
 
 #: app/templates/pages/product.html:155 app/templates/pages/product.html:336
 msgid "Free Shipping"
@@ -1338,7 +1338,7 @@ msgstr "রং:"
 
 #: app/templates/pages/product.html:244
 msgid "Size:"
-msgstr "Size:"
+msgstr "সাইজ:"
 
 #: app/templates/pages/product.html:273
 msgid "Add to Cart"
@@ -1362,11 +1362,11 @@ msgstr "একই শহরের বিক্রেতা — দ্রুত d
 
 #: app/templates/pages/product.html:306
 msgid "Deliver to"
-msgstr "Delivery-র জন্য"
+msgstr "ডেলিভারির জন্য"
 
 #: app/templates/pages/product.html:312
 msgid "Set location"
-msgstr "Location সেট করুন"
+msgstr "লোকেশন সেট করুন"
 
 #: app/templates/pages/product.html:318
 msgid "Estimated"
@@ -1379,11 +1379,11 @@ msgstr "%(a)s-%(b)s দিন"
 
 #: app/templates/pages/product.html:327
 msgid "Shipping fee"
-msgstr "Shipping fee"
+msgstr "শিপিং ফি"
 
 #: app/templates/pages/product.html:332
 msgid "Available"
-msgstr "Available"
+msgstr "উপলব্ধ"
 
 #: app/templates/pages/product.html:336
 #, python-format
@@ -1392,7 +1392,7 @@ msgstr "Free shipping-এর জন্য আরও ৳%(n)s যোগ করু
 
 #: app/templates/pages/product.html:343
 msgid "Return policy"
-msgstr "Return policy"
+msgstr "রিটার্ন পলিসি"
 
 #: app/templates/pages/product.html:345
 #, python-format
@@ -1405,7 +1405,7 @@ msgstr "ফেরতযোগ্য নয়"
 
 #: app/templates/pages/product.html:349
 msgid "Warranty"
-msgstr "Warranty"
+msgstr "ওয়ারেন্টি"
 
 #: app/templates/pages/product.html:357
 msgid "Avoiding Jumma / Maghrib delivery"
@@ -1417,7 +1417,7 @@ msgstr "বিক্রেতা"
 
 #: app/templates/pages/product.html:388
 msgid "Mall"
-msgstr "Mall"
+msgstr "মল"
 
 #: app/templates/pages/product.html:392
 msgid "KYC verified by SGT"
@@ -1429,11 +1429,11 @@ msgstr "SGT-দ্বারা ভেরিফাইড"
 
 #: app/templates/pages/product.html:401
 msgid "Seller rating"
-msgstr "Seller rating"
+msgstr "সেলার রেটিং"
 
 #: app/templates/pages/product.html:407
 msgid "No ratings yet"
-msgstr "এখনো কোনো rating নেই"
+msgstr "এখনো কোনো রেটিং নেই"
 
 #: app/templates/pages/product.html:413
 msgid "Avg delivery"
@@ -1485,15 +1485,15 @@ msgstr "দ্রুত প্রশ্ন:"
 
 #: app/templates/pages/product.html:505
 msgid "Verification"
-msgstr "Verification"
+msgstr "ভেরিফিকেশন"
 
 #: app/templates/pages/product.html:511
 msgid "Trade License Verified"
-msgstr "Trade License Verified"
+msgstr "ট্রেড লাইসেন্স ভেরিফাইড"
 
 #: app/templates/pages/product.html:520
 msgid "NID Verified"
-msgstr "NID Verified"
+msgstr "NID ভেরিফাইড"
 
 #: app/templates/pages/product.html:532
 msgid "Why buy from this seller?"
@@ -1557,7 +1557,7 @@ msgstr "App download QR"
 
 #: app/templates/pages/product.html:592
 msgid "Scan to download"
-msgstr "Download করতে Scan করুন"
+msgstr "ডাউনলোড করতে স্ক্যান করুন"
 
 #: app/templates/pages/product.html:604
 msgid "Specifications"
@@ -1646,11 +1646,11 @@ msgstr "Check"
 
 #: app/templates/pages/product.html:771
 msgid "Bulk Pricing"
-msgstr "Bulk Pricing"
+msgstr "বাল্ক প্রাইসিং"
 
 #: app/templates/pages/product.html:775
 msgid "Unit"
-msgstr "Unit"
+msgstr "ইউনিট"
 
 #: app/templates/pages/product.html:775
 msgid "Save"
@@ -1671,7 +1671,7 @@ msgstr "এই পণ্য সম্পর্কে public-ভাবে প্�
 
 #: app/templates/pages/product.html:813
 msgid "Ask"
-msgstr "জিজ্ঞাসা করুন"
+msgstr "জিজ্ঞাসা"
 
 #: app/templates/pages/product.html:815
 msgid "Please don't share phone numbers — they'll be removed."
@@ -1704,7 +1704,7 @@ msgstr "Helpful হিসেবে চিহ্নিত করুন"
 
 #: app/templates/pages/product.html:866
 msgid "Helpful"
-msgstr "Helpful"
+msgstr "সাহায্যকর"
 
 #: app/templates/pages/product.html:881
 msgid "No answers yet."
@@ -1716,7 +1716,7 @@ msgstr "একটি উত্তর লিখুন…"
 
 #: app/templates/pages/product.html:893
 msgid "Reply"
-msgstr "Reply"
+msgstr "উত্তর"
 
 #: app/templates/pages/product.html:901
 msgid "No questions yet — be the first to ask."
@@ -1795,7 +1795,7 @@ msgstr "customer photo"
 
 #: app/templates/pages/product.html:1061
 msgid "All stars"
-msgstr "সব stars"
+msgstr "সব স্টার"
 
 #: app/templates/pages/product.html:1089
 msgid "Verified Purchase"
@@ -1815,7 +1815,7 @@ msgstr "এই filter-এর সাথে কোনো review মেলেনি
 
 #: app/templates/pages/product.html:1141
 msgid "Clear filter"
-msgstr "Filter সরান"
+msgstr "ফিল্টার সরান"
 
 #: app/templates/pages/product.html:1174
 msgid "Similar Products"
@@ -1827,7 +1827,7 @@ msgstr "কাস্টমাররা আরও দেখেছেন"
 
 #: app/templates/pages/product.html:1337
 msgid "Ended"
-msgstr "শেষ হয়েছে"
+msgstr "শেষ"
 
 #: app/templates/pages/product.html:1342
 msgid "Ends in"
@@ -1835,7 +1835,7 @@ msgstr "শেষ হবে"
 
 #: app/templates/pages/product.html:1364
 msgid "Copied!"
-msgstr "Copy হয়েছে!"
+msgstr "কপি হয়েছে!"
 
 #: app/templates/pages/product.html:1380
 msgid "View More"
