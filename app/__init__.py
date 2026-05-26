@@ -189,11 +189,11 @@ def create_app(config_name=None):
     from .blueprints.review import review as review_blueprint
     app.register_blueprint(review_blueprint)
 
-    from .blueprints.pages import pages as pages_blueprint
-    app.register_blueprint(pages_blueprint)
-
-    from .blueprints.legal import legal as legal_blueprint
-    app.register_blueprint(legal_blueprint)
+    # Wave-1 polished templates have been migrated to the StaticPage DB
+    # table (see `flask seed-wave1-pages`). The hardcoded routes in
+    # `pages.py` and `legal.py` are no longer registered — `static_pages`
+    # catch-all serves all 19 slugs (and is bilingual, admin-editable).
+    # The modules stay on disk as reference; can be removed later.
 
     # REST API (JSON, JWT) — CSRF does not apply to token-authenticated APIs.
     from .blueprints.api import api_v1 as api_blueprint

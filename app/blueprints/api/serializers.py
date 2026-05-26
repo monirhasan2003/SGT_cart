@@ -70,7 +70,10 @@ def product_card_json(product):
         "rating": float(product.rating_avg or 0),
         "rating_count": product.rating_count or 0,
         "vendor": (
-            {"name": product.vendor.shop_name_en, "slug": product.vendor.slug}
+            {"name": product.vendor.localized_shop_name,
+             "name_en": product.vendor.shop_name_en,
+             "name_bn": product.vendor.shop_name_bn,
+             "slug": product.vendor.slug}
             if product.vendor else None
         ),
     }
@@ -125,6 +128,29 @@ def address_json(a):
     }
 
 
+def static_page_json(page, detail=True):
+    """Footer / policy page from the StaticPage table — bilingual fields
+    resolve to the active locale via localized_* properties."""
+    data = {
+        "slug": page.slug,
+        "title": page.localized_title,
+        "subtitle": page.localized_subtitle,
+        "section": page.localized_section,
+        "contact_email": page.contact_email,
+        "version": page.version,
+    }
+    if detail:
+        data.update({
+            "body_html": page.localized_body_html,
+            "toc": page.toc_items,
+            "faq": page.faq_items,
+            "related": page.related_items,
+            "reviewed_at": (page.reviewed_at.isoformat()
+                            if page.reviewed_at else None),
+        })
+    return data
+
+
 def order_json(order, detail=False):
     data = {
         "order_number": order.order_number,
@@ -149,7 +175,7 @@ def order_json(order, detail=False):
         data["suborders"] = [
             {
                 "id": s.id,
-                "vendor": s.vendor.shop_name_en if s.vendor else None,
+                "vendor": s.vendor.localized_shop_name if s.vendor else None,
                 "status": s.status,
                 "subtotal": float(s.subtotal),
                 "items": [

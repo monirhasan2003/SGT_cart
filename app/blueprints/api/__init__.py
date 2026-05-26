@@ -24,4 +24,5 @@ from . import chat          # noqa: E402,F401
 from . import reviews       # noqa: E402,F401
 from . import coupons       # noqa: E402,F401
 from . import notifications # noqa: E402,F401
+from . import static_pages  # noqa: E402,F401
 from . import docs          # noqa: E402,F401

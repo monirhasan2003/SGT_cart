@@ -593,6 +593,184 @@ def register_cli(app):
         n = ai_summary_service.refresh_all_published()
         click.echo(f"  Refreshed AI summaries for {n} published product(s).")
 
+    @app.cli.command("export-arb")
+    @click.option("--out-dir", default="flutter_arb",
+                  help="Where to write app_en.arb and app_bn.arb.")
+    def export_arb(out_dir):
+        """Export web UI translations as Flutter ARB files.
+
+        Reads the Babel catalogs in app/translations/{en,bn}/ and emits
+        ARB-format JSON files Flutter can pick up via the `flutter
+        gen-l10n` pipeline. Web's `messages.po` stays the single source
+        of truth — Bangla strings written for the website are reused
+        verbatim by the mobile apps so no translation work is duplicated.
+
+        ARB conversion notes:
+        - Each msgid becomes a stable snake_case key.
+        - Python `%(name)s` placeholders are rewritten as `{name}` so the
+          Flutter intl package can substitute them.
+        - The English file uses msgids as values.
+        """
+        import json as _json
+        import re
+        import pathlib
+
+        try:
+            from babel.messages.pofile import read_po
+        except ImportError:
+            click.echo("Babel not installed — run `pip install Babel`.")
+            return
+
+        out = pathlib.Path(out_dir)
+        out.mkdir(parents=True, exist_ok=True)
+
+        # Stable, predictable ARB key per msgid.
+        def _slug(text):
+            s = re.sub(r"[^a-zA-Z0-9]+", "_", text.strip().lower())
+            s = s.strip("_")
+            return s[:60] or "x"
+
+        def _arb_value(text):
+            # %(name)s -> {name}; %%  -> % literal
+            return re.sub(r"%\((\w+)\)s", r"{\1}", text or "").replace("%%", "%")
+
+        # Read both catalogs.
+        en_catalog_path = pathlib.Path(
+            "app/translations/en/LC_MESSAGES/messages.po")
+        bn_catalog_path = pathlib.Path(
+            "app/translations/bn/LC_MESSAGES/messages.po")
+
+        if not bn_catalog_path.exists():
+            click.echo("  Bangla .po file missing — run pybabel update first.")
+            return
+
+        with bn_catalog_path.open("rb") as f:
+            bn_catalog = read_po(f)
+
+        en_arb = {"@@locale": "en"}
+        bn_arb = {"@@locale": "bn"}
+
+        used_keys = {}
+        for msg in bn_catalog:
+            msgid = msg.id
+            if not msgid or not isinstance(msgid, str):
+                continue
+            key = _slug(msgid)
+            # Disambiguate collisions.
+            if key in used_keys and used_keys[key] != msgid:
+                suffix = 2
+                while f"{key}_{suffix}" in used_keys:
+                    suffix += 1
+                key = f"{key}_{suffix}"
+            used_keys[key] = msgid
+
+            # Detect placeholders for metadata.
+            placeholders = re.findall(r"\{(\w+)\}", _arb_value(msgid))
+
+            en_arb[key] = _arb_value(msgid)
+            bn_arb[key] = _arb_value(msg.string) if msg.string else _arb_value(msgid)
+
+            if placeholders:
+                meta = {"placeholders": {p: {"type": "String"} for p in placeholders}}
+                en_arb[f"@{key}"] = meta
+
+        (out / "app_en.arb").write_text(
+            _json.dumps(en_arb, ensure_ascii=False, indent=2),
+            encoding="utf-8")
+        (out / "app_bn.arb").write_text(
+            _json.dumps(bn_arb, ensure_ascii=False, indent=2),
+            encoding="utf-8")
+
+        click.echo(
+            f"  Wrote {len(en_arb) - 1} string(s) -> {out}/app_en.arb + app_bn.arb"
+        )
+
+    @app.cli.command("seed-wave1-pages")
+    @click.option("--overwrite", is_flag=True,
+                  help="Replace existing pages already in the DB.")
+    def seed_wave1_pages(overwrite):
+        """Seed the 19 Wave-1 polished footer pages (terms, privacy,
+        seller-terms, etc.) into the StaticPage table, both EN and BN.
+
+        Reads `app/wave1_content.py` for English content and the four
+        per-group `app/wave1_content_bn_{a,b,c,d}.py` modules for the
+        Bangla version. Idempotent — only writes the Bangla side once
+        unless --overwrite is passed.
+        """
+        import json as _json
+        from datetime import datetime as _dt
+        from app.models.static_page import StaticPage
+        from app.wave1_content import WAVE1_PAGES
+
+        # Load all four BN content groups.
+        bn_combined = {}
+        for suffix in ("a", "b", "c", "d"):
+            try:
+                mod = __import__(
+                    f"app.wave1_content_bn_{suffix}",
+                    fromlist=[f"WAVE1_BN_{suffix.upper()}"],
+                )
+                group = getattr(mod, f"WAVE1_BN_{suffix.upper()}")
+                bn_combined.update(group)
+            except (ImportError, AttributeError) as exc:
+                click.echo(f"  ! Skipping bn group {suffix}: {exc}")
+
+        added = updated = skipped = bn_filled = 0
+        for entry in WAVE1_PAGES:
+            slug = entry["slug"]
+            row = StaticPage.query.filter_by(slug=slug).first()
+            is_new = row is None
+
+            if row is not None and not overwrite:
+                skipped += 1
+            else:
+                if is_new:
+                    row = StaticPage(slug=slug)
+                    db.session.add(row)
+                    added += 1
+                else:
+                    updated += 1
+                row.title = entry["title"]
+                row.subtitle = entry.get("subtitle")
+                row.section = entry.get("section", "Misc")
+                row.contact_email = entry.get(
+                    "contact_email", "support@sgtcart.com")
+                row.body_html = entry["body_html"]
+                row.toc_json = _json.dumps(
+                    entry.get("toc", []), ensure_ascii=False)
+                row.faq_json = _json.dumps(
+                    entry.get("faq", []), ensure_ascii=False)
+                row.related_json = _json.dumps(
+                    entry.get("related", []), ensure_ascii=False)
+                row.version = entry.get("version", "v1.0")
+                row.reviewed_at = _dt.utcnow()
+                row.is_published = True
+                row.sort_order = entry.get("sort_order", 500)
+
+            # Always fill Bangla side when available and missing (or
+            # --overwrite). Doesn't require the EN side to be touched.
+            bn = bn_combined.get(slug)
+            if bn and (overwrite or not row.title_bn):
+                row.title_bn = bn.get("title_bn")
+                row.subtitle_bn = bn.get("subtitle_bn")
+                row.section_bn = bn.get("section_bn")
+                row.body_html_bn = bn.get("body_html_bn")
+                if "toc_bn" in bn:
+                    row.toc_json_bn = _json.dumps(
+                        bn["toc_bn"], ensure_ascii=False)
+                if "faq_bn" in bn:
+                    row.faq_json_bn = _json.dumps(
+                        bn["faq_bn"], ensure_ascii=False)
+                if "related_bn" in bn:
+                    row.related_json_bn = _json.dumps(
+                        bn["related_bn"], ensure_ascii=False)
+                bn_filled += 1
+        db.session.commit()
+        click.echo(
+            f"  Wave-1 pages — {added} added, {updated} updated, "
+            f"{skipped} skipped, {bn_filled} Bangla translation(s) seeded."
+        )
+
     @app.cli.command("seed-bangla-content")
     def seed_bangla_content():
         """Fill name_bn / title_bn on demo data so the bilingual site

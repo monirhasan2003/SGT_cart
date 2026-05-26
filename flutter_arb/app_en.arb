@@ -1,0 +1,914 @@
+{
+  "@@locale": "en",
+  "sgt_cart_uses": "SGT Cart uses",
+  "essential_cookies": "essential cookies",
+  "to_keep_you_signed_in_and_your_cart_working_we_d_also_like_t": "to keep you signed in and your cart working. We'd also like to set optional analytics cookies to help us improve the site. Read our",
+  "cookie_policy": "Cookie Policy",
+  "and": "and",
+  "privacy_policy": "Privacy Policy",
+  "necessary_only": "Necessary only",
+  "accept_all": "Accept all",
+  "back_to_top": "Back to top",
+  "it_s_my_birthday": "It's my birthday!",
+  "close": "Close",
+  "mirpur_dhaka_1216": "Mirpur, Dhaka 1216",
+  "bangladesh": "Bangladesh",
+  "facebook": "Facebook",
+  "youtube": "YouTube",
+  "instagram": "Instagram",
+  "buy": "Buy",
+  "help_center": "Help Center",
+  "how_to_order": "How to Order",
+  "payment_methods": "Payment Methods",
+  "shipping_amp_delivery": "Shipping &amp; Delivery",
+  "returns": "Returns",
+  "refund_policy": "Refund Policy",
+  "cancellations": "Cancellations",
+  "buyer_protection": "Buyer Protection",
+  "sell": "Sell",
+  "sell_on_sgt_cart": "Sell on SGT Cart",
+  "onboarding_guide": "Onboarding Guide",
+  "fees_amp_commission": "Fees &amp; Commission",
+  "payouts": "Payouts",
+  "listing_guidelines": "Listing Guidelines",
+  "prohibited_items": "Prohibited Items",
+  "seller_protection": "Seller Protection",
+  "code_of_conduct": "Code of Conduct",
+  "company": "Company",
+  "about_sgt_cart": "About SGT Cart",
+  "contact_us": "Contact Us",
+  "careers": "Careers",
+  "newsroom": "Newsroom",
+  "sustainability": "Sustainability",
+  "faq": "FAQ",
+  "open_support_ticket": "Open Support Ticket",
+  "legal": "Legal",
+  "customer_terms": "Customer Terms",
+  "seller_agreement": "Seller Agreement",
+  "ip_policy": "IP Policy",
+  "dispute_resolution": "Dispute Resolution",
+  "accessibility": "Accessibility",
+  "governing_law": "Governing Law",
+  "trust": "Trust",
+  "trust_amp_safety": "Trust &amp; Safety",
+  "transparency": "Transparency",
+  "report_illegal": "Report Illegal",
+  "anti_counterfeit": "Anti-Counterfeit",
+  "security": "Security",
+  "cod": "COD",
+  "card": "Card",
+  "smart_global_trade_cart_sgt_cart": "Smart Global Trade Cart (SGT Cart)",
+  "all_rights_reserved": "All rights reserved.",
+  "ssl_secure": "SSL Secure",
+  "pci_via_sslcommerz": "PCI via SSLCommerz",
+  "bd_registered": "BD Registered",
+  "welcome_to_sgt_cart": "Welcome to SGT Cart —",
+  "browse_today_s_flash_deals": "browse today's flash deals",
+  "language": "Language",
+  "english": "English",
+  "wishlist": "Wishlist",
+  "my_account": "My Account",
+  "login_signup": "Login / Signup",
+  "search_products_brands_categories": "Search products, brands, categories…",
+  "search_by_voice_speak_your_query": "Search by voice — speak your query",
+  "search_by_image_upload_a_photo": "Search by image — upload a photo",
+  "voice_search_needs_chrome_edge_or_safari": "Voice search needs Chrome, Edge or Safari",
+  "voice_search_needs_chrome_edge_or_safari_2": "Voice search needs Chrome, Edge or Safari.",
+  "listening_speak_your_search": "Listening… speak your search.",
+  "could_not_start_voice": "Could not start voice — ",
+  "heard": "Heard: ",
+  "microphone_permission_denied_allow_it_in_the_browser_address": "Microphone permission denied — allow it in the browser address bar.",
+  "voice_search_blocked_by_the_browser": "Voice search blocked by the browser.",
+  "didn_t_hear_anything_tap_the_mic_and_try_again": "Didn't hear anything — tap the mic and try again.",
+  "no_microphone_found": "No microphone found.",
+  "voice_recognition_needs_internet": "Voice recognition needs internet.",
+  "voice_error": "Voice error: ",
+  "notifications": "Notifications",
+  "home": "Home",
+  "shop": "Shop",
+  "categories": "Categories",
+  "flash_sales": "Flash Sales",
+  "sell_on_sgt": "Sell on SGT",
+  "help": "Help",
+  "about_us": "About Us",
+  "contact": "Contact",
+  "faqs": "FAQs",
+  "shipping_info": "Shipping Info",
+  "return_policy": "Return Policy",
+  "terms_amp_conditions": "Terms &amp; Conditions",
+  "access_denied_sgt_cart": "Access Denied — SGT Cart",
+  "access_denied": "Access Denied",
+  "this_area_requires_a_different_account_type": "This area requires a different account type.",
+  "you_are_signed_in_as_name_s_role_s_the_admin_panel_needs_an_": "You are signed in as {name} ({role}). The Admin Panel needs an admin account — please log out and sign in with your admin account.",
+  "@you_are_signed_in_as_name_s_role_s_the_admin_panel_needs_an_": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "please_log_in_with_an_account_that_has_access": "Please log in with an account that has access.",
+  "log_out": "Log Out",
+  "login": "Login",
+  "go_home": "Go Home",
+  "page": "Page",
+  "error_page": "Error Page",
+  "404_page_not_found": "404. Page not found.",
+  "sorry_we_couldn_t_find_the_page_you_where_looking_for_we_sug": "Sorry, we couldn't find the page you where looking for. We suggest that you return to home page.",
+  "go_to_home_page": "Go To Home Page",
+  "sponsored": "Sponsored",
+  "dashboard": "Dashboard",
+  "addresses": "Addresses",
+  "dashboard_navigation": "Dashboard Navigation",
+  "my_order": "My Order",
+  "profile_info": "Profile Info",
+  "payment_method": "Payment Method",
+  "my_addresses": "My Addresses",
+  "add_new_address": "Add New Address",
+  "address": "Address",
+  "default": "Default",
+  "edit": "Edit",
+  "delete_this_address": "Delete this address?",
+  "delete": "Delete",
+  "phone": "Phone:",
+  "set_as_default": "Set as default",
+  "you_have_no_saved_addresses_add_one_for_faster_checkout": "You have no saved addresses. Add one for faster checkout.",
+  "cart": "Cart",
+  "checkout": "Checkout",
+  "delivery_address": "Delivery Address",
+  "add_new": "+ Add New",
+  "you_have_no_saved_address": "You have no saved address.",
+  "add_one": "Add one",
+  "to_continue": "to continue.",
+  "your_items": "Your Items",
+  "sold_by_name_s": "Sold by {name}",
+  "@sold_by_name_s": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "order_summary": "Order Summary",
+  "subtotal": "Subtotal",
+  "shipping": "Shipping",
+  "n_s_seller": "{n} seller",
+  "@n_s_seller": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "coupon": "Coupon",
+  "remove": "remove",
+  "coupon_code": "Coupon code",
+  "apply": "Apply",
+  "use_my_n_s_reward_points": "Use my {n} reward points",
+  "@use_my_n_s_reward_points": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "n_s_off": "৳{n} off",
+  "@n_s_off": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "total": "Total",
+  "cash_on_delivery": "Cash on Delivery",
+  "pay_when_the_order_arrives": "Pay when the order arrives.",
+  "online_payment": "Online Payment",
+  "card_bkash_nagad_more_via_sslcommerz": "Card, bKash, Nagad & more via SSLCommerz.",
+  "place_order": "Place Order",
+  "support": "Support",
+  "complete_order": "Complete Order",
+  "your_order_is_completed": "Your Order is Completed!",
+  "your_order": "Your order",
+  "has_been_completed_your_order_details_are_shown_for_your_per": "has been completed. Your order details are shown for your personal accont.",
+  "track_your_orders": "Track Your Orders",
+  "welcome_back_name_s": "Welcome back, {name}!",
+  "@welcome_back_name_s": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "manage_your_orders_wishlist_addresses_and_profile_from_here": "Manage your orders, wishlist, addresses and profile from here.",
+  "my_orders": "My Orders",
+  "track_and_review": "Track and review",
+  "saved_items": "Saved items",
+  "delivery_addresses": "Delivery addresses",
+  "details_password": "Details & password",
+  "messages": "Messages",
+  "sellers_sgt_support": "Sellers & SGT Support",
+  "my_reviews": "My Reviews",
+  "rate_delivered_items": "Rate delivered items",
+  "reward_points": "Reward Points",
+  "earn_redeem": "Earn & redeem",
+  "refer_earn": "Refer & Earn",
+  "invite_friends": "Invite friends",
+  "recommended_for_you": "Recommended for you",
+  "edit_address": "Edit Address",
+  "new_address": "New Address",
+  "label": "Label",
+  "home_office": "(Home / Office)",
+  "full_name": "Full Name",
+  "phone_number": "Phone Number",
+  "postal_code": "Postal Code",
+  "house_road_etc": "House, road, etc.",
+  "area": "Area",
+  "city": "City",
+  "district": "District",
+  "set_as_default_delivery_address": "Set as default delivery address",
+  "avoid_delivery_during_jumma_maghrib": "Avoid delivery during Jumma / Maghrib",
+  "update_address": "Update Address",
+  "save_address": "Save Address",
+  "cancel": "Cancel",
+  "limited_time_deals_grab_them_before_the_timer_runs_out": "Limited-time deals — grab them before the timer runs out.",
+  "search_within_flash_deals": "Search within flash deals",
+  "search_by_product_name": "Search by product name…",
+  "min_price": "Min price (৳)",
+  "max_price": "Max price (৳)",
+  "filter": "Filter",
+  "by": "by",
+  "marketplace_wide_deal": "Marketplace-wide deal",
+  "ends_date_s": "Ends {date}",
+  "@ends_date_s": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "no_flash_deals_match_your_filters": "No flash deals match your filters —",
+  "clear_them": "clear them",
+  "no_flash_sales_running_right_now_check_back_soon": "No flash sales running right now — check back soon!",
+  "pages": "Pages",
+  "forgot_password": "Forgot Password",
+  "email": "Email",
+  "your_account_email": "Your account email",
+  "we_ll_email_you_a_one_time_code_to_reset_your_password": "We'll email you a one-time code to reset your password.",
+  "send_reset_code": "Send Reset Code",
+  "remember_your_password": "Remember your password ?",
+  "sign_in": "Sign in",
+  "verified_sellers": "Verified sellers",
+  "7_day_return": "7-day return",
+  "secure_payment": "Secure payment",
+  "ends_date_s_2": "ends {date}",
+  "@ends_date_s_2": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "view_all_flash_deals": "View all flash deals →",
+  "best_sellers": "Best Sellers",
+  "browse_shop": "Browse shop →",
+  "new_arrivals": "New Arrivals",
+  "top_rated": "Top Rated",
+  "just_for_you": "Just for you",
+  "featured_stores": "Featured Stores",
+  "sell_on_sgt_2": "Sell on SGT →",
+  "login_as": "Login As",
+  "customer": "Customer",
+  "seller": "Seller",
+  "email_address": "Email address",
+  "password": "Password",
+  "remember_me": "Remember Me",
+  "lost_your_password": "Lost Your Password?",
+  "don_t_have_an_account": "Don't have an account ?",
+  "sign_up": "Sign Up",
+  "new_conversation": "New conversation",
+  "conversation": "Conversation",
+  "you_have_no_conversations_yet": "You have no conversations yet.",
+  "start_a_conversation": "Start a conversation",
+  "order": "Order",
+  "date": "Date",
+  "items": "Items",
+  "payment": "Payment",
+  "paid": "Paid",
+  "failed": "Failed",
+  "pending": "Pending",
+  "view": "View",
+  "you_have_no_orders_yet": "You have no orders yet.",
+  "start_shopping": "Start shopping",
+  "waiting_for_your_review_count_s": "Waiting for your review ({count})",
+  "@waiting_for_your_review_count_s": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "write_review": "Write review",
+  "nothing_waiting_reviews_open_once_an_order_is_delivered": "Nothing waiting — reviews open once an order is delivered.",
+  "your_reviews_count_s": "Your reviews ({count})",
+  "@your_reviews_count_s": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "delete_this_review": "Delete this review?",
+  "you_haven_t_written_any_reviews_yet": "You haven't written any reviews yet.",
+  "mark_all_as_read": "Mark all as read",
+  "new": "new",
+  "you_have_no_notifications_yet": "You have no notifications yet.",
+  "order_num_s": "Order {num}",
+  "@order_num_s": {
+    "placeholders": {
+      "num": {
+        "type": "String"
+      }
+    }
+  },
+  "placed_on_date_s": "Placed on {date}",
+  "@placed_on_date_s": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "shipping_address": "Shipping Address",
+  "method": "Method:",
+  "status": "Status:",
+  "write_a_review": "Write a review",
+  "items_subtotal": "Items subtotal",
+  "tracking": "Tracking",
+  "continue_shopping": "Continue Shopping",
+  "processing": "Processing",
+  "shipped": "Shipped",
+  "delivered": "Delivered",
+  "cancelled": "Cancelled",
+  "just_now": "just now",
+  "flash_sale": "Flash Sale:",
+  "ends_soon": "Ends soon",
+  "out_of_stock": "Out of Stock",
+  "only_n_s_left": "Only {n} left",
+  "@only_n_s_left": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "share": "Share",
+  "save_to_wishlist": "Save to wishlist",
+  "n_s_review": "{n} review",
+  "@n_s_review": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "n_s_reviews": "{n} reviews",
+  "@n_s_reviews": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "no_reviews_yet": "No reviews yet",
+  "n_s_answered_question": "{n} Answered Question",
+  "@n_s_answered_question": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "n_s_answered_questions": "{n} Answered Questions",
+  "@n_s_answered_questions": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "brand": "Brand:",
+  "free_shipping": "Free Shipping",
+  "in_stock": "In Stock",
+  "n_s_available": "{n} available",
+  "@n_s_available": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "sku": "SKU:",
+  "only_n_s_left_in_stock": "Only {n} left in stock!",
+  "@only_n_s_left_in_stock": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "n_s_sold_in_last_24h": "{n} sold in last 24h",
+  "@n_s_sold_in_last_24h": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "n_s_viewing_now": "{n} viewing now",
+  "@n_s_viewing_now": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "notify_me_when_back_in_stock": "Notify me when back in stock",
+  "your_email": "Your email",
+  "notify_me": "Notify me",
+  "n_s_other_waiting_for_this_product": "{n} other waiting for this product.",
+  "@n_s_other_waiting_for_this_product": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "n_s_others_waiting_for_this_product": "{n} others waiting for this product.",
+  "@n_s_others_waiting_for_this_product": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "color": "Color:",
+  "size": "Size:",
+  "add_to_cart": "Add to Cart",
+  "buy_now": "Buy Now",
+  "description": "Description",
+  "delivery": "Delivery",
+  "same_city_seller_faster_delivery": "Same-city seller — faster delivery",
+  "deliver_to": "Deliver to",
+  "set_location": "Set location",
+  "estimated": "Estimated",
+  "a_s_b_s_days": "{a}-{b} days",
+  "@a_s_b_s_days": {
+    "placeholders": {
+      "a": {
+        "type": "String"
+      },
+      "b": {
+        "type": "String"
+      }
+    }
+  },
+  "shipping_fee": "Shipping fee",
+  "available": "Available",
+  "add_n_s_more_to_unlock": "Add ৳{n} more to unlock",
+  "@add_n_s_more_to_unlock": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "return_policy_2": "Return policy",
+  "n_s_day_return": "{n}-day return",
+  "@n_s_day_return": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "non_returnable": "Non-returnable",
+  "warranty": "Warranty",
+  "avoiding_jumma_maghrib_delivery": "Avoiding Jumma / Maghrib delivery",
+  "sold_by": "Sold By",
+  "mall": "Mall",
+  "kyc_verified_by_sgt": "KYC verified by SGT",
+  "verified_by_sgt": "Verified by SGT",
+  "seller_rating": "Seller rating",
+  "no_ratings_yet": "No ratings yet",
+  "avg_delivery": "Avg delivery",
+  "n_s_day_s": "{n} day(s)",
+  "@n_s_day_s": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "cancel_rate": "Cancel rate",
+  "online_now": "Online now",
+  "last_seen_t_s": "Last seen {t}",
+  "@last_seen_t_s": {
+    "placeholders": {
+      "t": {
+        "type": "String"
+      }
+    }
+  },
+  "offline": "Offline",
+  "typically_replies_in_n_s_min": "Typically replies in ~{n} min",
+  "@typically_replies_in_n_s_min": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "typically_replies_in_n_s_hr": "Typically replies in ~{n} hr",
+  "@typically_replies_in_n_s_hr": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "visit_store": "Visit Store",
+  "chat_now": "Chat Now",
+  "quick_questions": "Quick questions:",
+  "verification": "Verification",
+  "trade_license_verified": "Trade License Verified",
+  "nid_verified": "NID Verified",
+  "why_buy_from_this_seller": "Why buy from this seller?",
+  "n_s_positive": "{n}% positive",
+  "@n_s_positive": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "across_n_s_review": "across {n} review",
+  "@across_n_s_review": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "across_n_s_reviews": "across {n} reviews",
+  "@across_n_s_reviews": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "n_s_day_delivery": "{n}-day delivery",
+  "@n_s_day_delivery": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "on_average": "on average",
+  "replies_in_n_s_min": "Replies in ~{n} min",
+  "@replies_in_n_s_min": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "replies_in_n_s_hr": "Replies in ~{n} hr",
+  "@replies_in_n_s_hr": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "typical_chat_reply": "typical chat reply",
+  "n_s_order_success": "{n}% order success",
+  "@n_s_order_success": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "n_s_cancellations": "— {n}% cancellations",
+  "@n_s_cancellations": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "get_the_sgt_app": "Get the SGT app",
+  "app_download_qr": "App download QR",
+  "scan_to_download": "Scan to download",
+  "specifications": "Specifications",
+  "view_more_n_s_more": "View More ({n} more)",
+  "@view_more_n_s_more": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "frequently_bought_together": "Frequently Bought Together",
+  "this_product": "This product",
+  "save_more_on_this_product": "Save more on this product",
+  "earn_n_s_point": "Earn {n} point",
+  "@earn_n_s_point": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "earn_n_s_points": "Earn {n} points",
+  "@earn_n_s_points": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "earned_when_delivered_1_point_1_at_checkout": "Earned when delivered. 1 point = ৳1 at checkout.",
+  "you_have_n_s_points": "You have {n} points",
+  "@you_have_n_s_points": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "worth_n_s_tick": "Worth ৳{n}. Tick",
+  "@worth_n_s_tick": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "use_my_points": "Use my points",
+  "at_checkout": "at checkout.",
+  "view_ledger": "View ledger →",
+  "earn_by_sharing": "Earn by sharing",
+  "copy": "Copy",
+  "have_a_coupon": "Have a coupon?",
+  "would_save": "would save",
+  "clear": "Clear",
+  "enter_code": "Enter code",
+  "check": "Check",
+  "bulk_pricing": "Bulk Pricing",
+  "unit": "Unit",
+  "save": "Save",
+  "questions_answers": "Questions & Answers",
+  "a_s_answered_b_s_asked": "{a} Answered · {b} Asked",
+  "@a_s_answered_b_s_asked": {
+    "placeholders": {
+      "a": {
+        "type": "String"
+      },
+      "b": {
+        "type": "String"
+      }
+    }
+  },
+  "ask_a_public_question_about_this_product": "Ask a public question about this product…",
+  "ask": "Ask",
+  "please_don_t_share_phone_numbers_they_ll_be_removed": "Please don't share phone numbers — they'll be removed.",
+  "log_in": "Log in",
+  "to_ask_a_question": "to ask a question.",
+  "asked_by_name_s": "Asked by {name}",
+  "@asked_by_name_s": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "user": "User",
+  "remove_helpful_vote": "Remove helpful vote",
+  "mark_as_helpful": "Mark as helpful",
+  "helpful": "Helpful",
+  "no_answers_yet": "No answers yet.",
+  "write_an_answer": "Write an answer…",
+  "reply": "Reply",
+  "no_questions_yet_be_the_first_to_ask": "No questions yet — be the first to ask.",
+  "more_from_name_s": "More from {name}",
+  "@more_from_name_s": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "see_all": "See all",
+  "ratings_reviews": "Ratings & Reviews",
+  "edit_your_review": "Edit your review",
+  "write_a_review_with_photos": "Write a review (with photos)",
+  "only_customers_with_a_delivered_order_can_review_this_produc": "Only customers with a delivered order can review this product",
+  "buy_receive_delivery_to_review": "Buy + receive delivery to review",
+  "verified_buyers_can_post_photo_reviews": "Verified buyers can post photo reviews",
+  "what_buyers_like": "What buyers like",
+  "not_enough_positive_feedback_yet": "Not enough positive feedback yet.",
+  "what_to_watch_for": "What to watch for",
+  "no_notable_complaints_yet": "No notable complaints yet.",
+  "auto_summarised_from_recent_customer_reviews": "Auto-summarised from recent customer reviews.",
+  "customer_photos": "Customer Photos",
+  "n_s_photo": "{n} photo",
+  "@n_s_photo": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "n_s_photos": "{n} photos",
+  "@n_s_photos": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      }
+    }
+  },
+  "customer_photo": "customer photo",
+  "all_stars": "All stars",
+  "verified_purchase": "Verified Purchase",
+  "review_pages": "Review pages",
+  "be_the_first_to_review_this_product": "Be the first to review this product.",
+  "no_reviews_match_this_filter": "No reviews match this filter.",
+  "clear_filter": "Clear filter",
+  "similar_products": "Similar Products",
+  "customers_also_viewed": "Customers Also Viewed",
+  "ended": "Ended",
+  "ends_in": "Ends in",
+  "copied": "Copied!",
+  "view_more": "View More",
+  "view_less": "View Less",
+  "profile_details": "Profile Details",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "email_id": "Email ID",
+  "phone_2": "Phone",
+  "save_changes": "Save Changes",
+  "change_password": "Change Password",
+  "current_password": "Current Password",
+  "new_password": "New Password",
+  "confirm_password": "Confirm Password",
+  "share_your_code_earn_points_s_points_when_a_friend_signs_up_": "Share your code — earn {points} points when a friend signs up and places their first order, plus a commission on every sale through your share links.",
+  "@share_your_code_earn_points_s_points_when_a_friend_signs_up_": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "your_referral_code": "Your referral code",
+  "share_this_link": "Share this link:",
+  "friends_signing_up_with_your_code_or_buying_through_your_sha": "Friends signing up with your code, or buying through your shared product links, earn you points.",
+  "your_earnings": "Your earnings",
+  "friends_referred": "Friends referred",
+  "referral_rewards_paid": "Referral rewards paid",
+  "affiliate_sales": "Affiliate sales",
+  "points_earned": "Points earned",
+  "people_you_referred": "People you referred",
+  "joined_date_s": "Joined {date}",
+  "@joined_date_s": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "points_s_pts": "+{points} pts",
+  "@points_s_pts": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "pending_first_order": "Pending first order",
+  "no_referrals_yet_share_your_code_to_start_earning": "No referrals yet — share your code to start earning.",
+  "reset_password": "Reset Password",
+  "set_a_new_password": "Set a New Password",
+  "enter_the_code_sent_to_email_s_and_choose_a_new_password": "Enter the code sent to {email} and choose a new password.",
+  "@enter_the_code_sent_to_email_s_and_choose_a_new_password": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "reset_code": "Reset Code",
+  "6_digit_code": "6-digit code",
+  "new_password_2": "New password",
+  "confirm_password_2": "Confirm password",
+  "request_a_new_code": "Request a new code",
+  "review": "Review",
+  "your_rating": "Your rating",
+  "title": "Title",
+  "optional": "(optional)",
+  "sum_up_your_experience": "Sum up your experience",
+  "your_review": "Your review",
+  "what_did_you_like_or_dislike": "What did you like or dislike?",
+  "photos": "Photos",
+  "update_review": "Update review",
+  "post_review": "Post review",
+  "your_reward_points_balance": "Your reward points balance",
+  "worth_amount_s_redeem_at_checkout": "Worth ৳{amount} — redeem at checkout.",
+  "@worth_amount_s_redeem_at_checkout": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "earn_1_point_per_100_on_delivered_orders": "Earn 1 point per ৳100 on delivered orders.",
+  "points_history": "Points history",
+  "adjustment": "Adjustment",
+  "no_points_activity_yet_points_are_credited_when_your_orders_": "No points activity yet — points are credited when your orders are delivered.",
+  "search": "Search",
+  "search_products": "Search products",
+  "all_products": "All Products",
+  "price_range": "Price Range",
+  "min": "Min",
+  "max": "Max",
+  "count_s_product_s": "{count} product(s)",
+  "@count_s_product_s": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "no_products_found_try_a_different_category_or_search": "No products found. Try a different category or search.",
+  "load_more_products": "Load more products",
+  "loading": "Loading…",
+  "shopping_cart": "Shopping Cart",
+  "product": "Product",
+  "price": "Price",
+  "quantity": "Quantity",
+  "update": "Update",
+  "calculated_at_checkout": "Calculated at checkout",
+  "proceed_to_checkout": "Proceed to Checkout",
+  "your_cart_is_empty": "Your cart is empty",
+  "browse_the_shop_and_add_your_favourite_items": "Browse the shop and add your favourite items.",
+  "shop_now": "Shop Now",
+  "signup": "SignUp",
+  "account_type": "Account Type",
+  "customer_buyer": "Customer (Buyer)",
+  "phone_number_2": "Phone number",
+  "shop_name": "Shop Name",
+  "sellers_only": "(sellers only)",
+  "your_shop_name": "Your shop name",
+  "referral_code": "Referral code",
+  "have_a_friend_code_enter_it_here": "Have a friend code? Enter it here",
+  "by_registering_your_details_you_agree_with_our_terms_conditi": "By registering your details, you agree with our Terms & Conditions, and Privacy and Cookie Policy.",
+  "create_an_account": "Create An Account",
+  "already_have_an_account": "Already have an account ?",
+  "search_this_store": "Search this store",
+  "no_categories_yet": "No categories yet.",
+  "count_s_found": "{count} found",
+  "@count_s_found": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "no_products_found_in_this_store": "No products found in this store.",
+  "prev": "Prev",
+  "next": "Next",
+  "verify_code": "Verify Code",
+  "enter_verification_code": "Enter Verification Code",
+  "we_sent_a_one_time_code_to_email_s": "We sent a one-time code to {email}.",
+  "@we_sent_a_one_time_code_to_email_s": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "verification_code": "Verification Code",
+  "verify_continue": "Verify & Continue",
+  "didn_t_get_the_code": "Didn't get the code ?",
+  "resend_code": "Resend Code",
+  "australia": "Australia",
+  "quick_view": "Quick View",
+  "your_wishlist_is_empty": "Your Wishlist is empty!",
+  "your_wishlist_is_empty_please_go_to_the_shop_page_and_select": "Your Wishlist is empty please go to the shop page and select your favourite items."
+}
