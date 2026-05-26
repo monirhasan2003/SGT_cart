@@ -45,7 +45,7 @@ msgstr "এবং"
 #: app/templates/Base/_cookie_banner.html:21 app/templates/Base/footer.html:102
 #: app/templates/Base/navbar2.html:297
 msgid "Privacy Policy"
-msgstr "Privacy Policy"
+msgstr "প্রাইভেসি পলিসি"
 
 #: app/templates/Base/_cookie_banner.html:26
 msgid "Necessary only"
@@ -272,12 +272,12 @@ msgid "BD Registered"
 msgstr "BD Registered"
 
 #: app/templates/Base/navbar2.html:7
-#, fuzzy
+
 msgid "Welcome to SGT Cart —"
 msgstr "SGT Cart-এ স্বাগতম —"
 
 #: app/templates/Base/navbar2.html:8
-#, fuzzy
+
 msgid "browse today's flash deals"
 msgstr "আজকের ফ্ল্যাশ ডিল দেখুন"
 
@@ -299,17 +299,17 @@ msgid "Wishlist"
 msgstr "উইশলিস্ট"
 
 #: app/templates/Base/navbar2.html:42
-#, fuzzy
+
 msgid "My Account"
 msgstr "আমার অ্যাকাউন্ট"
 
 #: app/templates/Base/navbar2.html:44
-#, fuzzy
+
 msgid "Login / Signup"
 msgstr "লগইন / সাইনআপ"
 
 #: app/templates/Base/navbar2.html:62
-#, fuzzy
+
 msgid "Search products, brands, categories…"
 msgstr "পণ্য, ব্র্যান্ড, ক্যাটাগরি খুঁজুন…"
 
@@ -338,7 +338,7 @@ msgid "Could not start voice — "
 msgstr ""
 
 #: app/templates/Base/navbar2.html:183
-#, fuzzy
+
 msgid "Heard: "
 msgstr "Card"
 
@@ -408,42 +408,42 @@ msgid "Flash Sales"
 msgstr "ফ্ল্যাশ সেল"
 
 #: app/templates/Base/navbar2.html:286
-#, fuzzy
+
 msgid "Sell on SGT"
 msgstr "SGT-তে বিক্রি করুন"
 
 #: app/templates/Base/navbar2.html:289
-#, fuzzy
+
 msgid "Help"
 msgstr "হেল্প"
 
 #: app/templates/Base/navbar2.html:291
-#, fuzzy
+
 msgid "About Us"
 msgstr "আমাদের সম্পর্কে"
 
 #: app/templates/Base/navbar2.html:292
-#, fuzzy
+
 msgid "Contact"
 msgstr "যোগাযোগ"
 
 #: app/templates/Base/navbar2.html:293
-#, fuzzy
+
 msgid "FAQs"
 msgstr "এফএকিউ"
 
 #: app/templates/Base/navbar2.html:294
-#, fuzzy
+
 msgid "Shipping Info"
 msgstr "শিপিং তথ্য"
 
 #: app/templates/Base/navbar2.html:295
-#, fuzzy
+
 msgid "Return Policy"
 msgstr "রিটার্ন পলিসি"
 
 #: app/templates/Base/navbar2.html:296
-#, fuzzy
+
 msgid "Terms &amp; Conditions"
 msgstr "শর্তাবলী"
 
@@ -2148,32 +2148,32 @@ msgid "Shop Now"
 msgstr "এখনই কিনুন"
 
 #: app/templates/pages/signup.html:16
-#, fuzzy
+
 msgid "SignUp"
 msgstr "Sign Up"
 
 #: app/templates/pages/signup.html:37
-#, fuzzy
+
 msgid "Account Type"
 msgstr "আপনার account email"
 
 #: app/templates/pages/signup.html:42
-#, fuzzy
+
 msgid "Customer (Buyer)"
 msgstr "Customer Terms"
 
 #: app/templates/pages/signup.html:73
-#, fuzzy
+
 msgid "Phone number"
 msgstr "ফোন নম্বর"
 
 #: app/templates/pages/signup.html:78
-#, fuzzy
+
 msgid "Shop Name"
 msgstr "এখনই কিনুন"
 
 #: app/templates/pages/signup.html:78
-#, fuzzy
+
 msgid "(sellers only)"
 msgstr "Seller"
 
@@ -2182,7 +2182,7 @@ msgid "Your shop name"
 msgstr ""
 
 #: app/templates/pages/signup.html:95
-#, fuzzy
+
 msgid "Referral code"
 msgstr "আপনার Referral code"
 
@@ -2197,12 +2197,12 @@ msgid ""
 msgstr ""
 
 #: app/templates/pages/signup.html:106
-#, fuzzy
+
 msgid "Create An Account"
 msgstr "Account নেই?"
 
 #: app/templates/pages/signup.html:109
-#, fuzzy
+
 msgid "Already have an account ?"
 msgstr "Account নেই?"
 
