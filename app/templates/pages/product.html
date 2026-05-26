@@ -372,7 +372,7 @@
 					<div class="d-flex align-items-center gap-2 mb-2">
 						{% if product.vendor.logo %}
 							<img src="{{ url_for('static', filename=product.vendor.logo) }}"
-								 alt="{{ product.vendor.shop_name_en }}"
+								 alt="{{ product.vendor.localized_shop_name }}"
 								 class="rounded border" style="width:48px;height:48px;object-fit:cover;">
 						{% else %}
 							<span class="d-flex align-items-center justify-content-center bg-light border rounded"
@@ -381,7 +381,7 @@
 						<div class="flex-grow-1 min-width-0">
 							<a href="{{ url_for('storefront.store', slug=product.vendor.slug) }}"
 							   class="text-dark ft-medium text-decoration-none d-block text-truncate">
-								{{ product.vendor.shop_name_en }}
+								{{ product.vendor.localized_shop_name }}
 							</a>
 							<div class="small d-flex gap-1 flex-wrap mt-1 pdp-seller-badges">
 								{% if product.vendor.is_mall_tier %}

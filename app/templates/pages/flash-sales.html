@@ -49,12 +49,12 @@
 			<div class="mb-5">
 				<div class="d-flex justify-content-between align-items-center mb-3">
 					<div>
-						<h5 class="ft-bold mb-0">{{ sale.title }}</h5>
+						<h5 class="ft-bold mb-0">{{ sale.localized_title }}</h5>
 						{% if sale.vendor %}
 						<small class="text-muted">
 							<i class="lni lni-shop me-1"></i>{{ _("by") }}
 							<a href="{{ url_for('storefront.store', slug=sale.vendor.slug) }}"
-							   class="text-muted">{{ sale.vendor.shop_name_en }}</a>
+							   class="text-muted">{{ sale.vendor.localized_shop_name }}</a>
 						</small>
 						{% else %}
 						<small class="text-muted">{{ _("Marketplace-wide deal") }}</small>
@@ -64,8 +64,8 @@
 					<span class="badge bg-danger">{{ _("Ends %(date)s", date=sale.ends_at.strftime('%d %b %Y')) }}</span>
 					{% endif %}
 				</div>
-				{% if sale.description %}
-				<p class="text-muted">{{ sale.description }}</p>
+				{% if sale.localized_description %}
+				<p class="text-muted">{{ sale.localized_description }}</p>
 				{% endif %}
 				<div class="row g-2">
 					{% for item in items %}

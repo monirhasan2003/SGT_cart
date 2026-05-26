@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-26 05:28+0600\n"
+"POT-Creation-Date: 2026-05-26 12:18+0600\n"
 "PO-Revision-Date: 2026-05-26 04:59+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -41,6 +41,7 @@ msgid "and"
 msgstr ""
 
 #: app/templates/Base/_cookie_banner.html:21 app/templates/Base/footer.html:102
+#: app/templates/Base/navbar2.html:297
 msgid "Privacy Policy"
 msgstr ""
 
@@ -50,6 +51,14 @@ msgstr ""
 
 #: app/templates/Base/_cookie_banner.html:30
 msgid "Accept all"
+msgstr ""
+
+#: app/templates/Base/base.html:42
+msgid "Back to top"
+msgstr ""
+
+#: app/templates/Base/base.html:124
+msgid "It's my birthday!"
 msgstr ""
 
 #: app/templates/Base/flash_messages.html:8
@@ -260,6 +269,168 @@ msgstr ""
 msgid "BD Registered"
 msgstr ""
 
+#: app/templates/Base/navbar2.html:7
+msgid "Welcome to SGT Cart —"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:8
+msgid "browse today's flash deals"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:21
+msgid "Language"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:29
+msgid "English"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:36 app/templates/pages/addresses.html:39
+#: app/templates/pages/customer-dashboard.html:46
+#: app/templates/pages/customer-dashboard.html:80
+#: app/templates/pages/my-orders.html:39
+#: app/templates/pages/profile-info.html:46
+#: app/templates/pages/wishlist.html:16 app/templates/pages/wishlist.html:46
+msgid "Wishlist"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:42
+msgid "My Account"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:44
+msgid "Login / Signup"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:62
+msgid "Search products, brands, categories…"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:65
+msgid "Search by voice — speak your query"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:68
+msgid "Search by image — upload a photo"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:157
+msgid "Voice search needs Chrome, Edge or Safari"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:160
+msgid "Voice search needs Chrome, Edge or Safari."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:175
+msgid "Listening… speak your search."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:177
+msgid "Could not start voice — "
+msgstr ""
+
+#: app/templates/Base/navbar2.html:183
+msgid "Heard: "
+msgstr ""
+
+#: app/templates/Base/navbar2.html:195
+msgid "Microphone permission denied — allow it in the browser address bar."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:196
+msgid "Voice search blocked by the browser."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:197
+msgid "Didn't hear anything — tap the mic and try again."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:198
+msgid "No microphone found."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:199
+msgid "Voice recognition needs internet."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:200
+msgid "Voice error: "
+msgstr ""
+
+#: app/templates/Base/navbar2.html:237 app/templates/Base/navbar2.html:316
+#: app/templates/pages/notifications.html:12
+#: app/templates/pages/notifications.html:24
+msgid "Notifications"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:267 app/templates/pages/404.html:14
+#: app/templates/pages/addresses.html:11 app/templates/pages/checkout.html:11
+#: app/templates/pages/complete-order.html:14
+#: app/templates/pages/customer-dashboard.html:14
+#: app/templates/pages/edit-account-address.html:11
+#: app/templates/pages/flash-sales.html:12
+#: app/templates/pages/forgot-password.html:14
+#: app/templates/pages/login.html:14 app/templates/pages/messages.html:11
+#: app/templates/pages/my-orders.html:11 app/templates/pages/my-reviews.html:11
+#: app/templates/pages/notifications.html:11
+#: app/templates/pages/order-detail.html:11 app/templates/pages/product.html:48
+#: app/templates/pages/profile-info.html:14 app/templates/pages/refer.html:11
+#: app/templates/pages/reset-password.html:14
+#: app/templates/pages/review-form.html:11 app/templates/pages/rewards.html:11
+#: app/templates/pages/shop.html:13 app/templates/pages/shoping-cart.html:11
+#: app/templates/pages/signup.html:14 app/templates/pages/verify-otp.html:14
+#: app/templates/pages/wishlist.html:14
+msgid "Home"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:269 app/templates/pages/product.html:49
+#: app/templates/pages/shop.html:15
+msgid "Shop"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:273 app/templates/pages/index.html:143
+#: app/templates/pages/shop.html:40 app/templates/pages/store.html:80
+msgid "Categories"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:284 app/templates/pages/flash-sales.html:13
+#: app/templates/pages/flash-sales.html:22
+msgid "Flash Sales"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:286
+msgid "Sell on SGT"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:289
+msgid "Help"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:291
+msgid "About Us"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:292
+msgid "Contact"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:293
+msgid "FAQs"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:294
+msgid "Shipping Info"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:295
+msgid "Return Policy"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:296
+msgid "Terms &amp; Conditions"
+msgstr ""
+
 #: app/templates/errors/403.html:6
 msgid "Access Denied — SGT Cart"
 msgstr ""
@@ -299,25 +470,6 @@ msgstr ""
 
 #: app/templates/errors/403.html:27
 msgid "Go Home"
-msgstr ""
-
-#: app/templates/pages/404.html:14 app/templates/pages/addresses.html:11
-#: app/templates/pages/checkout.html:11
-#: app/templates/pages/complete-order.html:14
-#: app/templates/pages/customer-dashboard.html:14
-#: app/templates/pages/edit-account-address.html:11
-#: app/templates/pages/flash-sales.html:12
-#: app/templates/pages/forgot-password.html:14
-#: app/templates/pages/login.html:14 app/templates/pages/messages.html:11
-#: app/templates/pages/my-orders.html:11 app/templates/pages/my-reviews.html:11
-#: app/templates/pages/notifications.html:11
-#: app/templates/pages/order-detail.html:11 app/templates/pages/product.html:48
-#: app/templates/pages/profile-info.html:14 app/templates/pages/refer.html:11
-#: app/templates/pages/reset-password.html:14
-#: app/templates/pages/review-form.html:11 app/templates/pages/rewards.html:11
-#: app/templates/pages/shop.html:13 app/templates/pages/shoping-cart.html:11
-#: app/templates/pages/verify-otp.html:14 app/templates/pages/wishlist.html:14
-msgid "Home"
 msgstr ""
 
 #: app/templates/pages/404.html:15
@@ -380,15 +532,6 @@ msgstr ""
 #: app/templates/pages/profile-info.html:45
 #: app/templates/pages/wishlist.html:45
 msgid "My Order"
-msgstr ""
-
-#: app/templates/pages/addresses.html:39
-#: app/templates/pages/customer-dashboard.html:46
-#: app/templates/pages/customer-dashboard.html:80
-#: app/templates/pages/my-orders.html:39
-#: app/templates/pages/profile-info.html:46
-#: app/templates/pages/wishlist.html:16 app/templates/pages/wishlist.html:46
-msgid "Wishlist"
 msgstr ""
 
 #: app/templates/pages/addresses.html:40
@@ -730,11 +873,6 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: app/templates/pages/flash-sales.html:13
-#: app/templates/pages/flash-sales.html:22
-msgid "Flash Sales"
-msgstr ""
-
 #: app/templates/pages/flash-sales.html:23
 msgid "Limited-time deals — grab them before the timer runs out."
 msgstr ""
@@ -785,7 +923,7 @@ msgid "No flash sales running right now — check back soon!"
 msgstr ""
 
 #: app/templates/pages/forgot-password.html:15
-#: app/templates/pages/login.html:15
+#: app/templates/pages/login.html:15 app/templates/pages/signup.html:15
 msgid "Pages"
 msgstr ""
 
@@ -794,7 +932,7 @@ msgid "Forgot Password"
 msgstr ""
 
 #: app/templates/pages/forgot-password.html:37
-#: app/templates/pages/login.html:53
+#: app/templates/pages/login.html:53 app/templates/pages/signup.html:66
 msgid "Email"
 msgstr ""
 
@@ -815,6 +953,7 @@ msgid "Remember your password ?"
 msgstr ""
 
 #: app/templates/pages/forgot-password.html:46
+#: app/templates/pages/signup.html:109
 msgid "Sign in"
 msgstr ""
 
@@ -828,11 +967,6 @@ msgstr ""
 
 #: app/templates/pages/index.html:133
 msgid "Secure payment"
-msgstr ""
-
-#: app/templates/pages/index.html:143 app/templates/pages/shop.html:40
-#: app/templates/pages/store.html:80
-msgid "Categories"
 msgstr ""
 
 #: app/templates/pages/index.html:188
@@ -882,15 +1016,16 @@ msgid "Customer"
 msgstr ""
 
 #: app/templates/pages/login.html:47 app/templates/pages/messages.html:41
-#: app/templates/pages/product.html:853
+#: app/templates/pages/product.html:853 app/templates/pages/signup.html:47
 msgid "Seller"
 msgstr ""
 
-#: app/templates/pages/login.html:54
+#: app/templates/pages/login.html:54 app/templates/pages/signup.html:67
 msgid "Email address"
 msgstr ""
 
 #: app/templates/pages/login.html:58 app/templates/pages/login.html:59
+#: app/templates/pages/signup.html:85 app/templates/pages/signup.html:86
 msgid "Password"
 msgstr ""
 
@@ -997,11 +1132,6 @@ msgstr ""
 msgid "You haven't written any reviews yet."
 msgstr ""
 
-#: app/templates/pages/notifications.html:12
-#: app/templates/pages/notifications.html:24
-msgid "Notifications"
-msgstr ""
-
 #: app/templates/pages/notifications.html:28
 msgid "Mark all as read"
 msgstr ""
@@ -1080,10 +1210,6 @@ msgstr ""
 
 #: app/templates/pages/product.html:18 app/templates/pages/product.html:38
 msgid "Ends soon"
-msgstr ""
-
-#: app/templates/pages/product.html:49 app/templates/pages/shop.html:15
-msgid "Shop"
 msgstr ""
 
 #: app/templates/pages/product.html:70 app/templates/pages/product.html:169
@@ -1702,11 +1828,13 @@ msgstr ""
 msgid "Profile Details"
 msgstr ""
 
-#: app/templates/pages/profile-info.html:68
+#: app/templates/pages/profile-info.html:68 app/templates/pages/signup.html:54
+#: app/templates/pages/signup.html:55
 msgid "First Name"
 msgstr ""
 
-#: app/templates/pages/profile-info.html:76
+#: app/templates/pages/profile-info.html:76 app/templates/pages/signup.html:59
+#: app/templates/pages/signup.html:60
 msgid "Last Name"
 msgstr ""
 
@@ -1714,7 +1842,7 @@ msgstr ""
 msgid "Email ID"
 msgstr ""
 
-#: app/templates/pages/profile-info.html:91
+#: app/templates/pages/profile-info.html:91 app/templates/pages/signup.html:72
 msgid "Phone"
 msgstr ""
 
@@ -1738,6 +1866,7 @@ msgstr ""
 
 #: app/templates/pages/profile-info.html:122
 #: app/templates/pages/reset-password.html:53
+#: app/templates/pages/signup.html:89 app/templates/pages/signup.html:90
 msgid "Confirm Password"
 msgstr ""
 
@@ -1853,7 +1982,7 @@ msgid "Title"
 msgstr ""
 
 #: app/templates/pages/review-form.html:48
-#: app/templates/pages/review-form.html:56
+#: app/templates/pages/review-form.html:56 app/templates/pages/signup.html:95
 msgid "(optional)"
 msgstr ""
 
@@ -1991,6 +2120,56 @@ msgstr ""
 #: app/templates/pages/shoping-cart.html:107
 #: app/templates/pages/wishlist.html:104
 msgid "Shop Now"
+msgstr ""
+
+#: app/templates/pages/signup.html:16
+msgid "SignUp"
+msgstr ""
+
+#: app/templates/pages/signup.html:37
+msgid "Account Type"
+msgstr ""
+
+#: app/templates/pages/signup.html:42
+msgid "Customer (Buyer)"
+msgstr ""
+
+#: app/templates/pages/signup.html:73
+msgid "Phone number"
+msgstr ""
+
+#: app/templates/pages/signup.html:78
+msgid "Shop Name"
+msgstr ""
+
+#: app/templates/pages/signup.html:78
+msgid "(sellers only)"
+msgstr ""
+
+#: app/templates/pages/signup.html:79
+msgid "Your shop name"
+msgstr ""
+
+#: app/templates/pages/signup.html:95
+msgid "Referral code"
+msgstr ""
+
+#: app/templates/pages/signup.html:97
+msgid "Have a friend code? Enter it here"
+msgstr ""
+
+#: app/templates/pages/signup.html:102
+msgid ""
+"By registering your details, you agree with our Terms & Conditions, and "
+"Privacy and Cookie Policy."
+msgstr ""
+
+#: app/templates/pages/signup.html:106
+msgid "Create An Account"
+msgstr ""
+
+#: app/templates/pages/signup.html:109
+msgid "Already have an account ?"
 msgstr ""
 
 #: app/templates/pages/store.html:72

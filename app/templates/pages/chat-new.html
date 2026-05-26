@@ -80,7 +80,7 @@
 						      class="d-flex justify-content-between align-items-center border rounded p-2 mb-0">
 							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 							<input type="hidden" name="vendor_id" value="{{ v.id }}">
-							<span class="small ft-medium">{{ v.shop_name_en }}</span>
+							<span class="small ft-medium">{{ v.localized_shop_name }}</span>
 							<button class="btn btn-outline-primary btn-sm">Message</button>
 						</form>
 						{% endfor %}

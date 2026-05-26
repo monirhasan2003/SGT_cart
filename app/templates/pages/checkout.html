@@ -58,7 +58,7 @@
 						{% for vendor, vitems in groups.items() %}
 							<div class="mb-3">
 								<div class="gray px-2 py-1 ft-medium">
-									<i class="lni lni-shop me-1"></i>{{ _("Sold by %(name)s", name=vendor.shop_name_en) }}
+									<i class="lni lni-shop me-1"></i>{{ _("Sold by %(name)s", name=vendor.localized_shop_name) }}
 								</div>
 								{% for item in vitems %}
 									<div class="d-flex justify-content-between align-items-center py-2 br-bottom">

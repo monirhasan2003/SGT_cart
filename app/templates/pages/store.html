@@ -20,7 +20,7 @@
 		<div class="bg-white border rounded shadow-sm p-1 flex-shrink-0"
 		     style="width:110px; height:110px;">
 			{% if vendor.logo %}
-				<img src="{{ url_for('static', filename=vendor.logo) }}" alt="{{ vendor.shop_name_en }}"
+				<img src="{{ url_for('static', filename=vendor.logo) }}" alt="{{ vendor.localized_shop_name }}"
 				     class="rounded" style="width:100%; height:100%; object-fit:cover;">
 			{% else %}
 				<div class="d-flex align-items-center justify-content-center gray rounded"
@@ -28,7 +28,7 @@
 			{% endif %}
 		</div>
 		<div class="ps-3" style="padding-bottom: 4px;">
-			<h2 class="ft-bold mb-1">{{ vendor.shop_name_en }}</h2>
+			<h2 class="ft-bold mb-1">{{ vendor.localized_shop_name }}</h2>
 			<div class="text-muted small">
 				<i class="lni lni-package me-1"></i>{{ _("%(count)s product(s)", count=product_count) }}
 				{% if vendor.rating_count %}

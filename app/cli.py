@@ -593,6 +593,97 @@ def register_cli(app):
         n = ai_summary_service.refresh_all_published()
         click.echo(f"  Refreshed AI summaries for {n} published product(s).")
 
+    @app.cli.command("seed-bangla-content")
+    def seed_bangla_content():
+        """Fill name_bn / title_bn on demo data so the bilingual site
+        renders Bangla labels out of the box.
+
+        Idempotent — only sets `_bn` columns when they are empty.
+        Re-run after introducing new categories or banners."""
+        from app.models.catalog import Category
+        from app.models.marketing import FlashSale
+        from app.models.banner import HomepageBanner
+
+        # ----- Category names -----
+        # Slug -> Bangla name. Uses the existing slugify(name_en) pattern.
+        CATEGORY_BN = {
+            "electronics":              "ইলেক্ট্রনিক্স",
+            "electronics-mobiles":      "মোবাইল",
+            "electronics-laptops":      "ল্যাপটপ",
+            "electronics-headphones":   "হেডফোন",
+            "electronics-cameras":      "ক্যামেরা",
+            "electronics-televisions":  "টেলিভিশন",
+            "fashion":                  "ফ্যাশন",
+            "fashion-men-s-wear":       "পুরুষদের পোশাক",
+            "fashion-women-s-wear":     "নারীদের পোশাক",
+            "fashion-kids-wear":        "শিশুদের পোশাক",
+            "fashion-shoes":            "জুতা",
+            "fashion-watches":          "ঘড়ি",
+            "home-living":              "হোম ও লিভিং",
+            "home-living-furniture":    "ফার্নিচার",
+            "home-living-kitchen":      "কিচেন",
+            "home-living-home-decor":   "হোম ডেকর",
+            "grocery":                  "গ্রোসারি",
+            "grocery-vegetables":       "শাক-সবজি",
+            "grocery-fruits":           "ফল",
+            "grocery-beverages":        "পানীয়",
+            "health-beauty":            "হেলথ ও বিউটি",
+            "health-beauty-skincare":   "স্কিনকেয়ার",
+            "health-beauty-makeup":     "মেকআপ",
+            "health-beauty-personal-care": "পার্সোনাল কেয়ার",
+        }
+        cat_filled = 0
+        for cat in Category.query.all():
+            bn = CATEGORY_BN.get(cat.slug)
+            if bn and not cat.name_bn:
+                cat.name_bn = bn
+                cat_filled += 1
+
+        # ----- FlashSale titles -----
+        FLASH_BN = {
+            "sgt-mega-eid-sale": ("SGT মেগা ঈদ সেল",
+                                  "পছন্দের স্টোর থেকে হাতে বাছাই করা ডিল — সীমিত সময়ের জন্য।"),
+        }
+        flash_filled = 0
+        for sale in FlashSale.query.all():
+            entry = FLASH_BN.get(sale.slug)
+            if entry and not sale.title_bn:
+                sale.title_bn, sale.description_bn = entry
+                flash_filled += 1
+
+        # ----- HomepageBanner overlay text -----
+        BANNER_BN = {
+            "Mega Eid Sale": ("মেগা ঈদ সেল",
+                              "প্রতিটি ক্যাটাগরিতে ৬০% পর্যন্ত ছাড়",
+                              "সেল দেখুন"),
+            "Become a Seller": ("সেলার হয়ে যান",
+                                "১-২ দিনে আপনার শপ খুলুন। সারা বাংলাদেশে বিক্রি করুন।",
+                                "বিক্রি শুরু করুন"),
+            "Free Cash on Delivery": ("ফ্রি ক্যাশ অন ডেলিভারি",
+                                      "৳৯৯৯-এর বেশি অর্ডারে — সব জেলায়।",
+                                      "এখনই কিনুন"),
+            "Daily Essentials at 50% Off": ("দৈনন্দিন প্রয়োজনে ৫০% ছাড়",
+                                            "গ্রোসারি, বিউটি, কিচেন — প্রতি সকালে রিফিল।",
+                                            "ডিল দেখুন"),
+        }
+        banner_filled = 0
+        for b in HomepageBanner.query.all():
+            entry = BANNER_BN.get(b.headline)
+            if entry:
+                if not b.headline_bn:
+                    b.headline_bn = entry[0]
+                if not b.subheadline_bn:
+                    b.subheadline_bn = entry[1]
+                if not b.button_text_bn:
+                    b.button_text_bn = entry[2]
+                banner_filled += 1
+
+        db.session.commit()
+        click.echo(
+            f"  Bangla seed — categories: {cat_filled}, "
+            f"flash sales: {flash_filled}, banners: {banner_filled}."
+        )
+
     @app.cli.command("optimize-banners")
     @click.option("--max-width", default=1600, type=int,
                   help="Cap the banner width in pixels.")

@@ -57,21 +57,21 @@
 				<div class="carousel-item {{ 'active' if loop.first }}">
 					<a href="{{ b.button_url or '#' }}" class="d-block position-relative">
 						<img src="{{ url_for('static', filename=b.image_path) }}"
-						     class="d-block w-100" alt="{{ b.headline or '' }}"
+						     class="d-block w-100" alt="{{ b.localized_headline or '' }}"
 						     width="1600" height="440"
 						     {% if loop.first %}fetchpriority="high" loading="eager"
 						     {% else %}loading="lazy" decoding="async"{% endif %}
 						     style="max-height:440px;object-fit:cover;background:#e5e7eb;">
-						{% if b.headline or b.subheadline or b.button_text %}
+						{% if b.localized_headline or b.localized_subheadline or b.localized_button_text %}
 						<div class="carousel-caption text-start hero-caption">
-							{% if b.headline %}
-							<h2 class="ft-bold text-white hero-caption-heading">{{ b.headline }}</h2>
+							{% if b.localized_headline %}
+							<h2 class="ft-bold text-white hero-caption-heading">{{ b.localized_headline }}</h2>
 							{% endif %}
-							{% if b.subheadline %}
-							<p class="text-white hero-caption-sub d-none d-sm-block">{{ b.subheadline }}</p>
+							{% if b.localized_subheadline %}
+							<p class="text-white hero-caption-sub d-none d-sm-block">{{ b.localized_subheadline }}</p>
 							{% endif %}
-							{% if b.button_text and b.button_url %}
-							<span class="btn btn-light hero-caption-btn">{{ b.button_text }}</span>
+							{% if b.localized_button_text and b.button_url %}
+							<span class="btn btn-light hero-caption-btn">{{ b.localized_button_text }}</span>
 							{% endif %}
 						</div>
 						{% endif %}
@@ -98,12 +98,12 @@
 		<a href="{{ sb.button_url or '#' }}" class="d-block rounded overflow-hidden position-relative border">
 			<img src="{{ url_for('static', filename=sb.image_path) }}"
 			     class="d-block w-100" style="max-height:200px;object-fit:cover;" alt="">
-			{% if sb.headline or sb.button_text %}
+			{% if sb.localized_headline or sb.localized_button_text %}
 			<div class="position-absolute top-50 start-0 translate-middle-y ms-4 text-white">
-				{% if sb.headline %}<h4 class="ft-bold mb-1">{{ sb.headline }}</h4>{% endif %}
-				{% if sb.subheadline %}<div class="small">{{ sb.subheadline }}</div>{% endif %}
-				{% if sb.button_text %}
-				<span class="btn btn-warning btn-sm mt-2">{{ sb.button_text }}</span>
+				{% if sb.localized_headline %}<h4 class="ft-bold mb-1">{{ sb.localized_headline }}</h4>{% endif %}
+				{% if sb.localized_subheadline %}<div class="small">{{ sb.localized_subheadline }}</div>{% endif %}
+				{% if sb.localized_button_text %}
+				<span class="btn btn-warning btn-sm mt-2">{{ sb.localized_button_text }}</span>
 				{% endif %}
 			</div>
 			{% endif %}
@@ -268,7 +268,7 @@
 			<div class="col-4 col-sm-3 col-md-2 col-lg-cat">
 				<a href="{{ url_for('storefront.store', slug=vp.slug) }}"
 				   class="d-block text-center text-dark text-decoration-none py-2 px-1 rounded store-tile"
-				   title="{{ vp.shop_name_en }}">
+				   title="{{ vp.localized_shop_name }}">
 					{% if vp.logo %}
 					<img src="{{ url_for('static', filename=vp.logo) }}"
 					     class="mb-1 rounded-circle border" style="width:48px;height:48px;object-fit:cover;" alt="">
@@ -279,7 +279,7 @@
 					</span>
 					{% endif %}
 					<div class="text-truncate" style="font-size:12px;line-height:1.2;">
-						{{ vp.shop_name_en }}
+						{{ vp.localized_shop_name }}
 					</div>
 					{% if vp.rating_count %}
 					<div class="text-warning" style="font-size:11px;line-height:1.2;">

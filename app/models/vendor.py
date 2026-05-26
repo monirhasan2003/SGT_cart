@@ -2,6 +2,7 @@
 from datetime import datetime
 
 from app.extensions import db
+from app.utils.i18n import localized
 
 VENDOR_PENDING = "pending"
 VENDOR_APPROVED = "approved"
@@ -81,6 +82,14 @@ class VendorProfile(db.Model):
     @property
     def is_approved(self):
         return self.status == VENDOR_APPROVED
+
+    @property
+    def localized_shop_name(self):
+        return localized(self.shop_name_en, self.shop_name_bn)
+
+    @property
+    def localized_description(self):
+        return localized(self.description_en, self.description_bn)
 
     @property
     def is_verification_submitted(self):
