@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-26 12:18+0600\n"
+"POT-Creation-Date: 2026-05-26 13:48+0600\n"
 "PO-Revision-Date: 2026-05-26 04:58+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: bn\n"
@@ -43,7 +43,7 @@ msgid "and"
 msgstr "এবং"
 
 #: app/templates/Base/_cookie_banner.html:21 app/templates/Base/footer.html:102
-#: app/templates/Base/navbar2.html:297
+#: app/templates/Base/navbar2.html:289
 msgid "Privacy Policy"
 msgstr "প্রাইভেসি পলিসি"
 
@@ -272,12 +272,10 @@ msgid "BD Registered"
 msgstr "BD Registered"
 
 #: app/templates/Base/navbar2.html:7
-
 msgid "Welcome to SGT Cart —"
 msgstr "SGT Cart-এ স্বাগতম —"
 
 #: app/templates/Base/navbar2.html:8
-
 msgid "browse today's flash deals"
 msgstr "আজকের ফ্ল্যাশ ডিল দেখুন"
 
@@ -289,7 +287,86 @@ msgstr ""
 msgid "English"
 msgstr ""
 
-#: app/templates/Base/navbar2.html:36 app/templates/pages/addresses.html:39
+#: app/templates/Base/navbar2.html:38 app/templates/Base/navbar2.html:223
+#: app/templates/Base/navbar2.html:300
+msgid "My Account"
+msgstr "আমার অ্যাকাউন্ট"
+
+#: app/templates/Base/navbar2.html:40
+msgid "Login / Signup"
+msgstr "লগইন / সাইনআপ"
+
+#: app/templates/Base/navbar2.html:58
+msgid "Search products, brands, categories…"
+msgstr "পণ্য, ব্র্যান্ড, ক্যাটাগরি খুঁজুন…"
+
+#: app/templates/Base/navbar2.html:61
+msgid "Search by voice — speak your query"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:64
+msgid "Search by image — upload a photo"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:153
+msgid "Voice search needs Chrome, Edge or Safari"
+msgstr ""
+
+#: app/templates/Base/navbar2.html:156
+msgid "Voice search needs Chrome, Edge or Safari."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:171
+msgid "Listening… speak your search."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:173
+msgid "Could not start voice — "
+msgstr ""
+
+#: app/templates/Base/navbar2.html:179
+msgid "Heard: "
+msgstr "Card"
+
+#: app/templates/Base/navbar2.html:191
+msgid "Microphone permission denied — allow it in the browser address bar."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:192
+msgid "Voice search blocked by the browser."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:193
+msgid "Didn't hear anything — tap the mic and try again."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:194
+msgid "No microphone found."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:195
+msgid "Voice recognition needs internet."
+msgstr ""
+
+#: app/templates/Base/navbar2.html:196
+msgid "Voice error: "
+msgstr ""
+
+#: app/templates/Base/navbar2.html:223 app/templates/Base/navbar2.html:300
+#: app/templates/errors/403.html:26 app/templates/pages/login.html:16
+#: app/templates/pages/login.html:75 app/templates/pages/reset-password.html:15
+#: app/templates/pages/verify-otp.html:15
+msgid "Login"
+msgstr "লগইন"
+
+#: app/templates/Base/navbar2.html:229 app/templates/Base/navbar2.html:306
+#: app/templates/pages/notifications.html:12
+#: app/templates/pages/notifications.html:24
+msgid "Notifications"
+msgstr "নোটিফিকেশন"
+
+#: app/templates/Base/navbar2.html:238 app/templates/Base/navbar2.html:315
+#: app/templates/pages/addresses.html:39
 #: app/templates/pages/customer-dashboard.html:46
 #: app/templates/pages/customer-dashboard.html:80
 #: app/templates/pages/my-orders.html:39
@@ -298,81 +375,7 @@ msgstr ""
 msgid "Wishlist"
 msgstr "উইশলিস্ট"
 
-#: app/templates/Base/navbar2.html:42
-
-msgid "My Account"
-msgstr "আমার অ্যাকাউন্ট"
-
-#: app/templates/Base/navbar2.html:44
-
-msgid "Login / Signup"
-msgstr "লগইন / সাইনআপ"
-
-#: app/templates/Base/navbar2.html:62
-
-msgid "Search products, brands, categories…"
-msgstr "পণ্য, ব্র্যান্ড, ক্যাটাগরি খুঁজুন…"
-
-#: app/templates/Base/navbar2.html:65
-msgid "Search by voice — speak your query"
-msgstr ""
-
-#: app/templates/Base/navbar2.html:68
-msgid "Search by image — upload a photo"
-msgstr ""
-
-#: app/templates/Base/navbar2.html:157
-msgid "Voice search needs Chrome, Edge or Safari"
-msgstr ""
-
-#: app/templates/Base/navbar2.html:160
-msgid "Voice search needs Chrome, Edge or Safari."
-msgstr ""
-
-#: app/templates/Base/navbar2.html:175
-msgid "Listening… speak your search."
-msgstr ""
-
-#: app/templates/Base/navbar2.html:177
-msgid "Could not start voice — "
-msgstr ""
-
-#: app/templates/Base/navbar2.html:183
-
-msgid "Heard: "
-msgstr "Card"
-
-#: app/templates/Base/navbar2.html:195
-msgid "Microphone permission denied — allow it in the browser address bar."
-msgstr ""
-
-#: app/templates/Base/navbar2.html:196
-msgid "Voice search blocked by the browser."
-msgstr ""
-
-#: app/templates/Base/navbar2.html:197
-msgid "Didn't hear anything — tap the mic and try again."
-msgstr ""
-
-#: app/templates/Base/navbar2.html:198
-msgid "No microphone found."
-msgstr ""
-
-#: app/templates/Base/navbar2.html:199
-msgid "Voice recognition needs internet."
-msgstr ""
-
-#: app/templates/Base/navbar2.html:200
-msgid "Voice error: "
-msgstr ""
-
-#: app/templates/Base/navbar2.html:237 app/templates/Base/navbar2.html:316
-#: app/templates/pages/notifications.html:12
-#: app/templates/pages/notifications.html:24
-msgid "Notifications"
-msgstr "নোটিফিকেশন"
-
-#: app/templates/Base/navbar2.html:267 app/templates/pages/404.html:14
+#: app/templates/Base/navbar2.html:259 app/templates/pages/404.html:14
 #: app/templates/pages/addresses.html:11 app/templates/pages/checkout.html:11
 #: app/templates/pages/complete-order.html:14
 #: app/templates/pages/customer-dashboard.html:14
@@ -392,58 +395,50 @@ msgstr "নোটিফিকেশন"
 msgid "Home"
 msgstr "হোম"
 
-#: app/templates/Base/navbar2.html:269 app/templates/pages/product.html:49
+#: app/templates/Base/navbar2.html:261 app/templates/pages/product.html:49
 #: app/templates/pages/shop.html:15
 msgid "Shop"
 msgstr "শপ"
 
-#: app/templates/Base/navbar2.html:273 app/templates/pages/index.html:143
+#: app/templates/Base/navbar2.html:265 app/templates/pages/index.html:143
 #: app/templates/pages/shop.html:40 app/templates/pages/store.html:80
 msgid "Categories"
 msgstr "ক্যাটাগরি"
 
-#: app/templates/Base/navbar2.html:284 app/templates/pages/flash-sales.html:13
+#: app/templates/Base/navbar2.html:276 app/templates/pages/flash-sales.html:13
 #: app/templates/pages/flash-sales.html:22
 msgid "Flash Sales"
 msgstr "ফ্ল্যাশ সেল"
 
-#: app/templates/Base/navbar2.html:286
-
+#: app/templates/Base/navbar2.html:278
 msgid "Sell on SGT"
 msgstr "SGT-তে বিক্রি করুন"
 
-#: app/templates/Base/navbar2.html:289
-
+#: app/templates/Base/navbar2.html:281
 msgid "Help"
 msgstr "হেল্প"
 
-#: app/templates/Base/navbar2.html:291
-
+#: app/templates/Base/navbar2.html:283
 msgid "About Us"
 msgstr "আমাদের সম্পর্কে"
 
-#: app/templates/Base/navbar2.html:292
-
+#: app/templates/Base/navbar2.html:284
 msgid "Contact"
 msgstr "যোগাযোগ"
 
-#: app/templates/Base/navbar2.html:293
-
+#: app/templates/Base/navbar2.html:285
 msgid "FAQs"
 msgstr "এফএকিউ"
 
-#: app/templates/Base/navbar2.html:294
-
+#: app/templates/Base/navbar2.html:286
 msgid "Shipping Info"
 msgstr "শিপিং তথ্য"
 
-#: app/templates/Base/navbar2.html:295
-
+#: app/templates/Base/navbar2.html:287
 msgid "Return Policy"
 msgstr "রিটার্ন পলিসি"
 
-#: app/templates/Base/navbar2.html:296
-
+#: app/templates/Base/navbar2.html:288
 msgid "Terms &amp; Conditions"
 msgstr "শর্তাবলী"
 
@@ -480,12 +475,6 @@ msgstr "অনুগ্রহ করে এমন account দিয়ে login 
 #: app/templates/pages/wishlist.html:50
 msgid "Log Out"
 msgstr "লগআউট"
-
-#: app/templates/errors/403.html:26 app/templates/pages/login.html:16
-#: app/templates/pages/login.html:75 app/templates/pages/reset-password.html:15
-#: app/templates/pages/verify-otp.html:15
-msgid "Login"
-msgstr "লগইন"
 
 #: app/templates/errors/403.html:27
 msgid "Go Home"
@@ -2148,32 +2137,26 @@ msgid "Shop Now"
 msgstr "এখনই কিনুন"
 
 #: app/templates/pages/signup.html:16
-
 msgid "SignUp"
 msgstr "Sign Up"
 
 #: app/templates/pages/signup.html:37
-
 msgid "Account Type"
 msgstr "আপনার account email"
 
 #: app/templates/pages/signup.html:42
-
 msgid "Customer (Buyer)"
 msgstr "Customer Terms"
 
 #: app/templates/pages/signup.html:73
-
 msgid "Phone number"
 msgstr "ফোন নম্বর"
 
 #: app/templates/pages/signup.html:78
-
 msgid "Shop Name"
 msgstr "এখনই কিনুন"
 
 #: app/templates/pages/signup.html:78
-
 msgid "(sellers only)"
 msgstr "Seller"
 
@@ -2182,7 +2165,6 @@ msgid "Your shop name"
 msgstr ""
 
 #: app/templates/pages/signup.html:95
-
 msgid "Referral code"
 msgstr "আপনার Referral code"
 
@@ -2197,12 +2179,10 @@ msgid ""
 msgstr ""
 
 #: app/templates/pages/signup.html:106
-
 msgid "Create An Account"
 msgstr "Account নেই?"
 
 #: app/templates/pages/signup.html:109
-
 msgid "Already have an account ?"
 msgstr "Account নেই?"
 
@@ -2277,4 +2257,14 @@ msgid ""
 "Your Wishlist is empty please go to the shop page and select your "
 "favourite items."
 msgstr "আপনার Wishlist খালি — অনুগ্রহ করে shop পেজে গিয়ে পছন্দের পণ্য বেছে নিন।"
+
+#: app/templates/pages/static/_layout.html:98
+#, python-format
+msgid "Frequently asked questions"
+msgstr "প্রায়ই জিজ্ঞাসিত প্রশ্ন"
+
+#: app/templates/pages/static/_layout.html:110
+
+msgid "Related pages"
+msgstr "সম্পর্কিত পেজ"
 

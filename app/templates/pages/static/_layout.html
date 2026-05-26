@@ -95,7 +95,7 @@
 				{% if self.page_faq()|trim %}
 				<section class="mt-5" id="faq">
 					<h2 class="ft-bold mb-3" style="font-size:1.4rem;">
-						Frequently asked questions
+						{{ _("Frequently asked questions") }}
 					</h2>
 					<div class="accordion" id="docFaqAccordion">
 						{% block page_faq %}{% endblock %}
@@ -107,7 +107,7 @@
 				{% if self.page_related()|trim %}
 				<section class="mt-5">
 					<h2 class="ft-bold mb-3" style="font-size:1.4rem;">
-						Related pages
+						{{ _("Related pages") }}
 					</h2>
 					<div class="row g-2">
 						{% block page_related %}{% endblock %}
