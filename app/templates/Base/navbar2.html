@@ -33,10 +33,6 @@
                 </div>
 
                 <div class="float-right me-3">
-                    <a href="/wishlist/" class="text-light medium">{{ _("Wishlist") }}</a>
-                </div>
-
-                <div class="float-right me-3">
                     {% if current_user.is_authenticated %}
                     <a href="{{ url_for('account.dashboard') }}" class="text-light medium">
                         {{ _("My Account") }}</a>
@@ -223,12 +219,8 @@
                 <div class="mobile_nav">
                     <ul class="d-flex">
                         <li>
-                            <a href="javascript:void(0);" onclick="openSearch()">
-                                <i class="lni lni-search-alt"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/login/">
+                            <a href="{% if current_user.is_authenticated %}{{ url_for('account.dashboard') }}{% else %}{{ url_for('auth.login') }}{% endif %}"
+                               title="{% if current_user.is_authenticated %}{{ _('My Account') }}{% else %}{{ _('Login') }}{% endif %}">
                                 <i class="lni lni-user"></i>
                             </a>
                         </li>
@@ -243,7 +235,7 @@
                         </li>
                         {% endif %}
                         <li>
-                            <a href="javascript:void(0);" onclick="openWishlist()">
+                            <a href="/wishlist/" title="{{ _('Wishlist') }}">
                                 <i class="lni lni-heart"></i>
                                 <span class="wishlist-count dn-counter">
                                     {{ wishlist|length }}
@@ -301,13 +293,11 @@
                 </ul>
                 
                 <ul class="nav-menu nav-menu-social align-to-right">
+                    {# Big inline search bar above already covers search;
+                       the duplicate search-modal icon was dropped. #}
                     <li>
-                        <a href="javascript:void(0);" onclick="openSearch()">
-                            <i class="lni lni-search-alt"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/login/">
+                        <a href="{% if current_user.is_authenticated %}{{ url_for('account.dashboard') }}{% else %}{{ url_for('auth.login') }}{% endif %}"
+                           title="{% if current_user.is_authenticated %}{{ _('My Account') }}{% else %}{{ _('Login') }}{% endif %}">
                             <i class="lni lni-user"></i>
                         </a>
                     </li>
@@ -322,7 +312,7 @@
                     </li>
                     {% endif %}
                     <li>
-                        <a href="javascript:void(0);" onclick="openWishlist()">
+                        <a href="/wishlist/" title="{{ _('Wishlist') }}">
                             <i class="lni lni-heart"></i>
                             <span class="wishlist-count dn-counter">
                                 {{ wishlist|length }}
