@@ -21,7 +21,29 @@
         <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-		
+
+		<!-- Hind Siliguri — Bangla web font (Daraz/Foodpanda BD/Chaldal use it).
+		     Covers Latin glyphs too, so we can promote it site-wide without a
+		     second font request. Preconnect speeds the handshake. -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<style>
+			/* Promote Hind Siliguri to the first family in the stack so both
+			   Bangla and Latin text inherit it. Kept tail of the theme's stack
+			   intact as a fallback. */
+			html, body, .ft-light, .ft-regular, .ft-medium, .ft-bold,
+			h1, h2, h3, h4, h5, h6, p, a, button, input, select, textarea,
+			.btn, .form-control, .form-select, .navbar, .nav, .nav-link,
+			.dropdown, .dropdown-menu, .card, .table, .small, .lead {
+				font-family: 'Hind Siliguri', 'Helvetica Neue', 'Segoe UI',
+					Roboto, Arial, sans-serif !important;
+			}
+			/* Hind Siliguri sits slightly tighter than the KUMO theme's
+			   default; bump line-height a touch so Bangla conjuncts breathe. */
+			body { line-height: 1.55; }
+		</style>
+
     </head>
 	
     <body>
